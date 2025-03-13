@@ -1,6 +1,6 @@
 <script lang="ts">
   console.debug('[RUN]', '/+layout.svelte')
-  import '$themes/app.css'
+  import '../app.css'
 
   let { children } = $props()
 </script>

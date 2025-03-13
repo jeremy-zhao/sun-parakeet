@@ -44,7 +44,7 @@
     }
   }
 
-  export const defaultButtonTheme: ButtonTheme = {
+  const defaultButtonTheme: ButtonTheme = {
     shape: 'normal',
     colors: {
       normal: 'sun-parakeet-button__normal',

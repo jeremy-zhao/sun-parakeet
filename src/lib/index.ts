@@ -24,5 +24,7 @@ export { Popup }
 // Layout
 import AutoCenter from './layout/AutoCenter.svelte'
 export type { AutoCenterAttributes } from './layout/AutoCenter.svelte'
+import Divider from './layout/Divider.svelte'
+export type { DividerAttributes } from './layout/Divider.svelte'
 import Page from './layout/Page.svelte'
-export { AutoCenter, Page }
+export { AutoCenter, Divider, Page }

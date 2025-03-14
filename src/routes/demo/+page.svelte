@@ -23,6 +23,7 @@
   </List>
   <List header="布局">
     {@render listItem('AutoCenter', '自动居中', '/demo/layout/auto-center')}
+    {@render listItem('Divider', '分割线', '/demo/layout/divider')}
   </List>
   <List header="信息展示">
     {@render listItem('Avatar', '头像', '/demo/display/avatar')}

@@ -22,5 +22,7 @@ export { Popup }
 // Input
 
 // Layout
+import AutoCenter from './layout/AutoCenter.svelte'
+export type { AutoCenterAttributes } from './layout/AutoCenter.svelte'
 import Page from './layout/Page.svelte'
-export { Page }
+export { AutoCenter, Page }

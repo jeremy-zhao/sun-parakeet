@@ -1,8 +1,10 @@
 <script lang="ts" module>
-  import type { HTMLAttributes } from 'svelte/elements'
+  import type { ClassValue, HTMLAttributes } from 'svelte/elements'
 
   /** 页面 */
-  export interface PageAttributes extends HTMLAttributes<HTMLElement> {}
+  export interface PageAttributes extends HTMLAttributes<HTMLElement> {
+    class?: ClassValue
+  }
 
   const duration = 300
 </script>
@@ -31,6 +33,6 @@
 
 <style lang="postcss">
   .sun-parakeet-page {
-    @apply fixed top-0 right-0 bottom-0 left-0 overflow-x-hidden overflow-y-auto;
+    @apply fixed bottom-0 left-0 right-0 top-0 overflow-y-auto overflow-x-hidden;
   }
 </style>

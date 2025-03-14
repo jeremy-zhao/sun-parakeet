@@ -21,6 +21,9 @@
     {@render listItem('Button', '按钮', '/demo/common/button')}
     {@render listItem('Icon', '图标', '/demo/common/icon')}
   </List>
+  <List header="布局">
+    {@render listItem('AutoCenter', '自动居中', '/demo/layout/auto-center')}
+  </List>
   <List header="信息展示">
     {@render listItem('Avatar', '头像', '/demo/display/avatar')}
     {@render listItem('Card', '卡片', '/demo/display/card')}

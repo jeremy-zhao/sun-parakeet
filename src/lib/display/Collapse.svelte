@@ -1,5 +1,6 @@
 <script lang="ts" module>
   import Button from '../common/Button.svelte'
+  import Icon from '../common/Icon.svelte'
   import type { Snippet } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
 
@@ -19,7 +20,6 @@
 
   let contentHeight = $state(1)
   let height = $derived(expanded ? `${contentHeight + 2}px` : '1px')
-  let transform = $derived(expanded ? 'none' : `translateY(-100%)`)
 
   function onSwitch() {
     expanded = !expanded
@@ -44,13 +44,14 @@
 
 <div class="sp-collapse {clazz}" class:expanded {...props}>
   <Button class="sp-collapse__header" color="text" shape="rectangular" onclick={onSwitch}>
-    <h2>
+    <div class="sp-collapse__header-left">
       {#if typeof header === 'string'}
         {header}
       {:else}
         {@render header()}
       {/if}
-    </h2>
+    </div>
+    <Icon class="sp-collapse__header-icon" name="arrow-down-s-line" size={30} />
   </Button>
   <div class="sp-collapse__content" style:height>
     <div use:onLoadContent class="sp-collapse__content-inner">
@@ -61,14 +62,25 @@
 
 <style type="postcss">
   .sp-collapse {
-    @apply w-full;
-    --sp-border-color: #d1d5db;
+    @apply relative w-full;
+    --sp-border-color: #e5e7eb;
+
+    &::before {
+      @apply absolute -top-[1px] left-4 right-0;
+      content: '';
+      height: 1px;
+      background-color: var(--sp-border-color);
+    }
 
     :global(.sp-collapse__header) {
-      @apply w-full py-3;
+      @apply w-full py-2;
 
-      h2 {
+      .sp-collapse__header-left {
         @apply flex-1 text-left;
+      }
+
+      :global(.sp-collapse__header-icon) {
+        @apply text-gray-300 transition-transform duration-300;
       }
     }
 
@@ -90,6 +102,11 @@
     }
 
     &.expanded {
+      :global(.sp-collapse__header) {
+        :global(.sp-collapse__header-icon) {
+          @apply -rotate-180;
+        }
+      }
       .sp-collapse__content {
         overflow: auto;
 

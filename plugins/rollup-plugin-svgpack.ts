@@ -4,10 +4,6 @@ import fs from 'fs-extra'
 import { optimize } from 'svgo'
 import svgstore from 'svgstore'
 
-// const svgoConfig: Config = {
-//   plugins: [{ name: 'preset-default', params: { overrides: { removeUselessStrokeAndFill: false } } }],
-// }
-
 interface SvgPackOption {
   /** 文件夹 */
   from: string | string[]
@@ -123,8 +119,8 @@ export default function svgpack(
 
     watchChange(id: string) {
       if (!hit(id)) return
-      console.log('change', id)
       make()
+      console.log('[rollup-plugin-svgpack]', id)
     },
   }
 }

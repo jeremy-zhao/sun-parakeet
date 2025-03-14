@@ -1,9 +1,10 @@
 import { svelteTesting } from '@testing-library/svelte/vite'
 import { sveltekit } from '@sveltejs/kit/vite'
 import { defineConfig } from 'vitest/config'
+import svgpack from './plugins/rollup-plugin-svgpack'
 
 export default defineConfig({
-  plugins: [sveltekit()],
+  plugins: [sveltekit(), svgpack([{ from: 'src/lib/symbol', to: 'static/icons/symbol.svg' }])],
   server: {
     host: '0.0.0.0',
   },

@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import { Page, Collapse } from '$lib'
+  import { Page, Icon, Collapse } from '$lib'
 </script>
 
 <script lang="ts">
@@ -7,7 +7,8 @@
 </script>
 
 <Page>
-  <h2 class="px-4">基础用法</h2>
+  <Icon name="arrow-down-s-line" />
+  <h2 class="my-2 px-4 text-gray-600">基础用法</h2>
   <Collapse header="折叠面板">
     {#each new Array(20) as row, ix}
       <p>第{ix}行</p>
@@ -21,8 +22,7 @@
       consequat.
     </p>
   </Collapse>
-  <br />
-  <h2 class="px-4">手风琴 {expanded}</h2>
+  <h2 class="my-2 px-4 text-gray-600">手风琴 {expanded}</h2>
   <Collapse expanded={expanded === 0} header="折叠面板" onChange={ex => (expanded = ex ? 0 : -1)}>
     <p>第一行</p>
     <p>第二行</p>

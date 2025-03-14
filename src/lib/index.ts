@@ -8,7 +8,11 @@ export { Button, Icon }
 // Display
 import Collapse from './display/Collapse.svelte'
 export type { CollapseAttributes } from './display/Collapse.svelte'
-export { Collapse }
+import List from './display/List.svelte'
+export type { ListAttributes } from './display/List.svelte'
+import ListItem from './display/ListItem.svelte'
+export type { ListItemAttributes } from './display/ListItem.svelte'
+export { Collapse, List, ListItem }
 
 // Feedback
 import Popup from './feedback/Popup.svelte'

@@ -1,38 +1,32 @@
 <script lang="ts" module>
-  import { Page, Icon, Collapse } from '$lib'
+  import { Page, Icon, List, ListItem } from '$lib'
 </script>
 
 <script lang="ts">
-  let expanded = $state(-1)
+  let clickable = $state(true)
 </script>
 
 <Page>
-  <Icon name="arrow-down-s-line" />
-  <h2 class="my-2 px-4 text-gray-600">基础用法</h2>
-  <Collapse header="折叠面板">
-    {#each new Array(20) as row, ix}
-      <p>第{ix}行</p>
-    {/each}
-  </Collapse>
-  <Collapse header="折叠面板">
-    <p class="text-gray-600">
-      Enim proident nulla voluptate non. Pariatur dolor amet tempor esse cupidatat exercitation eu laboris id nostrud ut
-      aliquip non labore excepteur. Ex ad irure reprehenderit ea nisi tempor qui aliquip ut mollit. Ad eiusmod labore ex
-      sit. Lorem nisi laborum deserunt aliqua veniam incididunt. Incididunt excepteur ipsum consequat aliquip anim
-      consequat.
-    </p>
-  </Collapse>
-  <h2 class="my-2 px-4 text-gray-600">手风琴 {expanded}</h2>
-  <Collapse expanded={expanded === 0} header="折叠面板" onChange={ex => (expanded = ex ? 0 : -1)}>
-    <p>第一行</p>
-    <p>第二行</p>
-  </Collapse>
-  <Collapse expanded={expanded === 1} header="折叠面板" onChange={ex => (expanded = ex ? 1 : -1)}>
-    <p>第一行</p>
-    <p>第二行</p>
-  </Collapse>
-  <Collapse expanded={expanded === 2} header="折叠面板" onChange={ex => (expanded = ex ? 2 : -1)}>
-    <p>第一行</p>
-    <p>第二行</p>
-  </Collapse>
+  <br />
+  <ListItem {clickable}>
+    {#snippet aside()}
+      <div class="h-8 w-8 rounded-full bg-red-600"></div>
+    {/snippet}
+    <span>列表条目</span>
+  </ListItem>
+  <ListItem {clickable} header="标题">
+    {#snippet aside()}
+      <div class="h-8 w-8 rounded-full bg-red-600"></div>
+    {/snippet}
+    <span>列表条目</span>
+  </ListItem>
+  <ListItem {clickable} description="这是一段很长的说明有可能会超过原有的长度或者造成换行">
+    {#snippet aside()}
+      <div class="h-8 w-8 rounded-full bg-red-600"></div>
+    {/snippet}
+    <span>列表条目</span>
+    {#snippet extra()}
+      <span>条目的值</span>
+    {/snippet}
+  </ListItem>
 </Page>

@@ -6,9 +6,9 @@
 
   /** 按钮属性 */
   export interface ButtonAttributes extends HTMLButtonAttributes {
-    /** 按钮颜色。默认值: 'normal' */
+    /** 按钮颜色。默认值：'normal' */
     color?: string
-    /** 按钮形状。默认值 'normal'，可被 ButtonTheme.shape 覆盖。 */
+    /** 按钮形状。默认值：'normal'，可被 ButtonTheme.shape 覆盖。 */
     shape?: ButtonShape
     /** 是否禁用 */
     disabled?: boolean
@@ -82,7 +82,7 @@
   {@render children?.()}
 </button>
 
-<style lang="postcss" global>
+<style lang="postcss">
   .sp-button {
     @apply box-border flex select-none items-center justify-center rounded-md px-4 py-2;
 

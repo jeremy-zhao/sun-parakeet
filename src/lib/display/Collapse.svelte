@@ -18,7 +18,7 @@
   let { expanded = $bindable(false), header, class: clazz, onChange, children, ...props }: CollapseAttributes = $props()
 
   let contentHeight = $state(1)
-  let height = $derived(expanded ? `${contentHeight + 2}px` : '0px')
+  let height = $derived(expanded ? `${contentHeight + 2}px` : '1px')
   let transform = $derived(expanded ? 'none' : `translateY(-100%)`)
 
   function onSwitch() {
@@ -53,7 +53,7 @@
     </h2>
   </Button>
   <div class="sp-collapse__content" style:height>
-    <div use:onLoadContent class="sp-collapse__content-inner" style:transform>
+    <div use:onLoadContent class="sp-collapse__content-inner">
       {@render children?.()}
     </div>
   </div>
@@ -73,18 +73,24 @@
     }
 
     .sp-collapse__content {
-      @apply ml-4 box-border overflow-hidden border-t;
+      @apply relative ml-4 box-border overflow-hidden border-b transition-all duration-300;
       border-color: var(--sp-border-color);
       max-height: var(--sp-max-height, 'unset');
 
+      &::before {
+        @apply absolute left-0 right-0 top-0;
+        content: '';
+        height: 1px;
+        background-color: var(--sp-border-color);
+      }
+
       .sp-collapse__content-inner {
-        @apply py-3 pr-4 text-sm opacity-50 transition-all duration-300;
+        @apply py-3 pr-4 text-sm opacity-0 transition-opacity duration-300;
       }
     }
 
     &.expanded {
       .sp-collapse__content {
-        @apply border-b;
         overflow: auto;
 
         .sp-collapse__content-inner {

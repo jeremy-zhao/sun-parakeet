@@ -14,8 +14,12 @@
     {/each}
   </Collapse>
   <Collapse header="折叠面板">
-    <p>第一行</p>
-    <p>第二行</p>
+    <p class="text-gray-600">
+      Enim proident nulla voluptate non. Pariatur dolor amet tempor esse cupidatat exercitation eu laboris id nostrud ut
+      aliquip non labore excepteur. Ex ad irure reprehenderit ea nisi tempor qui aliquip ut mollit. Ad eiusmod labore ex
+      sit. Lorem nisi laborum deserunt aliqua veniam incididunt. Incididunt excepteur ipsum consequat aliquip anim
+      consequat.
+    </p>
   </Collapse>
   <br />
   <h2 class="px-4">手风琴 {expanded}</h2>

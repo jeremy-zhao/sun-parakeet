@@ -60,11 +60,7 @@
       {@render header()}
     {/if}
     <!-- children -->
-    {#if children}
-      <div class="sp-list-item__children">
-        {@render children?.()}
-      </div>
-    {/if}
+    {@render children?.()}
     <!-- description -->
     {#if typeof description === 'string'}
       <span class="sp-list-item__description">{description}</span>
@@ -87,6 +83,8 @@
     <Icon class="sp-list-item__icon" name={iconed} />
   {:else if typeof iconed === 'object'}
     <Icon class="sp-list-item__icon" {...iconed} />
+  {:else}
+    <i class="sp-list-item__icon"></i>
   {/if}
 {/snippet}
 
@@ -104,7 +102,7 @@
 
 <style lang="postcss">
   .sp-list-item {
-    @apply relative mt-[-1px] py-[1px];
+    @apply relative z-0 mt-[-1px] bg-white py-[1px];
     --sp-border-color: #e5e7eb;
 
     &::before {
@@ -112,6 +110,7 @@
       content: '';
       height: 1px;
       background-color: var(--sp-border-color);
+      z-index: 0;
     }
 
     &::after {
@@ -119,6 +118,7 @@
       content: '';
       height: 1px;
       background-color: var(--sp-border-color);
+      z-index: 0;
     }
 
     .sp-list-item__inner,
@@ -132,11 +132,7 @@
 
       .sp-list-item__content {
         @apply flex flex-1 flex-col items-start justify-center;
-
-        .sp-list-item__children {
-          @apply text-base;
-          font-size: 17px;
-        }
+        font-size: 17px;
 
         .sp-list-item__header,
         .sp-list-item__description {

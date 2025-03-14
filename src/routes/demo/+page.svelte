@@ -1,56 +1,30 @@
 <script lang="ts" module>
-  import { Page, Icon, List, ListItem } from '$lib'
+  import { goto } from '$app/navigation'
+  import { Page, List, ListItem } from '$lib'
 </script>
 
 <script lang="ts">
-  let clickable = $state(true)
+  function onNav(e: Event) {
+    const target = e.currentTarget as HTMLElement
+    if (!target?.dataset.url) return
+
+    goto(target.dataset.url)
+  }
 </script>
 
+{#snippet listItem(text: string, extra: string, url: string)}
+  <ListItem clickable={true} onclick={onNav} {extra} data-url={url}>{text}</ListItem>
+{/snippet}
+
 <Page class="bg-gray-100">
-  <List>
-    <ListItem>
-      {#snippet aside()}
-        <div class="h-8 w-8 rounded-full bg-red-600"></div>
-      {/snippet}
-      <span>列表条目</span>
-    </ListItem>
-    <ListItem header="标题">
-      {#snippet aside()}
-        <div class="h-8 w-8 rounded-full bg-red-600"></div>
-      {/snippet}
-      <span>列表条目</span>
-    </ListItem>
-    <ListItem description="这是一段很长的说明有可能会超过原有的长度或者造成换行">
-      {#snippet aside()}
-        <div class="h-8 w-8 rounded-full bg-red-600"></div>
-      {/snippet}
-      <span>列表条目</span>
-      {#snippet extra()}
-        <span>条目的值</span>
-      {/snippet}
-    </ListItem>
+  <List header="通用组件">
+    {@render listItem('Button', '按钮', '/demo/common/button')}
+    {@render listItem('Icon', '图标', '/demo/common/icon')}
   </List>
-  <List header="列表名称">
-    <ListItem {clickable}>
-      {#snippet aside()}
-        <div class="h-8 w-8 rounded-full bg-red-600"></div>
-      {/snippet}
-      <span>列表条目</span>
-    </ListItem>
-    <ListItem {clickable} header="标题">
-      {#snippet aside()}
-        <div class="h-8 w-8 rounded-full bg-red-600"></div>
-      {/snippet}
-      <span>列表条目</span>
-    </ListItem>
-    <ListItem {clickable} description="这是一段很长的说明有可能会超过原有的长度或者造成换行">
-      {#snippet aside()}
-        <div class="h-8 w-8 rounded-full bg-red-600"></div>
-      {/snippet}
-      <span>列表条目</span>
-      {#snippet extra()}
-        <span>条目的值</span>
-      {/snippet}
-    </ListItem>
+  <List header="信息展示">
+    {@render listItem('Avatar', '头像', '/demo/display/avatar')}
+    {@render listItem('Card', '卡片', '/demo/display/card')}
+    {@render listItem('Collapse', '折叠面板', '/demo/display/collapse')}
+    {@render listItem('List', '列表', '/demo/display/list')}
   </List>
 </Page>

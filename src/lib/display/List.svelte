@@ -41,7 +41,7 @@
     }
 
     .sp-list__header {
-      @apply relative border-y bg-gray-100 px-4 py-2 text-gray-500;
+      @apply relative border-y px-4 py-2 text-gray-500;
       border-top-color: transparent;
       border-bottom-color: var(--sp-border-color);
       font-size: 15px;

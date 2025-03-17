@@ -11,6 +11,8 @@
     size?: number
     /** CSS 类 */
     class?: string
+    /** CSS 样式 */
+    style?: string
     /** 顶部偏移量 */
     top?: number
   }

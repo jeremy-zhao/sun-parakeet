@@ -15,9 +15,13 @@ export type { ListItemAttributes } from './display/ListItem.svelte'
 export { Collapse, List, ListItem }
 
 // Feedback
+import ActionSheet from './feedback/ActionSheet.svelte'
+export type { ActionSheetAttributes } from './feedback/ActionSheet.svelte'
+export { showLoading, hideLoading, type ShowLoadingOption } from './feedback/loading'
 import Popup from './feedback/Popup.svelte'
 export type { PopupAttributes, PopupPosition } from './feedback/Popup.svelte'
-export { Popup }
+export { showToast, hideToast, type ShowToastOption } from './feedback/toast'
+export { ActionSheet, Popup }
 
 // Input
 

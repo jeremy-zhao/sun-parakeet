@@ -25,10 +25,20 @@
     {@render listItem('AutoCenter', '自动居中', '/demo/layout/auto-center')}
     {@render listItem('Divider', '分割线', '/demo/layout/divider')}
   </List>
+  <List header="导航">
+    {@render listItem('TabBar', '标签栏', '/demo/navigation/tab-bar')}
+    {@render listItem('Tabs', '标签页', '/demo/navigation/tabs')}
+  </List>
   <List header="信息展示">
     {@render listItem('Avatar', '头像', '/demo/display/avatar')}
     {@render listItem('Card', '卡片', '/demo/display/card')}
     {@render listItem('Collapse', '折叠面板', '/demo/display/collapse')}
     {@render listItem('List', '列表', '/demo/display/list')}
+  </List>
+  <List header="反馈">
+    {@render listItem('ActionSheet', '动作面板', '/demo/feedback/action-sheet')}
+    {@render listItem('Loading', '加载中', '/demo/feedback/loading')}
+    {@render listItem('Popup', '弹出层', '/demo/feedback/popup')}
+    {@render listItem('Toast', '轻提示', '/demo/feedback/toast')}
   </List>
 </Page>

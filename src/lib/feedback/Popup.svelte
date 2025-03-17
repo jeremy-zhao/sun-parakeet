@@ -58,7 +58,7 @@
     position = 'bottom',
     mask = true,
     maskClickClose = true,
-    class: className,
+    class: clazz,
     onclose,
     children,
     ...native
@@ -66,23 +66,7 @@
 
   let zIndex = $derived(10000 + 2 * stack.indexOf(_self!))
 
-  let clazz: string = $derived.by(() => {
-    const classList = ['fixed', 'bg-white', 'transition-transform']
-
-    classList.push(...positions[position].clazz)
-
-    if (visible) {
-      classList.push(positions[position].visible)
-    } else {
-      classList.push(positions[position].hidden)
-    }
-
-    if (className) {
-      classList.push(className as string)
-    }
-
-    return classList.join(' ')
-  })
+  let positioned = $derived(`sp-popup-${position}`)
 
   // visible
   $effect(() => {
@@ -124,18 +108,62 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
   bind:this={_mask}
-  class="sun-parakeet-mask"
+  class="sp-mask"
   style:visibility={visible ? 'visible' : 'hidden'}
   style:z-index={zIndex}
   onclick={handleClickMask}
 ></div>
 
-<div bind:this={_self} {...native} class={clazz} style:z-index={zIndex + 1}>
+<div bind:this={_self} class="sp-popup {positioned} {clazz}" class:visible {...native} style:z-index={zIndex + 1}>
   {@render children?.()}
 </div>
 
 <style lang="postcss">
-  .sun-parakeet-mask {
-    @apply fixed top-0 right-0 bottom-0 left-0 bg-black/20;
+  .sp-mask {
+    @apply fixed bottom-0 left-0 right-0 top-0 bg-black/20;
+  }
+
+  .sp-popup {
+    @apply fixed bg-white transition-transform;
+
+    &.sp-popup-center {
+      @apply left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-0;
+
+      &.visible {
+        @apply scale-100;
+      }
+    }
+
+    &.sp-popup-top {
+      @apply left-0 right-0 top-0 -translate-y-full pt-safe;
+
+      &.visible {
+        @apply translate-y-0;
+      }
+    }
+
+    &.sp-popup-right {
+      @apply bottom-0 right-0 top-0 translate-x-full pr-safe;
+
+      &.visible {
+        @apply translate-x-0;
+      }
+    }
+
+    &.sp-popup-bottom {
+      @apply bottom-0 left-0 right-0 translate-y-full pb-safe;
+
+      &.visible {
+        @apply translate-y-0;
+      }
+    }
+
+    &.sp-popup-left {
+      @apply bottom-0 left-0 top-0 -translate-x-full pl-safe;
+
+      &.visible {
+        @apply translate-x-0;
+      }
+    }
   }
 </style>

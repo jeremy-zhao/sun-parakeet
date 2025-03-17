@@ -10,9 +10,9 @@
 
 <Page class="bg-gray-100">
   <List header="基础用法">
-    <p class="bg-white p-4">
+    <div class="bg-white p-4">
       <Button class="border" onclick={() => showToast({ text: '轻提示' })}>轻提示</Button>
-    </p>
+    </div>
   </List>
   <List header="图标">
     <div class="bg-white p-4">
@@ -20,12 +20,12 @@
     </div>
   </List>
   <List header="更多功能">
-    <p class="bg-white p-4">
+    <div class="bg-white p-4">
       <Button class="border" onclick={() => showToast({ text: '带遮罩', mask: true })}>带遮罩</Button>
       <Button class="border" onclick={() => showToast({ text: '点击/返回 不会关闭', mask: true, keep: true })}
         >点击/返回 不会关闭</Button
       >
-    </p>
+    </div>
   </List>
   <List header="手动清除">
     <div class="bg-white p-4">

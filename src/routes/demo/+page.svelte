@@ -4,12 +4,18 @@
 </script>
 
 <script lang="ts">
+  import { onMount } from 'svelte'
+
   function onNav(e: Event) {
     const target = e.currentTarget as HTMLElement
     if (!target?.dataset.url) return
 
     goto(target.dataset.url)
   }
+
+  onMount(() => {
+    history.scrollRestoration = 'manual'
+  })
 </script>
 
 {#snippet listItem(text: string, extra: string, url: string)}

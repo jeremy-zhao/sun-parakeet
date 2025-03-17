@@ -27,6 +27,9 @@
   ],
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "publishConfig": {
+    "registry": "http://10.1.20.30:8081/repository/npm-hosted/"
+  },
   "type": "module",
   "exports": {
     ".": {
@@ -79,6 +82,6 @@
     "vitest": "^3.0.0"
   },
   "keywords": [
-    "svelte"
+    "svelte ui"
   ]
 }

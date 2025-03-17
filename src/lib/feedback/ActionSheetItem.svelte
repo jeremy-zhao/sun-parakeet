@@ -8,10 +8,12 @@
   const { class: clazz, ...props }: ActionSheetItemAttributes = $props()
 </script>
 
-<Button class="sp-action-sheet-item {clazz}" {...props} />
+<Button class="sp-action-sheet-item {clazz}" color="text" shape="rectangular" {...props} />
 
 <style lang="postcss">
   :global(.sp-action-sheet-item) {
-    @apply rounded-none border-0;
+    @apply w-full;
+    font-size: 18px;
+    height: 54px;
   }
 </style>

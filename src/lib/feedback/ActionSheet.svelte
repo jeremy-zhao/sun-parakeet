@@ -8,22 +8,22 @@
   export interface ActionSheetAttributes extends PopupAttributes {
     /** 是否显示 */
     visible: boolean
-    /** 屏蔽 */
-    position?: undefined
     /** 标题 */
-    title?: string
+    header?: string | Snippet
     /** 动作条目 */
-    actions: any[]
+    actions: Array<string | unknown>
     /** 动作条目的模板 */
-    actionSnippet?: Snippet<[number, any]>
+    actionSnippet?: Snippet<[string | unknown, number]>
     /** 取消按钮文本 */
     cancel?: string
     /** 点击选项时触发 */
-    onaction?: (index: number, item: any) => void
+    onAction?: (action: any, index: number) => void
     /** 取消时触发 */
-    oncancel?: () => void
+    onCancel?: () => void
+    /** 屏蔽 */
+    position?: undefined
     // 屏蔽
-    onclose?: undefined
+    onClose?: undefined
   }
 </script>
 
@@ -31,65 +31,94 @@
   let {
     visible = $bindable(),
     position,
-    title,
+    header,
     actions,
     actionSnippet,
     cancel,
-    onaction,
-    oncancel,
+    onAction,
+    onCancel,
+    class: clazz,
     ...props
   }: ActionSheetAttributes = $props()
 
-  function handleAction(index: number, item: any) {
+  function handleAction(action: unknown, index: number) {
     visible = false
-    setTimeout(() => onaction?.(index, item), 20)
+    setTimeout(() => onAction?.(action, index), 20)
   }
 
   function handleCancel() {
     visible = false
-    setTimeout(() => oncancel?.(), 20)
+    setTimeout(() => onCancel?.(), 20)
   }
 
   function handleMaskClickClose() {
-    oncancel?.()
+    onCancel?.()
   }
 </script>
 
-{#snippet actionItem(index: number, item: any)}
+{#snippet actionItem(action: unknown)}
   <ActionSheetItem>
-    {typeof item === 'string' ? item : item.toString()}
+    {action}
   </ActionSheetItem>
 {/snippet}
 
 <Popup
-  {...props}
-  style={cancel ? 'padding-bottom:0px;' : ''}
   bind:visible
+  class="sp-action-sheet {clazz}"
+  style={cancel ? 'padding-bottom:0px;' : ''}
   position="bottom"
   onclose={handleMaskClickClose}
+  {...props}
 >
-  {#if title}
-    <header class="text-gray box-content flex h-10 items-center justify-center border-b border-b-gray-300">
-      {title}
+  {#if typeof header === 'string'}
+    <header class="sp-action-sheet__header">
+      {header}
+    </header>
+  {:else if typeof header === 'function'}
+    <header class="sp-action-sheet__header">
+      {@render header()}
     </header>
   {/if}
 
-  <ul class="flex flex-col items-stretch justify-end">
-    {#each actions as item, index}
+  <ul class="sp-action-sheet__list">
+    {#each actions as action, index}
       <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
       <!-- svelte-ignore a11y_click_events_have_key_events -->
-      <li
-        class="flex flex-col items-stretch justify-stretch border-b border-b-gray-300 last:border-none"
-        onclick={() => handleAction(index, item)}
-      >
-        {@render (actionSnippet ?? actionItem)(index, item)}
+      <li class="sp-action-sheet__list-item" onclick={() => handleAction(action, index)}>
+        {@render (actionSnippet ?? actionItem)(action, index)}
       </li>
     {/each}
   </ul>
 
   {#if cancel && typeof cancel === 'string'}
-    <footer class="flex flex-col items-stretch justify-stretch border-t-8 border-b-gray-300">
-      <Button class="box-content h-8 rounded-none border-0 pb-safe-or-2" onclick={handleCancel}>{cancel}</Button>
+    <footer class="sp-action-sheet__footer">
+      <Button class="sp-action-sheet__cancel" onclick={handleCancel}>{cancel}</Button>
     </footer>
   {/if}
 </Popup>
+
+<style lang="postcss">
+  :global(.sp-action-sheet) {
+    .sp-action-sheet__header {
+      @apply box-content flex items-center justify-center border-b border-b-gray-300 text-gray-500;
+      font-size: 15px;
+      padding: 18px 12px;
+    }
+
+    .sp-action-sheet__list {
+      @apply flex flex-col items-stretch justify-end;
+
+      .sp-action-sheet__list-item {
+        @apply flex flex-col items-stretch justify-stretch border-b border-b-gray-300 last:border-none;
+      }
+    }
+
+    .sp-action-sheet__footer {
+      @apply flex flex-col items-stretch justify-stretch border-t-8 border-b-gray-300;
+
+      :global(.sp-action-sheet__cancel) {
+        @apply box-content h-8 rounded-none border-0 pb-safe-or-2;
+      }
+    }
+  }
+</style>

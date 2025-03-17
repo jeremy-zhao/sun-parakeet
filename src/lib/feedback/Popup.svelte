@@ -13,7 +13,7 @@
     /** 点击遮罩时是否关闭。默认为 `true` */
     maskClickClose?: boolean
     /** 点击遮罩关闭时触发 */
-    onclose?: () => void
+    onClose?: () => void
   }
 
   const positions = {
@@ -59,7 +59,7 @@
     mask = true,
     maskClickClose = true,
     class: clazz,
-    onclose,
+    onClose,
     children,
     ...native
   }: PopupAttributes = $props()
@@ -90,7 +90,7 @@
   function handleClickMask() {
     if (!maskClickClose) return
     visible = false
-    setTimeout(() => onclose?.(), 20)
+    setTimeout(() => onClose?.(), 20)
   }
 
   onMount(() => {

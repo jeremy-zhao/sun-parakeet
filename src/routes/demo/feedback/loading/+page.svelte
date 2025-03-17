@@ -18,4 +18,6 @@
       <Button class="border" onclick={onSubmit}>提交</Button>
     </div>
   </List>
+
+  <p>Bug：提交，返回，提交消失，再返回时行为有问题</p>
 </Page>

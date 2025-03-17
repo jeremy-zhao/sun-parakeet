@@ -31,6 +31,7 @@
   </List>
   <List header="信息展示">
     {@render listItem('Avatar', '头像', '/demo/display/avatar')}
+    {@render listItem('Badge', '徽标', '/demo/display/badge')}
     {@render listItem('Card', '卡片', '/demo/display/card')}
     {@render listItem('Collapse', '折叠面板', '/demo/display/collapse')}
     {@render listItem('List', '列表', '/demo/display/list')}

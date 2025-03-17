@@ -28,7 +28,7 @@ export async function showLoading(option: ShowLoadingOption = {}) {
     icon: { name: 'loading', size: 32, class: 'animate-spin stroke-white' },
     duration: 0,
     mask: true,
-    clickClose: false,
+    keep: true,
   })
 }
 

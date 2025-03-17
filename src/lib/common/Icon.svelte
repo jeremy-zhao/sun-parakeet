@@ -28,6 +28,6 @@
 
 <style lang="postcss">
   .sun-parakeet-icon {
-    @apply relative;
+    @apply relative inline-block;
   }
 </style>

@@ -87,6 +87,7 @@
     @apply box-border inline-flex select-none items-center justify-center rounded-md border-0 px-4 py-2;
     font-size: 17px;
     line-height: 25px;
+    padding-bottom: 7px;
 
     &.disabled {
       @apply border-dashed border-gray-400 bg-gray-100 text-gray-400;

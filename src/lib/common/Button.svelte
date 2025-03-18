@@ -84,7 +84,9 @@
 
 <style lang="postcss">
   .sp-button {
-    @apply box-border inline-flex select-none items-center justify-center rounded-md px-4 py-2;
+    @apply box-border inline-flex select-none items-center justify-center rounded-md border-0 px-4 py-2;
+    font-size: 17px;
+    line-height: 25px;
 
     &.disabled {
       @apply border-dashed border-gray-400 bg-gray-100 text-gray-400;

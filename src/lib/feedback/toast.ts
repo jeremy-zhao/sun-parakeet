@@ -57,19 +57,21 @@ export async function showToast(option: ShowToastOption) {
 
   if (mask && !_mask) {
     _mask = document.createElement('div')
-    _mask.className = 'sp-mask'
+    _mask.className = 'sun-parakeet-mask'
 
     on(_mask, 'click', () => !_option?.keep && hideToast())
   }
 
   if (!_toast) {
     _toast = document.createElement('div')
-    _toast.classList.add('sun-parakeet-toast')
+    _toast.classList.add('sun-parakeet-toast', 'scaled')
 
     on(_toast, 'click', () => !_option?.keep && hideToast())
 
     document.body.appendChild(_toast)
   }
+
+  _toast.style.cursor = keep ? 'default' : 'pointer'
 
   if (!_icon) {
     _icon = document.createElementNS(svgns, 'svg')
@@ -155,7 +157,8 @@ export async function showToast(option: ShowToastOption) {
     _timer = setTimeout(() => hideToast(), duration)
   }
 
-  _toast.classList.add('scale-100', 'visible')
+  // _toast.classList.add('shown')
+  _toast.classList.remove('scaled')
 }
 
 async function _hideToast() {
@@ -172,12 +175,12 @@ async function _hideToast() {
 
   _option = undefined
 
-  _toast.classList.remove('scale-100')
+  _toast.classList.add('scaled')
 
   await delay(150)
 
   if (_option) return
-  _toast.classList.remove('visible')
+  // _toast.classList.remove('shown')
 }
 
 /**

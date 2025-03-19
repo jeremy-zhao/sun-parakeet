@@ -35,10 +35,10 @@
 </script>
 
 {#if children}
-  <div class="sun-parakeet-badge-wrapper {clazz}">
+  <div class="sun-parakeet-badge-wrapper {clazz}" {...props}>
     {@render children?.()}
     <b class="sun-parakeet-badge sun-parakeet-badge-fixed {dotted} {bordered}">{display}</b>
   </div>
 {:else}
-  <div class="sun-parakeet-badge {dotted} {bordered} {clazz}">{display}</div>
+  <div class="sun-parakeet-badge {dotted} {bordered} {clazz}" {...props}>{display}</div>
 {/if}

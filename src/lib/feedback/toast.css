@@ -1,15 +1,13 @@
 .sun-parakeet-toast {
-  @apply slace-0 invisible fixed left-1/2 top-1/2 z-[20001] flex -translate-x-1/2 -translate-y-1/2 flex-col items-center space-y-2 rounded bg-black/80 p-4 text-white backdrop-blur-sm transition-transform;
+  @apply fixed left-1/2 top-1/2 z-[20001] flex flex-col items-center rounded bg-black/80 p-4 text-white;
+  transition: scale 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  translate: -50% -50%;
 
-  &.visible {
-    @apply visible;
-  }
-
-  &.scale-100 {
-    @apply scale-100;
+  &.scaled {
+    scale: 0;
   }
 
   .sun-parakeet-toast__pre {
-    @apply bold;
+    @apply m-0 p-0 text-base font-bold;
   }
 }

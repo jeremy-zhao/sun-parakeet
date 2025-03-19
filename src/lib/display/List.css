@@ -1,6 +1,8 @@
-.sun-parakeet-list {
+:root {
   --sp-border-color: #e5e7eb;
+}
 
+.sun-parakeet-list {
   @apply relative mt-[-1px] box-border border-t;
   border-color: var(--sp-border-color);
 

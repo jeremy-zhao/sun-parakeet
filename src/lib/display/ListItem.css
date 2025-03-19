@@ -1,6 +1,8 @@
-.sun-parakeet-list-item {
+:root {
   --sp-border-color: #e5e7eb;
+}
 
+.sun-parakeet-list-item {
   @apply relative z-0 mt-[-1px] bg-white py-[1px];
 
   &::before {

@@ -1,4 +1,7 @@
 <script lang="ts" module>
+  import './mask.css'
+  import './Popup.css'
+
   import type { HTMLAttributes } from 'svelte/elements'
 
   export type PopupPosition = 'center' | 'top' | 'right' | 'bottom' | 'left'
@@ -14,34 +17,6 @@
     maskClickClose?: boolean
     /** 点击遮罩关闭时触发 */
     onClose?: () => void
-  }
-
-  const positions = {
-    center: {
-      clazz: ['top-1/2', 'left-1/2', '-translate-x-1/2', '-translate-y-1/2'],
-      visible: 'scale-100',
-      hidden: 'scale-0',
-    },
-    top: {
-      clazz: ['top-0', 'right-0', 'left-0', 'pt-safe'],
-      visible: 'translate-y-0',
-      hidden: '-translate-y-full',
-    },
-    right: {
-      clazz: ['top-0', 'right-0', 'bottom-0', 'pr-safe'],
-      visible: 'translate-x-0',
-      hidden: 'translate-x-full',
-    },
-    bottom: {
-      clazz: ['right-0', 'left-0', 'bottom-0', 'pb-safe'],
-      visible: 'translate-y-0',
-      hidden: 'translate-y-full',
-    },
-    left: {
-      clazz: ['top-0', 'left-0', 'bottom-0', 'pl-safe'],
-      visible: 'translate-x-0',
-      hidden: '-translate-x-full',
-    },
   }
 </script>
 
@@ -61,12 +36,12 @@
     class: clazz,
     onClose,
     children,
-    ...native
+    ...props
   }: PopupAttributes = $props()
 
   let zIndex = $derived(10000 + 2 * stack.indexOf(_self!))
 
-  let positioned = $derived(`sp-popup-${position}`)
+  let positioned = $derived(`sun-parakeet-popup-${position}`)
 
   // visible
   $effect(() => {
@@ -108,62 +83,18 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
   bind:this={_mask}
-  class="sp-mask"
+  class="sun-parakeet-mask"
   style:visibility={visible ? 'visible' : 'hidden'}
   style:z-index={zIndex}
   onclick={handleClickMask}
 ></div>
 
-<div bind:this={_self} class="sp-popup {positioned} {clazz}" class:visible {...native} style:z-index={zIndex + 1}>
+<div
+  bind:this={_self}
+  class="sun-parakeet-popup {positioned} {clazz}"
+  class:visible
+  {...props}
+  style:z-index={zIndex + 1}
+>
   {@render children?.()}
 </div>
-
-<style lang="postcss">
-  .sp-mask {
-    @apply fixed bottom-0 left-0 right-0 top-0 bg-black/20;
-  }
-
-  .sp-popup {
-    @apply fixed bg-white transition-transform;
-
-    &.sp-popup-center {
-      @apply left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-0;
-
-      &.visible {
-        @apply scale-100;
-      }
-    }
-
-    &.sp-popup-top {
-      @apply left-0 right-0 top-0 -translate-y-full pt-safe;
-
-      &.visible {
-        @apply translate-y-0;
-      }
-    }
-
-    &.sp-popup-right {
-      @apply bottom-0 right-0 top-0 translate-x-full pr-safe;
-
-      &.visible {
-        @apply translate-x-0;
-      }
-    }
-
-    &.sp-popup-bottom {
-      @apply bottom-0 left-0 right-0 translate-y-full pb-safe;
-
-      &.visible {
-        @apply translate-y-0;
-      }
-    }
-
-    &.sp-popup-left {
-      @apply bottom-0 left-0 top-0 -translate-x-full pl-safe;
-
-      &.visible {
-        @apply translate-x-0;
-      }
-    }
-  }
-</style>

@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  import './ActionSheet.css'
+
   import Button from '../common/Button.svelte'
   import Popup, { type PopupAttributes } from './Popup.svelte'
   import ActionSheetItem from './ActionSheetItem.svelte'
@@ -64,61 +66,35 @@
 
 <Popup
   bind:visible
-  class="sp-action-sheet {clazz}"
+  class="sun-parakeet-action-sheet {clazz}"
   style={cancel ? 'padding-bottom:0px;' : ''}
   position="bottom"
   onclose={handleMaskClickClose}
   {...props}
 >
   {#if typeof header === 'string'}
-    <header class="sp-action-sheet__header">
+    <header class="sun-parakeet-action-sheet__header">
       {header}
     </header>
   {:else if typeof header === 'function'}
-    <header class="sp-action-sheet__header">
+    <header class="sun-parakeet-action-sheet__header">
       {@render header()}
     </header>
   {/if}
 
-  <ul class="sp-action-sheet__list">
+  <ul class="sun-parakeet-action-sheet__list">
     {#each actions as action, index}
       <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
       <!-- svelte-ignore a11y_click_events_have_key_events -->
-      <li class="sp-action-sheet__list-item" onclick={() => handleAction(action, index)}>
+      <li class="sun-parakeet-action-sheet__list-item" onclick={() => handleAction(action, index)}>
         {@render (actionSnippet ?? actionItem)(action, index)}
       </li>
     {/each}
   </ul>
 
   {#if cancel && typeof cancel === 'string'}
-    <footer class="sp-action-sheet__footer">
-      <Button class="sp-action-sheet__cancel" onclick={handleCancel}>{cancel}</Button>
+    <footer class="sun-parakeet-action-sheet__footer">
+      <Button class="sun-parakeet-action-sheet__cancel" onclick={handleCancel}>{cancel}</Button>
     </footer>
   {/if}
 </Popup>
-
-<style lang="postcss">
-  :global(.sp-action-sheet) {
-    .sp-action-sheet__header {
-      @apply box-content flex items-center justify-center border-b border-b-gray-300 text-gray-500;
-      font-size: 15px;
-      padding: 18px 12px;
-    }
-
-    .sp-action-sheet__list {
-      @apply flex flex-col items-stretch justify-end;
-
-      .sp-action-sheet__list-item {
-        @apply flex flex-col items-stretch justify-stretch border-b border-b-gray-300 last:border-none;
-      }
-    }
-
-    .sp-action-sheet__footer {
-      @apply flex flex-col items-stretch justify-stretch border-t-8 border-b-gray-300;
-
-      :global(.sp-action-sheet__cancel) {
-        @apply box-content h-8 rounded-none border-0 pb-safe-or-2;
-      }
-    }
-  }
-</style>

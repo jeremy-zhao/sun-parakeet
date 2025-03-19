@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  import './Icon.css'
+
   import type { SVGAttributes } from 'svelte/elements'
 
   /** 图标配置 */
@@ -27,9 +29,3 @@
 <svg class="sun-parakeet-icon {clazz}" style:top="{top}px" width={size} height={size} {...props}>
   <use href="{path}#{name}" />
 </svg>
-
-<style lang="postcss">
-  .sun-parakeet-icon {
-    @apply relative inline-block;
-  }
-</style>

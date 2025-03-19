@@ -1,0 +1,52 @@
+.sun-parakeet-list-item {
+  --sp-border-color: #e5e7eb;
+
+  @apply relative z-0 mt-[-1px] bg-white py-[1px];
+
+  &::before {
+    @apply absolute left-4 right-0 top-0;
+    content: '';
+    height: 1px;
+    background-color: var(--sp-border-color);
+    z-index: 0;
+  }
+
+  &::after {
+    @apply absolute bottom-0 left-4 right-0;
+    content: '';
+    height: 1px;
+    background-color: var(--sp-border-color);
+    z-index: 0;
+  }
+
+  .sun-parakeet-list-item__inner,
+  button.sun-parakeet-list-item__inner.sun-parakeet-button {
+    @apply relative box-border flex h-full w-full flex-nowrap items-center justify-stretch p-2 pl-4 text-left;
+    min-height: var(--sp-min-height, 48px);
+
+    .sun-parakeet-list-item__aside {
+      @apply mr-2;
+    }
+
+    .sun-parakeet-list-item__content {
+      @apply flex flex-1 flex-col items-start justify-center;
+      font-size: 17px;
+
+      .sun-parakeet-list-item__header,
+      .sun-parakeet-list-item__description {
+        @apply overflow-hidden text-gray-500;
+        font-size: 13px;
+        line-height: 19px;
+      }
+    }
+
+    .sun-parakeet-list-item__extra {
+      @apply ml-4 text-gray-500;
+      font-size: 15px;
+    }
+
+    .sun-parakeet-list-item__icon {
+      @apply ml-2 text-gray-400;
+    }
+  }
+}

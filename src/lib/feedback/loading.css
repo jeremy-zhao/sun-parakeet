@@ -1,0 +1,3 @@
+.sun-parakeet-loading__icon {
+  @apply animate-spin stroke-white;
+}

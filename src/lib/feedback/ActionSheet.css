@@ -1,0 +1,23 @@
+.sun-parakeet-action-sheet {
+  .sun-parakeet-action-sheet__header {
+    @apply box-content flex items-center justify-center border-b border-b-gray-300 text-gray-500;
+    font-size: 15px;
+    padding: 18px 12px;
+  }
+
+  .sun-parakeet-action-sheet__list {
+    @apply flex flex-col items-stretch justify-end;
+
+    .sun-parakeet-action-sheet__list-item {
+      @apply flex flex-col items-stretch justify-stretch border-b border-b-gray-300 last:border-none;
+    }
+  }
+
+  .sun-parakeet-action-sheet__footer {
+    @apply flex flex-col items-stretch justify-stretch border-t-8 border-b-gray-300;
+
+    .sun-parakeet-action-sheet__cancel {
+      @apply box-content h-8 rounded-none border-0 pb-safe-or-2;
+    }
+  }
+}

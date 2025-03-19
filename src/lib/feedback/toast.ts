@@ -1,3 +1,6 @@
+import './mask.css'
+import './toast.css'
+
 import { browser } from '$app/environment'
 import { on } from 'svelte/events'
 import { delay } from '../common'
@@ -54,34 +57,14 @@ export async function showToast(option: ShowToastOption) {
 
   if (mask && !_mask) {
     _mask = document.createElement('div')
-    _mask.classList.add('fixed', 'bottom-0', 'left-0', 'right-0', 'top-0', 'z-[20000]', 'bg-black/20')
+    _mask.className = 'sp-mask'
 
     on(_mask, 'click', () => !_option?.keep && hideToast())
   }
 
   if (!_toast) {
     _toast = document.createElement('div')
-
-    _toast.classList.add(
-      'fixed',
-      'left-1/2',
-      'top-1/2',
-      'z-[20001]',
-      'flex',
-      'flex-col',
-      'items-center',
-      'space-y-2',
-      'rounded',
-      'bg-black/80',
-      'p-4',
-      'text-white',
-      'backdrop-blur-sm',
-      'transition-transform',
-      '-translate-x-1/2',
-      '-translate-y-1/2',
-      'slace-0',
-      'invisible'
-    )
+    _toast.classList.add('sun-parakeet-toast')
 
     on(_toast, 'click', () => !_option?.keep && hideToast())
 
@@ -96,7 +79,7 @@ export async function showToast(option: ShowToastOption) {
 
   if (!_pre) {
     _pre = document.createElement('pre')
-    _pre.classList.add('bold')
+    _pre.className = 'sun-parakeet-toast__pre'
   }
 
   const toasting = !!_option
@@ -172,8 +155,7 @@ export async function showToast(option: ShowToastOption) {
     _timer = setTimeout(() => hideToast(), duration)
   }
 
-  _toast.classList.remove('scale-0', 'invisible')
-  _toast.classList.add('scale-1')
+  _toast.classList.add('scale-100', 'visible')
 }
 
 async function _hideToast() {
@@ -190,13 +172,12 @@ async function _hideToast() {
 
   _option = undefined
 
-  _toast.classList.remove('scale-1', 'visible')
-  _toast.classList.add('scale-0')
+  _toast.classList.remove('scale-100')
 
   await delay(150)
 
   if (_option) return
-  _toast.classList.add('invisible')
+  _toast.classList.remove('visible')
 }
 
 /**

@@ -1,0 +1,34 @@
+.sun-parakeet-collapse {
+  --sp-border-color: #e5e7eb;
+  --sp-max-height: unset;
+
+  @apply relative w-full bg-white;
+
+  .sun-parakeet-collapse__header-icon {
+    @apply text-gray-400 transition-transform duration-300;
+  }
+
+  .sun-parakeet-collapse__content {
+    @apply relative ml-4 mt-[-1px] box-border overflow-hidden border-b transition-all duration-300;
+    border-color: var(--sp-border-color);
+    max-height: var(--sp-max-height);
+
+    .sun-parakeet-collapse__content-inner {
+      @apply py-3 pr-4 text-sm opacity-0 transition-opacity duration-300;
+    }
+  }
+
+  &.expanded {
+    .sun-parakeet-collapse__header-icon {
+      @apply -rotate-180;
+    }
+
+    .sun-parakeet-collapse__content {
+      overflow: auto;
+
+      .sun-parakeet-collapse__content-inner {
+        @apply opacity-100;
+      }
+    }
+  }
+}

@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  import './Collapse.css'
+
   import ListItem from './ListItem.svelte'
   import type { IconOption } from '../common/Icon.svelte'
   import type { Snippet } from 'svelte'
@@ -24,7 +26,7 @@
   const icon: IconOption = {
     name: 'arrow-down-s-line',
     size: 30,
-    class: 'sp-collapse__header-icon',
+    class: 'sun-parakeet-collapse__header-icon',
   }
 
   function onSwitch() {
@@ -48,9 +50,9 @@
   }
 </script>
 
-<div class="sp-collapse {clazz}" class:expanded {...props}>
-  <ListItem class="sp-collapse__header" clickable={true} onclick={onSwitch} {icon}>
-    <div class="sp-collapse__header-left">
+<div class="sun-parakeet-collapse {clazz}" class:expanded {...props}>
+  <ListItem class="sun-parakeet-collapse__header" clickable={true} onclick={onSwitch} {icon}>
+    <div class="sun-parakeet-collapse__header-left">
       {#if typeof header === 'string'}
         {header}
       {:else}
@@ -58,44 +60,9 @@
       {/if}
     </div>
   </ListItem>
-  <div class="sp-collapse__content" style:height>
-    <div use:onLoadContent class="sp-collapse__content-inner">
+  <div class="sun-parakeet-collapse__content" style:height>
+    <div use:onLoadContent class="sun-parakeet-collapse__content-inner">
       {@render children?.()}
     </div>
   </div>
 </div>
-
-<style type="postcss">
-  .sp-collapse {
-    @apply relative w-full bg-white;
-    --sp-border-color: #e5e7eb;
-
-    :global(.sp-collapse__header-icon) {
-      @apply text-gray-400 transition-transform duration-300;
-    }
-
-    .sp-collapse__content {
-      @apply relative ml-4 mt-[-1px] box-border overflow-hidden border-b transition-all duration-300;
-      border-color: var(--sp-border-color);
-      max-height: var(--sp-max-height, 'unset');
-
-      .sp-collapse__content-inner {
-        @apply py-3 pr-4 text-sm opacity-0 transition-opacity duration-300;
-      }
-    }
-
-    &.expanded {
-      :global(.sp-collapse__header-icon) {
-        @apply -rotate-180;
-      }
-
-      .sp-collapse__content {
-        overflow: auto;
-
-        .sp-collapse__content-inner {
-          @apply opacity-100;
-        }
-      }
-    }
-  }
-</style>

@@ -7,6 +7,7 @@ export default {
     backgroundOpacity: false,
   },
   content: ['./src/**/*.{html,js,svelte,ts}'],
+  theme: { extend: {} },
   plugins: [safeArea],
   darkMode: 'class',
 }

@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  import './ListItem.css'
+
   import Button from '../common/Button.svelte'
   import Icon from '../common/Icon.svelte'
   import type { Snippet } from 'svelte'
@@ -46,16 +48,16 @@
 {#snippet inner()}
   <!-- aside -->
   {#if aside}
-    <div class="sp-list-item__aside">
+    <div class="sun-parakeet-list-item__aside">
       {@render aside()}
     </div>
   {/if}
 
   <!-- content -->
-  <div class="sp-list-item__content">
+  <div class="sun-parakeet-list-item__content">
     <!-- header -->
     {#if typeof header === 'string'}
-      <span class="sp-list-item__header">{header}</span>
+      <span class="sun-parakeet-list-item__header">{header}</span>
     {:else if typeof header === 'function'}
       {@render header()}
     {/if}
@@ -63,7 +65,7 @@
     {@render children?.()}
     <!-- description -->
     {#if typeof description === 'string'}
-      <span class="sp-list-item__description">{description}</span>
+      <span class="sun-parakeet-list-item__description">{description}</span>
     {:else if typeof description === 'function'}
       {@render description()}
     {/if}
@@ -71,85 +73,31 @@
 
   <!-- extra -->
   {#if typeof extra === 'string'}
-    <span class="sp-list-item__extra">{extra}</span>
+    <span class="sun-parakeet-list-item__extra">{extra}</span>
   {:else if typeof extra === 'function'}
-    <div class="sp-list-item__extra">
+    <div class="sun-parakeet-list-item__extra">
       {@render extra()}
     </div>
   {/if}
 
   <!-- icon -->
   {#if typeof iconed === 'string'}
-    <Icon class="sp-list-item__icon" name={iconed} />
+    <Icon class="sun-parakeet-list-item__icon" name={iconed} />
   {:else if typeof iconed === 'object'}
-    <Icon class="sp-list-item__icon" {...iconed} />
+    <Icon class="sun-parakeet-list-item__icon" {...iconed} />
   {:else}
-    <i class="sp-list-item__icon"></i>
+    <i class="sun-parakeet-list-item__icon"></i>
   {/if}
 {/snippet}
 
-<div class="sp-list-item {clazz}" {...props}>
+<div class="sun-parakeet-list-item {clazz}" {...props}>
   {#if clickable}
-    <Button class="sp-list-item__inner" color="text" shape="rectangular" {disabled}>
+    <Button class="sun-parakeet-list-item__inner" color="text" shape="rectangular" {disabled}>
       {@render inner()}
     </Button>
   {:else}
-    <div class="sp-list-item__inner">
+    <div class="sun-parakeet-list-item__inner">
       {@render inner()}
     </div>
   {/if}
 </div>
-
-<style lang="postcss">
-  .sp-list-item {
-    @apply relative z-0 mt-[-1px] bg-white py-[1px];
-    --sp-border-color: #e5e7eb;
-
-    &::before {
-      @apply absolute left-4 right-0 top-0;
-      content: '';
-      height: 1px;
-      background-color: var(--sp-border-color);
-      z-index: 0;
-    }
-
-    &::after {
-      @apply absolute bottom-0 left-4 right-0;
-      content: '';
-      height: 1px;
-      background-color: var(--sp-border-color);
-      z-index: 0;
-    }
-
-    .sp-list-item__inner,
-    :global(button.sp-list-item__inner.sp-button) {
-      @apply relative box-border flex h-full w-full flex-nowrap items-center justify-stretch p-2 pl-4 text-left;
-      min-height: var(--sp-min-height, 48px);
-
-      .sp-list-item__aside {
-        @apply mr-2;
-      }
-
-      .sp-list-item__content {
-        @apply flex flex-1 flex-col items-start justify-center;
-        font-size: 17px;
-
-        .sp-list-item__header,
-        .sp-list-item__description {
-          @apply overflow-hidden text-gray-500;
-          font-size: 13px;
-          line-height: 19px;
-        }
-      }
-
-      .sp-list-item__extra {
-        @apply ml-4 text-gray-500;
-        font-size: 15px;
-      }
-
-      :global(.sp-list-item__icon) {
-        @apply ml-2 text-gray-400;
-      }
-    }
-  }
-</style>

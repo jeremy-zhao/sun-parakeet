@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  import './Button.css'
+
   import type { HTMLButtonAttributes } from 'svelte/elements'
 
   /** 按钮形状 */
@@ -47,16 +49,16 @@
   const defaultButtonTheme: ButtonTheme = {
     shape: 'normal',
     colors: {
-      normal: 'sp-button__normal',
-      primary: 'sp-button__primary',
-      'primary-plain': 'sp-button__primary-plain',
-      success: 'sp-button__success',
-      'success-plain': 'sp-button__success-plain',
-      warning: 'sp-button__warning',
-      'warning-plain': 'sp-button__warning-plain',
-      danger: 'sp-button__danger',
-      'danger-plain': 'sp-button__danger-plain',
-      text: 'sp-button__text',
+      normal: 'sun-parakeet-button__normal',
+      primary: 'sun-parakeet-button__primary',
+      'primary-plain': 'sun-parakeet-button__primary-plain',
+      success: 'sun-parakeet-button__success',
+      'success-plain': 'sun-parakeet-button__success-plain',
+      warning: 'sun-parakeet-button__warning',
+      'warning-plain': 'sun-parakeet-button__warning-plain',
+      danger: 'sun-parakeet-button__danger',
+      'danger-plain': 'sun-parakeet-button__danger-plain',
+      text: 'sun-parakeet-button__text',
     },
   }
 </script>
@@ -69,84 +71,15 @@
   let shaped = $derived.by(() => {
     switch (shape ?? defaultButtonTheme.shape ?? 'normal') {
       case 'rounded':
-        return `sp-button__rounded`
+        return `sun-parakeet-button__rounded`
       case 'rectangular':
-        return `sp-button__rectangular`
+        return `sun-parakeet-button__rectangular`
       default:
         return ''
     }
   })
 </script>
 
-<button class="sp-button {colored} {shaped} {clazz}" class:disabled {disabled} {...props}>
+<button class="sun-parakeet-button {colored} {shaped} {clazz}" class:disabled {disabled} {...props}>
   {@render children?.()}
 </button>
-
-<style lang="postcss">
-  .sp-button {
-    @apply box-border inline-flex select-none items-center justify-center rounded-md border-0 px-4 py-2;
-    font-size: 17px;
-    line-height: 25px;
-    padding-bottom: 7px;
-
-    &.disabled {
-      @apply border-dashed border-gray-400 bg-gray-100 text-gray-400;
-    }
-
-    &.sp-button__border {
-      @apply border;
-    }
-
-    &.sp-button__block {
-      @apply block w-full;
-    }
-
-    &.sp-button__rounded {
-      @apply rounded-full;
-    }
-
-    &.sp-button__rectangular {
-      @apply rounded-none;
-    }
-
-    &.sp-button__normal {
-      @apply border-gray-400 bg-white text-gray-600 active:border-blue-600 active:bg-blue-100 active:text-blue-600;
-    }
-
-    &.sp-button__primary {
-      @apply border-transparent bg-blue-500 text-white active:bg-blue-600;
-    }
-
-    &.sp-button__primary-plain {
-      @apply border-blue-400 bg-blue-100 text-blue-600 active:border-blue-600 active:bg-blue-200;
-    }
-
-    &.sp-button__success {
-      @apply border-transparent bg-green-500 text-white active:bg-green-600;
-    }
-
-    &.sp-button__success-plain {
-      @apply border-green-400 bg-green-100 text-green-600 active:border-green-600 active:bg-green-200;
-    }
-
-    &.sp-button__warning {
-      @apply border-transparent bg-yellow-500 text-white active:bg-yellow-600;
-    }
-
-    &.sp-button__warning-plain {
-      @apply border-yellow-400 bg-yellow-100 text-yellow-600 active:border-yellow-600 active:bg-yellow-200;
-    }
-
-    &.sp-button__danger {
-      @apply border-transparent bg-red-500 text-white active:bg-red-600;
-    }
-
-    &.sp-button__danger-plain {
-      @apply border-red-400 bg-red-100 text-red-600 active:border-red-600 active:bg-red-200;
-    }
-
-    &.sp-button__text {
-      @apply border-gray-400 bg-white text-black active:bg-gray-100;
-    }
-  }
-</style>

@@ -1,0 +1,43 @@
+.sun-parakeet-popup {
+  @apply fixed bg-white transition-transform;
+
+  &.sun-parakeet-popup-center {
+    @apply left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-0;
+
+    &.visible {
+      @apply scale-100;
+    }
+  }
+
+  &.sun-parakeet-popup-top {
+    @apply left-0 right-0 top-0 -translate-y-full pt-safe;
+
+    &.visible {
+      @apply translate-y-0;
+    }
+  }
+
+  &.sun-parakeet-popup-right {
+    @apply bottom-0 right-0 top-0 translate-x-full pr-safe;
+
+    &.visible {
+      @apply translate-x-0;
+    }
+  }
+
+  &.sun-parakeet-popup-bottom {
+    @apply bottom-0 left-0 right-0 translate-y-full pb-safe;
+
+    &.visible {
+      @apply translate-y-0;
+    }
+  }
+
+  &.sun-parakeet-popup-left {
+    @apply bottom-0 left-0 top-0 -translate-x-full pl-safe;
+
+    &.visible {
+      @apply translate-x-0;
+    }
+  }
+}

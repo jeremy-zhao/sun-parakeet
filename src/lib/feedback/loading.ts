@@ -1,3 +1,5 @@
+import './loading.css'
+
 import { browser } from '$app/environment'
 import { showToast, hideToast } from './toast'
 
@@ -25,7 +27,7 @@ export async function showLoading(option: ShowLoadingOption = {}) {
   await showToast({
     key,
     text,
-    icon: { name: 'loading', size: 32, class: 'animate-spin stroke-white' },
+    icon: { name: 'loading', size: 32, class: 'sun-parakeet-loading__icon' },
     duration: 0,
     mask: true,
     keep: true,

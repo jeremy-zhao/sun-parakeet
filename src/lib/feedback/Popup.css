@@ -1,43 +1,54 @@
 .sun-parakeet-popup {
-  @apply fixed bg-white transition-transform;
+  @apply fixed bg-white;
 
   &.sun-parakeet-popup-center {
-    @apply left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 scale-0;
+    @apply left-1/2 top-1/2;
+    transition: scale 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    translate: -50% -50%;
+    scale: 0;
 
     &.visible {
-      @apply scale-100;
+      scale: 1;
     }
   }
 
   &.sun-parakeet-popup-top {
-    @apply left-0 right-0 top-0 -translate-y-full pt-safe;
+    @apply left-0 right-0 top-0 pt-safe;
+    transition: translate 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    translate: 0 -100%;
 
     &.visible {
-      @apply translate-y-0;
+      translate: 0 0;
     }
   }
 
   &.sun-parakeet-popup-right {
-    @apply bottom-0 right-0 top-0 translate-x-full pr-safe;
+    @apply bottom-0 right-0 top-0 pr-safe;
+    transition: translate 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    translate: 100% 0;
 
     &.visible {
-      @apply translate-x-0;
+      translate: 0 0;
     }
   }
 
   &.sun-parakeet-popup-bottom {
-    @apply bottom-0 left-0 right-0 translate-y-full pb-safe;
+    @apply bottom-0 left-0 right-0 pb-safe;
+    transition: translate 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    translate: 0 100%;
 
     &.visible {
-      @apply translate-y-0;
+      translate: 0 0;
     }
   }
 
   &.sun-parakeet-popup-left {
-    @apply bottom-0 left-0 top-0 -translate-x-full pl-safe;
+    @apply bottom-0 left-0 top-0 pl-safe;
+    transition: translate 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+    translate: -100% 0;
 
     &.visible {
-      @apply translate-x-0;
+      translate: 0 0;
     }
   }
 }

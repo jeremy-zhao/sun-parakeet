@@ -157,8 +157,7 @@ export async function showToast(option: ShowToastOption) {
     _timer = setTimeout(() => hideToast(), duration)
   }
 
-  // _toast.classList.add('shown')
-  _toast.classList.remove('scaled')
+  _toast.classList.add('visible')
 }
 
 async function _hideToast() {
@@ -175,12 +174,7 @@ async function _hideToast() {
 
   _option = undefined
 
-  _toast.classList.add('scaled')
-
-  await delay(150)
-
-  if (_option) return
-  // _toast.classList.remove('shown')
+  _toast.classList.remove('visible')
 }
 
 /**

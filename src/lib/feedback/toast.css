@@ -5,6 +5,7 @@
   scale: 0;
   font-size: 15px;
   line-height: 22.5px;
+  -webkit-tap-highlight-color: transparent;
 
   & > :not(:last-child) {
     margin-top: 4px;

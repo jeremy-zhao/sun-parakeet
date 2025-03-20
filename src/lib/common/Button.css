@@ -1,15 +1,12 @@
 .sun-parakeet-button {
-  @apply box-border inline-flex cursor-pointer select-none items-center justify-center rounded-md border-0 px-4 py-2;
+  @apply box-border inline-flex cursor-pointer select-none items-center justify-center rounded-md border border-solid px-4 py-2;
   font-size: 17px;
   line-height: 25px;
   padding-bottom: 7px;
+  -webkit-tap-highlight-color: transparent;
 
   &.disabled {
-    @apply cursor-not-allowed border-dashed border-gray-400 bg-gray-100 text-gray-400;
-  }
-
-  &.sun-parakeet-button__border {
-    @apply border;
+    @apply cursor-not-allowed border-dashed border-transparent bg-gray-100 text-gray-400;
   }
 
   &.sun-parakeet-button__block {
@@ -25,7 +22,7 @@
   }
 
   &.sun-parakeet-button__normal {
-    @apply border-gray-400 bg-white text-gray-600 active:border-blue-600 active:bg-blue-100 active:text-blue-600;
+    @apply border-gray-200 bg-white text-gray-600 active:border-blue-600 active:bg-blue-100 active:text-blue-600;
   }
 
   &.sun-parakeet-button__primary {
@@ -61,6 +58,6 @@
   }
 
   &.sun-parakeet-button__text {
-    @apply border-gray-400 bg-white text-black active:bg-gray-100;
+    @apply border-transparent bg-white text-black active:bg-gray-100;
   }
 }

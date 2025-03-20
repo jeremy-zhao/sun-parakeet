@@ -3,11 +3,17 @@
   transition: scale 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   translate: -50% -50%;
 
+  & > :not(:last-child) {
+    margin-top: 4px;
+    margin-bottom: 12px;
+  }
+
   &.scaled {
     scale: 0;
   }
 
   .sun-parakeet-toast__pre {
-    @apply m-0 p-0 text-base font-bold;
+    @apply m-0 p-0;
+    font-size: 15px;
   }
 }

@@ -1,10 +1,10 @@
 <script lang="ts" module>
-  import { Page, List, Button, showLoading, hideLoading } from '$lib'
+  import { Page, List, Button, showLoading, hideLoading, type ShowLoadingOption } from '$lib'
 </script>
 
 <script lang="ts">
-  function onSubmit() {
-    showLoading({ text: '提交中...' })
+  function onSubmit(option?: ShowLoadingOption) {
+    showLoading(option)
 
     setTimeout(() => {
       hideLoading()
@@ -15,7 +15,12 @@
 <Page class="bg-gray-100">
   <List header="基本用法">
     <div class="bg-white p-4">
-      <Button class="border" onclick={onSubmit}>提交</Button>
+      <Button class="border" onclick={() => onSubmit()}>提交</Button>
+    </div>
+  </List>
+  <List header="说明文字">
+    <div class="bg-white p-4">
+      <Button class="border" onclick={() => onSubmit({ text: '提交中...' })}>提交</Button>
     </div>
   </List>
 

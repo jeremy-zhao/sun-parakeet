@@ -20,8 +20,8 @@
 <script lang="ts">
   let { expanded = $bindable(false), header, class: clazz, onChange, children, ...props }: CollapseAttributes = $props()
 
-  let contentHeight = $state(1)
-  let height = $derived(expanded ? `${contentHeight + 2}px` : '1px')
+  let contentHeight = $state(0)
+  let height = $derived(expanded && contentHeight ? `${contentHeight + 2}px` : '1px')
 
   const icon: IconOption = {
     name: 'arrow-down-s-line',
@@ -52,16 +52,14 @@
 
 <div class="sun-parakeet-collapse {clazz}" class:expanded {...props}>
   <ListItem class="sun-parakeet-collapse__header" clickable={true} onclick={onSwitch} {icon}>
-    <div class="sun-parakeet-collapse__header-left">
-      {#if typeof header === 'string'}
-        {header}
-      {:else}
-        {@render header()}
-      {/if}
-    </div>
+    {#if typeof header === 'string'}
+      {header}
+    {:else}
+      {@render header()}
+    {/if}
   </ListItem>
-  <div class="sun-parakeet-collapse__content" style:height>
-    <div use:onLoadContent class="sun-parakeet-collapse__content-inner">
+  <div class="sun-parakeet-collapse__container" style:height>
+    <div use:onLoadContent class="sun-parakeet-collapse__content">
       {@render children?.()}
     </div>
   </div>

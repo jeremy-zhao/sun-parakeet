@@ -21,8 +21,7 @@
     z-index: 0;
   }
 
-  .sun-parakeet-list-item__inner,
-  button.sun-parakeet-list-item__inner.sun-parakeet-button {
+  .sun-parakeet-list-item__inner {
     @apply relative box-border flex h-full w-full flex-nowrap items-center justify-stretch p-2 pl-4 text-left;
     min-height: var(--sp-min-height, 48px);
 

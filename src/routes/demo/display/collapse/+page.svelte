@@ -8,10 +8,12 @@
 
 <Page class="bg-gray-100">
   <List header="基本用法">
-    <Collapse header="折叠面板">
-      {#each new Array(20) as row, ix}
-        <p>第{ix}行</p>
-      {/each}
+    <Collapse header="折叠面板" expanded={true} --sp-padding="0">
+      <div class="overflow-y-auto py-4" style="height: 200px">
+        {#each new Array(20) as row, ix}
+          <p>第{ix}行</p>
+        {/each}
+      </div>
     </Collapse>
     <Collapse header="折叠面板">
       <p class="text-gray-600">

@@ -21,7 +21,7 @@
     </div>
   </List>
   <List header="自定义样式">
-    <p class="bg-white text-center text-[24px]">
+    <p class="bg-white text-center" style="font-size: 24px; line-height: 36px">
       <span>Text</span>
       <Divider direction="vertical" />
       <a class="text-blue-600 underline" href="./divider">Link</a>

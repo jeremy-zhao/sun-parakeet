@@ -8,14 +8,8 @@
   let { class: clazz, children, ...props }: AutoCenterAttributes = $props()
 </script>
 
-<div class="sp-auto-center {clazz}" {...props}>
-  <div class="sp-auto-center__inner">
+<div class="sun-parakeet-auto-center {clazz}" {...props}>
+  <div>
     {@render children?.()}
   </div>
 </div>
-
-<style lang="postcss">
-  .sp-auto-center {
-    @apply flex items-center justify-center;
-  }
-</style>

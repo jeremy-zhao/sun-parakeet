@@ -1,0 +1,35 @@
+:root {
+  --sp-border-color: #e5e7eb;
+}
+
+.sun-parakeet-divider-horizontal {
+  @apply flex items-center border-0 border-solid text-sm text-gray-500;
+  border-color: var(--sp-border-color);
+
+  &::before,
+  &::after {
+    @apply flex-auto border-0 border-t;
+    border-style: inherit;
+    border-color: inherit;
+    content: '';
+  }
+
+  &.sun-parakeet-divider-left::before {
+    max-width: 10%;
+  }
+
+  &.sun-parakeet-divider-right::after {
+    max-width: 10%;
+  }
+
+  .sun-parakeet-divider-content {
+    @apply mx-4;
+  }
+}
+
+.sun-parakeet-divider-vertical {
+  @apply relative mx-4 inline-block border-0 border-l border-solid;
+  height: 0.9em;
+  border-color: var(--sp-border-color);
+  top: 0.1em;
+}

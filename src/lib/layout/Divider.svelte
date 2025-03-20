@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  import './Divider.css'
+
   import type { HTMLAttributes } from 'svelte/elements'
 
   export interface DividerAttributes extends HTMLAttributes<HTMLElement> {
@@ -21,9 +23,9 @@
   let position = $derived.by(() => {
     switch (contentPosition) {
       case 'left':
-        return 'sp-divider-left'
+        return 'sun-parakeet-divider-left'
       case 'right':
-        return 'sp-divider-right'
+        return 'sun-parakeet-divider-right'
       default:
         return ''
     }
@@ -31,49 +33,13 @@
 </script>
 
 {#if direction === 'horizontal'}
-  <div class="sp-divider-horizontal {position} {clazz}" {...props}>
+  <div class="sun-parakeet-divider-horizontal {position} {clazz}" {...props}>
     {#if children}
-      <div class="sp-divider-content">
+      <div class="sun-parakeet-divider-content">
         {@render children()}
       </div>
     {/if}
   </div>
 {:else if direction === 'vertical'}
-  <span class="sp-divider-vertical {clazz}"></span>
+  <span class="sun-parakeet-divider-vertical {clazz}"></span>
 {/if}
-
-<style lang="postcss">
-  .sp-divider-horizontal {
-    @apply flex items-center text-sm text-gray-500;
-    --sp-border-color: #e5e7eb;
-    border-color: var(--sp-border-color);
-
-    &::before,
-    &::after {
-      @apply flex-auto border-t;
-      border-style: inherit;
-      border-color: inherit;
-      content: '';
-    }
-
-    &.sp-divider-left::before {
-      max-width: 10%;
-    }
-
-    &.sp-divider-right::after {
-      max-width: 10%;
-    }
-
-    .sp-divider-content {
-      @apply mx-4;
-    }
-  }
-
-  .sp-divider-vertical {
-    @apply relative mx-4 inline-block border-l;
-    --sp-border-color: #e5e7eb;
-    height: 0.9em;
-    border-color: var(--sp-border-color);
-    top: 0.1em;
-  }
-</style>

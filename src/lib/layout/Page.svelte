@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  import './Page.css'
+
   import type { ClassValue, HTMLAttributes } from 'svelte/elements'
 
   /** 页面 */
@@ -30,9 +32,3 @@
 <main class="sun-parakeet-page {clazz}" {...props} in:flyIn out:flyOut>
   {@render children?.()}
 </main>
-
-<style lang="postcss">
-  .sun-parakeet-page {
-    @apply fixed bottom-0 left-0 right-0 top-0 overflow-y-auto overflow-x-hidden;
-  }
-</style>

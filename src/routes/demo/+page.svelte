@@ -30,6 +30,7 @@
   <List header="布局">
     {@render listItem('AutoCenter', '自动居中', '/demo/layout/auto-center')}
     {@render listItem('Divider', '分割线', '/demo/layout/divider')}
+    {@render listItem('Page', '页面', '/demo/layout/page')}
   </List>
   <List header="导航">
     {@render listItem('TabBar', '标签栏', '/demo/navigation/tab-bar')}

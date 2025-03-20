@@ -8,20 +8,31 @@
 
 <Page class="bg-gray-100">
   <List header="基本用法">
-    <Collapse header="折叠面板" expanded={true} --sp-padding="0">
+    <Collapse header="基本用法">
+      <p class="text-gray-600">
+        Adipisicing labore cupidatat aute commodo irure irure. Anim laboris cupidatat proident ullamco cupidatat commodo
+        do voluptate commodo pariatur ullamco. Velit eu ipsum eu dolore nostrud reprehenderit minim ex ex duis nisi
+        officia ullamco. Ipsum veniam sunt magna ea ad culpa laborum duis sit elit magna pariatur. Adipisicing eu
+        aliquip elit aliquip qui et. Voluptate cupidatat adipisicing eu voluptate magna exercitation excepteur voluptate
+        aliqua esse aute dolore. Ut enim nisi minim esse qui ad tempor sit laborum labore enim amet dolore eiusmod
+        occaecat.
+      </p>
+    </Collapse>
+    <Collapse header="默认展开" expanded={true}>
+      <p class="text-gray-600">
+        Fugiat commodo est ad sint est culpa sunt voluptate enim et proident et non. Consequat irure laborum culpa. Ad
+        dolore sit anim. Irure in proident in nulla esse excepteur proident excepteur aute duis nostrud voluptate
+        excepteur aliquip. Officia quis excepteur commodo velit reprehenderit ipsum dolore do. Ut consectetur et sit
+        culpa do culpa enim nisi do in incididunt. Nulla nisi dolor est minim labore velit tempor Lorem ad ipsum ullamco
+        anim Lorem velit est. Laboris enim consectetur do reprehenderit reprehenderit sit sunt eu duis ipsum.
+      </p>
+    </Collapse>
+    <Collapse header="内部滚动" --sp-padding="0">
       <div class="overflow-y-auto py-4" style="height: 200px">
         {#each new Array(20) as row, ix}
           <p>第{ix}行</p>
         {/each}
       </div>
-    </Collapse>
-    <Collapse header="折叠面板">
-      <p class="text-gray-600">
-        Enim proident nulla voluptate non. Pariatur dolor amet tempor esse cupidatat exercitation eu laboris id nostrud
-        ut aliquip non labore excepteur. Ex ad irure reprehenderit ea nisi tempor qui aliquip ut mollit. Ad eiusmod
-        labore ex sit. Lorem nisi laborum deserunt aliqua veniam incididunt. Incididunt excepteur ipsum consequat
-        aliquip anim consequat.
-      </p>
     </Collapse>
   </List>
   <List header="手风琴 {expanded}">

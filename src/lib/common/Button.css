@@ -5,7 +5,7 @@
   padding-bottom: 7px;
   -webkit-tap-highlight-color: transparent;
 
-  &.disabled {
+  &.sun-parakeet-button__disabled {
     @apply cursor-not-allowed border-dashed border-transparent bg-gray-100 text-gray-400;
   }
 

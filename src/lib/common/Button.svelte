@@ -66,7 +66,7 @@
 <script lang="ts">
   let { color = 'normal', shape, children, class: clazz, disabled = false, ...props }: ButtonAttributes = $props()
 
-  let colored = $derived(disabled ? '' : defaultButtonTheme.colors?.[color])
+  let colored = $derived(disabled ? 'sun-parakeet-button__disabled' : defaultButtonTheme.colors?.[color])
 
   let shaped = $derived.by(() => {
     switch (shape ?? defaultButtonTheme.shape ?? 'normal') {
@@ -80,6 +80,6 @@
   })
 </script>
 
-<button class="sun-parakeet-button {colored} {shaped} {clazz}" class:disabled {disabled} {...props}>
+<button class="sun-parakeet-button {colored} {shaped} {clazz}" {disabled} {...props}>
   {@render children?.()}
 </button>

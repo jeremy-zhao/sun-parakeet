@@ -23,6 +23,8 @@
     classSelected?: string
     /** 已选中样式。会与 style 叠加 */
     styleSelected?: string
+    /** 是否禁用 */
+    disabled?: boolean
   }
 
   /** 标签栏 */
@@ -49,7 +51,7 @@
 </script>
 
 <nav class="sun-parakeet-tab-bar {clazz}" class:sun-parakeet-tab-bar-fixed={fixed} {...props}>
-  {#each tabs as { key, icon, text, badge = false, class: clazz, style, classSelected, styleSelected }}
+  {#each tabs as { key, icon, text, badge = false, class: clazz, style, classSelected, styleSelected, disabled = false }}
     {@const selected = key === value}
     {@const selectedClazz = selected ? classSelected || 'sun-parakeet-tab-bar-item__selected' : ''}
     {@const selectedStyle = selected ? styleSelected || '' : ''}
@@ -57,6 +59,7 @@
       class="sun-parakeet-tab-bar-item {clazz} {selectedClazz}"
       style="{style} {selectedStyle}"
       onclick={() => handleClick(key)}
+      {disabled}
     >
       <Badge class="sun-parakeet-tab-bar-item__inner" content={badge}>
         {#if icon && typeof icon === 'string'}

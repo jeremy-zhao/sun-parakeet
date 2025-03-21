@@ -52,6 +52,17 @@
         ]}
       />
     </List>
+    <List header="禁用">
+      <TabBar
+        bind:value={selectedTab}
+        tabs={[
+          { key: 'todoList', icon: 'todo-list', text: '待办' },
+          { key: 'customer', icon: 'customer', text: '客户' },
+          { key: 'share', icon: 'share', text: '分享' },
+          { key: 'report', icon: 'report', text: '报表', badge: '新消息', disabled: true },
+        ]}
+      />
+    </List>
     <List header="底部"></List>
   </div>
   <TabBar

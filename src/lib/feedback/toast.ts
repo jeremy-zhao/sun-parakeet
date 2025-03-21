@@ -109,9 +109,14 @@ export async function showToast(option: ShowToastOption) {
   }
 
   if (isString(icon)) {
-    _icon.setAttributeNS(null, 'width', '24')
-    _icon.setAttributeNS(null, 'height', '24')
-    _icon.setAttributeNS(null, 'class', 'stroke-white')
+    _icon.setAttributeNS(null, 'width', '30')
+    _icon.setAttributeNS(null, 'height', '30')
+    _icon.setAttributeNS(null, 'class', 'sun-parakeet-toast__icon')
+
+    _icon.replaceChildren()
+    const use = document.createElementNS(svgns, 'use')
+    use.setAttributeNS(null, 'href', `/icons/symbol.svg#${icon}`)
+    _icon.appendChild(use)
 
     if (_toast.children[0] !== _icon) {
       _toast.prepend(_icon)
@@ -128,8 +133,9 @@ export async function showToast(option: ShowToastOption) {
     if (svg && svgRegex.test(svg)) {
       _icon.innerHTML = svg
     } else {
+      _icon.replaceChildren()
       const use = document.createElementNS(svgns, 'use')
-      use.setAttributeNS(null, 'href', `/icons/symbol.svg#${icon}`)
+      use.setAttributeNS(null, 'href', `${path}#${name}`)
       _icon.appendChild(use)
     }
 

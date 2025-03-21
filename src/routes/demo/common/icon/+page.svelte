@@ -18,8 +18,8 @@
   </List>
   <List header="颜色">
     <div class="bg-white px-4 py-2">
-      <Icon name="github" style="fill: red" />
-      <Icon name="github" class="fill-blue-600" />
+      <Icon name="github" style="color: red" />
+      <Icon name="github" class="text-blue-600" />
     </div>
   </List>
 </Page>

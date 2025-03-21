@@ -16,7 +16,7 @@
   </List>
   <List header="图标">
     <div class="bg-white p-4">
-      <Button class="border" color="normal">轻提示</Button>
+      <Button class="border" onclick={() => showToast({ text: 'Github', icon: 'github' })}>带图标</Button>
     </div>
   </List>
   <List header="更多功能">

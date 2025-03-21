@@ -16,6 +16,10 @@
     scale: 1;
   }
 
+  .sun-parakeet-toast__icon {
+    @apply fill-white text-white;
+  }
+
   .sun-parakeet-toast__pre {
     @apply m-0 p-0;
   }

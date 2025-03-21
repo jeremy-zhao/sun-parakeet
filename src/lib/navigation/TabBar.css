@@ -22,7 +22,7 @@
     }
 
     &:disabled {
-      @apply text-gray-400;
+      @apply cursor-not-allowed text-gray-400;
 
       .sun-parakeet-badge {
         @apply bg-gray-300;

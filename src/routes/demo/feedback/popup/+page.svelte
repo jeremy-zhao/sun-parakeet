@@ -13,7 +13,7 @@
 </script>
 
 <Page class="bg-gray-100">
-  <List header="基本用法">
+  <List header="基础用法">
     <div class="bg-white p-4">
       <Button class="border" onclick={() => (popups.center = true)}>中</Button>
       <Button class="border" onclick={() => (popups.top = true)}>上</Button>

@@ -1,0 +1,21 @@
+.sun-parakeet-tabs {
+  @apply relative flex flex-nowrap items-center justify-stretch overflow-x-auto overflow-y-hidden scroll-smooth border-t border-gray-200 bg-gray-50 px-2 text-xs text-gray-600;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sun-parakeet-tabs-item {
+    @apply flex min-h-10 flex-1 items-center justify-center px-2;
+
+    .sun-parakeet-tabs-item__inner {
+      @apply flex flex-row flex-nowrap items-center justify-center;
+    }
+  }
+
+  .sun-parakeet-tabs__baseline {
+    @apply absolute bottom-0 bg-blue-600 transition-all;
+    height: 2px;
+    z-index: 2px;
+  }
+}

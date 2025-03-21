@@ -42,6 +42,6 @@ import TabBar from './navigation/TabBar.svelte'
 export type { TabBarAttributes } from './navigation/TabBar.svelte'
 import TabPanel from './navigation/TabPanel.svelte'
 export type { TabPanelAttributes } from './navigation/TabPanel.svelte'
-// import Tabs from './navigation/Tabs.svelte'
-// export type { TabsAttributes } from './navigation/Tabs.svelte'
-export { TabBar, TabPanel }
+import Tabs from './navigation/Tabs.svelte'
+export type { TabsAttributes } from './navigation/Tabs.svelte'
+export { TabBar, TabPanel, Tabs }

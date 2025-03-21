@@ -6,7 +6,7 @@
 </script>
 
 <Page class="bg-gray-100">
-  <List header="基本用法">
+  <List header="基础用法">
     <div class="bg-white p-4">
       <Badge content={5} class="mr-4">
         <div class="h-10 w-10 rounded-md bg-gray-300"></div>

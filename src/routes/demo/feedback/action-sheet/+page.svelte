@@ -11,7 +11,7 @@
 </script>
 
 <Page class="bg-gray-100">
-  <List header="基本用法">
+  <List header="基础用法">
     <div class="bg-white p-4">
       <Button class="border" onclick={() => (visible[0] = true)}>最简单的用法</Button>
       <Button class="border" onclick={() => (visible[1] = true)}>标题与取消按钮</Button>

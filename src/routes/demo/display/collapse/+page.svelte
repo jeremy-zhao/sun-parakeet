@@ -7,8 +7,8 @@
 </script>
 
 <Page class="bg-gray-100">
-  <List header="基本用法">
-    <Collapse header="基本用法">
+  <List header="基础用法">
+    <Collapse header="基础用法">
       <p class="text-gray-600">
         Adipisicing labore cupidatat aute commodo irure irure. Anim laboris cupidatat proident ullamco cupidatat commodo
         do voluptate commodo pariatur ullamco. Velit eu ipsum eu dolore nostrud reprehenderit minim ex ex duis nisi

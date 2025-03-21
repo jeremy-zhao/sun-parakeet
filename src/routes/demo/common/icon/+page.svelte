@@ -3,7 +3,7 @@
 </script>
 
 <Page class="bg-gray-100">
-  <List header="基本用法">
+  <List header="基础用法">
     <div class="bg-white px-4 py-2">
       <Icon name="github" />
     </div>

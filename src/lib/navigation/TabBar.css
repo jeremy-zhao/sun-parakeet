@@ -1,0 +1,24 @@
+.sun-parakeet-tab-bar {
+  @apply flex flex-nowrap items-center justify-stretch bg-gray-50 py-2 text-xs text-gray-600 pb-safe-or-2;
+
+  &.sun-parakeet-tab-bar-fixed {
+    @apply fixed bottom-0 left-0 right-0 border-t border-gray-200;
+  }
+
+  .sun-parakeet-tab-bar-item {
+    @apply flex flex-1 items-center justify-center;
+
+    &.sun-parakeet-tab-bar-item__selected {
+      @apply fill-blue-600 text-blue-600;
+    }
+
+    .sun-parakeet-tab-bar-item__inner {
+      @apply flex flex-col items-center justify-center space-y-0.5 px-1;
+
+      .sun-parakeet-tab-bar-item__text-only {
+        font-size: 17px;
+        line-height: 25px;
+      }
+    }
+  }
+}

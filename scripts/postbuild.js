@@ -13,3 +13,5 @@ if (fs.existsSync('./dist')) {
 }
 
 fs.copySync('./src/routes/demo/', '../sun-parakeet-demo/src/routes/demo/')
+
+fs.copySync('./src/assets/symbol/', '../sun-parakeet-demo/src/lib/symbol/')

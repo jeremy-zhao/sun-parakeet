@@ -1,0 +1,7 @@
+.sun-parakeet-tab-panel {
+  @apply overflow-y-auto;
+
+  &.hidden {
+    display: none;
+  }
+}

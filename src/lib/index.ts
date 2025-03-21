@@ -36,3 +36,12 @@ import Divider from './layout/Divider.svelte'
 export type { DividerAttributes } from './layout/Divider.svelte'
 import Page from './layout/Page.svelte'
 export { AutoCenter, Divider, Page }
+
+// Navigation
+import TabBar from './navigation/TabBar.svelte'
+export type { TabBarAttributes } from './navigation/TabBar.svelte'
+import TabPanel from './navigation/TabPanel.svelte'
+export type { TabPanelAttributes } from './navigation/TabPanel.svelte'
+// import Tabs from './navigation/Tabs.svelte'
+// export type { TabsAttributes } from './navigation/Tabs.svelte'
+export { TabBar, TabPanel }

@@ -1,5 +1,6 @@
 <script lang="ts" module>
   import './ListItem.css'
+  import ArrowIcon from '../icons/arrow-right-s-line.svg?raw'
 
   import Button from '../common/Button.svelte'
   import Icon from '../common/Icon.svelte'
@@ -42,7 +43,7 @@
     ...props
   }: ListItemAttributes = $props()
 
-  let iconed = $derived(icon || (clickable && !disabled ? 'arrow-right-s-line' : undefined))
+  let iconed = $derived(icon || (clickable && !disabled ? { svg: ArrowIcon } : undefined))
 </script>
 
 {#snippet inner()}

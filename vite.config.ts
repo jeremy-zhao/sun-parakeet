@@ -4,7 +4,7 @@ import { defineConfig } from 'vitest/config'
 import svgpack from './plugins/rollup-plugin-svgpack'
 
 export default defineConfig({
-  plugins: [sveltekit(), svgpack([{ from: 'src/lib/symbol', to: 'static/icons/symbol.svg' }])],
+  plugins: [sveltekit(), svgpack([{ from: 'src/assets/symbol', to: 'static/icons/symbol.svg' }])],
   server: {
     host: '0.0.0.0',
   },

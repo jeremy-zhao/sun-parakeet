@@ -5,7 +5,7 @@ import { browser } from '$app/environment'
 import { on } from 'svelte/events'
 import { delay } from '../common'
 import stack from '../common/historyStack'
-import type { IconOption } from '../common/Icon.svelte'
+import { svgRegex, type IconOption } from '../common/Icon.svelte'
 
 export interface ShowToastOption {
   /** 给 Toast 定义一个 key，调用 hideToast 时，如果 key 不一致，则不会关闭 */
@@ -75,8 +75,6 @@ export async function showToast(option: ShowToastOption) {
 
   if (!_icon) {
     _icon = document.createElementNS(svgns, 'svg')
-    const use = document.createElementNS(svgns, 'use')
-    _icon.appendChild(use)
   }
 
   if (!_pre) {
@@ -114,20 +112,26 @@ export async function showToast(option: ShowToastOption) {
     _icon.setAttributeNS(null, 'width', '24')
     _icon.setAttributeNS(null, 'height', '24')
     _icon.setAttributeNS(null, 'class', 'stroke-white')
-    _icon.children[0]!.setAttributeNS(null, 'href', `/icons/symbol.svg#${icon}`)
 
     if (_toast.children[0] !== _icon) {
       _toast.prepend(_icon)
     }
   } else if (isIconOption(icon)) {
-    const { name, size = 24, path = '/icons/symbol.svg', class: className = '', style = '' } = icon as IconOption
+    const { name, size = 24, path = '/icons/symbol.svg', svg, class: className = '', style = '' } = icon as IconOption
 
     _icon.setAttributeNS(null, 'width', size.toString())
     _icon.setAttributeNS(null, 'height', size.toString())
     _icon.setAttributeNS(null, 'class', className)
     _icon.setAttributeNS(null, 'style', style)
     _icon.style.top = `${top}px`
-    _icon.children[0]!.setAttributeNS(null, 'href', `${path}#${name}`)
+
+    if (svg && svgRegex.test(svg)) {
+      _icon.innerHTML = svg
+    } else {
+      const use = document.createElementNS(svgns, 'use')
+      use.setAttributeNS(null, 'href', `/icons/symbol.svg#${icon}`)
+      _icon.appendChild(use)
+    }
 
     if (_toast.children[0] !== _icon) {
       _toast.prepend(_icon)

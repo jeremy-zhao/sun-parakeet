@@ -1,5 +1,6 @@
 <script lang="ts" module>
   import './Collapse.css'
+  import ArrowIcon from '../icons/arrow-down-s-line.svg?raw'
 
   import ListItem from './ListItem.svelte'
   import type { IconOption } from '../common/Icon.svelte'
@@ -23,9 +24,8 @@
   let contentHeight = $state(0)
   let height = $derived(expanded && contentHeight ? `${contentHeight + 2}px` : '1px')
 
-  const icon: IconOption = {
-    name: 'arrow-down-s-line',
-    size: 30,
+  const icon: IconOption & { svg: string } = {
+    svg: ArrowIcon,
     class: 'sun-parakeet-collapse__header-icon',
   }
 

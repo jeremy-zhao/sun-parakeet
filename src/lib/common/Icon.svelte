@@ -8,7 +8,9 @@
     /** Svg 文件路径。默认值为 `/icons/symbol.svg` */
     path?: string
     /** 图标名称 */
-    name: string
+    name?: string
+    /** Svg 代码。请通过 import icon from '../path/to/file.svg?raw' 引入 svg 代码。 */
+    svg?: string
     /** 尺寸。默认值为 24 */
     size?: number
     /** CSS 类 */
@@ -20,12 +22,31 @@
   }
 
   export type IconAttributes = IconOption & SVGAttributes<SVGElement>
+
+  // SVG 正则判定
+  export const svgRegex = /<svg[^>]*>[^]*<\/svg>/
 </script>
 
 <script lang="ts">
-  let { path = '/icons/symbol.svg', name, size = 24, top = 0, class: clazz, ...props }: IconAttributes = $props()
+  let {
+    path = '/icons/symbol.svg',
+    name = '',
+    svg,
+    size = 24,
+    top = 0,
+    class: clazz,
+    ...props
+  }: IconAttributes = $props()
+
+  let isSvg = $derived(svg && svgRegex.test(svg))
 </script>
 
-<svg class="sun-parakeet-icon {clazz}" style:top="{top}px" width={size} height={size} {...props}>
-  <use href="{path}#{name}" />
-</svg>
+{#if isSvg}
+  <svg class="sun-parakeet-icon {clazz}" style:top="{top}px" width={size} height={size} {...props}>
+    {@html svg}
+  </svg>
+{:else}
+  <svg class="sun-parakeet-icon {clazz}" style:top="{top}px" width={size} height={size} {...props}>
+    <use href="{path}#{name}" />
+  </svg>
+{/if}

@@ -9,7 +9,6 @@
 <Page class="bg-gray-100">
   <List header="基础用法">
     <Tabs
-      bind:value={selectedTab}
       tabs={[
         { key: 'todoList', icon: 'todo-list', text: '待办' },
         { key: 'customer', icon: 'customer', text: '客户' },
@@ -59,6 +58,18 @@
         { key: 'customer', icon: 'customer', text: '客户' },
         { key: 'share', icon: 'share', text: '分享' },
         { key: 'report', icon: 'report', text: '报表', badge: '新消息', disabled: true },
+      ]}
+    />
+  </List>
+  <List header="超长滚动">
+    <Tabs
+      tabs={[
+        { key: 'share0', text: 'Espresso' },
+        { key: 'share1', text: 'Coffee Latte' },
+        { key: 'share2', text: 'Americano' },
+        { key: 'share3', text: 'Flat White' },
+        { key: 'share4', text: 'Caramel Macchiato' },
+        { key: 'share5', text: 'Cafe Mocha' },
       ]}
     />
   </List>

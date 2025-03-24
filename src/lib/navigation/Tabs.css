@@ -1,5 +1,5 @@
 .sun-parakeet-tabs {
-  @apply relative flex flex-nowrap items-center justify-stretch overflow-x-auto overflow-y-hidden scroll-smooth border-t border-gray-200 bg-gray-50 px-2 text-xs text-gray-600;
+  @apply relative flex flex-nowrap items-center justify-stretch overflow-x-auto overflow-y-hidden border-t border-gray-200 bg-gray-50 px-2 text-xs text-gray-600;
 
   &::-webkit-scrollbar {
     display: none;
@@ -8,13 +8,32 @@
   .sun-parakeet-tabs-item {
     @apply flex min-h-10 flex-1 items-center justify-center px-2;
 
+    &.sun-parakeet-tabs-item__selected {
+      @apply fill-blue-600 text-blue-600;
+    }
+
     .sun-parakeet-tabs-item__inner {
       @apply flex flex-row flex-nowrap items-center justify-center;
+
+      .sun-parakeet-tabs-item__inner-text {
+        @apply mx-1 whitespace-nowrap text-nowrap text-[14px];
+      }
+    }
+
+    &:disabled {
+      @apply cursor-not-allowed text-gray-400;
+
+      .sun-parakeet-badge {
+        @apply bg-gray-300;
+      }
     }
   }
 
   .sun-parakeet-tabs__baseline {
-    @apply absolute bottom-0 bg-blue-600 transition-all;
+    @apply absolute bottom-0 bg-blue-600;
+    transition:
+      width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+      left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     height: 2px;
     z-index: 2px;
   }

@@ -35,6 +35,7 @@
   <List header="导航">
     {@render listItem('TabBar', '标签栏', '/demo/navigation/tab-bar')}
     {@render listItem('Tabs', '标签页', '/demo/navigation/tabs')}
+    {@render listItem('TabPanel', '标签面板', '/demo/navigation/tab-panel')}
   </List>
   <List header="信息展示">
     {@render listItem('Avatar', '头像', '/demo/display/avatar')}

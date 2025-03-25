@@ -1,4 +1,6 @@
 <script lang="ts" module>
+  import './AutoCenter.css'
+
   import type { HTMLAttributes } from 'svelte/elements'
 
   export interface AutoCenterAttributes extends HTMLAttributes<HTMLElement> {}

@@ -6,7 +6,7 @@
 
   export type PopupPosition = 'center' | 'top' | 'right' | 'bottom' | 'left'
 
-  export interface PopupAttributes extends HTMLAttributes<HTMLDivElement> {
+  export interface PopupAttributes extends HTMLAttributes<EventTarget> {
     /** 是否显示 */
     visible: boolean
     /** 弹出位置。默认为 `bottom` */

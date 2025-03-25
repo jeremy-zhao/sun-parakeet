@@ -5,7 +5,7 @@
   import type { HTMLAttributes } from 'svelte/elements'
 
   /** 列表 */
-  export interface ListAttributes extends HTMLAttributes<HTMLDivElement> {
+  export interface ListAttributes extends HTMLAttributes<EventTarget> {
     /** 标题 */
     header?: string | Snippet
   }

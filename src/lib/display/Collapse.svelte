@@ -8,7 +8,7 @@
   import type { HTMLAttributes } from 'svelte/elements'
 
   /** 折叠面板 */
-  export interface CollapseAttributes extends HTMLAttributes<HTMLDivElement> {
+  export interface CollapseAttributes extends HTMLAttributes<EventTarget> {
     /** 展开状态 */
     expanded?: boolean
     /** 标题 */

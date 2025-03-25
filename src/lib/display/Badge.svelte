@@ -4,7 +4,7 @@
   import type { HTMLAttributes } from 'svelte/elements'
 
   /** 徽标 */
-  export interface BadgeAttributes extends HTMLAttributes<HTMLDivElement> {
+  export interface BadgeAttributes extends HTMLAttributes<EventTarget> {
     /** 是否增加描边 */
     border?: boolean
     /** 徽标内容。boolean 显示小红点，number 显示数字，string 显示字符串 */

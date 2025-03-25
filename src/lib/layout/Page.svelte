@@ -4,7 +4,7 @@
   import type { ClassValue, HTMLAttributes } from 'svelte/elements'
 
   /** 页面 */
-  export interface PageAttributes extends HTMLAttributes<HTMLElement> {
+  export interface PageAttributes extends HTMLAttributes<EventTarget> {
     class?: ClassValue
   }
 

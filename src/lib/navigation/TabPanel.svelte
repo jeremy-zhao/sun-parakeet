@@ -4,7 +4,7 @@
   import type { HTMLAttributes } from 'svelte/elements'
 
   /** 选项卡页 */
-  export interface TabPanelAttributes extends HTMLAttributes<HTMLElement> {
+  export interface TabPanelAttributes extends HTMLAttributes<EventTarget> {
     visible: boolean
   }
 </script>

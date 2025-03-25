@@ -3,7 +3,7 @@
 
   import type { HTMLAttributes } from 'svelte/elements'
 
-  export interface DividerAttributes extends HTMLAttributes<HTMLElement> {
+  export interface DividerAttributes extends HTMLAttributes<EventTarget> {
     /** 内容位置，仅在 direction 为 'horizontal' 时有效。*/
     contentPosition?: 'center' | 'left' | 'right'
     /** 水平还是垂直类型 */

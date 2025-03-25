@@ -28,7 +28,7 @@
   }
 
   /** 标签栏 */
-  export interface TabBarAttributes extends HTMLAttributes<HTMLElement> {
+  export interface TabBarAttributes extends HTMLAttributes<EventTarget> {
     /** 当前选中的选项卡键 */
     value?: unknown
     /** 选项卡组 */

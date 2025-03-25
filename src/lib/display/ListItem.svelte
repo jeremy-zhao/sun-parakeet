@@ -9,7 +9,7 @@
   import type { IconOption } from '../common/Icon.svelte'
 
   /** 列表项 */
-  export interface ListItemAttributes extends HTMLAttributes<HTMLElement> {
+  export interface ListItemAttributes extends HTMLAttributes<EventTarget> {
     /** 列表项左侧区域 */
     aside?: Snippet
     /** 是否显示点击效果。默认值：false */

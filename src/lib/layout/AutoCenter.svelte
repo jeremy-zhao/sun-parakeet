@@ -3,7 +3,7 @@
 
   import type { HTMLAttributes } from 'svelte/elements'
 
-  export interface AutoCenterAttributes extends HTMLAttributes<HTMLElement> {}
+  export interface AutoCenterAttributes extends HTMLAttributes<EventTarget> {}
 </script>
 
 <script lang="ts">

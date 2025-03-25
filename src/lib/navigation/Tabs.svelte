@@ -7,7 +7,7 @@
   import type { TabOption } from './TabBar.svelte'
 
   /** 标签栏 */
-  export interface TabsAttributes extends HTMLAttributes<HTMLElement> {
+  export interface TabsAttributes extends HTMLAttributes<EventTarget> {
     /** 当前选中的选项卡键 */
     value?: unknown
     /** 选项卡组 */

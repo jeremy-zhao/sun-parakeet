@@ -2,7 +2,7 @@
   import type { HTMLAttributes } from 'svelte/elements'
 
   /** 头像 */
-  export interface AvatarAttributes extends HTMLAttributes<HTMLDivElement> {}
+  export interface AvatarAttributes extends HTMLAttributes<EventTarget> {}
 </script>
 
 <script lang="ts">

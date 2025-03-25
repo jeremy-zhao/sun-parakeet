@@ -10,10 +10,10 @@
   <List header="基础用法">
     <Tabs
       tabs={[
-        { key: 'todoList', icon: 'todo-list', text: '待办' },
-        { key: 'customer', icon: 'customer', text: '客户' },
-        { key: 'share', icon: 'share', text: '分享' },
-        { key: 'report', icon: 'report', text: '报表' },
+        { value: 'todoList', icon: 'todo-list', label: '待办' },
+        { value: 'customer', icon: 'customer', label: '客户' },
+        { value: 'share', icon: 'share', label: '分享' },
+        { value: 'report', icon: 'report', label: '报表' },
       ]}
     />
   </List>
@@ -21,10 +21,10 @@
     <Tabs
       bind:value={selectedTab}
       tabs={[
-        { key: 'todoList', icon: 'todo-list', text: '待办', badge: true },
-        { key: 'customer', icon: 'customer', text: '客户', badge: 5 },
-        { key: 'share', icon: 'share', text: '分享', badge: 100 },
-        { key: 'report', icon: 'report', text: '报表', badge: '新消息' },
+        { value: 'todoList', icon: 'todo-list', label: '待办', badge: true },
+        { value: 'customer', icon: 'customer', label: '客户', badge: 5 },
+        { value: 'share', icon: 'share', label: '分享', badge: 100 },
+        { value: 'report', icon: 'report', label: '报表', badge: '新消息' },
       ]}
     />
   </List>
@@ -32,10 +32,10 @@
     <Tabs
       bind:value={selectedTab}
       tabs={[
-        { key: 'todoList', icon: 'todo-list', badge: true },
-        { key: 'customer', icon: 'customer' },
-        { key: 'share', icon: 'share' },
-        { key: 'report', icon: 'report' },
+        { value: 'todoList', icon: 'todo-list', badge: true },
+        { value: 'customer', icon: 'customer' },
+        { value: 'share', icon: 'share' },
+        { value: 'report', icon: 'report' },
       ]}
     />
   </List>
@@ -43,34 +43,24 @@
     <Tabs
       bind:value={selectedTab}
       tabs={[
-        { key: 'todoList', text: '待办', badge: true },
-        { key: 'customer', text: '客户' },
-        { key: 'share', text: '分享' },
-        { key: 'report', text: '报表' },
+        { value: 'todoList', label: '待办', badge: true },
+        { value: 'customer', label: '客户' },
+        { value: 'share', label: '分享' },
+        { value: 'report', label: '报表' },
       ]}
     />
   </List>
   <List header="禁用">
     <Tabs
-      bind:value={selectedTab}
       tabs={[
-        { key: 'todoList', icon: 'todo-list', text: '待办' },
-        { key: 'customer', icon: 'customer', text: '客户' },
-        { key: 'share', icon: 'share', text: '分享' },
-        { key: 'report', icon: 'report', text: '报表', badge: '新消息', disabled: true },
+        { value: 'todoList', icon: 'todo-list', label: '待办', badge: true, disabled: true },
+        { value: 'customer', icon: 'customer', label: '客户' },
+        { value: 'share', icon: 'share', label: '分享' },
+        { value: 'report', icon: 'report', label: '报表' },
       ]}
     />
   </List>
   <List header="超长滚动">
-    <Tabs
-      tabs={[
-        { key: 'share0', text: 'Espresso' },
-        { key: 'share1', text: 'Coffee Latte' },
-        { key: 'share2', text: 'Americano' },
-        { key: 'share3', text: 'Flat White' },
-        { key: 'share4', text: 'Caramel Macchiato' },
-        { key: 'share5', text: 'Cafe Mocha' },
-      ]}
-    />
+    <Tabs tabs={['Espresso', 'Coffee Latte', 'Americano', 'Flat White', 'Caramel Macchiato', 'Cafe Mocha']} />
   </List>
 </Page>

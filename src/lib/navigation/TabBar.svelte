@@ -7,12 +7,12 @@
 
   /** 选项卡设置 */
   export interface TabOption {
-    /** 选项卡键 */
-    key: unknown
+    /** 值 */
+    value: unknown
     /** 图标 */
     icon?: string | IconOption
     /** 文字 */
-    text?: string
+    label?: string
     /** 徽标内容。boolean 显示小红点，number 显示数字，string 显示字符串 */
     badge?: boolean | number | string
     /** 未选中 css 类 */
@@ -32,7 +32,7 @@
     /** 当前选中的选项卡键 */
     value?: unknown
     /** 选项卡组 */
-    tabs: TabOption[]
+    tabs: Array<string | TabOption>
     /** 固定在底部 */
     fixed?: boolean
     /** 选项卡切换事件 */
@@ -43,6 +43,11 @@
 <script lang="ts">
   let { value = $bindable(), class: clazz, fixed, tabs = [], onchange, ...props }: TabBarAttributes = $props()
 
+  if (value === undefined || value === null) {
+    const first = tabs.find(x => typeof x === 'string' || (typeof x === 'object' && !x.disabled))
+    value = typeof first === 'string' ? first : typeof first === 'object' ? first.value : undefined
+  }
+
   function handleClick(key: unknown) {
     if (value === key) return
     value = key
@@ -50,27 +55,48 @@
   }
 </script>
 
+{#snippet item({
+  value: val,
+  icon,
+  label,
+  badge = false,
+  class: clazz,
+  style,
+  classSelected,
+  styleSelected,
+  disabled = false,
+}: TabOption)}
+  {@const selected = value === val && !disabled}
+  {@const selectedClazz = selected ? classSelected || 'sun-parakeet-tab-bar-item__selected' : ''}
+  {@const selectedStyle = selected ? styleSelected || '' : ''}
+  {@const iconVisible = ['string', 'object'].indexOf(typeof icon) >= 0}
+  <button
+    class="sun-parakeet-tab-bar-item {clazz} {selectedClazz}"
+    style="{style} {selectedStyle}"
+    onclick={() => handleClick(val)}
+    {disabled}
+  >
+    <Badge class="sun-parakeet-tab-bar-item__inner" content={badge}>
+      {#if iconVisible && typeof icon === 'string'}
+        <Icon name={icon} />
+      {:else if iconVisible && typeof icon === 'object'}
+        <Icon {...icon} />
+      {/if}
+      {#if label}
+        <span class:sun-parakeet-tab-bar-item__text-only={!iconVisible}>{label}</span>
+      {:else if !label && !iconVisible}
+        <span class:sun-parakeet-tab-bar-item__text-only={true}>{val}</span>
+      {/if}
+    </Badge>
+  </button>
+{/snippet}
+
 <nav class="sun-parakeet-tab-bar {clazz}" class:sun-parakeet-tab-bar-fixed={fixed} {...props}>
-  {#each tabs as { key, icon, text, badge = false, class: clazz, style, classSelected, styleSelected, disabled = false }}
-    {@const selected = key === value}
-    {@const selectedClazz = selected ? classSelected || 'sun-parakeet-tab-bar-item__selected' : ''}
-    {@const selectedStyle = selected ? styleSelected || '' : ''}
-    <button
-      class="sun-parakeet-tab-bar-item {clazz} {selectedClazz}"
-      style="{style} {selectedStyle}"
-      onclick={() => handleClick(key)}
-      {disabled}
-    >
-      <Badge class="sun-parakeet-tab-bar-item__inner" content={badge}>
-        {#if icon && typeof icon === 'string'}
-          <Icon name={icon} />
-        {:else if icon && typeof icon === 'object'}
-          <Icon {...icon} />
-        {/if}
-        {#if text}
-          <span class:sun-parakeet-tab-bar-item__text-only={!icon}>{text}</span>
-        {/if}
-      </Badge>
-    </button>
+  {#each tabs as tab}
+    {#if typeof tab === 'string'}
+      {@render item({ value: tab })}
+    {:else if typeof tab === 'object'}
+      {@render item(tab)}
+    {/if}
   {/each}
 </nav>

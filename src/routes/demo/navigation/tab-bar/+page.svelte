@@ -12,10 +12,10 @@
       <TabBar
         bind:value={selectedTab}
         tabs={[
-          { key: 'todoList', icon: 'todo-list', text: '待办' },
-          { key: 'customer', icon: 'customer', text: '客户' },
-          { key: 'share', icon: 'share', text: '分享' },
-          { key: 'report', icon: 'report', text: '报表' },
+          { value: 'todoList', icon: 'todo-list', label: '待办' },
+          { value: 'customer', icon: 'customer', label: '客户' },
+          { value: 'share', icon: 'share', label: '分享' },
+          { value: 'report', icon: 'report', label: '报表' },
         ]}
       />
     </List>
@@ -23,10 +23,10 @@
       <TabBar
         bind:value={selectedTab}
         tabs={[
-          { key: 'todoList', icon: 'todo-list', text: '待办', badge: true },
-          { key: 'customer', icon: 'customer', text: '客户', badge: 5 },
-          { key: 'share', icon: 'share', text: '分享', badge: 100 },
-          { key: 'report', icon: 'report', text: '报表', badge: '新消息' },
+          { value: 'todoList', icon: 'todo-list', label: '待办', badge: true },
+          { value: 'customer', icon: 'customer', label: '客户', badge: 5 },
+          { value: 'share', icon: 'share', label: '分享', badge: 100 },
+          { value: 'report', icon: 'report', label: '报表', badge: '新消息' },
         ]}
       />
     </List>
@@ -34,32 +34,24 @@
       <TabBar
         bind:value={selectedTab}
         tabs={[
-          { key: 'todoList', icon: 'todo-list', badge: true },
-          { key: 'customer', icon: 'customer' },
-          { key: 'share', icon: 'share' },
-          { key: 'report', icon: 'report' },
+          { value: 'todoList', icon: 'todo-list', badge: true },
+          { value: 'customer', icon: 'customer' },
+          { value: 'share', icon: 'share' },
+          { value: 'report', icon: 'report' },
         ]}
       />
     </List>
     <List header="仅标题">
-      <TabBar
-        bind:value={selectedTab}
-        tabs={[
-          { key: 'todoList', text: '待办', badge: true },
-          { key: 'customer', text: '客户' },
-          { key: 'share', text: '分享' },
-          { key: 'report', text: '报表' },
-        ]}
-      />
+      <TabBar tabs={['待办', '客户', '分享', '报表']} />
     </List>
     <List header="禁用">
       <TabBar
         bind:value={selectedTab}
         tabs={[
-          { key: 'todoList', icon: 'todo-list', text: '待办' },
-          { key: 'customer', icon: 'customer', text: '客户' },
-          { key: 'share', icon: 'share', text: '分享' },
-          { key: 'report', icon: 'report', text: '报表', badge: '新消息', disabled: true },
+          { value: 'todoList', icon: 'todo-list', label: '待办' },
+          { value: 'customer', icon: 'customer', label: '客户' },
+          { value: 'share', icon: 'share', label: '分享' },
+          { value: 'report', icon: 'report', label: '报表', badge: '新消息', disabled: true },
         ]}
       />
     </List>
@@ -69,10 +61,10 @@
     bind:value={selectedTab}
     fixed
     tabs={[
-      { key: 'todoList', icon: 'todo-list', text: '待办', badge: true },
-      { key: 'customer', icon: 'customer', text: '客户' },
-      { key: 'share', icon: 'share', text: '分享' },
-      { key: 'report', icon: 'report', text: '报表' },
+      { value: 'todoList', icon: 'todo-list', label: '待办', badge: true },
+      { value: 'customer', icon: 'customer', label: '客户' },
+      { value: 'share', icon: 'share', label: '分享' },
+      { value: 'report', icon: 'report', label: '报表' },
     ]}
   />
 </Page>

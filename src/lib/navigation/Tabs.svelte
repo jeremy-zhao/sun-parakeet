@@ -11,7 +11,7 @@
     /** 当前选中的选项卡键 */
     value?: unknown
     /** 选项卡组 */
-    tabs: TabOption[]
+    tabs: Array<string | TabOption>
     /** 选项卡切换事件 */
     onchange?: (key: unknown) => void
   }
@@ -20,14 +20,15 @@
 <script lang="ts">
   let { value = $bindable(), class: clazz, tabs = [], onchange, ...props }: TabsAttributes = $props()
 
+  if (value === undefined || value === null) {
+    const first = tabs.find(x => typeof x === 'string' || (typeof x === 'object' && !x.disabled))
+    value = typeof first === 'string' ? first : typeof first === 'object' ? first.value : undefined
+  }
+
   let nav: HTMLElement
 
   let lineW = $state(0)
   let lineL = $state(0)
-
-  if (tabs.findIndex(x => x.key == value) < 0) {
-    value = tabs[0].key
-  }
 
   function setBaseLine(node: HTMLElement) {
     const content = node.children[0] as HTMLElement
@@ -57,7 +58,10 @@
   }
 
   $effect(() => {
-    const index = tabs.findIndex(x => x.key === value && !x.disabled)
+    const index = tabs.findIndex(
+      x => (typeof x === 'string' && x === value) || (typeof x === 'object' && x.value === value && !x.disabled)
+    )
+
     const node = index >= 0 ? (nav.children[index] as HTMLElement) : undefined
 
     if (node) {
@@ -69,29 +73,50 @@
   })
 </script>
 
+{#snippet item({
+  value: val,
+  icon,
+  label,
+  badge = false,
+  class: clazz,
+  style,
+  classSelected,
+  styleSelected,
+  disabled = false,
+}: TabOption)}
+  {@const selected = value === val && !disabled}
+  {@const selectedClazz = selected ? classSelected || 'sun-parakeet-tabs-item__selected' : ''}
+  {@const selectedStyle = selected ? styleSelected || '' : ''}
+  {@const iconVisible = ['string', 'object'].indexOf(typeof icon) >= 0}
+  <button
+    use:onTabLoad={selected}
+    class="sun-parakeet-tabs-item {clazz} {selectedClazz}"
+    style="{style} {selectedStyle}"
+    onclick={e => handleClick(e, val)}
+    {disabled}
+  >
+    <Badge class="sun-parakeet-tabs-item__inner" content={badge}>
+      {#if iconVisible && typeof icon === 'string'}
+        <Icon name={icon} size={22} />
+      {:else if iconVisible && typeof icon === 'object'}
+        <Icon {...icon} />
+      {/if}
+      {#if label}
+        <span class="sun-parakeet-tabs-item__inner-text">{label}</span>
+      {:else if !label && !iconVisible}
+        <span class="sun-parakeet-tabs-item__inner-text">{val}</span>
+      {/if}
+    </Badge>
+  </button>
+{/snippet}
+
 <nav bind:this={nav} class="sun-parakeet-tabs {clazz}" {...props}>
-  {#each tabs as { key, icon, text, badge, class: clazz, style, classSelected, styleSelected, disabled = false }}
-    {@const selected = key === value && !disabled}
-    {@const selectedClazz = selected ? classSelected || 'sun-parakeet-tabs-item__selected' : ''}
-    {@const selectedStyle = selected ? styleSelected || '' : ''}
-    <button
-      use:onTabLoad={selected}
-      class="sun-parakeet-tabs-item {clazz} {selectedClazz}"
-      style="{style} {selectedStyle}"
-      onclick={e => handleClick(e, key)}
-      {disabled}
-    >
-      <Badge class="sun-parakeet-tabs-item__inner" content={badge}>
-        {#if icon && typeof icon === 'string'}
-          <Icon name={icon} size={22} />
-        {:else if icon && typeof icon === 'object'}
-          <Icon {...icon} />
-        {/if}
-        {#if text}
-          <span class="sun-parakeet-tabs-item__inner-text">{text}</span>
-        {/if}
-      </Badge>
-    </button>
+  {#each tabs as tab}
+    {#if typeof tab === 'string'}
+      {@render item({ value: tab })}
+    {:else if typeof tab === 'object'}
+      {@render item(tab)}
+    {/if}
   {/each}
   <div class="sun-parakeet-tabs__baseline" style:left={`${lineL}px`} style:width={`${lineW}px`}></div>
 </nav>

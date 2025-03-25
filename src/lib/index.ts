@@ -30,9 +30,15 @@ export { showToast, hideToast, type ShowToastOption } from './feedback/toast'
 export { ActionSheet, Popup }
 
 // Input
+import Form from './input/Form.svelte'
+export type { FormAttributes } from './input/Form.svelte'
+import FormItem from './input/FormItem.svelte'
+export type { FormItemAttributes } from './input/FormItem.svelte'
+import Input from './input/Input.svelte'
+export type { InputAttributes } from './input/Input.svelte'
 import Switch from './input/Switch.svelte'
 export type { SwitchAttributes } from './input/Switch.svelte'
-export { Switch }
+export { Form, FormItem, Input, Switch }
 
 // Layout
 import AutoCenter from './layout/AutoCenter.svelte'

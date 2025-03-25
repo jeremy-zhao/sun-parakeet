@@ -1,2 +1,18 @@
 .sun-parakeet-input {
+  @apply inline-flex w-full max-w-full;
+
+  .sun-parakeet-input-element {
+    @apply relative m-0 box-border max-h-full min-h-6 flex-auto appearance-none border-none bg-transparent p-0 outline-none;
+    font-size: var(--font-size, 17px);
+    line-height: 1.5;
+    text-align: var(--text-align, left);
+
+    &:disabled {
+      @apply text-gray-400;
+    }
+  }
+
+  .sun-parakeet-input__button {
+    @apply px-1 py-0 text-gray-400 active:bg-transparent active:text-gray-500;
+  }
 }

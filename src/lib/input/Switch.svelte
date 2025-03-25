@@ -4,12 +4,13 @@
   import type { HTMLAttributes } from 'svelte/elements'
   import type { Snippet } from 'svelte'
 
+  /** 开关属性 */
   export interface SwitchAttributes extends HTMLAttributes<EventTarget> {
     /** 指定当前是否打开 */
     checked?: boolean
     /** 选中时的内容 */
     checkedText?: string | Snippet
-    /** 禁用状态 */
+    /** 是否禁用 */
     disabled?: boolean
     /** 变化时的回调函数 */
     onChange?: (checked: boolean) => void

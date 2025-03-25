@@ -40,4 +40,10 @@
       <Switch --sp-height="36px" --sp-width="60px" --sp-checked-color="#00b578" />
     </div>
   </List>
+  <List header="禁用状态">
+    <div class="bg-white p-4">
+      <Switch disabled />
+      <Switch checked disabled />
+    </div>
+  </List>
 </Page>

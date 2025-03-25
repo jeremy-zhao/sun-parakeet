@@ -29,6 +29,8 @@
   }: SwitchAttributes = $props()
 
   function onClick() {
+    if (disabled) return
+
     checked = !checked
     onChange?.(checked)
   }
@@ -39,6 +41,7 @@
 <div
   class="sun-parakeet-switch"
   class:sun-parakeet-switch-checked={checked}
+  class:sun-parakeet-switch-disabled={disabled}
   role="switch"
   aria-label="开关"
   aria-checked={checked}

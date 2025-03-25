@@ -1,0 +1,76 @@
+:root {
+  --sp-border-width: 2px;
+  --sp-border-color: #e5e7eb;
+  --sp-checked-color: #2563eb;
+  --sp-width: 51px;
+  --sp-height: 31px;
+}
+
+.sun-parakeet-switch {
+  @apply relative box-border inline-block cursor-pointer select-none overflow-hidden rounded-full;
+  vertical-align: middle;
+  align-self: center;
+
+  .sun-parakeet-switch-checkbox {
+    @apply box-border overflow-hidden;
+    min-width: var(--sp-width);
+    height: var(--sp-height);
+    line-height: var(--sp-height);
+    border-radius: var(--sp-height);
+    background-color: var(--sp-border-color);
+
+    &::before {
+      @apply absolute box-border bg-white;
+      content: ' ';
+      left: var(--sp-border-width);
+      top: var(--sp-border-width);
+      width: calc(100% - var(--sp-border-width) * 2);
+      height: calc(var(--sp-height) - var(--sp-border-width) * 2);
+      border-radius: calc(var(--sp-height) - var(--sp-border-width) * 2);
+      z-index: 1;
+      transition: scale 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      scale: 1;
+    }
+
+    .sun-parakeet-switch__handle {
+      @apply absolute box-border flex items-center justify-center rounded-full bg-white;
+      width: calc(var(--sp-height) - var(--sp-border-width) * 2);
+      height: calc(var(--sp-height) - var(--sp-border-width) * 2);
+      left: var(--sp-border-width);
+      top: var(--sp-border-width);
+      z-index: 2;
+      transition: left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow:
+        0 0 2px 0 rgba(0, 0, 0, 0.2),
+        0 2px 11.5px 0 rgba(0, 0, 0, 0.08),
+        -1px 2px 2px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .sun-parakeet-switch__inner {
+      @apply relative flex h-full items-center justify-center fill-gray-400 text-gray-400;
+      z-index: 1;
+      margin: 0 8px 0 calc(var(--sp-height) - var(--sp-border-width) + 5px);
+      transition: margin 0.2s;
+      font-size: 15px;
+    }
+  }
+
+  &.sun-parakeet-switch-checked {
+    .sun-parakeet-switch-checkbox {
+      background-color: var(--sp-checked-color);
+
+      &::before {
+        scale: 0;
+      }
+
+      .sun-parakeet-switch__handle {
+        left: calc(100% - var(--sp-height) + var(--sp-border-width));
+      }
+
+      .sun-parakeet-switch__inner {
+        @apply fill-white text-white;
+        margin: 0 calc(var(--sp-height) - var(--sp-border-width) + 5px) 0 8px;
+      }
+    }
+  }
+}

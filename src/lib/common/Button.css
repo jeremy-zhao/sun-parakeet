@@ -3,7 +3,6 @@
   font-size: 17px;
   line-height: 25px;
   padding-bottom: 7px;
-  -webkit-tap-highlight-color: transparent;
 
   &.sun-parakeet-button__disabled {
     @apply cursor-not-allowed border-dashed border-transparent bg-gray-100 text-gray-400;

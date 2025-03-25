@@ -36,12 +36,12 @@
     /** 固定在底部 */
     fixed?: boolean
     /** 选项卡切换事件 */
-    onchange?: (key: unknown) => void
+    onChange?: (key: unknown) => void
   }
 </script>
 
 <script lang="ts">
-  let { value = $bindable(), class: clazz, fixed, tabs = [], onchange, ...props }: TabBarAttributes = $props()
+  let { value = $bindable(), class: clazz, fixed, tabs = [], onChange, ...props }: TabBarAttributes = $props()
 
   if (value === undefined || value === null) {
     const first = tabs.find(x => typeof x === 'string' || (typeof x === 'object' && !x.disabled))
@@ -51,7 +51,7 @@
   function handleClick(key: unknown) {
     if (value === key) return
     value = key
-    onchange?.(key)
+    onChange?.(key)
   }
 </script>
 

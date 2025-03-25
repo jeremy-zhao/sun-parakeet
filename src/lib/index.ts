@@ -1,3 +1,5 @@
+import './index.css'
+
 // Common
 import Button from './common/Button.svelte'
 export type { ButtonAttributes, ButtonShape, ButtonTheme } from './common/Button.svelte'
@@ -28,6 +30,9 @@ export { showToast, hideToast, type ShowToastOption } from './feedback/toast'
 export { ActionSheet, Popup }
 
 // Input
+import Switch from './input/Switch.svelte'
+export type { SwitchAttributes } from './input/Switch.svelte'
+export { Switch }
 
 // Layout
 import AutoCenter from './layout/AutoCenter.svelte'

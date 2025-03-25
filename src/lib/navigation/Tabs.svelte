@@ -13,12 +13,12 @@
     /** 选项卡组 */
     tabs: Array<string | TabOption>
     /** 选项卡切换事件 */
-    onchange?: (key: unknown) => void
+    onChange?: (key: unknown) => void
   }
 </script>
 
 <script lang="ts">
-  let { value = $bindable(), class: clazz, tabs = [], onchange, ...props }: TabsAttributes = $props()
+  let { value = $bindable(), class: clazz, tabs = [], onChange, ...props }: TabsAttributes = $props()
 
   if (value === undefined || value === null) {
     const first = tabs.find(x => typeof x === 'string' || (typeof x === 'object' && !x.disabled))
@@ -39,7 +39,7 @@
   function handleClick(e: Event, key: unknown) {
     if (value == key) return
     value = key
-    onchange?.(key)
+    onChange?.(key)
 
     const target = e.currentTarget as HTMLElement
     setBaseLine(target)

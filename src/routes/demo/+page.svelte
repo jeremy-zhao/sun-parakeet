@@ -44,6 +44,10 @@
     {@render listItem('Collapse', '折叠面板', '/demo/display/collapse')}
     {@render listItem('List', '列表', '/demo/display/list')}
   </List>
+  <List header="信息录入">
+    {@render listItem('Input', '输入框', '/demo/input/input')}
+    {@render listItem('Switch', '开关', '/demo/input/switch')}
+  </List>
   <List header="反馈">
     {@render listItem('ActionSheet', '动作面板', '/demo/feedback/action-sheet')}
     {@render listItem('Loading', '加载中', '/demo/feedback/loading')}

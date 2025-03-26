@@ -1,2 +1,44 @@
+:root {
+  --sp-border-color: #e5e7eb;
+}
+
 .sun-parakeet-form {
+  @apply relative;
+
+  &::after {
+    @apply absolute bottom-0 left-0 right-0;
+    content: '';
+    height: 1px;
+    background-color: var(--sp-border-color);
+  }
+
+  &.sun-parakeet-form-vertical {
+    .sun-parakeet-form-item {
+      @apply flex flex-col;
+
+      .sun-parakeet-form-item__required {
+        top: 13px;
+      }
+
+      .sun-parakeet-form-item__label {
+        font-size: 15px;
+      }
+    }
+  }
+
+  &.sun-parakeet-form-horizontal {
+    .sun-parakeet-form-item {
+      @apply flex justify-stretch;
+
+      .sun-parakeet-form-item__required {
+        top: 15px;
+      }
+
+      .sun-parakeet-form-item__label {
+        @apply mr-3;
+        width: var(--sp-label-width, 100px);
+        font-size: 17px;
+      }
+    }
+  }
 }

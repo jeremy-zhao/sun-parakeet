@@ -1,15 +1,29 @@
 <script lang="ts" module>
   import './Form.css'
+
+  import FormHeader from './FormHeader.svelte'
+  import type { Snippet } from 'svelte'
   import type { HTMLFormAttributes } from 'svelte/elements'
 
   /** 表单属性 */
-  export interface FormAttributes extends HTMLFormAttributes {}
+  export interface FormAttributes extends HTMLFormAttributes {
+    /** 标题 */
+    header?: string | Snippet
+    /** 表单布局 */
+    layout?: 'vertical' | 'horizontal'
+  }
 </script>
 
 <script lang="ts">
-  let { children, ...props }: FormAttributes = $props()
+  let { header, layout = 'vertical', name, children, ...props }: FormAttributes = $props()
 </script>
 
-<form class="sun-parakeet-form" {...props}>
+<form class="sun-parakeet-form sun-parakeet-form-{layout}" {...props}>
+  {#if typeof header === 'string'}
+    <FormHeader>{header}</FormHeader>
+  {:else if typeof header === 'function'}
+    <FormHeader>{@render header()}</FormHeader>
+  {/if}
+
   {@render children?.()}
 </form>

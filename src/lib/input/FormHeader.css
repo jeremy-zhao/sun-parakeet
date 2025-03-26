@@ -1,0 +1,7 @@
+.sun-parakeet-form-header {
+  @apply relative border-x-0 border-y border-solid px-4 py-2 text-gray-500;
+  border-top-color: transparent;
+  border-bottom-color: var(--sp-border-color, #e5e7eb);
+  font-size: 15px;
+  z-index: 2;
+}

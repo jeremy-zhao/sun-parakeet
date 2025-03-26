@@ -1,0 +1,46 @@
+.sun-parakeet-picker-column {
+  @apply relative flex-1 overflow-hidden;
+
+  &::before {
+    @apply pointer-events-none absolute left-0 right-0 top-0 border-b border-b-gray-300 bg-gradient-to-t from-white/70 to-white/100;
+    content: '';
+    height: calc((100% - var(--item-height, 40px)) / 2);
+  }
+
+  &::after {
+    @apply pointer-events-none absolute bottom-0 left-0 right-0 border-t border-t-gray-300 bg-gradient-to-b from-white/70 to-white/100;
+    content: '';
+    height: calc((100% - var(--item-height, 40px)) / 2);
+  }
+
+  ul.sun-parakeet-picker-column__container {
+    @apply pointer-events-auto h-full w-full overflow-x-hidden overflow-y-scroll overscroll-contain scroll-smooth;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+
+    li.sun-parakeet-picker-item {
+      @apply box-border flex items-center justify-center overflow-hidden;
+      height: var(--item-height, 40px);
+
+      .sun-parakeet-picker-item__label {
+        @apply block truncate;
+      }
+    }
+
+    &.ios {
+      scroll-snap-type: y mandatory;
+
+      li.sun-parakeet-picker-item {
+        scroll-snap-align: center;
+      }
+    }
+  }
+
+  &.loading {
+    ul.sun-parakeet-picker-column__container {
+      @apply flex items-center justify-center;
+    }
+  }
+}

@@ -36,9 +36,13 @@ import FormItem from './input/FormItem.svelte'
 export type { FormItemAttributes } from './input/FormItem.svelte'
 import Input from './input/Input.svelte'
 export type { InputAttributes } from './input/Input.svelte'
+import Picker from './input/Picker.svelte'
+export type { PickerAttributes } from './input/Picker.svelte'
+import PickerView from './input/PickerView.svelte'
+export type { PickerViewAttributes } from './input/PickerView.svelte'
 import Switch from './input/Switch.svelte'
 export type { SwitchAttributes } from './input/Switch.svelte'
-export { Form, FormItem, Input, Switch }
+export { Form, FormItem, Input, Picker, PickerView, Switch }
 
 // Layout
 import AutoCenter from './layout/AutoCenter.svelte'

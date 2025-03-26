@@ -2,6 +2,9 @@
   "name": "sun-parakeet",
   "license": "MIT",
   "version": "0.0.1",
+  "keywords": [
+    "svelte ui"
+  ],
   "scripts": {
     "start": "vite dev",
     "dev": "vite dev",
@@ -45,6 +48,7 @@
     "@eslint/compat": "^1.2.5",
     "@eslint/js": "^9.18.0",
     "@playwright/test": "^1.49.1",
+    "@province-city-china/types": "^8.5.8",
     "@sveltejs/adapter-node": "^5.2.12",
     "@sveltejs/kit": "^2.16.0",
     "@sveltejs/package": "^2.0.0",
@@ -81,7 +85,9 @@
     "vite": "^6.0.0",
     "vitest": "^3.0.0"
   },
-  "keywords": [
-    "svelte ui"
-  ]
+  "dependencies": {
+    "@province-city-china/area": "^8.5.8",
+    "@province-city-china/city": "^8.5.8",
+    "@province-city-china/province": "^8.5.8"
+  }
 }

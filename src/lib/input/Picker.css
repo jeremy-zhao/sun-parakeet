@@ -1,0 +1,21 @@
+.sun-parakeet-picker {
+  .sun-parakeet-picker__header {
+    @apply flex w-full items-center justify-stretch border-b border-b-gray-200 p-2;
+  }
+
+  .sun-parakeet-picker__footer {
+    @apply flex w-full items-center justify-stretch border-t border-t-gray-200 p-2;
+  }
+
+  .sun-parakeet-picker__ok {
+    @apply border-0 bg-transparent px-2 py-1 text-[15px] text-blue-600 active:border-blue-600 active:bg-blue-200;
+  }
+
+  .sun-parakeet-picker__cancel {
+    @apply border-0 bg-transparent px-2 py-1 text-[15px] text-gray-600 active:border-blue-600 active:bg-blue-100 active:text-blue-600;
+  }
+
+  .sun-parakeet-picker__clear {
+    @apply border-0 bg-transparent px-2 py-1 text-[15px] text-yellow-600 active:border-yellow-600 active:bg-yellow-200;
+  }
+}

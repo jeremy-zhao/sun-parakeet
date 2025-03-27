@@ -28,7 +28,7 @@
   }
 
   .sun-parakeet-form-item__input {
-    @apply flex-auto;
+    @apply relative flex-auto;
   }
 
   .sun-parakeet-form-item__error {

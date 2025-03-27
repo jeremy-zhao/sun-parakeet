@@ -23,12 +23,12 @@
     /** 加载状态 */
     loading: boolean
     /** 选择变更事件 */
-    onchange: (value: unknown) => void
+    onChange: (value: unknown) => void
   }
 </script>
 
 <script lang="ts">
-  let { items, value, loading, onchange }: PickerColumnAttributes = $props()
+  let { items, value, loading, onChange }: PickerColumnAttributes = $props()
 
   let container: HTMLElement
 
@@ -126,7 +126,7 @@
     if (item.value == value) {
       alignTo(index)
     } else {
-      onchange(item.value)
+      onChange(item.value)
     }
   }
 

@@ -8,7 +8,7 @@
 
   export interface PopupAttributes extends HTMLAttributes<EventTarget> {
     /** 是否显示 */
-    visible: boolean
+    visible?: boolean
     /** 弹出位置。默认为 `bottom` */
     position?: PopupPosition
     /** 是否展示遮罩。默认为 `true` */
@@ -29,7 +29,7 @@
   let _self: HTMLDivElement
 
   let {
-    visible = $bindable(),
+    visible = $bindable(false),
     position = 'bottom',
     mask = true,
     maskClickClose = true,

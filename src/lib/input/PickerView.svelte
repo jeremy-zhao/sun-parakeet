@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import './PickerView.css'
 
-  import { untrack } from 'svelte'
+  import { untrack, getContext } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
   import PickerColumn, { type PickerItem } from './PickerColumn.svelte'
 
@@ -23,8 +23,11 @@
 
   let _init = false
   let _values = $state<unknown[]>([])
-  let _columns = $state(new Array(columns))
   let _loadings = $state(new Array(columns).fill(false))
+
+  let __columns = $state(new Array<PickerItem[]>(columns))
+  let __pickerColumns = getContext<PickerItem[][] | undefined>('sun_parakeet_picker_columns')
+  let _columns = $derived(__pickerColumns ?? __columns)
 
   async function handleChange(index: number, val: unknown) {
     if (_values![index] == val) return
@@ -102,7 +105,13 @@
 
     if (!_init) {
       _init = true
-      onChangeRec([]).then(v => (value = [...v]))
+
+      onChangeRec([]).then(newVal => {
+        if (!diff(newVal, value)) return
+        value = [...newVal]
+        onChange?.(newVal)
+      })
+
       return
     }
 
@@ -123,7 +132,7 @@
       {items}
       value={_values[index]}
       loading={_loadings[index]}
-      onchange={val => handleChange(index, val)}
+      onChange={val => handleChange(index, val)}
     />
   {/each}
 </div>

@@ -28,19 +28,19 @@
       /** 主要 */
       primary?: string
       /** 主要(扁平) */
-      primary_plain?: string
+      'primary-plain'?: string
       /** 成功 */
       success?: string
       /** 成功(扁平) */
-      success_plain?: string
+      'success-plain'?: string
       /** 警告 */
       warning?: string
       /** 警告(扁平) */
-      warning_plain?: string
+      'warning-plain'?: string
       /** 危险 */
       danger?: string
       /** 危险(扁平) */
-      danger_plain?: string
+      'danger-plain'?: string
       /** 文本 */
       text?: string
     }
@@ -59,6 +59,12 @@
       danger: 'sun-parakeet-button__danger',
       'danger-plain': 'sun-parakeet-button__danger-plain',
       text: 'sun-parakeet-button__text',
+      // TODO: FormItemButton
+      'form-item': 'sun-parakeet-form-item-button',
+      // TODO：Picker 按钮样式，默认 css 在 Picker.css 文件中。可以被覆盖，这里在做主题的时候可能要改
+      'picker-ok': 'sun-parakeet-picker__ok',
+      'picker-cancel': 'sun-parakeet-picker__cancel',
+      'picker-clear': 'sun-parakeet-picker__clear',
     },
   }
 </script>

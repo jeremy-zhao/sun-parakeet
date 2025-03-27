@@ -1,0 +1,7 @@
+.sun-parakeet-form-item-button {
+  @apply absolute -bottom-3 -right-3 -top-3 left-0 justify-end border-0;
+
+  .sun-parakeet-form-item-button__arrow {
+    @apply text-gray-400;
+  }
+}

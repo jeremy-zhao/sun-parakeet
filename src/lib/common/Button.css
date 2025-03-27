@@ -1,7 +1,7 @@
 .sun-parakeet-button {
   @apply box-border inline-flex cursor-pointer select-none items-center justify-center rounded-md border border-solid px-4 py-2;
   font-size: 17px;
-  line-height: 25px;
+  line-height: 1.5;
   padding-bottom: 7px;
 
   &.sun-parakeet-button__disabled {

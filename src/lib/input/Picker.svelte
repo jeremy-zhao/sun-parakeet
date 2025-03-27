@@ -1,9 +1,8 @@
 <script lang="ts" module>
   import './Picker.css'
 
-  import { untrack, getContext, setContext, type Snippet } from 'svelte'
+  import { untrack, getContext, setContext, type Snippet, onMount } from 'svelte'
   import Button from '../common/Button.svelte'
-  import FormItemButton from './FormItemButton.svelte'
   import Popup, { type PopupAttributes } from '../feedback/Popup.svelte'
   import PickerView, { type PickerViewAttributes } from './PickerView.svelte'
   import type { PickerItem } from './PickerColumn.svelte'
@@ -39,6 +38,7 @@
     ok = '确定',
     cancel = '取消',
     clear = '清除',
+    placeholder,
     clearable = false,
     columns = 1,
     loader,
@@ -48,12 +48,13 @@
     ...props
   }: PickerAttributes = $props()
 
-  let formItem = getContext<FormItemContext>('sun_parakeet_form_item')
   let _values = $state(value)
 
   let display = $state('')
   let __columns = $state(new Array<PickerItem[]>(columns))
   let _columns = setContext('sun_parakeet_picker_columns', __columns)
+
+  let formItem = getContext<FormItemContext | undefined>('sun_parakeet_form_item')
 
   function handleOk() {
     visible = false
@@ -92,16 +93,24 @@
     untrack(() => (_values = [...value]))
     untrack(() => (display = makeDisplay()))
   })
+
+  onMount(() => {
+    formItem && (formItem.onClick = () => (visible = true))
+
+    return () => {
+      formItem && (formItem.onClick = undefined)
+    }
+  })
 </script>
 
 {#if formItem}
-  <FormItemButton class="sun-parakeet-form-item-picker" shape="rectangular" onclick={() => (visible = true)}>
-    {#if children}
-      {@render children()}
-    {:else}
-      {display}
-    {/if}
-  </FormItemButton>
+  {#if !value?.length}
+    <span class="sun-parakeet-form-item-button__placeholder">{placeholder}</span>
+  {:else if children}
+    {@render children()}
+  {:else}
+    {display}
+  {/if}
 {/if}
 
 <Popup class="sun-parakeet-picker" bind:visible position="bottom" {...props}>

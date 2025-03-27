@@ -1,8 +1,11 @@
 <script lang="ts" module>
   import './FormItem.css'
+  import ArrowIcon from '../icons/arrow-right-s-line.svg?raw'
 
   import { setContext, type Snippet } from 'svelte'
   import { validate, type Rule } from './validation'
+  import Button from '../common/Button.svelte'
+  import Icon from '../common/Icon.svelte'
   import type { HTMLAttributes } from 'svelte/elements'
 
   /** 表单条目属性 */
@@ -24,8 +27,10 @@
     register: (input: FormItemControl) => void
     /** 注销 */
     unregister: (input: FormItemControl) => void
-    /** 数据变更 */
+    /** 数据变更事件 */
     onChange: (value: unknown) => void
+    /** 点击事件 */
+    onClick?: () => void
   }
 </script>
 
@@ -64,7 +69,7 @@
     console.log('init', input)
   }
 
-  setContext<FormItemContext>('sun_parakeet_form_item', {
+  let context = $state<FormItemContext>({
     register(el) {
       if (!el) return
       registered.push(el)
@@ -83,27 +88,42 @@
       }
     },
   })
+
+  setContext<FormItemContext>('sun_parakeet_form_item', context)
 </script>
+
+{#snippet content()}
+  <div class="sun-parakeet-form-item__content">
+    {#if label && typeof label === 'string'}
+      <label class="sun-parakeet-form-item__label" for={labelFor}>
+        {label}
+      </label>
+    {:else if label && typeof label === 'function'}
+      <label class="sun-parakeet-form-item__label" for={labelFor}>
+        {@render label()}
+      </label>
+    {/if}
+
+    <div class="sun-parakeet-form-item__input">
+      {@render children?.()}
+      {#if error}
+        <p class="sun-parakeet-form-item__error">{error}</p>
+      {/if}
+    </div>
+  </div>
+{/snippet}
 
 <div class="sun-parakeet-form-item" {...props}>
   {#if required}
     <b class="sun-parakeet-form-item__required">*</b>
   {/if}
 
-  {#if label && typeof label === 'string'}
-    <label class="sun-parakeet-form-item__label" for={labelFor}>
-      {label}
-    </label>
-  {:else if label && typeof label === 'function'}
-    <label class="sun-parakeet-form-item__label" for={labelFor}>
-      {@render label()}
-    </label>
+  {#if typeof context.onClick === 'function'}
+    <Button color="form-item" shape="rectangular" onclick={context.onClick}>
+      {@render content()}
+      <Icon class="sun-parakeet-form-item-button__arrow" svg={ArrowIcon} />
+    </Button>
+  {:else}
+    {@render content()}
   {/if}
-
-  <div class="sun-parakeet-form-item__input">
-    {@render children?.()}
-    {#if error}
-      <p class="sun-parakeet-form-item__error">{error}</p>
-    {/if}
-  </div>
 </div>

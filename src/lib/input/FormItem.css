@@ -1,5 +1,5 @@
 .sun-parakeet-form-item {
-  @apply relative z-0 mt-[-1px] bg-white p-3 pl-4;
+  @apply relative z-0 mt-[-1px] flex bg-white;
 
   &::before {
     @apply absolute left-4 right-0 top-0;
@@ -23,16 +23,62 @@
     left: 6px;
   }
 
+  .sun-parakeet-form-item__content {
+    @apply flex-auto p-3 pl-4;
+  }
+
   .sun-parakeet-form-item__label {
-    @apply relative box-border flex-none text-gray-500;
+    @apply relative box-border flex-none text-left text-gray-500;
   }
 
   .sun-parakeet-form-item__input {
-    @apply relative flex-auto;
+    @apply relative flex flex-auto flex-col text-left;
   }
 
   .sun-parakeet-form-item__error {
     @apply text-red-600;
     font-size: 13px;
+  }
+}
+
+.sun-parakeet-form-item-button {
+  @apply flex-auto justify-stretch border-transparent bg-white p-0 pr-3 text-black active:bg-gray-100;
+
+  .sun-parakeet-form-item-button__placeholder {
+    @apply text-gray-400;
+  }
+
+  .sun-parakeet-form-item-button__arrow {
+    @apply text-gray-400;
+  }
+}
+
+.sun-parakeet-form-vertical {
+  .sun-parakeet-form-item__required {
+    top: 14px;
+  }
+
+  .sun-parakeet-form-item__content {
+    @apply flex flex-col;
+  }
+
+  .sun-parakeet-form-item__label {
+    font-size: 15px;
+  }
+}
+
+.sun-parakeet-form-horizontal {
+  .sun-parakeet-form-item__required {
+    top: 16px;
+  }
+
+  .sun-parakeet-form-item__content {
+    @apply flex justify-stretch;
+  }
+
+  .sun-parakeet-form-item__label {
+    @apply mr-3;
+    width: var(--sp-label-width, 100px);
+    font-size: 17px;
   }
 }

@@ -2,7 +2,7 @@
   import _province from '@province-city-china/province'
   import _city from '@province-city-china/city'
   import _area from '@province-city-china/area'
-  import { Page, Button, List, Picker, Form, FormItem, showToast, delay } from '$lib'
+  import { Page, Button, List, Input, Picker, Form, FormItem, showToast, delay } from '$lib'
 </script>
 
 <script lang="ts">
@@ -23,7 +23,7 @@
   let cascadeLoaderAsyncVisible = $state(false)
 
   let form = $state({
-    location: ['11', '1101', '110101'],
+    location: ['65', '6527', '652702'],
     // location: [],
   })
 
@@ -77,7 +77,7 @@
 </script>
 
 <Page class="bg-gray-100">
-  <List header="基础用法">
+  <!-- <List header="基础用法">
     <div class="bg-white p-4">
       <Button onclick={() => (baseLoaderVisible = true)}>选择</Button>
       <Picker header="请选择" bind:visible={baseLoaderVisible} columns={2} loader={baseLoader} {onChange} />
@@ -100,16 +100,35 @@
         {onChange}
       />
     </div>
-  </List>
+  </List> -->
   <Form header="配合表单使用-水平布局" layout="horizontal">
-    <FormItem label="地区">
-      <Picker bind:value={form.location} header="请选择" columns={3} loader={cascadeLoader} clearable />
+    <FormItem label="地区编码" rules={[{ required: true }]}>
+      <Input bind:value={form.location} />
+    </FormItem>
+    <FormItem label="地区" rules={[{ required: true }]}>
+      <Picker
+        bind:value={form.location}
+        header="请选择"
+        placeholder="省/市/区"
+        columns={3}
+        loader={cascadeLoader}
+        clearable
+      />
     </FormItem>
   </Form>
   <Form header="配合表单使用-垂直布局" layout="vertical">
-    <FormItem label="地区">
-      <Picker bind:value={form.location} header="请选择" columns={3} loader={cascadeLoader} clearable />
+    <FormItem label="地区" rules={[{ required: true }]}>
+      <Picker
+        bind:value={form.location}
+        header="请选择"
+        placeholder="省/市/区"
+        columns={3}
+        loader={cascadeLoader}
+        clearable
+      />
     </FormItem>
   </Form>
-  <p>PC 端暂时不支持鼠标拖拽改变数值</p>
+  <p class="px-4 py-2">PC 端暂时不支持鼠标拖拽改变数值</p>
+  <p class="px-4 py-2">双重绑定，联动显示有 Bug</p>
+  <p class="px-4 py-2">清除后直接确认第一个，有 Bug</p>
 </Page>

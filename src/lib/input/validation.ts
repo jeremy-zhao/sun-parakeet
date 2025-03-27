@@ -15,6 +15,8 @@ function requiredValidation(rule: Rule, value: unknown) {
     return rule.message || '必填'
   } else if (typeof value === 'number' && isNaN(value)) {
     return rule.message || '请输入有效数字'
+  } else if (Array.isArray(value) && value.length === 0) {
+    return rule.message || '必填'
   }
 }
 

@@ -24,7 +24,7 @@
   let _init = false
   let _values = $state<unknown[]>([])
   let _columns = $state(new Array(columns))
-  let _loadings = $state(new Array(columns).fill(true))
+  let _loadings = $state(new Array(columns).fill(false))
 
   async function handleChange(index: number, val: unknown) {
     if (_values![index] == val) return

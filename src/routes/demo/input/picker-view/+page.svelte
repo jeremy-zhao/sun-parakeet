@@ -2,7 +2,7 @@
   import _province from '@province-city-china/province'
   import _city from '@province-city-china/city'
   import _area from '@province-city-china/area'
-  import { Page, List, PickerView, showToast } from '$lib'
+  import { Page, List, PickerView, showToast, delay } from '$lib'
 </script>
 
 <script lang="ts">
@@ -43,6 +43,25 @@
     }
   }
 
+  async function cascadeLoaderAsync(value: string[]) {
+    await delay(500)
+
+    if (!value?.length) {
+      return province
+    } else if (value.length == 1) {
+      const re = city.filter(x => x.province === value[0])
+      if (re.length) return re
+
+      const pr = province.find(x => x.value === value[0])
+      if (!pr) return re
+
+      re.push({ value: `${pr.value}01`, label: pr.label, province: pr.value })
+      return re
+    } else {
+      return area.filter(x => x.city === value[1])
+    }
+  }
+
   function onChange(value: unknown[]) {
     showToast({ text: value.join(',') })
   }
@@ -54,6 +73,9 @@
   </List>
   <List header="联动">
     <PickerView columns={3} loader={cascadeLoader} {onChange} />
+  </List>
+  <List header="异步加载">
+    <PickerView columns={3} loader={cascadeLoaderAsync} {onChange} />
   </List>
   <p>PC 端暂时不支持鼠标拖拽改变数值</p>
 </Page>

@@ -2,19 +2,21 @@
   @apply relative flex-1 overflow-hidden;
 
   &::before {
-    @apply pointer-events-none absolute left-0 right-0 top-0 border-b border-b-gray-300 bg-gradient-to-t from-white/70 to-white/100;
+    @apply pointer-events-none absolute left-0 right-0 top-0 border-0 border-b border-solid border-b-gray-300;
     content: '';
     height: calc((100% - var(--item-height, 40px)) / 2);
+    background-image: linear-gradient(to top, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1));
   }
 
   &::after {
-    @apply pointer-events-none absolute bottom-0 left-0 right-0 border-t border-t-gray-300 bg-gradient-to-b from-white/70 to-white/100;
+    @apply pointer-events-none absolute bottom-0 left-0 right-0 border-0 border-t border-solid border-t-gray-300;
     content: '';
     height: calc((100% - var(--item-height, 40px)) / 2);
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 1));
   }
 
   ul.sun-parakeet-picker-column__container {
-    @apply pointer-events-auto h-full w-full overflow-x-hidden overflow-y-scroll overscroll-contain scroll-smooth;
+    @apply pointer-events-auto m-0 h-full w-full list-none overflow-x-hidden overflow-y-scroll overscroll-contain scroll-smooth p-0;
 
     &::-webkit-scrollbar {
       display: none;
@@ -36,6 +38,10 @@
         scroll-snap-align: center;
       }
     }
+  }
+
+  .sun-parakeet-picker-column__loading-icon {
+    @apply animate-spin text-gray-500;
   }
 
   &.loading {

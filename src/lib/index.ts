@@ -6,6 +6,7 @@ export type { ButtonAttributes, ButtonShape, ButtonTheme } from './common/Button
 import Icon from './common/Icon.svelte'
 export type { IconAttributes, IconOption } from './common/Icon.svelte'
 export { Button, Icon }
+export { delay, isIOS, isWechatDevTools } from './common'
 
 // Display
 import Avatar from './display/Avatar.svelte'

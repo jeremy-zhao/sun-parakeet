@@ -1,5 +1,6 @@
 <script lang="ts" module>
   import './PickerColumn.css'
+  import LoadingIcon from '../icons/loading.svg?raw'
 
   import Icon from '../common/Icon.svelte'
   import { delay, isIOS } from '../common'
@@ -183,7 +184,7 @@
     ontouchend={onTouchEnd}
   >
     {#if loading}
-      <Icon name="loading" class="stroke-gray animate-spin" />
+      <Icon svg={LoadingIcon} class="sun-parakeet-picker-column__loading-icon" />
     {:else}
       <li style:height={`${padding}px`}></li>
       {#each items as item, index}

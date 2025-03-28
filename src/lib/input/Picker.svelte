@@ -108,7 +108,11 @@
       let found = column?.find(x => x.value === value[i])
 
       if (!found) {
-        const loaded = await Promise.resolve(loader(value.slice(0, i)))
+        const vals = value.slice(0, i)
+        const loaded = await Promise.resolve(loader(vals))
+
+        // 异步，值变化时取消
+        if (!equals(vals, value.slice(0, i))) return
 
         column = loaded
           .map(x => {

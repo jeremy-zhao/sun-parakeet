@@ -102,8 +102,8 @@
     </div>
   </List> -->
   <Form header="配合表单使用-水平布局" layout="horizontal">
-    <FormItem label="地区编码" rules={[{ required: true }]}>
-      <Input bind:value={form.location} />
+    <FormItem label="地区编码">
+      <span>{form.location}</span>
     </FormItem>
     <FormItem label="地区" rules={[{ required: true }]}>
       <Picker
@@ -116,18 +116,19 @@
       />
     </FormItem>
   </Form>
-  <Form header="配合表单使用-垂直布局" layout="vertical">
+  <Form header="配合表单使用-垂直布局-异步" layout="vertical">
     <FormItem label="地区" rules={[{ required: true }]}>
       <Picker
         bind:value={form.location}
         header="请选择"
         placeholder="省/市/区"
         columns={3}
-        loader={cascadeLoader}
+        loader={cascadeLoaderAsync}
         clearable
       />
     </FormItem>
   </Form>
+  <Button onclick={() => (form.location = ['31', '3101', '310101'])}>31,3101,310101</Button>
   <p class="px-4 py-2">PC 端暂时不支持鼠标拖拽改变数值</p>
   <p class="px-4 py-2">双重绑定，联动显示有 Bug</p>
   <p class="px-4 py-2">清除后直接确认第一个，有 Bug</p>

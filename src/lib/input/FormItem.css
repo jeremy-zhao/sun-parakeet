@@ -24,7 +24,7 @@
   }
 
   .sun-parakeet-form-item__content {
-    @apply flex-auto p-3 pl-4;
+    @apply relative flex-auto p-3 pl-4;
   }
 
   .sun-parakeet-form-item__label {
@@ -33,6 +33,7 @@
 
   .sun-parakeet-form-item__input {
     @apply relative flex flex-auto flex-col text-left;
+    font-size: 17px;
   }
 
   .sun-parakeet-form-item__error {
@@ -42,20 +43,20 @@
 }
 
 .sun-parakeet-form-item-button {
-  @apply flex-auto justify-stretch border-transparent bg-white p-0 pr-3 text-black active:bg-gray-100;
+  @apply flex flex-auto items-center justify-stretch border-0 border-transparent bg-white p-0 pr-3 text-black active:bg-gray-100;
 
   .sun-parakeet-form-item-button__placeholder {
     @apply text-gray-400;
   }
 
   .sun-parakeet-form-item-button__arrow {
-    @apply text-gray-400;
+    @apply flex-none text-gray-400;
   }
 }
 
 .sun-parakeet-form-vertical {
   .sun-parakeet-form-item__required {
-    top: 14px;
+    top: 13px;
   }
 
   .sun-parakeet-form-item__content {
@@ -69,7 +70,7 @@
 
 .sun-parakeet-form-horizontal {
   .sun-parakeet-form-item__required {
-    top: 16px;
+    top: 15px;
   }
 
   .sun-parakeet-form-item__content {

@@ -23,7 +23,7 @@
 <script lang="ts">
   import { browser } from '$app/environment'
   import stack from '../common/historyStack.js'
-  import { onDestroy, onMount } from 'svelte'
+  import { onMount } from 'svelte'
 
   let _mask: HTMLDivElement
   let _self: HTMLDivElement
@@ -69,13 +69,11 @@
   }
 
   onMount(() => {
-    if (!browser) return
     document.body.append(_self)
-  })
 
-  onDestroy(() => {
-    if (!browser) return
-    _self.remove()
+    return () => {
+      _self.remove()
+    }
   })
 </script>
 

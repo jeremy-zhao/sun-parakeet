@@ -2,9 +2,8 @@
   import './FormItem.css'
   import ArrowIcon from '../icons/arrow-right-s-line.svg?raw'
 
-  import { setContext, type Snippet } from 'svelte'
+  import { onMount, setContext, type Component, type Snippet } from 'svelte'
   import { validate, type Rule } from './validation'
-  import Button from '../common/Button.svelte'
   import Icon from '../common/Icon.svelte'
   import type { HTMLAttributes } from 'svelte/elements'
 
@@ -36,6 +35,8 @@
 
 <script lang="ts">
   let { label, for: labelFor, rules, children, ...props }: FormItemAttributes = $props()
+
+  let content: HTMLDivElement
 
   let registered: FormItemControl[] = []
   let input: FormItemControl | null | undefined
@@ -90,10 +91,18 @@
   })
 
   setContext<FormItemContext>('sun_parakeet_form_item', context)
+
+  function onButton(node: HTMLButtonElement) {
+    node.prepend(content)
+  }
 </script>
 
-{#snippet content()}
-  <div class="sun-parakeet-form-item__content">
+<div class="sun-parakeet-form-item" {...props}>
+  {#if required}
+    <b class="sun-parakeet-form-item__required">*</b>
+  {/if}
+
+  <div bind:this={content} class="sun-parakeet-form-item__content">
     {#if label && typeof label === 'string'}
       <label class="sun-parakeet-form-item__label" for={labelFor}>
         {label}
@@ -111,19 +120,10 @@
       {/if}
     </div>
   </div>
-{/snippet}
-
-<div class="sun-parakeet-form-item" {...props}>
-  {#if required}
-    <b class="sun-parakeet-form-item__required">*</b>
-  {/if}
 
   {#if typeof context.onClick === 'function'}
-    <Button color="form-item" shape="rectangular" onclick={context.onClick}>
-      {@render content()}
-      <Icon class="sun-parakeet-form-item-button__arrow" svg={ArrowIcon} />
-    </Button>
-  {:else}
-    {@render content()}
+    <button use:onButton class="sun-parakeet-form-item-button" onclick={context.onClick}>
+      <Icon class="sun-parakeet-form-item-button__arrow" svg={ArrowIcon} size={30} />
+    </button>
   {/if}
 </div>

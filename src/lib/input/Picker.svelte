@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import './Picker.css'
 
-  import { untrack, getContext, setContext, type Snippet, onMount } from 'svelte'
+  import { untrack, getContext, setContext, onMount, type Snippet, onDestroy } from 'svelte'
   import Button from '../common/Button.svelte'
   import Popup, { type PopupAttributes } from '../feedback/Popup.svelte'
   import PickerView, { type PickerViewAttributes } from './PickerView.svelte'
@@ -48,13 +48,19 @@
     ...props
   }: PickerAttributes = $props()
 
-  let _values = $state(value)
+  let _values = $state<unknown[]>([])
 
-  let display = $state('')
   let __columns = $state(new Array<PickerItem[]>(columns))
   let _columns = setContext('sun_parakeet_picker_columns', __columns)
 
+  let display = $state('')
+  let displayLoading = $state(false)
+
   let formItem = getContext<FormItemContext | undefined>('sun_parakeet_form_item')
+
+  function onFormItemClick() {
+    visible = true
+  }
 
   function handleOk() {
     visible = false
@@ -76,29 +82,61 @@
     formItem?.onChange(value)
   }
 
-  function makeDisplay() {
+  async function makeDisplay() {
+    displayLoading = true
+
     const text = []
 
     for (let i = 0, len = value.length; i < len; i++) {
-      const found = _columns[i]?.find(x => x.value === value[i])
+      let column = _columns[i]
+
+      if (!column?.length) {
+        const loaded = await Promise.resolve(loader(value.slice(0, i)))
+
+        column = loaded
+          .map(x => {
+            if (typeof x === 'object') {
+              return x
+            } else if (typeof x === 'string') {
+              return { value: x }
+            }
+          })
+          .filter(x => x) as PickerItem[]
+      }
+
+      const found = column?.find(x => x.value === value[i])
       if (!found) break
-      text[i] = found.label ?? found.value?.toString() ?? ''
+
+      text.push(found.label ?? found.value?.toString() ?? '')
     }
+
+    displayLoading = false
 
     return text.join('/')
   }
 
+  function equals(arr1: unknown[], arr2: unknown[]) {
+    if (arr1.length !== arr2.length) return false
+    return arr1.every((val, ix) => arr2[ix] === val)
+  }
+
   $effect(() => {
-    if (!value) value = []
-    untrack(() => (_values = [...value]))
-    untrack(() => (display = makeDisplay()))
+    const values = value
+
+    untrack(() => {
+      if (equals(values, _values)) return
+      _values = [...values]
+      makeDisplay().then(val => (display = val))
+    })
   })
 
   onMount(() => {
-    formItem && (formItem.onClick = () => (visible = true))
+    formItem && (formItem.onClick = onFormItemClick)
 
     return () => {
-      formItem && (formItem.onClick = undefined)
+      if (formItem?.onClick === onFormItemClick) {
+        formItem.onClick = undefined
+      }
     }
   })
 </script>
@@ -108,6 +146,8 @@
     <span class="sun-parakeet-form-item-button__placeholder">{placeholder}</span>
   {:else if children}
     {@render children()}
+  {:else if displayLoading}
+    <span>TODO Loading...</span>
   {:else}
     {display}
   {/if}

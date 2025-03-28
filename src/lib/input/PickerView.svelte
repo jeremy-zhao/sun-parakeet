@@ -129,8 +129,6 @@
   // 初始化
   function init() {
     if (_init) return false
-    _init = true
-
     // console.log('[PickerView] value 初始化', $state.snapshot(value))
 
     _init = true
@@ -151,7 +149,7 @@
       if (equals(value, _values)) return
 
       const change = diff(value, _values) ?? []
-      // console.log('[PickerView] value 从外部改变', $state.snapshot(value), _values, change)
+      // console.log('[PickerView] value 从外部改变', $state.snapshot(value), $state.snapshot(_values), change)
       _values = [...value]
       makeChange(change)
     })

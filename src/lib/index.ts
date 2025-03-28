@@ -43,7 +43,9 @@ import PickerView from './input/PickerView.svelte'
 export type { PickerViewAttributes } from './input/PickerView.svelte'
 import Switch from './input/Switch.svelte'
 export type { SwitchAttributes } from './input/Switch.svelte'
-export { Form, FormItem, Input, Picker, PickerView, Switch }
+import Textarea from './input/Textarea.svelte'
+export type { TextareaAttributes } from './input/Textarea.svelte'
+export { Form, FormItem, Input, Picker, PickerView, Switch, Textarea }
 
 // Layout
 import AutoCenter from './layout/AutoCenter.svelte'

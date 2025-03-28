@@ -1,0 +1,10 @@
+.sun-parakeet-text-area {
+  @apply relative max-h-full w-full max-w-full;
+
+  .sun-parakeet-text-area-element {
+    @apply m-0 box-border block max-h-full min-h-6 w-full max-w-full flex-auto resize-none appearance-none border-0 bg-transparent p-0 outline-none;
+    font-size: 17px;
+    line-height: 1.5;
+    text-align: var(--sp-text-align, left);
+  }
+}

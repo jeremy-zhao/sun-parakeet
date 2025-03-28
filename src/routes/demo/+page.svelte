@@ -49,6 +49,7 @@
     {@render listItem('Picker', '选择器', '/demo/input/picker')}
     {@render listItem('PickerView', '选择器视图', '/demo/input/picker-view')}
     {@render listItem('Switch', '开关', '/demo/input/switch')}
+    {@render listItem('Textarea', '文本域', '/demo/input/textarea')}
   </List>
   <List header="反馈">
     {@render listItem('ActionSheet', '动作面板', '/demo/feedback/action-sheet')}

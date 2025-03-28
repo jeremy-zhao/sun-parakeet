@@ -1,8 +1,12 @@
 <script lang="ts" module>
-  import { Page, List, Switch, showToast, Icon } from '$lib'
+  import { Page, List, Form, FormItem, Switch, showToast, Icon } from '$lib'
 </script>
 
 <script lang="ts">
+  let form = $state({
+    checked: false,
+  })
+
   function onChange(checked: boolean) {
     showToast({ text: checked.toString() })
   }
@@ -46,4 +50,14 @@
       <Switch checked disabled />
     </div>
   </List>
+  <Form header="配合表单使用-水平布局" layout="horizontal">
+    <FormItem label="选择">
+      <Switch bind:checked={form.checked} />
+    </FormItem>
+  </Form>
+  <Form header="配合表单使用-垂直布局" layout="vertical">
+    <FormItem label="自动发送微信消息">
+      <Switch bind:checked={form.checked} />
+    </FormItem>
+  </Form>
 </Page>

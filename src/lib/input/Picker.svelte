@@ -51,7 +51,9 @@
     ...props
   }: PickerAttributes = $props()
 
-  let _values = $state<unknown[]>([])
+  let _init = $state(false)
+  let _values = $state<unknown[]>([...value])
+  let _latest = $state<unknown[]>([])
 
   let __columns = $state(new Array<PickerItem[]>(columns))
   let _columns = setContext('sun_parakeet_picker_columns', __columns)
@@ -68,6 +70,7 @@
   function handleOk() {
     visible = false
     value = [..._values]
+    _latest = [..._values]
     onChange?.(value)
     formItem?.onChange(value)
   }
@@ -81,8 +84,18 @@
   function handleClear() {
     visible = false
     value = []
+    _latest = []
     onChange?.(value)
     formItem?.onChange(value)
+  }
+
+  function init() {
+    if (_init) return false
+    console.log('[Picker]', '初始化', $state.snapshot(value))
+
+    _init = true
+    _latest = [...value]
+    return true
   }
 
   async function makeDisplay() {
@@ -119,19 +132,31 @@
   }
 
   $effect(() => {
-    const values = value
+    value ??= []
 
     untrack(() => {
-      _values = [...values]
       makeDisplay()
-      // if (equals(values, _values)) {
+
+      // 初始化
+      if (init()) return
+
+      // 未改变
+      console.log('[Picker]', 'value 后续改变', $state.snapshot(value))
+      if (equals(value, _latest)) return
+
+      console.log('[Picker]', 'value 从外部改变', $state.snapshot(value), $state.snapshot(_values))
+      _values = [...value]
+      _latest = [...value]
+      formItem?.onReset()
+
+      // if (equals(value, _values)) {
       //   console.log('内部变更')
-      //   return
+      //   makeDisplay()
+      // } else {
+      //   console.log('外部变更')
+      //   _values = [...value]
+      //   makeDisplay()
       // }
-      // console.log('外部变更')
-      // if(!equals(values, _values)) {
-      // }
-      // makeDisplay().then(val => (display = val))
     })
   })
 

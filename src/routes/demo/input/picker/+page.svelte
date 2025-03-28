@@ -19,8 +19,6 @@
     .sort((a, b) => (a.value < b.value ? -1 : 1))
 
   let baseLoaderVisible = $state(false)
-  let cascadeLoaderVisible = $state(false)
-  let cascadeLoaderAsyncVisible = $state(false)
 
   let form = $state({
     location: ['65', '6527', '652702'],
@@ -135,15 +133,22 @@
       <Button
         onclick={() => {
           form.location = ['31', '3101', '310101']
-        }}>31,3101,310101</Button
+        }}>上海市黄浦区</Button
+      >
+      <Button
+        onclick={() => {
+          form.location = ['32', '3210', '321002']
+        }}>扬州市广陵区</Button
       >
       <Button
         onclick={() => {
           form.location = []
-        }}>清除</Button
+        }}>重置</Button
       >
     </div>
   </Form>
 
   <p class="px-4 py-2">PC 端暂时不支持鼠标拖拽改变数值</p>
+  <p class="px-4 py-2">Bug 先在组件中点清除，然后再点重置按钮，“必填”仍然存在</p>
+  <p class="px-4 py-2">Bug makeDisplay 异步过程可能存在需要 Cancel 的情况</p>
 </Page>

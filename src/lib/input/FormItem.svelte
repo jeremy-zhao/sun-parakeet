@@ -2,7 +2,7 @@
   import './FormItem.css'
   import ArrowIcon from '../icons/arrow-right-s-line.svg?raw'
 
-  import { onMount, setContext, type Component, type Snippet } from 'svelte'
+  import { setContext, type Snippet } from 'svelte'
   import { validate, type Rule } from './validation'
   import Icon from '../common/Icon.svelte'
   import type { HTMLAttributes } from 'svelte/elements'
@@ -28,6 +28,8 @@
     unregister: (input: FormItemControl) => void
     /** 数据变更事件 */
     onChange: (value: unknown) => void
+    /** 重置 */
+    onReset: () => void
     /** 点击事件 */
     onClick?: () => void
   }
@@ -87,6 +89,9 @@
       if (rules?.length) {
         error = validate(rules, value)
       }
+    },
+    onReset() {
+      error = undefined
     },
   })
 

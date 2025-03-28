@@ -119,7 +119,7 @@
   }
 
   async function makeChange(vals: unknown[]) {
-    const newVal = await onChangeRec([])
+    const newVal = await onChangeRec(vals)
     if (equals(newVal, value)) return
 
     value = [...newVal]

@@ -89,8 +89,9 @@
 
     for (let i = 0, len = value.length; i < len; i++) {
       let column = _columns[i]
+      let found = column?.find(x => x.value === value[i])
 
-      if (!column?.length) {
+      if (!found) {
         const loaded = await Promise.resolve(loader(value.slice(0, i)))
 
         column = loaded
@@ -104,7 +105,7 @@
           .filter(x => x) as PickerItem[]
       }
 
-      const found = column?.find(x => x.value === value[i])
+      found = column?.find(x => x.value === value[i])
       if (!found) break
 
       text.push(found.label ?? found.value?.toString() ?? '')

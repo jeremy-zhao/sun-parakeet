@@ -6,6 +6,8 @@
 </script>
 
 <script lang="ts">
+  import Button from '$lib/common/Button.svelte'
+
   const province = _province
     .map(x => ({ value: x.province, label: x.name }))
     .sort((a, b) => (a.value < b.value ? -1 : 1))
@@ -17,6 +19,9 @@
   const area = _area
     .map(x => ({ value: `${x.province}${x.city}${x.area}`, label: x.name, city: `${x.province}${x.city}` }))
     .sort((a, b) => (a.value < b.value ? -1 : 1))
+
+  let baseValue = $state<unknown[]>(['周一', '晚上'])
+  let cascadeValue = $state<unknown[]>([])
 
   function baseLoader(value: string[]) {
     if (!value?.length) {
@@ -68,14 +73,19 @@
 </script>
 
 <Page class="bg-gray-100">
-  <List header="基础用法">
-    <PickerView columns={2} loader={baseLoader} {onChange} />
+  <List header="基础用法 {baseValue}">
+    <PickerView bind:value={baseValue} columns={2} loader={baseLoader} {onChange} />
+    <div class="px-4 py-2">
+      <Button onclick={() => (baseValue = ['周四', '下午'])}>周四,下午</Button>
+      <Button onclick={() => (baseValue = [])}>清除</Button>
+    </div>
   </List>
   <List header="联动">
-    <PickerView columns={3} loader={cascadeLoader} {onChange} />
+    <PickerView bind:value={cascadeValue} columns={3} loader={cascadeLoader} {onChange} />
   </List>
   <List header="异步加载">
-    <PickerView columns={3} loader={cascadeLoaderAsync} {onChange} />
+    <PickerView bind:value={cascadeValue} columns={3} loader={cascadeLoaderAsync} {onChange} />
   </List>
-  <p>PC 端暂时不支持鼠标拖拽改变数值</p>
+
+  <p class="px-4 py-2">PC 端暂时不支持鼠标拖拽改变数值</p>
 </Page>

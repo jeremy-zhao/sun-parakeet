@@ -130,6 +130,5 @@
   </Form>
   <Button onclick={() => (form.location = ['31', '3101', '310101'])}>31,3101,310101</Button>
   <p class="px-4 py-2">PC 端暂时不支持鼠标拖拽改变数值</p>
-  <p class="px-4 py-2">双重绑定，联动显示有 Bug</p>
   <p class="px-4 py-2">清除后直接确认第一个，有 Bug</p>
 </Page>

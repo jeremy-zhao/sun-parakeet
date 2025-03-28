@@ -4,7 +4,7 @@
   import { untrack, getContext, setContext, onMount, type Snippet, onDestroy } from 'svelte'
   import Button from '../common/Button.svelte'
   import Popup, { type PopupAttributes } from '../feedback/Popup.svelte'
-  import PickerView, { type PickerViewAttributes } from './PickerView.svelte'
+  import PickerView, { equals, type PickerViewAttributes } from './PickerView.svelte'
   import type { PickerItem } from './PickerColumn.svelte'
   import type { FormItemContext } from './FormItem.svelte'
 
@@ -114,11 +114,6 @@
     displayLoading = false
 
     return text.join('/')
-  }
-
-  function equals(arr1: unknown[], arr2: unknown[]) {
-    if (arr1.length !== arr2.length) return false
-    return arr1.every((val, ix) => arr2[ix] === val)
   }
 
   $effect(() => {

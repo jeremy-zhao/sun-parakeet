@@ -147,7 +147,7 @@
 </script>
 
 {#if formItem}
-  {#if !value?.length}
+  {#if !value?.length && placeholder}
     <span class="sun-parakeet-form-item-button__placeholder">{placeholder}</span>
   {:else if _displayLoading}
     <span>TODO Loading...</span>

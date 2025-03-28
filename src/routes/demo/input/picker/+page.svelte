@@ -77,31 +77,13 @@
 </script>
 
 <Page class="bg-gray-100">
-  <!-- <List header="基础用法">
+  <List header="基础用法">
     <div class="bg-white p-4">
       <Button onclick={() => (baseLoaderVisible = true)}>选择</Button>
       <Picker header="请选择" bind:visible={baseLoaderVisible} columns={2} loader={baseLoader} {onChange} />
     </div>
   </List>
-  <List header="联动">
-    <div class="bg-white p-4">
-      <Button onclick={() => (cascadeLoaderVisible = true)}>选择</Button>
-      <Picker header="请选择" bind:visible={cascadeLoaderVisible} columns={3} loader={cascadeLoader} {onChange} />
-    </div>
-  </List>
-  <List header="异步加载">
-    <div class="bg-white p-4">
-      <Button onclick={() => (cascadeLoaderAsyncVisible = true)}>选择</Button>
-      <Picker
-        header="请选择"
-        bind:visible={cascadeLoaderAsyncVisible}
-        columns={3}
-        loader={cascadeLoaderAsync}
-        {onChange}
-      />
-    </div>
-  </List> -->
-  <Form header="配合表单使用-水平布局" layout="horizontal">
+  <Form header="配合表单使用-水平布局-联动" layout="horizontal">
     <FormItem label="地区编码">
       <span>{form.location}</span>
     </FormItem>
@@ -116,32 +98,52 @@
       />
     </FormItem>
   </Form>
-  <Form header="配合表单使用-垂直布局-异步" layout="vertical">
+  <Form header="配合表单使用-垂直布局-异步加载-自定义显示" layout="vertical">
     <FormItem label="地区" rules={[{ required: true }]}>
       <Picker
         bind:value={form.location}
-        header="请选择"
         placeholder="省/市/区"
+        header="请选择"
         columns={3}
         loader={cascadeLoaderAsync}
         clearable
       >
         {#snippet display(texts)}
-          <p>
-            {#each texts as text, index}
-              <span>{text}</span>{#if index < texts.length - 1}
-                <Divider direction="vertical" --sp-margin="8px" />
-              {/if}
-            {/each}
-          </p>
+          {#if texts.length}
+            <p>
+              {#each texts as text, index}
+                <span></span>
+                <span>{text}</span>
+                {#if index < texts.length - 1}
+                  <Divider direction="vertical" --sp-margin="8px" />
+                {/if}
+              {/each}
+            </p>
+          {:else}
+            <p class="text-gray-400">
+              <span>省</span>
+              <Divider direction="vertical" --sp-margin="8px" />
+              <span>市</span>
+              <Divider direction="vertical" --sp-margin="8px" />
+              <span>区</span>
+            </p>
+          {/if}
         {/snippet}
       </Picker>
     </FormItem>
+    <div class="px-4 py-2">
+      <Button
+        onclick={() => {
+          form.location = ['31', '3101', '310101']
+        }}>31,3101,310101</Button
+      >
+      <Button
+        onclick={() => {
+          form.location = []
+        }}>清除</Button
+      >
+    </div>
   </Form>
-  <Button
-    onclick={() => {
-      form.location = ['31', '3101', '310101']
-    }}>31,3101,310101</Button
-  >
+
   <p class="px-4 py-2">PC 端暂时不支持鼠标拖拽改变数值</p>
 </Page>

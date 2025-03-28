@@ -2,6 +2,10 @@
   import { Page, List, Divider } from '$lib'
 </script>
 
+<script lang="ts">
+  const texts = ['新疆维吾尔自治区', '博尔塔拉蒙古自治州', '阿拉山口市']
+</script>
+
 <Page class="bg-gray-100">
   <List header="基础分割线">
     <div class="bg-white py-4">
@@ -27,6 +31,22 @@
       <a class="text-blue-600 underline" href="./divider">Link</a>
       <Divider direction="vertical" />
       <a class="text-blue-600 underline" href="./divider">Link</a>
+    </p>
+  </List>
+  <List header="换行">
+    <p class="bg-white px-4 py-2" style="font-size: 17px;">
+      <span>新疆维吾尔自治区</span>
+      <Divider direction="vertical" />
+      <span>博尔塔拉蒙古自治州</span>
+      <Divider direction="vertical" />
+      <span>阿拉山口市</span>
+    </p>
+  </List>
+  <List header="换行2">
+    <p class="bg-white px-4 py-2" style="font-size: 17px;">
+      {#each texts as text, index}
+        <span>{text}</span>{#if index < texts.length - 1}<Divider direction="vertical" />{/if}
+      {/each}
     </p>
   </List>
 </Page>

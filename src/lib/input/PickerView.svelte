@@ -140,7 +140,7 @@
 
   // 处理 value 变化
   $effect(() => {
-    if (!value) value = []
+    value ??= []
 
     untrack(() => {
       // 初始化

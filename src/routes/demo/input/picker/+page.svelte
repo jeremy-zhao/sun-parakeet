@@ -2,7 +2,7 @@
   import _province from '@province-city-china/province'
   import _city from '@province-city-china/city'
   import _area from '@province-city-china/area'
-  import { Page, Button, List, Input, Picker, Form, FormItem, showToast, delay } from '$lib'
+  import { Page, Button, List, Input, Picker, Form, FormItem, Divider, showToast, delay } from '$lib'
 </script>
 
 <script lang="ts">
@@ -125,10 +125,23 @@
         columns={3}
         loader={cascadeLoaderAsync}
         clearable
-      />
+      >
+        {#snippet display(texts)}
+          <p>
+            {#each texts as text, index}
+              <span>{text}</span>{#if index < texts.length - 1}
+                <Divider direction="vertical" --sp-margin="8px" />
+              {/if}
+            {/each}
+          </p>
+        {/snippet}
+      </Picker>
     </FormItem>
   </Form>
-  <Button onclick={() => (form.location = ['31', '3101', '310101'])}>31,3101,310101</Button>
+  <Button
+    onclick={() => {
+      form.location = ['31', '3101', '310101']
+    }}>31,3101,310101</Button
+  >
   <p class="px-4 py-2">PC 端暂时不支持鼠标拖拽改变数值</p>
-  <p class="px-4 py-2">清除后直接确认第一个，有 Bug</p>
 </Page>

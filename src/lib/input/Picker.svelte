@@ -21,6 +21,8 @@
       clear?: string
       /** 是否显示 */
       clearable?: boolean
+      /** 显示模板 */
+      display?: Snippet<[string[]]>
       /** 取消时触发 */
       onCancel?: () => void
       // 屏蔽
@@ -44,6 +46,7 @@
     loader,
     onChange,
     onCancel,
+    display,
     children,
     ...props
   }: PickerAttributes = $props()
@@ -53,8 +56,8 @@
   let __columns = $state(new Array<PickerItem[]>(columns))
   let _columns = setContext('sun_parakeet_picker_columns', __columns)
 
-  let display = $state('')
-  let displayLoading = $state(false)
+  let _display = $state<string[]>([])
+  let _displayLoading = $state(false)
 
   let formItem = getContext<FormItemContext | undefined>('sun_parakeet_form_item')
 
@@ -83,7 +86,7 @@
   }
 
   async function makeDisplay() {
-    displayLoading = true
+    _displayLoading = true
 
     const text = []
 
@@ -111,18 +114,24 @@
       text.push(found.label ?? found.value?.toString() ?? '')
     }
 
-    displayLoading = false
-
-    return text.join('/')
+    _display = text
+    _displayLoading = false
   }
 
   $effect(() => {
     const values = value
 
     untrack(() => {
-      if (equals(values, _values)) return
       _values = [...values]
-      makeDisplay().then(val => (display = val))
+      makeDisplay()
+      // if (equals(values, _values)) {
+      //   console.log('内部变更')
+      //   return
+      // }
+      // console.log('外部变更')
+      // if(!equals(values, _values)) {
+      // }
+      // makeDisplay().then(val => (display = val))
     })
   })
 
@@ -140,12 +149,14 @@
 {#if formItem}
   {#if !value?.length}
     <span class="sun-parakeet-form-item-button__placeholder">{placeholder}</span>
-  {:else if children}
-    {@render children()}
-  {:else if displayLoading}
+  {:else if _displayLoading}
     <span>TODO Loading...</span>
+  {:else if typeof display === 'function'}
+    {@render display(_display)}
+  {:else if typeof children === 'function'}
+    {@render children()}
   {:else}
-    {display}
+    {_display.join('/')}
   {/if}
 {/if}
 

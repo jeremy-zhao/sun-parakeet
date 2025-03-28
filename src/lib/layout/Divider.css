@@ -1,5 +1,6 @@
 :root {
   --sp-border-color: #e5e7eb;
+  --sp-margin: 16px;
 }
 
 .sun-parakeet-divider-horizontal {
@@ -23,13 +24,14 @@
   }
 
   .sun-parakeet-divider-content {
-    @apply mx-4;
+    margin: var(--sp-margin) 0;
   }
 }
 
 .sun-parakeet-divider-vertical {
-  @apply relative mx-4 inline-block border-0 border-l border-solid;
+  @apply relative inline-block border-0 border-l border-solid;
   height: 0.9em;
   border-color: var(--sp-border-color);
+  margin: 0 var(--sp-margin);
   top: 0.1em;
 }

@@ -1,8 +1,8 @@
 .sun-parakeet-button {
-  @apply box-border inline-flex cursor-pointer select-none items-center justify-center rounded-md border border-solid px-4 py-2;
+  @apply box-border inline-flex cursor-pointer select-none items-center justify-center rounded-md border border-solid;
   font-size: 17px;
-  line-height: 1.5;
-  padding-bottom: 7px;
+  line-height: 1.4;
+  padding: 7px 12px 6px 12px;
 
   &.sun-parakeet-button__disabled {
     @apply cursor-not-allowed border-dashed border-transparent bg-gray-100 text-gray-400;

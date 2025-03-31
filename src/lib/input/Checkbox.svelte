@@ -18,7 +18,7 @@
 
 <script lang="ts">
   let {
-    checked = false,
+    checked = $bindable(false),
     indeterminate = false,
     icon,
     class: clazz,

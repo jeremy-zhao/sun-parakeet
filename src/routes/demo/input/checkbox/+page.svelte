@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import { Page, List, ListItem, Checkbox, Form, FormItem } from '$lib'
+  import { Page, List, ListItem, Checkbox, CheckboxGroup, Form, FormItem } from '$lib'
 </script>
 
 <script lang="ts">
@@ -24,9 +24,13 @@
       <Checkbox checked>默认选中</Checkbox>
     </ListItem>
   </List>
-  <List header="占满整行宽度">
+  <List header="复选框组">
     <ListItem>
-      <Checkbox>块级元素</Checkbox>
+      <CheckboxGroup>
+        <Checkbox value="apple">苹果</Checkbox>
+        <Checkbox value="orange">橘子</Checkbox>
+        <Checkbox value="banana">香蕉</Checkbox>
+      </CheckboxGroup>
     </ListItem>
   </List>
 </Page>

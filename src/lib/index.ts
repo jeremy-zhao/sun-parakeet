@@ -33,6 +33,8 @@ export { ActionSheet, Popup }
 // Input
 import Checkbox from './input/Checkbox.svelte'
 export type { CheckboxAttributes } from './input/Checkbox.svelte'
+import CheckboxGroup from './input/CheckboxGroup.svelte'
+export type { CheckboxGroupAttributes } from './input/CheckboxGroup.svelte'
 import Form from './input/Form.svelte'
 export type { FormAttributes } from './input/Form.svelte'
 import FormItem from './input/FormItem.svelte'
@@ -47,7 +49,7 @@ import Switch from './input/Switch.svelte'
 export type { SwitchAttributes } from './input/Switch.svelte'
 import Textarea from './input/Textarea.svelte'
 export type { TextareaAttributes } from './input/Textarea.svelte'
-export { Checkbox, Form, FormItem, Input, Picker, PickerView, Switch, Textarea }
+export { Checkbox, CheckboxGroup, Form, FormItem, Input, Picker, PickerView, Switch, Textarea }
 
 // Layout
 import AutoCenter from './layout/AutoCenter.svelte'
@@ -55,7 +57,9 @@ export type { AutoCenterAttributes } from './layout/AutoCenter.svelte'
 import Divider from './layout/Divider.svelte'
 export type { DividerAttributes } from './layout/Divider.svelte'
 import Page from './layout/Page.svelte'
-export { AutoCenter, Divider, Page }
+import Space from './layout/Space.svelte'
+export type { SpaceAttributes } from './layout/Space.svelte'
+export { AutoCenter, Divider, Page, Space }
 
 // Navigation
 import TabBar from './navigation/TabBar.svelte'

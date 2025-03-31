@@ -1,0 +1,46 @@
+:root {
+  --sp-gap: 8px;
+  --sp-gap-h: var(--sp-gap);
+  --sp-gap-v: var(--sp-gap);
+}
+
+.sun-parakeet-space {
+  @apply inline-flex;
+
+  &.sun-parakeet-space-block {
+    @apply flex;
+  }
+}
+
+.sun-parakeet-space-horizontal {
+  @apply flex-row;
+
+  & > * {
+    margin-right: var(--sp-gap-h);
+  }
+
+  & > *:last-child {
+    margin-right: 0;
+  }
+
+  &.sun-parakeet-space-wrap {
+    @apply flex-wrap;
+    margin-bottom: calc(var(--sp-gap-v) * -1);
+
+    & > * {
+      margin-bottom: var(--sp-gap-v);
+    }
+  }
+}
+
+.sun-parakeet-space-vertical {
+  @apply flex-col;
+
+  & > * {
+    margin-bottom: var(--sp-gap-v);
+  }
+
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+}

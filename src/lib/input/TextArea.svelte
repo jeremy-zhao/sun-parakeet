@@ -65,7 +65,13 @@
 </script>
 
 <div class="sun-parakeet-text-area">
-  <textarea bind:value class="sun-parakeet-text-area-element {clazz}" rows={_rows} {...props} oninput={handleInput}
+  <textarea
+    bind:value
+    class="sun-parakeet-text-area-element {clazz}"
+    rows={_rows}
+    {maxlength}
+    {...props}
+    oninput={handleInput}
   ></textarea>
   {#if autosize}
     <textarea

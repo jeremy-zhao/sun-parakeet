@@ -16,9 +16,9 @@
       <Textarea placeholder="请输入内容" />
     </div>
   </List>
-  <List header="指定行数">
+  <List header="指定行数 3">
     <div class="bg-white p-4">
-      <Textarea placeholder="请输入内容" rows={5} />
+      <Textarea placeholder="请输入内容" rows={3} />
     </div>
   </List>
   <List header="根据内容自动调整高度">

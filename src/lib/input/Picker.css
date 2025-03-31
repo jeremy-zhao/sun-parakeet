@@ -1,10 +1,10 @@
 .sun-parakeet-picker {
   .sun-parakeet-picker__header {
-    @apply flex w-full items-center justify-stretch border-b border-b-gray-200 p-2;
+    @apply flex items-center justify-stretch border-b border-b-gray-200 p-2;
   }
 
   .sun-parakeet-picker__footer {
-    @apply flex w-full items-center justify-stretch border-t border-t-gray-200 p-2;
+    @apply flex items-center justify-stretch border-t border-t-gray-200 p-2;
   }
 
   .sun-parakeet-picker__ok {

@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import './Picker.css'
 
-  import { untrack, getContext, setContext, onMount, type Snippet, onDestroy } from 'svelte'
+  import { untrack, getContext, setContext, onMount, type Snippet } from 'svelte'
   import Button from '../common/Button.svelte'
   import Popup, { type PopupAttributes } from '../feedback/Popup.svelte'
   import PickerView, { equals, type PickerViewAttributes } from './PickerView.svelte'

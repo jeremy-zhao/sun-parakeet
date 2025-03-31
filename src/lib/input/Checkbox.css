@@ -1,0 +1,22 @@
+.sun-parakeet-checkbox {
+  @apply inline-flex cursor-pointer items-center;
+
+  .sun-parakeet-checkbox-element {
+    display: none;
+  }
+
+  .sun-parakeet-checkbox__icon {
+    @apply box-border flex flex-none items-center justify-center rounded-full border border-solid border-gray-400 text-white;
+  }
+
+  .sun-parakeet-checkbox__content {
+    @apply flex-auto select-none pl-2;
+    font-size: var(--font-size, 17px);
+  }
+
+  &.sun-parakeet-checkbox-checked {
+    .sun-parakeet-checkbox__icon {
+      @apply border-transparent bg-blue-600;
+    }
+  }
+}

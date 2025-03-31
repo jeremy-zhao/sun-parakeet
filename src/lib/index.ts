@@ -31,6 +31,8 @@ export { showToast, hideToast, type ShowToastOption } from './feedback/toast'
 export { ActionSheet, Popup }
 
 // Input
+import Checkbox from './input/Checkbox.svelte'
+export type { CheckboxAttributes } from './input/Checkbox.svelte'
 import Form from './input/Form.svelte'
 export type { FormAttributes } from './input/Form.svelte'
 import FormItem from './input/FormItem.svelte'
@@ -45,7 +47,7 @@ import Switch from './input/Switch.svelte'
 export type { SwitchAttributes } from './input/Switch.svelte'
 import Textarea from './input/Textarea.svelte'
 export type { TextareaAttributes } from './input/Textarea.svelte'
-export { Form, FormItem, Input, Picker, PickerView, Switch, Textarea }
+export { Checkbox, Form, FormItem, Input, Picker, PickerView, Switch, Textarea }
 
 // Layout
 import AutoCenter from './layout/AutoCenter.svelte'

@@ -1,10 +1,24 @@
 .sun-parakeet-text-area {
-  @apply relative max-h-full w-full max-w-full;
+  @apply relative max-h-full w-full max-w-full overflow-hidden;
 
   .sun-parakeet-text-area-element {
     @apply m-0 box-border block max-h-full min-h-6 w-full max-w-full flex-auto resize-none appearance-none border-0 bg-transparent p-0 outline-none;
     font-size: 17px;
     line-height: 1.5;
     text-align: var(--sp-text-align, left);
+
+    &:disabled {
+      @apply text-gray-400;
+    }
+  }
+
+  .sun-parakeet-text-area-element-hidden {
+    @apply invisible absolute left-0 top-0;
+    z-index: -1000;
+  }
+
+  .sun-parakeet-text-area__statistic {
+    @apply pt-2 text-right text-gray-400;
+    font-size: 17px;
   }
 }

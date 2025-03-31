@@ -3,6 +3,8 @@
 </script>
 
 <script lang="ts">
+  let value = '床前明月光，\n疑是地上霜。'
+
   let form = $state({
     remark: '',
   })
@@ -21,27 +23,42 @@
   </List>
   <List header="根据内容自动调整高度">
     <div class="bg-white p-4">
-      <Textarea />
+      <Textarea autosize />
+    </div>
+  </List>
+  <List header="显示行数限制 minRows: 1">
+    <div class="bg-white p-4">
+      <Textarea autosize={{ minRows: 1 }} />
+    </div>
+  </List>
+  <List header="显示行数限制 maxRows: 5">
+    <div class="bg-white p-4">
+      <Textarea autosize={{ maxRows: 5 }} />
+    </div>
+  </List>
+  <List header="显示行数限制 minRows: 1, maxRows: 5">
+    <div class="bg-white p-4">
+      <Textarea autosize={{ minRows: 1, maxRows: 5 }} />
     </div>
   </List>
   <List header="字数统计">
     <div class="bg-white p-4">
-      <Textarea />
+      <Textarea {value} statistic />
     </div>
   </List>
   <List header="字数限制">
     <div class="bg-white p-4">
-      <Textarea />
+      <Textarea {value} statistic maxlength={30} />
     </div>
   </List>
   <List header="只读状态">
     <div class="bg-white p-4">
-      <Textarea />
+      <Textarea {value} readonly />
     </div>
   </List>
   <List header="禁用状态">
     <div class="bg-white p-4">
-      <Textarea />
+      <Textarea {value} disabled />
     </div>
   </List>
 </Page>

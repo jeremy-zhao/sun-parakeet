@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import './Textarea.css'
 
-  import type { Snippet } from 'svelte'
+  import { onMount, type Snippet } from 'svelte'
   import type { HTMLTextareaAttributes } from 'svelte/elements'
 
   /** 文本域属性 */
@@ -29,12 +29,60 @@
 </script>
 
 <script lang="ts">
-  let { value = $bindable(''), autosize, rows = 2, class: clazz, ...props }: TextareaAttributes = $props()
+  let {
+    value = $bindable(''),
+    autosize = false,
+    rows = 2,
+    statistic = false,
+    maxlength,
+    class: clazz,
+    style,
+    ...props
+  }: TextareaAttributes = $props()
 
-  let _rows = $derived.by(() => {})
+  let clone = $state<HTMLTextAreaElement>()
+  let _rows = $state(typeof autosize === 'object' && autosize.minRows ? autosize.minRows : rows)
+
+  let count = $derived(value.length)
+
+  function getLineCount(textarea: HTMLTextAreaElement) {
+    const lineHeight = parseInt(getComputedStyle(textarea).lineHeight) || 20
+    return Math.round(textarea.scrollHeight / lineHeight)
+  }
+
+  function handleInput() {
+    if (!clone || !autosize) return
+
+    const lines = getLineCount(clone)
+
+    if (typeof autosize === 'boolean') {
+      _rows = Math.max(rows, lines)
+    } else if (typeof autosize === 'object') {
+      const { minRows = rows, maxRows } = autosize
+      _rows = lines < minRows ? minRows : maxRows && lines > maxRows ? maxRows : lines
+    }
+  }
 </script>
 
 <div class="sun-parakeet-text-area">
-  <textarea class="sun-parakeet-text-area-element {clazz}" {rows} {...props}>{value}</textarea>
-  <div class="sun-parakeet-text-area__statistic"></div>
+  <textarea bind:value class="sun-parakeet-text-area-element {clazz}" rows={_rows} {...props} oninput={handleInput}
+  ></textarea>
+  {#if autosize}
+    <textarea
+      bind:this={clone}
+      {value}
+      class="sun-parakeet-text-area-element sun-parakeet-text-area-element-hidden {clazz}"
+      {style}
+      aria-hidden="true"
+      readonly
+    ></textarea>
+  {/if}
+  {#if statistic}
+    <div class="sun-parakeet-text-area__statistic">
+      {count}
+      {#if maxlength}
+        / {maxlength}
+      {/if}
+    </div>
+  {/if}
 </div>

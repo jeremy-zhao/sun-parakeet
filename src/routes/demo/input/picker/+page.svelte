@@ -81,7 +81,7 @@
       <Picker header="请选择" bind:visible={baseLoaderVisible} columns={2} loader={baseLoader} {onChange} />
     </div>
   </List>
-  <Form header="配合表单使用-水平布局-联动" layout="horizontal">
+  <Form header="表单-水平布局-联动" layout="horizontal">
     <FormItem label="地区编码">
       <span>{form.location}</span>
     </FormItem>
@@ -96,7 +96,7 @@
       />
     </FormItem>
   </Form>
-  <Form header="配合表单使用-垂直布局-异步加载-自定义显示" layout="vertical">
+  <Form header="表单-垂直布局-异步加载-自定义显示" layout="vertical">
     <FormItem label="地区" rules={[{ required: true }]}>
       <Picker
         bind:value={form.location}

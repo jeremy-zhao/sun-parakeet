@@ -61,12 +61,12 @@
       <Textarea {value} disabled />
     </div>
   </List>
-  <Form header="配合表单使用-水平布局" layout="horizontal">
+  <Form header="表单-水平布局" layout="horizontal">
     <FormItem label="备注" rules={[{ required: true }]}>
       <Textarea bind:value={form.remark} placeholder="请填写备注" maxlength={100} statistic />
     </FormItem>
   </Form>
-  <Form header="配合表单使用-垂直布局" layout="vertical">
+  <Form header="表单-垂直布局" layout="vertical">
     <FormItem label="备注" rules={[{ required: true }]}>
       <Textarea bind:value={form.remark} placeholder="请填写备注" maxlength={100} statistic />
     </FormItem>

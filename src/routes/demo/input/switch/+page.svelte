@@ -50,12 +50,12 @@
       <Switch checked disabled />
     </div>
   </List>
-  <Form header="配合表单使用-水平布局" layout="horizontal">
+  <Form header="表单-水平布局" layout="horizontal">
     <FormItem label="选择">
       <Switch bind:checked={form.checked} />
     </FormItem>
   </Form>
-  <Form header="配合表单使用-垂直布局" layout="vertical">
+  <Form header="表单-垂直布局" layout="vertical">
     <FormItem label="自动发送微信消息">
       <Switch bind:checked={form.checked} />
     </FormItem>

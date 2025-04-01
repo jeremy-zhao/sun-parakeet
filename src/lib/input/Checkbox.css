@@ -1,22 +1,45 @@
 .sun-parakeet-checkbox {
-  @apply inline-flex cursor-pointer items-center;
+  @apply inline-flex cursor-pointer items-center justify-stretch;
 
   .sun-parakeet-checkbox-element {
     @apply hidden;
   }
 
   .sun-parakeet-checkbox__icon {
-    @apply box-border flex flex-none items-center justify-center rounded-full border border-solid border-gray-400 text-white;
+    @apply m-0 box-border flex flex-none items-center justify-center rounded-md border border-solid border-gray-400 p-0 text-white;
   }
 
   .sun-parakeet-checkbox__content {
-    @apply flex-auto select-none pl-2;
+    @apply flex-auto select-none whitespace-nowrap p-0 pl-2;
     font-size: var(--font-size, 17px);
+    translate: 0 1px;
   }
 
   &.sun-parakeet-checkbox-checked {
     .sun-parakeet-checkbox__icon {
       @apply border-transparent bg-blue-600;
+    }
+  }
+
+  &.sun-parakeet-checkbox-indeterminate {
+    .sun-parakeet-checkbox__icon {
+      @apply border-transparent bg-blue-600;
+    }
+  }
+
+  &.sun-parakeet-checkbox-disabled {
+    .sun-parakeet-checkbox__icon {
+      @apply border-gray-200 bg-gray-100;
+    }
+
+    .sun-parakeet-checkbox__content {
+      @apply text-gray-400;
+    }
+
+    &.sun-parakeet-checkbox-checked {
+      .sun-parakeet-checkbox__icon {
+        @apply border-gray-200 bg-gray-100 text-gray-400;
+      }
     }
   }
 }

@@ -1,8 +1,9 @@
 <script lang="ts" module>
-  import { Page, List, ListItem, Checkbox, CheckboxGroup, Button, Form, FormItem } from '$lib'
 </script>
 
 <script lang="ts">
+  import { Page, List, ListItem, Checkbox, CheckboxGroup, Button, Form, FormItem, Space } from '$lib'
+
   let checked = $state(false)
 
   let form = $state({
@@ -18,13 +19,17 @@
     <ListItem>
       <Checkbox bind:checked>有描述的复选框</Checkbox>
     </ListItem>
-  </List>
-  <List header="默认选中">
     <ListItem>
       <Checkbox checked>默认选中</Checkbox>
     </ListItem>
+    <ListItem>
+      <Space>
+        <Checkbox disabled>禁用</Checkbox>
+        <Checkbox checked disabled>选中</Checkbox>
+      </Space>
+    </ListItem>
   </List>
-  <Form header="配合表单使用-水平布局-复选框组" layout="horizontal">
+  <Form header="表单-水平布局-复选框组" layout="horizontal">
     <FormItem label="喜欢的水果" rules={[{ required: true }]}>
       <CheckboxGroup bind:value={form.fruits}>
         <Checkbox value="apple">苹果</Checkbox>
@@ -32,7 +37,7 @@
         <Checkbox value="banana">香蕉</Checkbox>
       </CheckboxGroup>
     </FormItem>
-    <div class="px-4 py-2">
+    <div class="bg-white px-4 py-2">
       <Button
         onclick={() => {
           form.fruits = []
@@ -40,9 +45,9 @@
       >
     </div>
   </Form>
-  <Form header="配合表单使用-垂直布局-复选框组" layout="vertical">
+  <Form header="表单-垂直布局-复选框组-全选与半选" layout="vertical">
     <FormItem label="喜欢的水果" rules={[{ required: true }]}>
-      <CheckboxGroup bind:value={form.fruits} direction="vertical">
+      <CheckboxGroup bind:value={form.fruits} direction="vertical" selectAll>
         <Checkbox value="apple">苹果</Checkbox>
         <Checkbox value="orange">橘子</Checkbox>
         <Checkbox value="banana">香蕉</Checkbox>

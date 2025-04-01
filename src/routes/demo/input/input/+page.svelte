@@ -36,7 +36,7 @@
       <Input disabled value="被禁用的输入框" />
     </div>
   </List>
-  <Form header="配合表单使用-水平布局" layout="horizontal" --sp-label-width="80px">
+  <Form header="表单-水平布局" layout="horizontal" --sp-label-width="80px">
     <FormItem label="用户名" for="username" rules={[{ required: true }]}>
       <Input id="username" bind:value={username} placeholder="请输入用户名" autocomplete="username" />
     </FormItem>
@@ -44,7 +44,7 @@
       <Input id="password" type="password" placeholder="请输入密码" autocomplete="current-password" />
     </FormItem>
   </Form>
-  <Form header="配合表单使用-垂直布局">
+  <Form header="表单-垂直布局">
     <FormItem label="用户名" for="username" rules={[{ required: true }]}>
       <Input id="username" bind:value={username} placeholder="请输入用户名" />
     </FormItem>

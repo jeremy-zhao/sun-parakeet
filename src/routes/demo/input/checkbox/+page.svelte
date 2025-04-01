@@ -28,6 +28,9 @@
         <Checkbox checked disabled>选中</Checkbox>
       </Space>
     </ListItem>
+    <ListItem>
+      <Checkbox icon="sun">自定义图标</Checkbox>
+    </ListItem>
   </List>
   <Form header="表单-水平布局-复选框组" layout="horizontal">
     <FormItem label="喜欢的水果" rules={[{ required: true }]}>

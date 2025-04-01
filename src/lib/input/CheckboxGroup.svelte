@@ -1,13 +1,15 @@
 <script lang="ts" module>
   import './CheckboxGroup.css'
 
-  import type { HTMLAttributes } from 'svelte/elements'
+  import { getContext, setContext, untrack } from 'svelte'
+  import Space, { type SpaceAttributes } from '../layout/Space.svelte'
+  import { type FormItemContext } from './FormItem.svelte'
 
-  export interface CheckboxGroupAttributes extends HTMLAttributes<EventTarget> {
+  export interface CheckboxGroupAttributes extends SpaceAttributes {
     /** 整组失效 */
     disabled?: boolean
     /** 选中的选项 */
-    value?: unknown[]
+    value?: PropertyKey[]
     /** 变化时回调函数 */
     onChange?: (value: any[]) => void
   }
@@ -15,20 +17,76 @@
   /** 复选框组上下文信息 */
   export interface CheckboxGroupContext {
     /** 注册 */
-    register: (input: HTMLInputElement) => void
+    register: (value: PropertyKey, input: HTMLInputElement, check: () => void) => void
     /** 注销 */
-    unregister: (input: HTMLInputElement) => void
+    unregister: (value: PropertyKey) => void
     /** 数据变更事件 */
-    onChange: (value: unknown, checked: boolean) => void
+    onChange: () => void
     /** 点击事件 */
     onClick?: (value: unknown) => void
   }
 </script>
 
 <script lang="ts">
-  let { value = $bindable([]), children, onChange, ...props }: CheckboxGroupAttributes = $props()
+  let { value = $bindable([]), children, onChange: _onChange, ...props }: CheckboxGroupAttributes = $props()
+
+  // FormItem 联动 ============================
+  let formItem = getContext<FormItemContext>('sun_parakeet_form_item')
+
+  // Checkbox 联动 ============================
+  let registered = new Map<PropertyKey, { input: HTMLInputElement; check: () => void }>()
+
+  let context = $state<CheckboxGroupContext>({
+    register(value, input, check) {
+      if (value === undefined || value === null || (typeof value === 'number' && isNaN(value))) {
+        console.warn(
+          '[CheckboxGroup]',
+          'Checkbox 提供的 value 不可以是 undefined, null, NaN 或空字符串，将被忽略',
+          value
+        )
+        return
+      }
+
+      if (registered.has(value)) {
+        console.warn('[CheckboxGroup]', 'Checkbox 提供的 value 重复，将被忽略', value)
+        return
+      }
+
+      registered.set(value, { input, check })
+    },
+    unregister(value) {
+      registered.delete(value)
+    },
+    onChange() {
+      const values = registered
+        .entries()
+        .filter(([_, v]) => v.input.checked)
+        .map(([k, _]) => k)
+
+      value = Array.from(values)
+
+      _onChange?.(value)
+      formItem?.onChange(value)
+    },
+  })
+
+  setContext<CheckboxGroupContext>('sun_parakeet_checkbox_group', context)
+
+  $effect(() => {
+    const values = [...value]
+
+    untrack(() => {
+      for (let [k, v] of registered.entries()) {
+        const checked = values.indexOf(k) >= 0
+        if (checked === v.input.checked) continue
+
+        // console.log('[CheckboxGroup]', '从外部改变', k, checked)
+        v.check()
+      }
+    })
+  })
 </script>
 
-<div class="sun-parakeet-checkbox-group">
+<Space class="sun-parakeet-checkbox-group" {...props}>
   {@render children?.()}
-</div>
+</Space>

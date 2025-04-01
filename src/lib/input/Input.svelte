@@ -20,6 +20,8 @@
     clearable?: boolean
     /** 输入框类型。HTML input 标签 type 属性的子集 */
     type?: InputTypeAttribute
+    /** 输入值 */
+    value?: string
     /** 输入框内容变化时触发 */
     onChange?: (value: string) => void
   }
@@ -27,7 +29,7 @@
 
 <script lang="ts">
   let {
-    value = $bindable(),
+    value = $bindable(''),
     clearable = false,
     type = 'text',
     placeholder = '请输入内容',
@@ -42,7 +44,6 @@
   let input: HTMLInputElement
 
   function handleChange() {
-    console.log('onchange', value)
     onChange?.(value)
     formItem?.onChange(value)
   }

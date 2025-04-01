@@ -2,7 +2,7 @@
   @apply inline-flex cursor-pointer items-center;
 
   .sun-parakeet-checkbox-element {
-    display: none;
+    @apply hidden;
   }
 
   .sun-parakeet-checkbox__icon {

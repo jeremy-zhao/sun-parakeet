@@ -136,7 +136,7 @@
   }
 
   $effect(() => {
-    value ??= []
+    const values = [...value]
 
     untrack(() => {
       makeDisplay()
@@ -145,22 +145,13 @@
       if (init()) return
 
       // 未改变
-      console.log('[Picker]', 'value 后续改变', $state.snapshot(value))
-      if (equals(value, _latest)) return
+      // console.log('[Picker]', 'value 后续改变', values)
+      if (equals(values, _latest)) return
 
-      console.log('[Picker]', 'value 从外部改变', $state.snapshot(value), $state.snapshot(_values))
-      _values = [...value]
-      _latest = [...value]
+      // console.log('[Picker]', 'value 从外部改变', values, $state.snapshot(_values))
+      _values = [...values]
+      _latest = [...values]
       formItem?.onReset()
-
-      // if (equals(value, _values)) {
-      //   console.log('内部变更')
-      //   makeDisplay()
-      // } else {
-      //   console.log('外部变更')
-      //   _values = [...value]
-      //   makeDisplay()
-      // }
     })
   })
 

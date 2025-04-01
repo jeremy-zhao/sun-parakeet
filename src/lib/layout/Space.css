@@ -5,7 +5,7 @@
 }
 
 .sun-parakeet-space {
-  @apply inline-flex;
+  @apply inline-flex items-start;
 
   &.sun-parakeet-space-block {
     @apply flex;

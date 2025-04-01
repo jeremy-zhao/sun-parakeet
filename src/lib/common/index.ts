@@ -9,6 +9,16 @@ export function delay(milliseconds: number = 0) {
   })
 }
 
+/** 定义非空类型 */
+export type NonEmptyValue<T> = T extends null | undefined | '' ? never : T
+
+/** 判断值不是 null, undefined, '' */
+export function isNonEmpty<T>(value: T): value is NonEmptyValue<T> {
+  if (value === null || value === undefined || value === '') return false
+  if (typeof value === 'number' && isNaN(value)) return false
+  return true
+}
+
 // 判断客户端是否为微信开发者工具
 export function isWechatDevTools() {
   if (!browser) return false

@@ -41,6 +41,10 @@
       danger?: string
       /** 危险(扁平) */
       'danger-plain'?: string
+      /** 取消 */
+      cancel?: string
+      /** 取消(扁平) */
+      'cancel-plain'?: string
       /** 文本 */
       text?: string
     }
@@ -58,6 +62,8 @@
       'warning-plain': 'sun-parakeet-button__warning-plain',
       danger: 'sun-parakeet-button__danger',
       'danger-plain': 'sun-parakeet-button__danger-plain',
+      cancel: 'sun-parakeet-button__cancel',
+      'cancel-plain': 'sun-parakeet-button__cancel-plain',
       text: 'sun-parakeet-button__text',
       // TODO: FormItemButton
       'form-item': 'sun-parakeet-form-item-button',

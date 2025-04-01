@@ -55,6 +55,14 @@
     @apply border-red-400 bg-red-100 text-red-600 active:border-red-600 active:bg-red-200;
   }
 
+  &.sun-parakeet-button__cancel {
+    @apply border-transparent bg-gray-300 text-white active:bg-gray-400;
+  }
+
+  &.sun-parakeet-button__cancel-plain {
+    @apply border-gray-400 bg-gray-100 text-gray-600 active:border-gray-600 active:bg-gray-200;
+  }
+
   &.sun-parakeet-button__text {
     @apply border-transparent bg-white text-black active:bg-gray-100;
   }

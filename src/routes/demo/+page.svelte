@@ -57,6 +57,7 @@
     {@render listItem('ActionSheet', '动作面板', '/demo/feedback/action-sheet')}
     {@render listItem('Loading', '加载中', '/demo/feedback/loading')}
     {@render listItem('Popup', '弹出层', '/demo/feedback/popup')}
+    {@render listItem('SwipeAction', '滑动操作', '/demo/feedback/swipe-action')}
     {@render listItem('Toast', '轻提示', '/demo/feedback/toast')}
   </List>
 </Page>

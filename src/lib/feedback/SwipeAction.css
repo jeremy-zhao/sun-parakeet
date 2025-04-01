@@ -1,0 +1,32 @@
+.sun-parakeet-swipe-action {
+  @apply relative cursor-grab touch-pan-y select-none overflow-hidden;
+
+  .sun-parakeet-swipe-action__track {
+    @apply relative overflow-visible;
+  }
+
+  &.sun-parakeet-swipe-action-animation {
+    .sun-parakeet-swipe-action__track {
+      transition: translate 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+
+  .sun-parakeet-swipe-action__content {
+  }
+
+  .sun-parakeet-swipe-action__actions {
+    @apply absolute flex w-auto items-stretch justify-center whitespace-nowrap;
+  }
+
+  .sun-parakeet-swipe-action__actions-left {
+    right: 100%;
+    top: 0;
+    height: 100%;
+  }
+
+  .sun-parakeet-swipe-action__actions-right {
+    left: 100%;
+    top: 0;
+    height: 100%;
+  }
+}

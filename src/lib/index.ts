@@ -27,8 +27,10 @@ export type { ActionSheetAttributes } from './feedback/ActionSheet.svelte'
 export { showLoading, hideLoading, type ShowLoadingOption } from './feedback/loading'
 import Popup from './feedback/Popup.svelte'
 export type { PopupAttributes, PopupPosition } from './feedback/Popup.svelte'
+import SwipeAction from './feedback/SwipeAction.svelte'
+export type { SwipeActionAttributes } from './feedback/SwipeAction.svelte'
 export { showToast, hideToast, type ShowToastOption } from './feedback/toast'
-export { ActionSheet, Popup }
+export { ActionSheet, Popup, SwipeAction }
 
 // Input
 import Checkbox from './input/Checkbox.svelte'

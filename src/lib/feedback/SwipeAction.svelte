@@ -57,6 +57,11 @@
   const min = () => 0 - (_right?.clientWidth ?? 0)
   const max = () => _left?.clientWidth ?? 0
 
+  function reset() {
+    _offset = { close: 0, left: max(), right: min() }[_state]
+    _pointerId = null
+  }
+
   function handlePointerDown(e: PointerEvent) {
     if (_pointerId) return
 
@@ -107,16 +112,12 @@
     // console.log('滑动', thresholdMin, thresholdMax)
 
     _state = _offset < thresholdMin ? 'right' : _offset > thresholdMax ? 'left' : 'close'
-    _offset = { close: 0, left: max(), right: min() }[_state]
+    reset()
   }
 
   $effect(() => {
-    const state = _state
-
-    untrack(() => {
-      _offset = { close: 0, left: max(), right: min() }[state]
-      _pointerId = null
-    })
+    _state
+    untrack(reset)
   })
 
   // 外部触摸关闭 =============================
@@ -155,6 +156,7 @@
   onpointerdown={handlePointerDown}
   onpointermove={handlePointerMove}
   onpointerup={handlePointerUp}
+  onpointercancel={reset}
 >
   <div class="sun-parakeet-swipe-action__track" style:translate>
     {#if typeof leftActions === 'function'}

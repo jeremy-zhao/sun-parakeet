@@ -26,6 +26,7 @@
   <List header="通用组件">
     {@render listItem('Button', '按钮', '/demo/common/button')}
     {@render listItem('Icon', '图标', '/demo/common/icon')}
+    {@render listItem('VConsole', '控制台', '/demo/common/vconsole')}
   </List>
   <List header="布局">
     {@render listItem('AutoCenter', '自动居中', '/demo/layout/auto-center')}

@@ -8,6 +8,11 @@
 
 <Page class="bg-gray-100">
   <List>
+    {#each ['A', 'B', 'C'] as txt}
+      <div class="bg-white py-2 pl-4">{txt}</div>
+    {/each}
+  </List>
+  <List>
     <ListItem>
       <span>列表条目</span>
       {#snippet extra()}

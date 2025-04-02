@@ -1,16 +1,10 @@
-:root {
-  --sp-color: #dc2626;
-  --sp-top: 0;
-  --sp-right: 0;
-}
-
 .sun-parakeet-badge-wrapper {
   @apply relative box-border inline-block;
 }
 
 .sun-parakeet-badge {
   @apply box-border inline-block whitespace-nowrap rounded-full px-1 text-center font-normal text-white;
-  background-color: var(--sp-color);
+  background-color: var(--sp-color, #dc2626);
   font-size: 9px;
   line-height: 16px;
   min-width: 16px;
@@ -26,8 +20,8 @@
 
   &.sun-parakeet-badge-fixed {
     @apply absolute;
-    top: var(--sp-top);
-    right: var(--sp-right);
+    top: var(--sp-top, 0);
+    right: var(--sp-right, 0);
     transform: translate(50%, -50%);
   }
 

@@ -70,7 +70,7 @@
   }
 
   function handlePointerMove(e: PointerEvent) {
-    if (!_pointerId) return
+    if (e.pointerId !== _pointerId) return
 
     const offset = e.x - _start
     _offset = offset < min() ? min() : offset > max() ? max() : offset
@@ -115,6 +115,7 @@
 
     untrack(() => {
       _offset = { close: 0, left: max(), right: min() }[state]
+      _pointerId = null
     })
   })
 
@@ -130,20 +131,18 @@
   $effect(() => {
     const keep = keepOnTouchOutside
 
-    console.log('keep', keep)
-
     untrack(() => {
       if (keep) {
-        document.removeEventListener('click', handleTouchOutside)
+        document.removeEventListener('pointerdown', handleTouchOutside)
       } else {
-        document.addEventListener('click', handleTouchOutside)
+        document.addEventListener('pointerdown', handleTouchOutside)
       }
     })
   })
 
   onMount(() => {
     return () => {
-      document.removeEventListener('click', handleTouchOutside)
+      document.removeEventListener('pointerdown', handleTouchOutside)
     }
   })
 </script>

@@ -12,7 +12,7 @@
       <SwipeAction>
         <ListItem>{txt}</ListItem>
         {#snippet leftActions()}
-          <Button class="border-0" shape="rectangular" color="primary-plain">置顶</Button>
+          <Button class="border-0" shape="rectangular" color="primary">置顶</Button>
         {/snippet}
         {#snippet rightActions()}
           <Space --sp-gap="0px">
@@ -24,19 +24,27 @@
       </SwipeAction>
     {/each}
   </List>
-  <List header="搭配图片使用">
-    <SwipeAction>
-      <img src="/images/sun-parakeet.jpg" alt="小太阳鹦鹉" />
-      {#snippet rightActions()}
-        <Button class="border-0" shape="rectangular" color="danger">删除</Button>
-      {/snippet}
-    </SwipeAction>
+  <List header="图片预览">
+    <Space class="bg-white p-4" block --sp-gap="16px">
+      <SwipeAction>
+        <img src="/images/sun-parakeet.jpg" alt="小太阳鹦鹉" />
+        {#snippet rightActions()}
+          <Button class="border-0" shape="rectangular" color="danger">删除</Button>
+        {/snippet}
+      </SwipeAction>
+      <SwipeAction>
+        <img src="/images/sun-parakeet.jpg" alt="小太阳鹦鹉" />
+        {#snippet rightActions()}
+          <Button class="border-0" shape="rectangular" color="danger">删除</Button>
+        {/snippet}
+      </SwipeAction>
+    </Space>
   </List>
   <List header="手动控制归位逻辑">
     <SwipeAction bind:state={swipeActionState} keepOnAction keepOnTouchOutside>
       <ListItem>ABC</ListItem>
       {#snippet leftActions()}
-        <Button class="border-0" shape="rectangular" color="primary-plain">置顶</Button>
+        <Button class="border-0" shape="rectangular" color="primary">置顶</Button>
       {/snippet}
       {#snippet rightActions()}
         <Space --sp-gap="0px">

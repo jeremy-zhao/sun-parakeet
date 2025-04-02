@@ -13,7 +13,7 @@
     }
 
     .sun-parakeet-list-item__extra {
-      @apply invisible;
+      @apply invisible mr-2;
     }
 
     .sun-parakeet-check-list-item__icon {

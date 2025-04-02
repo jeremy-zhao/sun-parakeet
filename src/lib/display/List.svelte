@@ -15,7 +15,7 @@
   let { header, children, class: clazz, ...props }: ListAttributes = $props()
 </script>
 
-<ul class="sun-parakeet-list">
+<ul class="sun-parakeet-list {clazz}" {...props}>
   {#if typeof header === 'string'}
     <header class="sun-parakeet-list__header">
       {header}

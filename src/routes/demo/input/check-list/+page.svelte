@@ -4,8 +4,6 @@
 <script lang="ts">
   import { Page, List, CheckList, CheckListItem, Button, Form, FormItem, Space } from '$lib'
 
-  let checked = $state(false)
-
   let form = $state({
     fruits: [],
   })
@@ -15,6 +13,7 @@
   <List header="CheckListItem 单独使用">
     <CheckListItem>单独使用</CheckListItem>
     <CheckListItem checked>默认选中</CheckListItem>
+    <CheckListItem checked icon="sun">自定义图标</CheckListItem>
     <CheckListItem disabled>禁用</CheckListItem>
     <CheckListItem checked disabled>禁用，已勾选</CheckListItem>
   </List>
@@ -26,4 +25,9 @@
       <span>列表条目</span>
     </CheckListItem>
   </List>
+  <CheckList bind:value={form.fruits} header="可勾选列表" selectAll>
+    <CheckListItem value="apple">苹果</CheckListItem>
+    <CheckListItem value="orange">橘子</CheckListItem>
+    <CheckListItem value="banana">香蕉</CheckListItem>
+  </CheckList>
 </Page>

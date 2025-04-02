@@ -2,7 +2,7 @@
   import './CheckListItem.css'
   import CheckIcon from '../icons/check-line.svg?raw'
 
-  import { getContext, onMount, type Snippet } from 'svelte'
+  import { getContext, onMount, tick, type Snippet } from 'svelte'
   import { isNonEmpty } from '../common'
   import Icon, { type IconOption } from '../common/Icon.svelte'
   import ListItem from '../display/ListItem.svelte'
@@ -51,12 +51,10 @@
 
   let size = $derived(typeof icon === 'object' && icon.size ? icon.size : 24)
 
-  function handleClick() {
+  async function handleClick() {
     if (disabled) return
     checked = !checked
-  }
-
-  function handleChange() {
+    await tick()
     onChange?.(!!checked)
     checkList?.onChange()
   }
@@ -99,7 +97,6 @@
     {value}
     {disabled}
     {...props}
-    onchange={handleChange}
   />
   <ListItem
     class="sun-parakeet-check-list-item__inner"
@@ -111,9 +108,9 @@
     {@render children?.()}
     {#snippet extra()}
       {#if typeof icon === 'string'}
-        <Icon name={icon} {size} />
+        <Icon class="sun-parakeet-check-list-item__icon" name={icon} {size} />
       {:else if typeof icon === 'object'}
-        <Icon {...icon} {size} />
+        <Icon class="sun-parakeet-check-list-item__icon" {...icon} {size} />
       {/if}
     {/snippet}
   </ListItem>

@@ -1,2 +1,16 @@
 .sun-parakeet-check-list {
+  .sun-parakeet-check-list__select-all {
+    @apply flex flex-row-reverse justify-end text-right;
+    padding-right: 2px;
+
+    .sun-parakeet-checkbox__content {
+      @apply flex pl-0;
+      font-size: 15px;
+      translate: 0 0;
+    }
+
+    .sun-parakeet-check-list__select-all-text {
+      @apply flex-auto pr-2;
+    }
+  }
 }

@@ -1,0 +1,43 @@
+.sun-parakeet-check-list-item {
+  @apply flex cursor-pointer items-stretch justify-stretch;
+
+  .sun-parakeet-check-list-item__element {
+    @apply hidden;
+  }
+
+  .sun-parakeet-check-list-item__inner {
+    @apply flex-auto;
+
+    .sun-parakeet-list-item__icon {
+      @apply hidden;
+    }
+
+    .sun-parakeet-list-item__extra {
+      @apply invisible;
+    }
+
+    .sun-parakeet-check-list-item__icon {
+      @apply text-blue-600;
+    }
+  }
+
+  &.sun-parakeet-check-list-item-checked {
+    .sun-parakeet-check-list-item__inner {
+      .sun-parakeet-list-item__extra {
+        @apply visible;
+      }
+    }
+  }
+
+  &.sun-parakeet-check-list-item-disabled {
+    @apply cursor-not-allowed;
+
+    .sun-parakeet-list-item__content {
+      @apply text-gray-400;
+    }
+
+    .sun-parakeet-check-list-item__icon {
+      @apply text-gray-400;
+    }
+  }
+}

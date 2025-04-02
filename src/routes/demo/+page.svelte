@@ -47,6 +47,7 @@
     {@render listItem('List', '列表', '/demo/display/list')}
   </List>
   <List header="信息录入">
+    {@render listItem('CheckList', '可勾选列表', '/demo/input/check-list')}
     {@render listItem('Checkbox', '复选框', '/demo/input/checkbox')}
     {@render listItem('Form', '表单', '/demo/input/form')}
     {@render listItem('Input', '输入框', '/demo/input/input')}

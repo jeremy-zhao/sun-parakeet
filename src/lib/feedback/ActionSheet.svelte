@@ -22,7 +22,7 @@
     onAction?: (action: any, index: number) => void
     /** 取消时触发 */
     onCancel?: () => void
-    /** 屏蔽 */
+    // 屏蔽
     position?: undefined
     // 屏蔽
     onClose?: undefined

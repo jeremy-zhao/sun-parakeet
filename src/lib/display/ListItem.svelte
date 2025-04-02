@@ -24,8 +24,6 @@
     header?: string | Snippet
     /** 右侧图标 */
     icon?: string | IconOption
-    // 屏蔽
-    color?: undefined
   }
 </script>
 

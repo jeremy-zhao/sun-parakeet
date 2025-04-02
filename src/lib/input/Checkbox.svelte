@@ -17,7 +17,7 @@
     iconIndeterminate?: string | IconOption
     /** 值。作为 CheckboxGroup 成员时必须提供 */
     value?: PropertyKey
-    /**  */
+    /** 数据变更事件 */
     onChange?: (checked: boolean) => void
   }
 </script>

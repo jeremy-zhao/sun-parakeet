@@ -1,6 +1,5 @@
 :root {
   --sp-border-width: 2px;
-  --sp-border-color: #e5e7eb;
   --sp-checked-color: #2563eb;
   --sp-width: 51px;
   --sp-height: 31px;
@@ -17,7 +16,7 @@
     height: var(--sp-height);
     line-height: var(--sp-height);
     border-radius: var(--sp-height);
-    background-color: var(--sp-border-color);
+    background-color: var(--sp-border-color, #e5e7eb);
 
     &::before {
       @apply absolute box-border bg-white;

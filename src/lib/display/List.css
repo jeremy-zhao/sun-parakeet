@@ -1,23 +1,45 @@
-:root {
-  --sp-border-color: #e5e7eb;
-}
-
 .sun-parakeet-list {
-  @apply relative mt-[-1px] box-border border-t;
-  border-color: var(--sp-border-color);
+  @apply relative box-border block;
 
-  &::after {
-    @apply absolute bottom-0 left-0 right-0;
-    content: '';
-    height: 1px;
-    background-color: var(--sp-border-color);
+  & > * {
+    @apply my-[1px] box-border;
+
+    &::before {
+      @apply absolute left-0 right-0 border-l-[1em] border-solid border-white;
+      top: -1px;
+      content: '';
+      height: 1px;
+      background-color: var(--sp-border-color, #e5e7eb);
+      z-index: 0;
+    }
+
+    &::after {
+      @apply absolute left-0 right-0 border-l-[1em] border-solid border-white;
+      bottom: -1px;
+      content: '';
+      height: 1px;
+      background-color: var(--sp-border-color, #e5e7eb);
+      z-index: 0;
+    }
+  }
+
+  & > :first-child::before {
+    border-left-width: 0;
+  }
+
+  & > :last-child::after {
+    border-left-width: 0;
   }
 
   .sun-parakeet-list__header {
-    @apply relative border-x-0 border-y border-solid px-4 py-2 text-gray-500;
-    border-top-color: transparent;
-    border-bottom-color: var(--sp-border-color);
+    @apply relative box-border px-4 py-2 text-gray-500;
     font-size: 15px;
-    z-index: 2;
+    line-height: 1.4;
+    z-index: 1;
+
+    &::before,
+    &::after {
+      border-left-width: 0;
+    }
   }
 }

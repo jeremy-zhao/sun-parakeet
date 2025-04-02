@@ -91,7 +91,7 @@
   {/if}
 {/snippet}
 
-<div class="sun-parakeet-list-item {clazz}" {...props}>
+<li class="sun-parakeet-list-item {clazz}" {...props}>
   {#if clickable}
     <Button class="sun-parakeet-list-item__inner" color="text" shape="rectangular" {disabled}>
       {@render inner()}
@@ -101,4 +101,4 @@
       {@render inner()}
     </div>
   {/if}
-</div>
+</li>

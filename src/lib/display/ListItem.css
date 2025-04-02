@@ -1,25 +1,5 @@
-:root {
-  --sp-border-color: #e5e7eb;
-}
-
 .sun-parakeet-list-item {
-  @apply relative z-0 mt-[-1px] bg-white py-[1px];
-
-  &::before {
-    @apply absolute left-4 right-0 top-0;
-    content: '';
-    height: 1px;
-    background-color: var(--sp-border-color);
-    z-index: 0;
-  }
-
-  &::after {
-    @apply absolute bottom-0 left-4 right-0;
-    content: '';
-    height: 1px;
-    background-color: var(--sp-border-color);
-    z-index: 0;
-  }
+  @apply relative z-0 bg-white;
 
   .sun-parakeet-list-item__inner {
     @apply relative box-border flex h-full w-full flex-nowrap items-center justify-stretch p-2 pl-4 text-left;
@@ -32,6 +12,8 @@
     .sun-parakeet-list-item__content {
       @apply flex flex-1 flex-col items-start justify-center;
       font-size: 17px;
+      line-height: 1.5;
+      translate: 0 1px;
 
       .sun-parakeet-list-item__header,
       .sun-parakeet-list-item__description {

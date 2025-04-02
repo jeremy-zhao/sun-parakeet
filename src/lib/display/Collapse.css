@@ -1,8 +1,3 @@
-:root {
-  --sp-border-color: #e5e7eb;
-  --sp-padding: 1rem;
-}
-
 .sun-parakeet-collapse {
   @apply relative w-full bg-white;
 
@@ -18,13 +13,13 @@
   .sun-parakeet-collapse__container {
     @apply relative ml-4 mt-[-1px] box-border overflow-hidden border-b;
     transition: height 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    border-color: var(--sp-border-color);
+    border-color: var(--sp-border-color, #e5e7eb);
   }
 
   .sun-parakeet-collapse__content {
     @apply text-sm opacity-0;
     transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    padding: var(--sp-padding);
+    padding: var(--sp-padding, 1rem);
     padding-left: 0;
   }
 

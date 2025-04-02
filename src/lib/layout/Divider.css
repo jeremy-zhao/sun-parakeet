@@ -1,11 +1,6 @@
-:root {
-  --sp-border-color: #e5e7eb;
-  --sp-margin: 16px;
-}
-
 .sun-parakeet-divider-horizontal {
   @apply flex items-center border-0 border-solid text-sm text-gray-500;
-  border-color: var(--sp-border-color);
+  border-color: var(--sp-border-color, #e5e7eb);
 
   &::before,
   &::after {
@@ -24,14 +19,14 @@
   }
 
   .sun-parakeet-divider-content {
-    margin: var(--sp-margin) 0;
+    margin: var(--sp-margin, 1rem) 0;
   }
 }
 
 .sun-parakeet-divider-vertical {
   @apply relative inline-block border-0 border-l border-solid;
   height: 0.9em;
-  border-color: var(--sp-border-color);
-  margin: 0 var(--sp-margin);
+  border-color: var(--sp-border-color, #e5e7eb);
+  margin: 0 var(--sp-margin, 1rem);
   top: 0.1em;
 }

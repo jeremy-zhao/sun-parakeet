@@ -15,7 +15,7 @@
   let { header, children, class: clazz, ...props }: ListAttributes = $props()
 </script>
 
-<div class="sun-parakeet-list">
+<ul class="sun-parakeet-list">
   {#if typeof header === 'string'}
     <header class="sun-parakeet-list__header">
       {header}
@@ -27,4 +27,4 @@
   {/if}
 
   {@render children?.()}
-</div>
+</ul>

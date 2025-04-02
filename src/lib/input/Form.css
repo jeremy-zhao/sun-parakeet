@@ -1,10 +1,33 @@
 .sun-parakeet-form {
   @apply relative;
 
-  &::after {
-    @apply absolute bottom-0 left-0 right-0;
-    content: '';
-    height: 1px;
-    background-color: var(--sp-border-color, #e5e7eb);
+  & > * {
+    @apply my-[1px] box-border;
+
+    &::before {
+      @apply absolute left-0 right-0 border-l-[1em] border-solid border-white;
+      top: -1px;
+      content: '';
+      height: 1px;
+      background-color: var(--sp-border-color, #e5e7eb);
+      z-index: 0;
+    }
+
+    &::after {
+      @apply absolute left-0 right-0 border-l-[1em] border-solid border-white;
+      bottom: -1px;
+      content: '';
+      height: 1px;
+      background-color: var(--sp-border-color, #e5e7eb);
+      z-index: 0;
+    }
+  }
+
+  & > :first-child::before {
+    border-left-width: 0;
+  }
+
+  & > :last-child::after {
+    border-left-width: 0;
   }
 }

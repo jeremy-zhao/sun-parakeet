@@ -1,21 +1,5 @@
 .sun-parakeet-form-item {
-  @apply relative z-0 mt-[-1px] flex bg-white;
-
-  &::before {
-    @apply absolute left-4 right-0 top-0;
-    content: '';
-    height: 1px;
-    background-color: var(--sp-border-color);
-    z-index: 0;
-  }
-
-  &::after {
-    @apply absolute bottom-0 left-4 right-0;
-    content: '';
-    height: 1px;
-    background-color: var(--sp-border-color);
-    z-index: 0;
-  }
+  @apply relative z-0 flex bg-white;
 
   .sun-parakeet-form-item__required {
     @apply absolute text-red-600;

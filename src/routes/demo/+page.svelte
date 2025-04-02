@@ -47,6 +47,7 @@
   </List>
   <List header="信息录入">
     {@render listItem('Checkbox', '复选框', '/demo/input/checkbox')}
+    {@render listItem('Form', '表单', '/demo/input/form')}
     {@render listItem('Input', '输入框', '/demo/input/input')}
     {@render listItem('Picker', '选择器', '/demo/input/picker')}
     {@render listItem('PickerView', '选择器视图', '/demo/input/picker-view')}

@@ -1,28 +1,52 @@
 <script lang="ts" module>
   import './SwipeAction.css'
 
-  import { type Snippet } from 'svelte'
+  import { onMount, untrack, type Snippet } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
 
+  export type SwipeActionState =
+    /** 归位状态 */
+    | 'close'
+    /** 左侧操作面板打开 */
+    | 'left'
+    /** 右侧操作面板打开 */
+    | 'right'
+
   export interface SwipeActionAttributes extends HTMLAttributes<EventTarget> {
-    /** 左侧的操作列表 */
+    /** 点击操作面板时保持位置 */
+    keepOnAction?: boolean
+    /** 点击其它区域时保持位置 */
+    keepOnTouchOutside?: boolean
+    /** 左侧的操作面板 */
     leftActions?: Snippet
-    /** 右侧的操作列表 */
+    /** 右侧的操作面板 */
     rightActions?: Snippet
+    /** 状态 */
+    state?: SwipeActionState
   }
+
+  // 滑动时判定状态变更的最小位移
+  const THRESHOLD = 20
 </script>
 
 <script lang="ts">
-  let { children, leftActions, rightActions, class: clazz, ...props }: SwipeActionAttributes = $props()
+  let {
+    keepOnAction = false,
+    keepOnTouchOutside = false,
+    leftActions,
+    rightActions,
+    state: _state = $bindable('close'),
+    children,
+    class: clazz,
+    ...props
+  }: SwipeActionAttributes = $props()
 
   let _self: HTMLDivElement
-  let _state = $state<'center' | 'left' | 'right'>('center')
+
+  // 触摸控制 =================================
 
   let _left = $state<HTMLDivElement>()
   let _right = $state<HTMLDivElement>()
-
-  let min = $derived(0 - (_right?.clientWidth ?? 0))
-  let max = $derived(_left?.clientWidth ?? 0)
 
   let _pointerId: number | null | undefined
   let _start: number
@@ -30,12 +54,17 @@
 
   let translate = $derived(`${_offset}px 0px`)
 
+  const min = () => 0 - (_right?.clientWidth ?? 0)
+  const max = () => _left?.clientWidth ?? 0
+
   function handlePointerDown(e: PointerEvent) {
     if (_pointerId) return
 
-    console.log('[SwipAction]', 'handlePointerDown', e.x)
+    // console.log('[SwipAction]', 'handlePointerDown', e.x)
+    const target = e.target as HTMLElement
+    target.setPointerCapture(e.pointerId)
+
     _pointerId = e.pointerId
-    _self.setPointerCapture(e.pointerId)
     _start = e.x - _offset
     _self.classList.remove('sun-parakeet-swipe-action-animation')
   }
@@ -44,47 +73,86 @@
     if (!_pointerId) return
 
     const offset = e.x - _start
-    _offset = offset < min ? min : offset > max ? max : offset
+    _offset = offset < min() ? min() : offset > max() ? max() : offset
     // console.log('[SwipAction]', 'handlePointerMove', offset)
   }
 
   function handlePointerUp(e: PointerEvent) {
     if (e.pointerId !== _pointerId) return
 
-    console.log('[SwipAction]', 'handlePointerUp', e.x)
+    // console.log('[SwipAction]', 'handlePointerUp', e.x)
+    const target = e.target as HTMLElement
+    target.releasePointerCapture(e.pointerId)
+
     _pointerId = null
-    _self.releasePointerCapture(e.pointerId)
     _self.classList.add('sun-parakeet-swipe-action-animation')
 
-    if ((_state === 'left' && _offset === max) || (_state === 'right' && _offset === min)) {
-      _offset = 0
-      _state = 'center'
+    // 点击关闭
+    if ((_state === 'left' && _offset >= max() - 1) || (_state === 'right' && _offset <= min() + 1)) {
+      // 手动归位
+      if (keepOnAction && e.composedPath().find(x => x === _left || x === _right)) return
+
+      // 自动归位
+      _state = 'close'
       return
     }
 
-    const halfMin = min / 2
-    const halfMax = max / 2
+    // 滑动
+    const thresholdMin =
+      _state === 'right' ? Math.min(min() + THRESHOLD, (min() * 3) / 4) : Math.max(-THRESHOLD, min() / 4)
 
-    if (_offset < halfMin) {
-      _offset = min
-      _state = 'right'
-    } else if (_offset > halfMax) {
-      _offset = max
-      _state = 'left'
-    } else {
-      _offset = 0
-      _state = 'center'
-    }
+    const thresholdMax =
+      _state === 'left' ? Math.max(max() - THRESHOLD, (max() * 3) / 4) : Math.min(THRESHOLD, max() / 4)
 
-    _offset = _offset < halfMin ? min : _offset > halfMax ? max : 0
+    // console.log('滑动', thresholdMin, thresholdMax)
+
+    _state = _offset < thresholdMin ? 'right' : _offset > thresholdMax ? 'left' : 'close'
+    _offset = { close: 0, left: max(), right: min() }[_state]
   }
+
+  $effect(() => {
+    const state = _state
+
+    untrack(() => {
+      _offset = { close: 0, left: max(), right: min() }[state]
+    })
+  })
+
+  // 外部触摸关闭 =============================
+
+  function handleTouchOutside(e: MouseEvent) {
+    if (keepOnTouchOutside) return
+    if (e.composedPath().find(x => x === _self)) return
+
+    _state = 'close'
+  }
+
+  $effect(() => {
+    const keep = keepOnTouchOutside
+
+    console.log('keep', keep)
+
+    untrack(() => {
+      if (keep) {
+        document.removeEventListener('click', handleTouchOutside)
+      } else {
+        document.addEventListener('click', handleTouchOutside)
+      }
+    })
+  })
+
+  onMount(() => {
+    return () => {
+      document.removeEventListener('click', handleTouchOutside)
+    }
+  })
 </script>
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
   bind:this={_self}
-  class="sun-parakeet-swipe-action"
+  class="sun-parakeet-swipe-action sun-parakeet-swipe-action-animation"
   onpointerdown={handlePointerDown}
   onpointermove={handlePointerMove}
   onpointerup={handlePointerUp}

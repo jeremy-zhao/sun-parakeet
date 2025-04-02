@@ -7,11 +7,14 @@
 
   &.sun-parakeet-swipe-action-animation {
     .sun-parakeet-swipe-action__track {
-      transition: translate 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: translate 0.2s;
     }
   }
 
   .sun-parakeet-swipe-action__content {
+    * {
+      -webkit-user-drag: none;
+    }
   }
 
   .sun-parakeet-swipe-action__actions {

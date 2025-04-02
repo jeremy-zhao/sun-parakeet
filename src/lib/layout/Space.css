@@ -10,7 +10,7 @@
   @apply flex-row;
 
   & > * {
-    margin-right: var(--sp-gap-h, --sp-gap, 8px);
+    margin-right: var(--sp-gap-h, var(--sp-gap, 8px));
   }
 
   & > *:last-child {
@@ -19,10 +19,10 @@
 
   &.sun-parakeet-space-wrap {
     @apply flex-wrap;
-    margin-bottom: calc(var(--sp-gap-v, --sp-gap, 8px) * -1);
+    margin-bottom: calc(var(--sp-gap-v, var(--sp-gap, 8px)) * -1);
 
     & > * {
-      margin-bottom: var(--sp-gap-v, --sp-gap, 8px);
+      margin-bottom: var(--sp-gap-v, var(--sp-gap, 8px));
     }
   }
 }
@@ -31,7 +31,7 @@
   @apply flex-col;
 
   & > * {
-    margin-bottom: var(--sp-gap-v, --sp-gap, 8px);
+    margin-bottom: var(--sp-gap-v, var(--sp-gap, 8px));
   }
 
   & > *:last-child {

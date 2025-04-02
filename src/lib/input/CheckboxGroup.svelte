@@ -50,9 +50,11 @@
   let allIndeterminate = $state(false)
 
   // FormItem 联动 ============================
+
   let formItem = getContext<FormItemContext>('sun_parakeet_form_item')
 
   // Checkbox 联动 ============================
+
   let registered = new Map<PropertyKey, { input: HTMLInputElement; check: (checked: boolean) => void }>()
 
   let context = $state<CheckboxGroupContext>({

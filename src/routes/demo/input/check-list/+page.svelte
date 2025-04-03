@@ -3,6 +3,7 @@
 
 <script lang="ts">
   import { Page, List, CheckList, CheckListItem, Button, Form, FormItem, Space } from '$lib'
+  import ListItem from '$lib/display/ListItem.svelte'
 
   let form = $state({
     fruits: [],
@@ -17,17 +18,12 @@
     <CheckListItem disabled>禁用</CheckListItem>
     <CheckListItem checked disabled>禁用，已勾选</CheckListItem>
   </List>
-  <List header="继承自 ListItem 的属性">
-    <CheckListItem description="这是一段很长的说明有可能会超过原有的长度或者造成换行">
-      {#snippet aside()}
-        <div class="h-8 w-8 rounded-full bg-red-600"></div>
-      {/snippet}
-      <span>列表条目</span>
-    </CheckListItem>
-  </List>
   <CheckList bind:value={form.fruits} header="可勾选列表" selectAll>
     <CheckListItem value="apple">苹果</CheckListItem>
     <CheckListItem value="orange">橘子</CheckListItem>
     <CheckListItem value="banana">香蕉</CheckListItem>
   </CheckList>
+  <List>
+    <ListItem>{form.fruits}</ListItem>
+  </List>
 </Page>

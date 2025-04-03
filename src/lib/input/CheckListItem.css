@@ -1,39 +1,42 @@
 .sun-parakeet-check-list-item {
   @apply flex cursor-pointer items-stretch justify-stretch;
 
+  .sun-parakeet-check-list-item__button {
+    @apply flex flex-auto items-stretch justify-stretch p-0;
+  }
+
+  .sun-parakeet-check-list-item__label {
+    @apply flex flex-auto items-center justify-stretch pl-4 text-left;
+    cursor: inherit;
+  }
+
   .sun-parakeet-check-list-item__element {
     @apply hidden;
   }
 
-  .sun-parakeet-check-list-item__inner {
-    @apply flex-auto;
+  .sun-parakeet-check-list-item__content {
+    @apply flex-auto py-2;
+    font-size: 17px;
+    line-height: 1.5;
+    padding-top: 9px;
+    padding-bottom: 8px;
+  }
 
-    .sun-parakeet-list-item__icon {
-      @apply hidden;
-    }
-
-    .sun-parakeet-list-item__extra {
-      @apply invisible mr-2;
-    }
-
-    .sun-parakeet-check-list-item__icon {
-      @apply text-blue-600;
-    }
+  .sun-parakeet-check-list-item__icon {
+    @apply invisible ml-2 mr-4 text-blue-600;
   }
 
   &.sun-parakeet-check-list-item-checked {
-    .sun-parakeet-check-list-item__inner {
-      .sun-parakeet-list-item__extra {
-        @apply visible;
-      }
+    .sun-parakeet-check-list-item__icon {
+      @apply visible;
     }
   }
 
   &.sun-parakeet-check-list-item-disabled {
     @apply cursor-not-allowed;
 
-    .sun-parakeet-list-item__content {
-      @apply text-gray-400;
+    .sun-parakeet-check-list-item__button {
+      @apply bg-white text-gray-400;
     }
 
     .sun-parakeet-check-list-item__icon {

@@ -12,8 +12,6 @@
     color?: string
     /** 按钮形状。默认值：'normal'，可被 ButtonTheme.shape 覆盖。 */
     shape?: ButtonShape
-    /** 是否禁用 */
-    disabled?: boolean
   }
 
   export interface ButtonTheme {

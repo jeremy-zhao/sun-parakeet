@@ -2,21 +2,15 @@
   import './CheckListItem.css'
   import CheckIcon from '../icons/check-line.svg?raw'
 
-  import { getContext, onMount, tick, type Snippet } from 'svelte'
+  import { getContext, onMount } from 'svelte'
   import { isNonEmpty } from '../common'
+  import Button from '../common/Button.svelte'
   import Icon, { type IconOption } from '../common/Icon.svelte'
-  import ListItem from '../display/ListItem.svelte'
   import type { HTMLInputAttributes } from 'svelte/elements'
   import type { CheckListContext } from './CheckList.svelte'
 
   /** 可勾选条目属性 */
   export interface CheckListItemAttributes extends HTMLInputAttributes {
-    /** 列表项左侧区域 */
-    aside?: Snippet
-    /** 列表项下部显示的描述 */
-    description?: string | Snippet
-    /** 列表项主题上部的标题区域 */
-    header?: string | Snippet
     /** 自定义图标 */
     icon?: string | IconOption
     /** 值。作为 check-listGroup 成员时必须提供 */
@@ -34,9 +28,6 @@
   let {
     checked = $bindable(false),
     value,
-    aside,
-    description,
-    header,
     icon = { svg: CheckIcon, class: 'sun-parakeet-check-list-item__icon' },
     indeterminate, // 屏蔽
     disabled,
@@ -51,16 +42,14 @@
 
   let size = $derived(typeof icon === 'object' && icon.size ? icon.size : 24)
 
-  async function handleClick() {
-    if (disabled) return
-    checked = !checked
-    await tick()
+  function handleChange() {
     onChange?.(!!checked)
     checkList?.onChange()
   }
 
   function handleCheck(chk: boolean) {
     checked = chk
+    input.checked = chk
   }
 
   onMount(() => {
@@ -81,37 +70,35 @@
   })
 </script>
 
-<label
+<div
   class="sun-parakeet-check-list-item {clazz}"
-  class:sun-parakeet-check-list-item-checked={checked && !indeterminate}
-  class:sun-parakeet-check-list-item-indeterminate={indeterminate}
+  class:sun-parakeet-check-list-item-checked={checked}
   class:sun-parakeet-check-list-item-disabled={disabled}
   {style}
 >
-  <input
-    bind:this={input}
-    bind:checked
-    bind:indeterminate
-    class="sun-parakeet-check-list-item__element"
-    type="checkbox"
-    {value}
-    {disabled}
-    {...props}
-  />
-  <ListItem
-    class="sun-parakeet-check-list-item__inner"
-    clickable={!disabled}
-    {aside}
-    {description}
-    onclick={handleClick}
-  >
-    {@render children?.()}
-    {#snippet extra()}
+  <Button class="sun-parakeet-check-list-item__button" color="text" shape="rectangular" {disabled}>
+    <label class="sun-parakeet-check-list-item__label">
+      <input
+        bind:this={input}
+        bind:checked
+        bind:indeterminate
+        class="sun-parakeet-check-list-item__element"
+        type="checkbox"
+        {value}
+        {disabled}
+        {...props}
+        onchange={handleChange}
+      />
+
+      <div class="sun-parakeet-check-list-item__content">
+        {@render children?.()}
+      </div>
+
       {#if typeof icon === 'string'}
         <Icon class="sun-parakeet-check-list-item__icon" name={icon} {size} />
       {:else if typeof icon === 'object'}
         <Icon class="sun-parakeet-check-list-item__icon" {...icon} {size} />
       {/if}
-    {/snippet}
-  </ListItem>
-</label>
+    </label>
+  </Button>
+</div>

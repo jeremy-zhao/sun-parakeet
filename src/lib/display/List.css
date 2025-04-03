@@ -34,7 +34,7 @@
   .sun-parakeet-list__header {
     @apply relative my-[1px] box-border px-4 py-2 text-gray-500;
     font-size: 15px;
-    line-height: 1.4;
+    line-height: 22px;
     z-index: 1;
 
     &::before,

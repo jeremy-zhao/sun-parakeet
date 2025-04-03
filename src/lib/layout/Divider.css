@@ -19,7 +19,7 @@
   }
 
   .sun-parakeet-divider-content {
-    margin: var(--sp-margin, 1rem) 0;
+    margin: 0 var(--sp-margin, 1rem);
   }
 }
 

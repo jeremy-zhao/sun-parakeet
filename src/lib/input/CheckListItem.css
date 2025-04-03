@@ -12,11 +12,10 @@
   }
 
   .sun-parakeet-check-list-item__content {
-    @apply flex-auto py-2;
+    @apply relative flex-auto py-3;
     font-size: 17px;
     line-height: 1.5;
-    padding-top: 9px;
-    padding-bottom: 8px;
+    translate: 0 1px;
   }
 
   .sun-parakeet-check-list-item__icon {

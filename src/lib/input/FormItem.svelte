@@ -52,7 +52,7 @@
       input = null
     }
 
-    // 加载
+    // 加载 input
     if (labelFor) {
       input = registered.find(x => x.id === labelFor)
     } else {
@@ -69,7 +69,7 @@
     if (!input) return
 
     // TODO 初始化
-    console.log('init', input)
+    console.log('[FormItem]', 'TODO init', input)
   }
 
   let context = $state<FormItemContext>({

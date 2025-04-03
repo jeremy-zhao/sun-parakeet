@@ -12,12 +12,15 @@
     disabled?: boolean
     /** 标题 */
     header?: string | Snippet
-    /** 全选按钮 */
+    /** 是否允许多选 */
+    multiple?: boolean
+
+    /** 全选按钮。仅多选模式 */
     selectAll?: boolean | string
     /** 选中的选项 */
-    value?: PropertyKey[]
+    value?: PropertyKey | PropertyKey[]
     /** 变化时回调函数 */
-    onChange?: (value: any[]) => void
+    onChange?: (value: any) => void
   }
 
   /** 复选框组上下文信息 */
@@ -27,7 +30,7 @@
     /** 注销 */
     unregister: (value: PropertyKey) => void
     /** 数据变更事件 */
-    onChange: () => void
+    onChange: (value: PropertyKey, checked: boolean) => void
     /** 点击事件 */
     onClick?: (value: unknown) => void
   }
@@ -35,9 +38,10 @@
 
 <script lang="ts">
   let {
-    value = $bindable([]),
+    value = $bindable<PropertyKey | PropertyKey[] | undefined>(),
     disabled = false,
     header,
+    multiple = false,
     selectAll = false,
     children,
     onChange: _onChange,
@@ -79,13 +83,13 @@
     unregister(value) {
       registered.delete(value)
     },
-    onChange() {
-      const values = registered
-        .entries()
-        .filter(([_, v]) => v.input.checked)
-        .map(([k, _]) => k)
-
-      value = Array.from(values)
+    onChange(val, checked) {
+      if (multiple && Array.isArray(value)) {
+        const current = value.filter(x => x !== val)
+        value = checked ? [...current, val] : [...current]
+      } else {
+        value = checked ? val : undefined
+      }
 
       _onChange?.(value)
       formItem?.onChange(value)
@@ -102,14 +106,22 @@
   }
 
   $effect(() => {
-    const values = [...value]
+    value
 
     untrack(() => {
-      allChecked = values.length === registered.size
-      allIndeterminate = 0 < values.length && values.length < registered.size
+      if (multiple && !Array.isArray(value)) {
+        value = []
+      }
+
+      // 全选状态
+      if (selectAll && multiple && Array.isArray(value)) {
+        const len = value.length
+        allChecked = len === registered.size
+        allIndeterminate = 0 < len && len < registered.size
+      }
 
       for (let [k, v] of registered.entries()) {
-        const checked = values.indexOf(k) >= 0
+        const checked = multiple && Array.isArray(value) ? value.indexOf(k) >= 0 : value === k
         if (checked === v.input.checked) continue
 
         // console.log('[CheckList]', '从外部改变', k, checked)
@@ -119,25 +131,27 @@
   })
 </script>
 
-{#snippet headerSnippet()}
-  {#if selectAll}
-    <Checkbox
-      class="sun-parakeet-check-list__select-all"
-      checked={allChecked}
-      indeterminate={allIndeterminate}
-      onChange={handleSelectAll}
-    >
-      {#if typeof header === 'string'}
-        <span>{header}</span>
-      {:else if typeof header === 'function'}
-        {@render header()}
-      {/if}
-      <span class="sun-parakeet-check-list__select-all-text">{all}</span>
-    </Checkbox>
-  {:else if typeof header === 'string'}
+{#snippet headerRender()}
+  {#if typeof header === 'string'}
     {header}
   {:else if typeof header === 'function'}
     {@render header()}
+  {/if}
+{/snippet}
+
+{#snippet headerSnippet()}
+  {#if multiple && selectAll}
+    <div class="sun-parakeet-check-list__header">
+      {@render headerRender()}
+      <Checkbox
+        class="sun-parakeet-check-list__select-all"
+        checked={allChecked}
+        indeterminate={allIndeterminate}
+        onChange={handleSelectAll}>{all}</Checkbox
+      >
+    </div>
+  {:else}
+    {@render headerRender()}
   {/if}
 {/snippet}
 

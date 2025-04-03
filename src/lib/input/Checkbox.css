@@ -1,5 +1,6 @@
 .sun-parakeet-checkbox {
   @apply inline-flex cursor-pointer items-center justify-stretch;
+  font-size: var(--font-size, 17px);
 
   .sun-parakeet-checkbox-element {
     @apply hidden;
@@ -11,7 +12,6 @@
 
   .sun-parakeet-checkbox__content {
     @apply flex-auto select-none whitespace-nowrap p-0 pl-2;
-    font-size: var(--font-size, 17px);
     translate: 0 1px;
   }
 

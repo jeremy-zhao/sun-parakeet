@@ -43,7 +43,7 @@
 
   function handleChange() {
     onChange?.(!!checked)
-    checkList?.onChange()
+    checkList?.onChange(value!, !!checked)
   }
 
   function handleCheck(chk: boolean) {

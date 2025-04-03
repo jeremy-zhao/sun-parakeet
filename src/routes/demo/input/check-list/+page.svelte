@@ -2,9 +2,12 @@
 </script>
 
 <script lang="ts">
-  import { Page, List, CheckList, CheckListItem, Input, Form, FormItem } from '$lib'
+  import { Page, List, CheckList, CheckListItem, Input, Form, FormItem, Divider } from '$lib'
+
+  let fruit = $state<string>()
 
   let form = $state({
+    enabled: false,
     fruits: [],
   })
 </script>
@@ -17,7 +20,12 @@
     <CheckListItem disabled>禁用</CheckListItem>
     <CheckListItem checked disabled>禁用，已勾选</CheckListItem>
   </List>
-  <CheckList bind:value={form.fruits} header="可勾选列表" selectAll>
+  <CheckList bind:value={fruit} header="可勾选列表-单选">
+    <CheckListItem value="apple">苹果</CheckListItem>
+    <CheckListItem value="orange">橘子</CheckListItem>
+    <CheckListItem value="banana">香蕉</CheckListItem>
+  </CheckList>
+  <CheckList bind:value={form.fruits} header="可勾选列表-多选" multiple selectAll>
     <CheckListItem value="apple">苹果</CheckListItem>
     <CheckListItem value="orange">橘子</CheckListItem>
     <CheckListItem value="banana">香蕉</CheckListItem>
@@ -26,10 +34,12 @@
     <FormItem>
       <Input value={form.fruits.toString()} placeholder="已选中的水果" readonly />
     </FormItem>
-    <CheckList bind:value={form.fruits} header="可勾选列表" selectAll>
+    <CheckListItem bind:checked={form.enabled}>单独使用</CheckListItem>
+    <CheckList bind:value={form.fruits} header="表单-可勾选列表" multiple selectAll>
       <CheckListItem value="apple">苹果</CheckListItem>
       <CheckListItem value="orange">橘子</CheckListItem>
       <CheckListItem value="banana">香蕉</CheckListItem>
     </CheckList>
   </Form>
+  <p>表单验证尚未完成</p>
 </Page>

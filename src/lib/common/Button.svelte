@@ -3,20 +3,17 @@
 
   import type { HTMLButtonAttributes } from 'svelte/elements'
 
-  /** 按钮形状 */
-  export type ButtonShape = 'normal' | 'rounded' | 'rectangular'
-
   /** 按钮属性 */
   export interface ButtonAttributes extends HTMLButtonAttributes {
     /** 按钮颜色。默认值：'normal' */
     color?: string
     /** 按钮形状。默认值：'normal'，可被 ButtonTheme.shape 覆盖。 */
-    shape?: ButtonShape
+    shape?: 'normal' | 'rounded' | 'rectangular' | number
   }
 
   export interface ButtonTheme {
     /** 按钮颜色定义 */
-    shape?: 'normal' | 'rounded' | 'rectangular'
+    shape?: 'normal' | 'rounded' | 'rectangular' | number
     /** 按钮颜色定义 */
     colors?: {
       /** 自定义颜色 */
@@ -76,20 +73,17 @@
 <script lang="ts">
   let { color = 'normal', shape, children, class: clazz, disabled = false, ...props }: ButtonAttributes = $props()
 
-  let colored = $derived(disabled ? 'sun-parakeet-button__disabled' : defaultButtonTheme.colors?.[color])
+  let _color = $derived(disabled ? 'sun-parakeet-button__disabled' : defaultButtonTheme.colors?.[color])
 
-  let shaped = $derived.by(() => {
-    switch (shape ?? defaultButtonTheme.shape ?? 'normal') {
-      case 'rounded':
-        return `sun-parakeet-button__rounded`
-      case 'rectangular':
-        return `sun-parakeet-button__rectangular`
-      default:
-        return ''
-    }
+  let _radius = $derived.by(() => {
+    if (shape === 'normal') return '6px'
+    else if (shape === 'rounded') return '9999px'
+    else if (shape === 'rectangular') return '0'
+    else if (typeof shape === 'number' && shape >= 0) return `${shape}px`
+    else return '6px'
   })
 </script>
 
-<button class="sun-parakeet-button {colored} {shaped} {clazz}" {disabled} {...props}>
+<button class="sun-parakeet-button {_color} {clazz}" style:border-radius={_radius} {disabled} {...props}>
   {@render children?.()}
 </button>

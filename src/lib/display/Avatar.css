@@ -1,2 +1,14 @@
 .sun-parakeet-avatar {
+  @apply relative block overflow-hidden;
+
+  .sun-parakeet-avatar__img {
+    @apply h-full w-full;
+  }
+
+  .sun-parakeet-avatar__tip {
+    @apply flex h-full items-center justify-center;
+    @apply bg-gray-100 text-gray-400;
+    min-width: 36px;
+    min-height: 36px;
+  }
 }

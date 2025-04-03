@@ -14,7 +14,7 @@
   </List>
   <List header="多种填充模式">
     <div class="bg-white p-4">
-      <Space wrap>
+      <Space block wrap>
         <Image class="sp-img" {src} fit="fill" />
         <Image class="sp-img" {src} fit="contain" />
         <Image class="sp-img" {src} fit="cover" />

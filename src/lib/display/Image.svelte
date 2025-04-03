@@ -48,6 +48,18 @@
     <div class="sun-parakeet-image__tip">
       <Icon svg={ImgIcon} />
     </div>
+  {:else if _state === 'error'}
+    <div class="sun-parakeet-image__tip">
+      {#if typeof fallback === 'string'}
+        <Icon name={fallback} />
+      {:else if typeof fallback === 'object'}
+        <Icon {...fallback} />
+      {:else if typeof fallback === 'function'}
+        {@render fallback()}
+      {:else}
+        <Icon svg={Img404Icon} />
+      {/if}
+    </div>
   {/if}
   {#if _state !== 'error'}
     <img
@@ -57,19 +69,5 @@
       style:display={_state === 'success' ? 'block' : 'none'}
       {...props}
     />
-  {:else}
-    <div class="sun-parakeet-image__tip">
-      {#if typeof fallback === 'string'}
-        <Icon name={fallback} />
-      {:else if typeof fallback === 'object'}
-        <Icon {...fallback} />
-      {:else if typeof fallback === 'function'}
-        {@render fallback()}
-      {:else}
-        <div class="sun-parakeet-image__img-error">
-          <Icon svg={Img404Icon} />
-        </div>
-      {/if}
-    </div>
   {/if}
 </div>

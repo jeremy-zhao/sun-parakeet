@@ -1,5 +1,5 @@
 .sun-parakeet-button {
-  @apply box-border inline-flex cursor-pointer select-none items-center justify-center rounded-md border border-solid;
+  @apply box-border inline-flex cursor-pointer select-none items-center justify-center border border-solid;
   font-size: 17px;
   padding: 7px 12px 5px 12px;
 
@@ -9,14 +9,6 @@
 
   &.sun-parakeet-button__block {
     @apply block w-full;
-  }
-
-  &.sun-parakeet-button__rounded {
-    @apply rounded-full;
-  }
-
-  &.sun-parakeet-button__rectangular {
-    @apply rounded-none;
   }
 
   &.sun-parakeet-button__normal {

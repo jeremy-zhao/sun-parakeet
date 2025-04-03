@@ -44,6 +44,7 @@
     {@render listItem('Badge', '徽标', '/demo/display/badge')}
     {@render listItem('Card', '卡片', '/demo/display/card')}
     {@render listItem('Collapse', '折叠面板', '/demo/display/collapse')}
+    {@render listItem('Image', '图片', '/demo/display/image')}
     {@render listItem('List', '列表', '/demo/display/list')}
   </List>
   <List header="信息录入">

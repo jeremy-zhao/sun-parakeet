@@ -15,11 +15,13 @@ import Badge from './display/Badge.svelte'
 export type { BadgeAttributes } from './display/Badge.svelte'
 import Collapse from './display/Collapse.svelte'
 export type { CollapseAttributes } from './display/Collapse.svelte'
+import Image from './display/Image.svelte'
+export type { ImageAttributes } from './display/Image.svelte'
 import List from './display/List.svelte'
 export type { ListAttributes } from './display/List.svelte'
 import ListItem from './display/ListItem.svelte'
 export type { ListItemAttributes } from './display/ListItem.svelte'
-export { Avatar, Badge, Collapse, List, ListItem }
+export { Avatar, Badge, Collapse, Image, List, ListItem }
 
 // Feedback
 import ActionSheet from './feedback/ActionSheet.svelte'

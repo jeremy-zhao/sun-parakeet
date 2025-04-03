@@ -4,21 +4,21 @@
   & > * {
     @apply !relative my-[1px] !overflow-visible;
 
-    &::before,
-    &::after {
-      @apply absolute left-0 right-0 border-l-[1em] border-solid;
-      content: '';
-      height: 1px;
-      background-color: var(--sp-border-color, #e5e7eb);
-      border-color: var(--sp-bg-color, white);
-      z-index: 0;
-    }
-
     &::before {
+      @apply absolute left-0 right-0 z-0 h-[1px] border-l-[1em] border-solid;
+      content: '';
+      background-color: var(--sp-border-color, #e5e7eb);
+      /* background-color: var(--sp-border-color, red); */
+      border-color: var(--sp-bg-color, white);
       top: -1px;
     }
 
     &::after {
+      @apply absolute left-0 right-0 z-0 h-[1px] border-l-[1em] border-solid;
+      content: '';
+      background-color: var(--sp-border-color, #e5e7eb);
+      /* background-color: var(--sp-border-color, blue); */
+      border-color: var(--sp-bg-color, white);
       bottom: -1px;
     }
   }

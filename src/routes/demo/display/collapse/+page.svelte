@@ -49,4 +49,6 @@
       <p>第二行</p>
     </Collapse>
   </List>
+  <p class="bg-white p-4">因为 List 和 ListItem 修改过了，导致这里会有Bug，需要修改</p>
+  <p class="bg-white p-4">Collapse 的内容可能是 List，这里要考虑如何兼容</p>
 </Page>

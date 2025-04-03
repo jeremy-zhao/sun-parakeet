@@ -4,7 +4,6 @@
 
   import { getContext, onMount } from 'svelte'
   import { isNonEmpty } from '../common'
-  import Button from '../common/Button.svelte'
   import Icon, { type IconOption } from '../common/Icon.svelte'
   import type { HTMLInputAttributes } from 'svelte/elements'
   import type { CheckListContext } from './CheckList.svelte'
@@ -76,29 +75,27 @@
   class:sun-parakeet-check-list-item-disabled={disabled}
   {style}
 >
-  <Button class="sun-parakeet-check-list-item__button" color="text" shape="rectangular" {disabled}>
-    <label class="sun-parakeet-check-list-item__label">
-      <input
-        bind:this={input}
-        bind:checked
-        bind:indeterminate
-        class="sun-parakeet-check-list-item__element"
-        type="checkbox"
-        {value}
-        {disabled}
-        {...props}
-        onchange={handleChange}
-      />
+  <label class="sun-parakeet-check-list-item__label">
+    <input
+      bind:this={input}
+      bind:checked
+      bind:indeterminate
+      class="sun-parakeet-check-list-item__element"
+      type="checkbox"
+      {value}
+      {disabled}
+      {...props}
+      onchange={handleChange}
+    />
 
-      <div class="sun-parakeet-check-list-item__content">
-        {@render children?.()}
-      </div>
+    <div class="sun-parakeet-check-list-item__content">
+      {@render children?.()}
+    </div>
 
-      {#if typeof icon === 'string'}
-        <Icon class="sun-parakeet-check-list-item__icon" name={icon} {size} />
-      {:else if typeof icon === 'object'}
-        <Icon class="sun-parakeet-check-list-item__icon" {...icon} {size} />
-      {/if}
-    </label>
-  </Button>
+    {#if typeof icon === 'string'}
+      <Icon class="sun-parakeet-check-list-item__icon" name={icon} {size} />
+    {:else if typeof icon === 'object'}
+      <Icon class="sun-parakeet-check-list-item__icon" {...icon} {size} />
+    {/if}
+  </label>
 </div>

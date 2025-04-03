@@ -2,8 +2,7 @@
 </script>
 
 <script lang="ts">
-  import { Page, List, CheckList, CheckListItem, Button, Form, FormItem, Space } from '$lib'
-  import ListItem from '$lib/display/ListItem.svelte'
+  import { Page, List, CheckList, CheckListItem, Input, Form, FormItem } from '$lib'
 
   let form = $state({
     fruits: [],
@@ -23,7 +22,14 @@
     <CheckListItem value="orange">橘子</CheckListItem>
     <CheckListItem value="banana">香蕉</CheckListItem>
   </CheckList>
-  <List>
-    <ListItem>{form.fruits}</ListItem>
-  </List>
+  <Form header="表单">
+    <FormItem>
+      <Input value={form.fruits.toString()} placeholder="已选中的水果" readonly />
+    </FormItem>
+    <CheckList bind:value={form.fruits} header="可勾选列表" selectAll>
+      <CheckListItem value="apple">苹果</CheckListItem>
+      <CheckListItem value="orange">橘子</CheckListItem>
+      <CheckListItem value="banana">香蕉</CheckListItem>
+    </CheckList>
+  </Form>
 </Page>

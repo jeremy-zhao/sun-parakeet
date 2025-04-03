@@ -1,17 +1,14 @@
 .sun-parakeet-check-list-item {
-  @apply flex cursor-pointer items-stretch justify-stretch;
-
-  .sun-parakeet-check-list-item__button {
-    @apply flex flex-auto items-stretch justify-stretch p-0;
-  }
+  @apply flex items-stretch justify-stretch;
 
   .sun-parakeet-check-list-item__label {
-    @apply flex flex-auto items-center justify-stretch pl-4 text-left;
-    cursor: inherit;
+    @apply relative flex flex-auto cursor-pointer select-none items-center justify-stretch bg-white pl-4 text-left;
+    @apply active:bg-gray-100;
   }
 
   .sun-parakeet-check-list-item__element {
-    @apply hidden;
+    @apply absolute bottom-0 left-0 right-0 top-0 cursor-pointer opacity-0;
+    z-index: 1;
   }
 
   .sun-parakeet-check-list-item__content {
@@ -34,10 +31,6 @@
 
   &.sun-parakeet-check-list-item-disabled {
     @apply cursor-not-allowed;
-
-    .sun-parakeet-check-list-item__button {
-      @apply bg-white text-gray-400;
-    }
 
     .sun-parakeet-check-list-item__icon {
       @apply text-gray-400;

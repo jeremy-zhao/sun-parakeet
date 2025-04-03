@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import { Page, List, Image, Space, showToast } from '$lib'
+  import { Page, List, Image, Space } from '$lib'
 </script>
 
 <script lang="ts">
@@ -28,8 +28,8 @@
       <Image
         src="/404"
         style="width: 100px; height: 100px"
-        onerror={() => showToast({ text: '图片加载失败' })}
-        onClick={() => showToast({ text: 'Image 组件点击事件' })}
+        onerror={() => console.log('图片加载失败')}
+        onClick={() => console.log('Image 组件点击事件')}
       />
     </div>
   </List>

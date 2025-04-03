@@ -3,14 +3,14 @@
   import ImgIcon from '../icons/image-line.svg?raw'
   import Img404Icon from '../icons/image-404-line.svg?raw'
 
-  import Icon from '../common/Icon.svelte'
+  import Icon, { type IconOption } from '../common/Icon.svelte'
   import { type Snippet } from 'svelte'
   import type { HTMLImgAttributes } from 'svelte/elements'
 
   /** 头像 */
   export interface ImageAttributes extends HTMLImgAttributes {
     /** 占位图 */
-    fallback?: string | Snippet
+    fallback?: string | IconOption | Snippet
     /** 图片的填充模式 */
     fit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
     /** 组件点击事件 */
@@ -45,15 +45,31 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="sun-parakeet-image {clazz}" {style} onclick={handleClick}>
   {#if _state === 'loading'}
-    <div class="sun-parakeet-image__img-loading">
+    <div class="sun-parakeet-image__tip">
       <Icon svg={ImgIcon} />
     </div>
   {/if}
   {#if _state !== 'error'}
-    <img use:useImg class="sun-parakeet-image__img" style:object-fit={fit} {...props} />
+    <img
+      use:useImg
+      class="sun-parakeet-image__img"
+      style:object-fit={fit}
+      style:display={_state === 'success' ? 'block' : 'none'}
+      {...props}
+    />
   {:else}
-    <div class="sun-parakeet-image__img-error">
-      <Icon svg={Img404Icon} />
+    <div class="sun-parakeet-image__tip">
+      {#if typeof fallback === 'string'}
+        <Icon name={fallback} />
+      {:else if typeof fallback === 'object'}
+        <Icon {...fallback} />
+      {:else if typeof fallback === 'function'}
+        {@render fallback()}
+      {:else}
+        <div class="sun-parakeet-image__img-error">
+          <Icon svg={Img404Icon} />
+        </div>
+      {/if}
     </div>
   {/if}
 </div>

@@ -60,8 +60,6 @@
       cancel: 'sun-parakeet-button__cancel',
       'cancel-plain': 'sun-parakeet-button__cancel-plain',
       text: 'sun-parakeet-button__text',
-      // TODO: FormItemButton
-      'form-item': 'sun-parakeet-form-item-button',
       // TODO：Picker 按钮样式，默认 css 在 Picker.css 文件中。可以被覆盖，这里在做主题的时候可能要改
       'picker-ok': 'sun-parakeet-picker__ok',
       'picker-cancel': 'sun-parakeet-picker__cancel',

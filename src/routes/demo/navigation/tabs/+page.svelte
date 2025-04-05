@@ -4,6 +4,15 @@
 
 <script lang="ts">
   let selectedTab = $state('todoList')
+
+  let tabs = [
+    'Espresso',
+    'Coffee Latte',
+    'Americano',
+    'Flat White',
+    'Caramel Macchiato',
+    'Cafe Mocha',
+  ]
 </script>
 
 <Page class="bg-gray-100">
@@ -61,6 +70,8 @@
     />
   </List>
   <List header="超长滚动">
-    <Tabs tabs={['Espresso', 'Coffee Latte', 'Americano', 'Flat White', 'Caramel Macchiato', 'Cafe Mocha']} />
+    <div>
+      <Tabs {tabs} />
+    </div>
   </List>
 </Page>

@@ -4,7 +4,7 @@
   translate: -50% -50%;
   scale: 0;
   font-size: 15px;
-  line-height: 22.5px;
+  line-height: 21px;
   -webkit-tap-highlight-color: transparent;
 
   & > :not(:last-child) {

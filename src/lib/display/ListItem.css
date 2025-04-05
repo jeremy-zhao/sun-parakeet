@@ -1,5 +1,5 @@
 .sun-parakeet-list-item {
-  @apply relative z-0 bg-white;
+  @apply relative bg-white;
 
   .sun-parakeet-list-item__inner {
     @apply relative box-border flex h-full w-full flex-nowrap items-center justify-stretch p-2 pl-4 text-left;
@@ -12,7 +12,7 @@
     .sun-parakeet-list-item__content {
       @apply flex flex-1 flex-col items-start justify-center;
       font-size: 17px;
-      line-height: 1.5;
+      line-height: 24px;
       translate: 0 1px;
 
       .sun-parakeet-list-item__header,

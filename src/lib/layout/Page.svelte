@@ -20,7 +20,6 @@
 
   function flyIn(node: Element): TransitionConfig {
     const ps = stack.pageSwitch()
-    console.log('flyIn', ps)
 
     switch (ps) {
       case 'forward':
@@ -34,7 +33,6 @@
 
   function flyOut(node: Element): TransitionConfig {
     const ps = stack.pageSwitch()
-    console.log('flyOut', ps)
 
     switch (ps) {
       case 'forward':

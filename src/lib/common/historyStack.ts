@@ -10,7 +10,8 @@ export interface SvelteHistoryState {
   'sveltekit:states'?: unknown
 }
 
-export interface StackItem {
+/** 浏览器历史栈帧 */
+export interface StackFrame {
   /** 键 */
   key?: unknown
 
@@ -19,7 +20,7 @@ export interface StackItem {
    * @returns 返回值为 true 表示需要阻止浏览器返回
    * @remark 若不提供此回调函数，则会默认阻止浏览器返回事件
    */
-  historyBack?: (item: StackItem) => boolean | void
+  historyBack?: (item: StackFrame) => boolean | void
 }
 
 /** 页面切换方向 */
@@ -28,16 +29,23 @@ export type PageSwitch =
   | 'forward'
   /** 后退 */
   | 'backward'
+  /** 加载/重新加载 */
+  | 'load'
 
-type StackItemInternal = StackItem & {
+/** 浏览器历史栈帧，内部值 */
+type StackFrameInternal = StackFrame & {
+  /** 历史计数。SvelteKit 提供 */
   history: number
+  /** 页面计数。SvelteKit 提供 */
   navigation: number
-  stacked: boolean
+  /** 虚拟栈帧 */
+  virtual: boolean
+  /** 移除标记 */
   removed: boolean
 }
 
 /** 打栈条目日志 */
-function logStack(msg: string, items: StackItemInternal[]) {
+function logStack(msg: string, items: StackFrameInternal[]) {
   console.group(`[STACK] ${msg} ${location.href}`)
 
   for (const item of items) {
@@ -46,8 +54,8 @@ function logStack(msg: string, items: StackItemInternal[]) {
       item.history,
       'navigation:',
       item.navigation,
-      'stacked:',
-      item.stacked,
+      'virtual:',
+      item.virtual,
       'removed:',
       item.removed,
       'historyBack',
@@ -60,8 +68,8 @@ function logStack(msg: string, items: StackItemInternal[]) {
 
 // 劫持 ==============================================================================================
 
-const _stack = writable<StackItemInternal[]>([])
-// const _poped = writable<StackItemInternal[]>([])
+const _stack = writable<StackFrameInternal[]>([])
+// const _poped = writable<StackFrameInternal[]>([])
 const _lastPage = writable<number>(0)
 
 // 劫持 history.pushState
@@ -71,25 +79,30 @@ const _pushState = browser ? history.pushState : undefined
 function pushStateHijacked(data: SvelteHistoryState, unused: string, url?: string | URL | null) {
   if (!browser || !_pushState) return
 
+  // 压栈前 ====
+
   const stack = get(_stack)
 
-  const s0: StackItemInternal = {
+  const s0: StackFrameInternal = {
     history: history.state['sveltekit:history'],
     navigation: history.state['sveltekit:navigation'],
-    stacked: false,
+    virtual: false,
     removed: false,
   }
 
+  // 补第一页的压栈信息
   if (!stack.length || !stack.find(x => x.history === s0.history)) {
     stack.push(s0)
   }
 
+  // 压栈
   _pushState.call(history, data, unused, url)
 
-  const sT: StackItemInternal = {
+  // 压栈后 ====
+  const sT: StackFrameInternal = {
     history: history.state['sveltekit:history'],
     navigation: history.state['sveltekit:navigation'],
-    stacked: history.state['sveltekit:navigation'] === s0.navigation,
+    virtual: history.state['sveltekit:navigation'] === s0.navigation, // 通过页面计数，确定当前是否为虚拟栈帧
     removed: false,
   }
 
@@ -98,14 +111,13 @@ function pushStateHijacked(data: SvelteHistoryState, unused: string, url?: strin
 
   _stack.set(stack)
 
-  if (sT.navigation !== s0.navigation) {
-    _lastPage.set(s0.navigation)
-  }
+  if (sT.virtual) return
 
-  if (sT.stacked) return
+  // 暂存上一页的计数
+  _lastPage.set(s0.navigation)
 
   // 翻页时，未关闭的栈帧重入
-  const repush = stack.filter(x => x.navigation === s0.navigation && x.stacked && !x.removed)
+  const repush = stack.filter(x => x.navigation === s0.navigation && x.virtual && !x.removed)
   if (!repush?.length) return
 
   logStack('repush', repush)
@@ -127,9 +139,9 @@ function onPopState(event: PopStateEvent) {
   const nT = event.state['sveltekit:navigation']
   let n0: number | undefined = undefined
 
-  const stackT: StackItemInternal[] = []
-  const popedT: StackItemInternal[] = []
-  const prevents: StackItemInternal[] = []
+  const stackT: StackFrameInternal[] = []
+  const popedT: StackFrameInternal[] = []
+  const prevents: StackFrameInternal[] = []
 
   const stack0 = get(_stack)
 
@@ -142,7 +154,8 @@ function onPopState(event: PopStateEvent) {
 
     if (item.history > hT) {
       // 未提供 historyBack 回调，或者回调返回 true，阻止 history back
-      const prevent = item.stacked && !item.removed && (!item.historyBack || !!item.historyBack(item))
+      const prevent =
+        item.virtual && !item.removed && (!item.historyBack || !!item.historyBack(item))
 
       // 未受阻止，移除
       if (!prevent) {
@@ -201,14 +214,70 @@ if (browser) {
   on(window, 'popstate', onPopState)
 }
 
+// 首次加载 ==========================================================================================
+
+const LAST_PAGE = '__sun_parakeet_last_page__'
+const STACK = '__sun_parakeet_stack__'
+
+// 页面离开或刷新时，暂存当前状态
+function setTemp() {
+  const lastPage = get(_lastPage)
+
+  if (lastPage) {
+    sessionStorage.setItem(LAST_PAGE, lastPage.toString())
+  }
+
+  const stack = get(_stack)
+
+  if (stack?.length) {
+    sessionStorage.setItem(STACK, JSON.stringify(stack))
+  }
+}
+
+// 重新载入时恢复状态
+function loadTemp() {
+  const lastPage = sessionStorage.getItem(LAST_PAGE)
+
+  if (lastPage) {
+    try {
+      _lastPage.set(parseInt(lastPage))
+    } catch {
+      console.log('[STACK]', 'Error on reload lastPage', lastPage)
+    }
+  }
+
+  const stackJson = sessionStorage.getItem(STACK)
+
+  if (stackJson?.length) {
+    try {
+      const stack = JSON.parse(stackJson)
+
+      // 移除当前页的虚拟栈帧
+      for (let i = stack.length - 1; i >= 0; i--) {
+        if (!stack[i].virtual) break
+        stack.pop()
+      }
+
+      _stack.set(stack)
+    } catch {
+      console.log('[STACK]', 'Error on reload stack', stackJson)
+    }
+  }
+}
+
+if (browser) {
+  window.addEventListener('pagehide', setTemp)
+  loadTemp()
+}
+
 // 方法 ==============================================================================================
 
 /** 压栈 */
-function push(item: StackItem) {
+function push(item: StackFrame) {
   if (!browser) return
 
-  pushState(location.href + '#', '__stack__')
-  // pushState(location.href, '__stack__')
+  // pushState(location.href + '#', '__stack__')
+  pushState(location.href, '__stack__')
 
   _stack.update(x => {
     const current = x.pop()!
@@ -221,8 +290,8 @@ function remove(key: unknown) {
   const stack0 = get(_stack)
 
   const stackT = stack0.map(x => {
-    const { history, navigation, stacked } = x
-    return x.key === key ? { history, navigation, stacked, removed: true } : x
+    const { history, navigation, virtual } = x
+    return x.key === key ? { history, navigation, virtual, removed: true } : x
   })
 
   _stack.set(stackT)
@@ -243,10 +312,12 @@ function indexOf(key: unknown) {
 
 /** 获取页面切换方向 */
 function pageSwitch(): PageSwitch {
-  const p0 = get(_lastPage)
   const stack = get(_stack)
+  if (!stack.length) return 'load'
+
+  const p0 = get(_lastPage)
   const pT = stack[stack.length - 1].navigation
-  return pT > p0 ? 'forward' : 'backward'
+  return pT > p0 ? 'forward' : pT < p0 ? 'backward' : 'load'
 }
 
 export default {

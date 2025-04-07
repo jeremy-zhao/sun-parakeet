@@ -20,12 +20,30 @@
 
   function flyIn(node: Element): TransitionConfig {
     const ps = stack.pageSwitch()
-    return ps === 'forward' ? fly(node, { duration, x: '100%' }) : fly(node, { duration, x: '-100%' })
+    console.log('flyIn', ps)
+
+    switch (ps) {
+      case 'forward':
+        return fly(node, { duration, x: '100%' })
+      case 'backward':
+        return fly(node, { duration, x: '-100%' })
+      default:
+        return fly(node, { duration, x: '0' })
+    }
   }
 
   function flyOut(node: Element): TransitionConfig {
     const ps = stack.pageSwitch()
-    return ps === 'forward' ? fly(node, { duration, x: '-100%' }) : fly(node, { duration, x: '100%' })
+    console.log('flyOut', ps)
+
+    switch (ps) {
+      case 'forward':
+        return fly(node, { duration, x: '-100%' })
+      case 'backward':
+        return fly(node, { duration, x: '100%' })
+      default:
+        return fly(node, { duration, x: '0' })
+    }
   }
 </script>
 

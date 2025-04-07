@@ -1,0 +1,47 @@
+.sun-parakeet-page-indicator {
+  @apply flex w-auto;
+
+  .sun-parakeet-page-indicator-dot {
+    @apply block;
+    width: var(--sp-size, 3px);
+    height: var(--sp-size, 3px);
+    border-radius: var(--sp-radius, 1px);
+    background-color: var(--sp-color, #d1d5db);
+  }
+
+  .sun-parakeet-page-indicator-dot-active {
+    background-color: var(--sp-active-color, #2563eb);
+  }
+}
+
+.sun-parakeet-page-indicator-horizontal {
+  @apply flex-row flex-nowrap;
+
+  .sun-parakeet-page-indicator-dot {
+    margin-right: var(--sp-gap, 3px);
+  }
+
+  .sun-parakeet-page-indicator-dot-active {
+    width: var(--sp-active-size, 13px);
+  }
+
+  & > :last-child.sun-parakeet-page-indicator-dot {
+    margin-right: 0;
+  }
+}
+
+.sun-parakeet-page-indicator-vertical {
+  @apply flex-col;
+
+  .sun-parakeet-page-indicator-dot {
+    margin-bottom: var(--sp-gap, 3px);
+  }
+
+  .sun-parakeet-page-indicator-dot-active {
+    height: var(--sp-active-size, 13px);
+  }
+
+  & > :last-child.sun-parakeet-page-indicator-dot {
+    margin-bottom: 0;
+  }
+}

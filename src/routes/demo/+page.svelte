@@ -47,6 +47,7 @@
     {@render listItem('Collapse', '折叠面板', '/demo/display/collapse')}
     {@render listItem('Image', '图片', '/demo/display/image')}
     {@render listItem('List', '列表', '/demo/display/list')}
+    {@render listItem('PageIndicator', '分页符', '/demo/display/page-indicator')}
   </List>
   <List header="信息录入">
     {@render listItem('CheckList', '可勾选列表', '/demo/input/check-list')}

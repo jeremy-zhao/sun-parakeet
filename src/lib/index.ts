@@ -21,7 +21,9 @@ import List from './display/List.svelte'
 export type { ListAttributes } from './display/List.svelte'
 import ListItem from './display/ListItem.svelte'
 export type { ListItemAttributes } from './display/ListItem.svelte'
-export { Avatar, Badge, Collapse, Image, List, ListItem }
+import PageIndicator from './display/PageIndicator.svelte'
+export type { PageIndicatorAttributes } from './display/PageIndicator.svelte'
+export { Avatar, Badge, Collapse, Image, List, ListItem, PageIndicator }
 
 // Feedback
 import ActionSheet from './feedback/ActionSheet.svelte'

@@ -1,11 +1,11 @@
 .sun-parakeet-list {
-  @apply !block;
+  @apply m-0 !block list-none p-0;
 
   & > * {
     @apply !relative my-[1px] !overflow-visible;
 
     &::before {
-      @apply absolute left-0 right-0 z-0 h-[1px] border-l-[1em] border-solid;
+      @apply absolute left-0 right-0 h-[1px] border-0 border-l-[1em] border-solid;
       content: '';
       background-color: var(--sp-border-color, #e5e7eb);
       /* background-color: var(--sp-border-color, red); */
@@ -14,7 +14,7 @@
     }
 
     &::after {
-      @apply absolute left-0 right-0 z-0 h-[1px] border-l-[1em] border-solid;
+      @apply absolute left-0 right-0 h-[1px] border-0 border-l-[1em] border-solid;
       content: '';
       background-color: var(--sp-border-color, #e5e7eb);
       /* background-color: var(--sp-border-color, blue); */

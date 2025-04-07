@@ -35,7 +35,7 @@
 
 <Page class="bg-gray-100">
   <List header="基础用法">
-    <div class="flex h-[220px] items-stretch justify-stretch">
+    <div class="flex items-stretch justify-stretch" style="height: 220px">
       <SideBar
         bind:value={selectedTab}
         tabs={[

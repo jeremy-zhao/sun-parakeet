@@ -7,7 +7,7 @@
   import type { HTMLImgAttributes } from 'svelte/elements'
 
   /** 头像 */
-  export interface ImageAttributes extends HTMLImgAttributes {
+  export interface AvatarAttributes extends HTMLImgAttributes {
     /** 占位图 */
     fallback?: string | IconOption | Snippet
     /** 图片的填充模式 */
@@ -22,7 +22,16 @@
 </script>
 
 <script lang="ts">
-  let { fallback, fit, shape, size, class: clazz, style, onClick, ...props }: ImageAttributes = $props()
+  let {
+    fallback,
+    fit,
+    shape,
+    size,
+    class: clazz,
+    style,
+    onClick,
+    ...props
+  }: AvatarAttributes = $props()
 
   let _state = $state('loading')
 

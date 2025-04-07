@@ -35,6 +35,7 @@
     {@render listItem('Space', '间距', '/demo/layout/space')}
   </List>
   <List header="导航">
+    {@render listItem('SideBar', '侧边栏', '/demo/navigation/side-bar')}
     {@render listItem('TabBar', '标签栏', '/demo/navigation/tab-bar')}
     {@render listItem('Tabs', '标签页', '/demo/navigation/tabs')}
     {@render listItem('TabPanel', '标签面板', '/demo/navigation/tab-panel')}

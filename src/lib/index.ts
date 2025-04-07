@@ -2,7 +2,7 @@ import './index.css'
 
 // Common
 import Button from './common/Button.svelte'
-export type { ButtonAttributes, ButtonShape, ButtonTheme } from './common/Button.svelte'
+export type { ButtonAttributes, ButtonTheme } from './common/Button.svelte'
 import Icon from './common/Icon.svelte'
 export type { IconAttributes, IconOption } from './common/Icon.svelte'
 export { Button, Icon }
@@ -71,10 +71,12 @@ export type { SpaceAttributes } from './layout/Space.svelte'
 export { AutoCenter, Divider, Page, Space }
 
 // Navigation
+import SideBar from './navigation/SideBar.svelte'
+export type { SideBarAttributes } from './navigation/SideBar.svelte'
 import TabBar from './navigation/TabBar.svelte'
 export type { TabBarAttributes } from './navigation/TabBar.svelte'
 import TabPanel from './navigation/TabPanel.svelte'
 export type { TabPanelAttributes } from './navigation/TabPanel.svelte'
 import Tabs from './navigation/Tabs.svelte'
 export type { TabsAttributes } from './navigation/Tabs.svelte'
-export { TabBar, TabPanel, Tabs }
+export { SideBar, TabBar, TabPanel, Tabs }

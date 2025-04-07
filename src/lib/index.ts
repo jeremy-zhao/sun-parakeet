@@ -23,7 +23,12 @@ import ListItem from './display/ListItem.svelte'
 export type { ListItemAttributes } from './display/ListItem.svelte'
 import PageIndicator from './display/PageIndicator.svelte'
 export type { PageIndicatorAttributes } from './display/PageIndicator.svelte'
-export { Avatar, Badge, Collapse, Image, List, ListItem, PageIndicator }
+import Swiper from './display/Swiper.svelte'
+export type { SwiperAttributes } from './display/Swiper.svelte'
+import SwiperItem from './display/SwiperItem.svelte'
+export type { SwiperItemAttributes } from './display/SwiperItem.svelte'
+export { Avatar, Badge, Collapse, Image, List, ListItem }
+export { PageIndicator, Swiper, SwiperItem }
 
 // Feedback
 import ActionSheet from './feedback/ActionSheet.svelte'

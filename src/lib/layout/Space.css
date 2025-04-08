@@ -4,6 +4,10 @@
   &.sun-parakeet-space-block {
     @apply flex;
   }
+
+  & > svelte-css-wrapper {
+    @apply !block;
+  }
 }
 
 .sun-parakeet-space-horizontal {

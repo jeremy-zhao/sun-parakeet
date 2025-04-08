@@ -5,6 +5,7 @@
   .sun-parakeet-swiper__track {
     @apply cursor-grab overflow-hidden;
     @apply relative h-full w-full overflow-visible;
+    padding: var(--sp-padding, 0);
 
     & > * {
       @apply relative w-full flex-none;
@@ -23,7 +24,7 @@
     @apply h-full w-full touch-pan-y;
     @apply flex flex-row flex-nowrap;
 
-    & > *:first-child {
+    /* & > *:first-child {
       border-top-left-radius: var(--sp-radius, 0);
       border-bottom-left-radius: var(--sp-radius, 0);
     }
@@ -31,11 +32,11 @@
     & > *:last-child {
       border-top-right-radius: var(--sp-radius, 0);
       border-bottom-right-radius: var(--sp-radius, 0);
-    }
+    } */
   }
 
   .sun-parakeet-swiper__indicator {
-    @apply absolute bottom-2 left-1/2;
+    @apply absolute bottom-[6px] left-1/2;
     translate: -50% 0;
   }
 }

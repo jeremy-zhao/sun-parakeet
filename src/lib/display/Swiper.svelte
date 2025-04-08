@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import './Swiper.css'
 
-  import { untrack } from 'svelte'
+  import { untrack, type Snippet } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
   import PageIndicator from './PageIndicator.svelte'
 
@@ -15,6 +15,8 @@
     bounce?: boolean
     /** 方向。默认值 'horizontal' */
     direction?: 'horizontal' | 'vertical'
+    /** 自定义指示器 */
+    indicator?: Snippet<[total: number, value: number]>
     /** 是否循环。子元素数量大于 2 时生效 */
     loop?: boolean
     /** 当前播放的索引 */
@@ -40,6 +42,7 @@
     autoplayInterval = 3000,
     bounce = false,
     direction = 'horizontal',
+    indicator,
     loop = false,
     onChange,
     onClick,
@@ -316,5 +319,11 @@
   <div bind:this={_track} use:useTrack class="sun-parakeet-swiper__track" style:translate>
     {@render children?.()}
   </div>
-  <PageIndicator class="sun-parakeet-swiper__indicator" {total} {value} />
+  {#if total > 0}
+    {#if typeof indicator === 'function'}
+      {@render indicator(total, value)}
+    {:else}
+      <PageIndicator class="sun-parakeet-swiper__indicator" {total} {value} />
+    {/if}
+  {/if}
 </div>

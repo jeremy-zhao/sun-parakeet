@@ -48,7 +48,7 @@
     {@render listItem('Image', '图片', '/demo/display/image')}
     {@render listItem('List', '列表', '/demo/display/list')}
     {@render listItem('PageIndicator', '分页符', '/demo/display/page-indicator')}
-    {@render listItem('Swiper', '轮播/走马灯', '/demo/display/swiper')}
+    {@render listItem('Swiper', '轮播', '/demo/display/swiper')}
   </List>
   <List header="信息录入">
     {@render listItem('CheckList', '可勾选列表', '/demo/input/check-list')}

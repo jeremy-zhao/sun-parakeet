@@ -1,35 +1,65 @@
 <script lang="ts">
-  import { Page, List, Swiper, SwiperItem, showToast } from '$lib'
+  import { Page, List, Swiper, Space, Button, showToast } from '$lib'
 
+  // const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac', 'pink']
   const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac']
+  // const colors = ['#ace0ff', '#bcffbd', '#e4fabd']
+  // const colors = ['#ace0ff', '#bcffbd']
+  // const colors = ['#ace0ff']
 
   let value = $state(0)
 </script>
 
 {#snippet items()}
   {#each colors as color, index}
-    <SwiperItem
+    <div
       class="flex items-center justify-center text-white"
       style="background-color: {color}; font-size: 48px;"
     >
       <span>{index + 1}</span>
-    </SwiperItem>
+    </div>
   {/each}
 {/snippet}
 
 <Page class="bg-gray-100">
   <List header="基础用法">
     <div class="bg-white p-4">
-      <Swiper style="height: 120px" onClick={val => showToast({ text: (val + 1).toString() })}>
+      <Swiper style="height: 120px">
         {@render items()}
       </Swiper>
     </div>
   </List>
-  <List header="基础用法">
+  <List header="圆角-回弹">
+    <div class="bg-white p-4">
+      <Swiper style="height: 120px" bounce --sp-radius="8px">
+        {@render items()}
+      </Swiper>
+    </div>
+  </List>
+  <List header="自动播放">
     <div class="bg-white p-4">
       <Swiper style="height: 120px" autoplay>
         {@render items()}
       </Swiper>
     </div>
+  </List>
+  <List header="自动播放-循环">
+    <div class="bg-white p-4">
+      <Swiper style="height: 120px" autoplay loop>
+        {@render items()}
+      </Swiper>
+    </div>
+  </List>
+  <List header="手动控制-循环">
+    <div class="bg-white p-4">
+      <Swiper bind:value style="height: 120px" loop>
+        {@render items()}
+      </Swiper>
+    </div>
+    <Space block class="bg-white p-4">
+      {#each colors, index}
+        <Button onclick={() => (value = index)}>{index + 1}</Button>
+      {/each}
+    </Space>
   </List>
 </Page>

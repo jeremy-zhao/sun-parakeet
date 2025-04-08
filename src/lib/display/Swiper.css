@@ -3,7 +3,7 @@
   border-radius: var(--sp-radius, 0);
 
   .sun-parakeet-swiper__track {
-    @apply cursor-grab;
+    @apply cursor-grab overflow-hidden;
     @apply relative h-full w-full overflow-visible;
 
     & > * {
@@ -14,7 +14,7 @@
 
 .sun-parakeet-swiper-animation {
   .sun-parakeet-swiper__track {
-    transition: translate 0.5s ease-out;
+    transition: translate 0.3s ease-out;
   }
 }
 
@@ -22,6 +22,16 @@
   .sun-parakeet-swiper__track {
     @apply h-full w-full touch-pan-y;
     @apply flex flex-row flex-nowrap;
+
+    & > *:first-child {
+      border-top-left-radius: var(--sp-radius, 0);
+      border-bottom-left-radius: var(--sp-radius, 0);
+    }
+
+    & > *:last-child {
+      border-top-right-radius: var(--sp-radius, 0);
+      border-bottom-right-radius: var(--sp-radius, 0);
+    }
   }
 
   .sun-parakeet-swiper__indicator {

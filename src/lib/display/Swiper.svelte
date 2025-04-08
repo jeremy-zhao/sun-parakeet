@@ -5,14 +5,17 @@
   import type { HTMLAttributes } from 'svelte/elements'
   import PageIndicator from './PageIndicator.svelte'
 
+  /** 轮播属性 */
   export interface SwiperAttributes extends HTMLAttributes<EventTarget> {
     /** 自动切换 */
     autoplay?: boolean
     /** 自动切换的时间间隔，单位 ms */
     autoplayInterval?: number
+    /** 拖动超出区域时启用回弹效果。仅在非 loop 模式下，且子元素数量大于 1 时生效 */
+    bounce?: boolean
     /** 方向。默认值 'horizontal' */
     direction?: 'horizontal' | 'vertical'
-    /** 是否循环 */
+    /** 是否循环。子元素数量大于 2 时生效 */
     loop?: boolean
     /** 当前播放的索引 */
     value?: number
@@ -35,6 +38,7 @@
     value = $bindable(0),
     autoplay = false,
     autoplayInterval = 3000,
+    bounce = false,
     direction = 'horizontal',
     loop = false,
     onChange,
@@ -44,22 +48,25 @@
     ...props
   }: SwiperAttributes = $props()
 
+  let _current = $state(value)
+
   let _self: HTMLDivElement
+  let _track: HTMLDivElement
 
   // 总数变更 =================================
 
   let total = $state(0)
 
-  function useTrack(node: HTMLDivElement) {
-    total = node.children.length
+  function useTrack(_: HTMLDivElement) {
+    total = _track.children.length
 
     const observer = new MutationObserver(cb => {
       const childList = cb.find(x => x.type === 'childList')
       if (!childList) return
-      total = node.children.length
+      total = _track.children.length
     })
 
-    observer.observe(node, { childList: true, subtree: false })
+    observer.observe(_track, { childList: true, subtree: false })
 
     return {
       destroy() {
@@ -106,10 +113,12 @@
 
   let _move: { x: number; y: number; t: number }[] = []
 
+  // 记录移动数据
   function record(e: PointerEvent) {
     _move.push({ x: e.x, y: e.y, t: Date.now() })
   }
 
+  // 获取速度
   function getVelocity() {
     if (_move.length < 2) return 0
 
@@ -131,8 +140,16 @@
     }
   }
 
+  // 根据位移计算当前位置
+  function calcPosition() {
+    const current = Math.floor((-_offset + _self.clientWidth / 2) / _self.clientWidth)
+    const offset = current * _self.clientWidth + _offset
+    return [current, offset]
+  }
+
+  // 重置
   function reset() {
-    _offset = 0 - value * _self.clientWidth
+    _offset = -_current * _self.clientWidth
     _pointerId = null
     _move = []
   }
@@ -156,7 +173,25 @@
     if (e.pointerId !== _pointerId) return
 
     const offset = e.x - _start
-    _offset = offset < min() ? min() : offset > max() ? max() : offset
+
+    // 轮播
+    if (loop && total > 2) {
+      _offset = offset
+    }
+    // 弹性
+    else if (bounce && !loop && total > 1) {
+      _offset =
+        offset < min()
+          ? min() + (offset - min()) / 8
+          : offset > max()
+            ? (offset - max()) / 8
+            : offset
+    }
+    // 普通
+    else {
+      _offset = offset < min() ? min() : offset > max() ? max() : offset
+    }
+
     // console.log('[SwipAction]', 'handlePointerMove', offset)
 
     record(e)
@@ -183,11 +218,14 @@
     }
 
     // 滑动
-    let next = Math.floor((-_offset + _self.clientWidth / 2) / _self.clientWidth)
-
-    const offset = next * _self.clientWidth + _offset
+    let [next, offset] = calcPosition()
     let sub = offset > 0 ? next - 1 : offset < 0 ? next + 1 : next
-    sub = sub < 0 ? 0 : sub >= total ? total - 1 : sub
+
+    if (!loop) {
+      sub = sub < 0 ? 0 : sub >= total ? total - 1 : sub
+    }
+
+    console.log('next', next, 'sub', sub)
 
     record(e)
     const velocity = getVelocity()
@@ -199,16 +237,63 @@
       next--
     }
 
-    next = next < 0 ? 0 : next >= total ? total - 1 : next
+    if (loop) {
+      _current = next
+    }
 
-    value = next
+    let cur = next % total
+    cur = cur < 0 ? total + cur : cur
+
+    value = cur
     reset()
     play()
   }
 
   $effect(() => {
     value
-    untrack(reset)
+
+    untrack(() => {
+      // 循环播放，值被外部改变时，就近取值
+      if (loop && total > 2) {
+        const half = Math.floor(total / 2)
+        let cur = _current % total
+        cur = cur < 0 ? total + cur : cur
+
+        let diff = value - cur
+        diff = diff < -half ? total + diff : diff > half ? diff - total : diff
+
+        _current += diff
+      }
+      // 非循环播放
+      else {
+        _current = value
+      }
+
+      reset()
+    })
+  })
+
+  $effect(() => {
+    if (loop && total > 2) {
+      _offset
+
+      const half = Math.floor(total / 2)
+
+      const [current, _] = calcPosition()
+      _track.style.left = `${(current - half + ((total + 1) % 2)) * _self.clientWidth}px`
+
+      untrack(() => {
+        const half = Math.floor(total / 2)
+
+        for (let i = 0, len = _track.children.length; i < len; i++) {
+          const child = _track.children[i] as HTMLElement
+          const j = (i - current) % total
+          const k = j < 0 ? total + j : j
+          const l = k > half ? k - total : k
+          child.style.order = l.toString()
+        }
+      })
+    }
   })
 </script>
 
@@ -228,7 +313,7 @@
   onpointerup={handlePointerUp}
   onpointercancel={reset}
 >
-  <div use:useTrack class="sun-parakeet-swiper__track" style:translate>
+  <div bind:this={_track} use:useTrack class="sun-parakeet-swiper__track" style:translate>
     {@render children?.()}
   </div>
   <PageIndicator class="sun-parakeet-swiper__indicator" {total} {value} />

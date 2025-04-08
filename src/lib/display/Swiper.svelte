@@ -18,6 +18,8 @@
     value?: number
     /** 切换时触发 */
     onChange?: (value: number) => void
+    /** 点击面板时触发 */
+    onClick?: (value: number) => void
   }
 
   // 点击判定阈值
@@ -36,6 +38,7 @@
     direction = 'horizontal',
     loop = false,
     onChange,
+    onClick,
     class: clazz,
     children,
     ...props
@@ -64,6 +67,32 @@
       },
     }
   }
+
+  // 自动播放 =================================
+
+  let interval: NodeJS.Timeout | undefined
+
+  function play() {
+    stop()
+    if (!autoplay) return
+
+    interval = setTimeout(() => {
+      value = (value + 1) % total
+      play()
+    }, autoplayInterval)
+  }
+
+  function stop() {
+    if (!interval) return
+
+    clearTimeout(interval)
+    interval = undefined
+  }
+
+  $effect(() => {
+    if (autoplay) play()
+    else stop()
+  })
 
   // 触摸控制 =================================
 
@@ -120,6 +149,7 @@
     _self.classList.remove('sun-parakeet-swiper-animation')
 
     record(e)
+    stop()
   }
 
   function handlePointerMove(e: PointerEvent) {
@@ -148,6 +178,7 @@
 
     if (Math.abs(distance) < CLICK_THRESHOLD) {
       reset()
+      onClick?.(value)
       return
     }
 
@@ -162,8 +193,6 @@
     const velocity = getVelocity()
     const over = Math.abs(velocity) > VELOCITY_THRESHOLD
 
-    console.log('next', next, sub)
-
     if (velocity < 0 && next < sub && over) {
       next++
     } else if (velocity > 0 && next > sub && over) {
@@ -174,6 +203,7 @@
 
     value = next
     reset()
+    play()
   }
 
   $effect(() => {

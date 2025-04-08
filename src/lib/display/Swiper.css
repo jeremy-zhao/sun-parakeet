@@ -14,7 +14,7 @@
 
 .sun-parakeet-swiper-animation {
   .sun-parakeet-swiper__track {
-    transition: translate 0.5s;
+    transition: translate 0.3s ease-out;
   }
 }
 

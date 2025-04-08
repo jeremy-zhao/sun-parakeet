@@ -1,8 +1,9 @@
 <script lang="ts" module>
   import './Swiper.css'
 
-  import PageIndicator from './PageIndicator.svelte'
+  import { untrack } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
+  import PageIndicator from './PageIndicator.svelte'
 
   export interface SwiperAttributes extends HTMLAttributes<EventTarget> {
     /** 自动切换 */
@@ -19,8 +20,12 @@
     onChange?: (value: number) => void
   }
 
-  // 滑动时判定状态变更的最小位移
-  const THRESHOLD = 20
+  // 点击判定阈值
+  const CLICK_THRESHOLD = 2
+  // 时间阈值
+  const TIME_THRESHOLD = 100
+  // 速度阈值
+  const VELOCITY_THRESHOLD = 0.5
 </script>
 
 <script lang="ts">
@@ -62,18 +67,45 @@
 
   // 触摸控制 =================================
 
-  let _pointerId: number | null | undefined
+  let _pointerId: number | null
   let _start: number
   let _offset = $state(0)
-
   let translate = $derived(`${_offset}px 0px`)
 
   const min = () => 0 - (total - 1) * _self.clientWidth
   const max = () => 0
 
+  let _move: { x: number; y: number; t: number }[] = []
+
+  function record(e: PointerEvent) {
+    _move.push({ x: e.x, y: e.y, t: Date.now() })
+  }
+
+  function getVelocity() {
+    if (_move.length < 2) return 0
+
+    let j = _move.length - 1
+    let i = j - 1
+    let dt = 0
+
+    for (; i >= 0; i--) {
+      dt = _move[j].t - _move[i].t
+      if (dt > TIME_THRESHOLD) break
+    }
+
+    if (i < 0) i = 0
+
+    if (direction === 'horizontal') {
+      return (_move[j].x - _move[i].x) / dt
+    } else {
+      return (_move[j].y - _move[i].y) / dt
+    }
+  }
+
   function reset() {
     _offset = 0 - value * _self.clientWidth
     _pointerId = null
+    _move = []
   }
 
   function handlePointerDown(e: PointerEvent) {
@@ -86,6 +118,8 @@
     _pointerId = e.pointerId
     _start = e.x - _offset
     _self.classList.remove('sun-parakeet-swiper-animation')
+
+    record(e)
   }
 
   function handlePointerMove(e: PointerEvent) {
@@ -94,40 +128,46 @@
     const offset = e.x - _start
     _offset = offset < min() ? min() : offset > max() ? max() : offset
     // console.log('[SwipAction]', 'handlePointerMove', offset)
+
+    record(e)
   }
 
   function handlePointerUp(e: PointerEvent) {
     if (e.pointerId !== _pointerId) return
 
-    // console.log('[SwipAction]', 'handlePointerUp', e.x)
+    // console.log('[SwipAction]', 'handlePointerUp')
     const target = e.target as HTMLElement
     target.releasePointerCapture(e.pointerId)
 
     _pointerId = null
     _self.classList.add('sun-parakeet-swiper-animation')
 
-    // 点击关闭
+    // 点击
+    const offset0 = 0 - _self.clientWidth * value
+    const distance = _offset - offset0
 
-    // if (
-    //   (_state === 'left' && _offset >= max() - 1) ||
-    //   (_state === 'right' && _offset <= min() + 1)
-    // ) {
-    //   // 手动归位
-    //   if (keepOnAction && e.composedPath().find(x => x === _left || x === _right)) return
-
-    //   // 自动归位
-    //   _state = 'close'
-    //   return
-    // }
+    if (Math.abs(distance) < CLICK_THRESHOLD) {
+      reset()
+      return
+    }
 
     // 滑动
-    let next = Math.floor((0 - _offset + _self.clientWidth / 2) / _self.clientWidth)
+    let next = Math.floor((-_offset + _self.clientWidth / 2) / _self.clientWidth)
 
-    if (next === value) {
-      const thresholdMin = 0 - _self.clientWidth * next - THRESHOLD
-      const thresholdMax = 0 - _self.clientWidth * next + THRESHOLD
+    const offset = next * _self.clientWidth + _offset
+    let sub = offset > 0 ? next - 1 : offset < 0 ? next + 1 : next
+    sub = sub < 0 ? 0 : sub >= total ? total - 1 : sub
 
-      next = _offset < thresholdMin ? next + 1 : _offset > thresholdMax ? next - 1 : next
+    record(e)
+    const velocity = getVelocity()
+    const over = Math.abs(velocity) > VELOCITY_THRESHOLD
+
+    console.log('next', next, sub)
+
+    if (velocity < 0 && next < sub && over) {
+      next++
+    } else if (velocity > 0 && next > sub && over) {
+      next--
     }
 
     next = next < 0 ? 0 : next >= total ? total - 1 : next
@@ -135,6 +175,11 @@
     value = next
     reset()
   }
+
+  $effect(() => {
+    value
+    untrack(reset)
+  })
 </script>
 
 <div
@@ -142,7 +187,7 @@
   class={[
     'sun-parakeet-swiper',
     `sun-parakeet-swiper-${direction}`,
-    'sun-parakeet-swiper-action-animation',
+    'sun-parakeet-swiper-animation',
     clazz,
   ]
     .filter(x => x)

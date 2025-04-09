@@ -9,8 +9,9 @@
 
     & > * {
       @apply relative flex-none;
-      width: var(--sp-width, 100%) !important;
-      height: var(--sp-height, 100%) !important;
+      /* 暂时不支持宽度控制 */
+      /* width: var(--sp-width, 100%) !important; */
+      /* height: var(--sp-height, 100%) !important; */
     }
   }
 }

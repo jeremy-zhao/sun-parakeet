@@ -41,6 +41,8 @@
     maxPullDownDistance?: number
     /** 刷新阈值 */
     refreshThreshold?: number
+    /** 震动反馈 */
+    vibrate?: boolean
     /** 下拉刷新事件 */
     onRefresh?: () => any
   }
@@ -52,6 +54,7 @@
     header = {},
     maxPullDownDistance = 100,
     refreshThreshold = 60,
+    vibrate = false,
     onRefresh,
     class: clazz,
     children,
@@ -103,9 +106,14 @@
     const touch = [...e.touches].find(x => x.identifier === _touchId)
     if (!touch) return
 
+    const lastState = _state
     const offset = (touch.clientY - _start) / 5
     _offset = offset < 0 ? 0 : offset > max() ? max() : offset
     _state = _offset <= 0 ? 'idle' : _offset < threshold() ? 'pulling' : 'loosing'
+
+    if (vibrate && lastState !== 'loosing' && _state === 'loosing') {
+      navigator?.vibrate?.(50)
+    }
 
     // console.log('[PullToRefresh]', 'handlePointerMove', offset)
   }

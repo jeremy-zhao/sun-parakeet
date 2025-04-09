@@ -20,14 +20,14 @@
 {/snippet}
 
 <Page class="flex flex-col bg-gray-100">
-  <Tabs class="flex-none" bind:value={currentTab} tabs={['基础用法', '自定义']} />
+  <Tabs class="flex-none" bind:value={currentTab} tabs={['基础用法', '自定义-震动反馈']} />
   <TabPanel class="flex-auto " visible={currentTab === '基础用法'}>
     <PullToRefresh class="h-full" onRefresh={handleRefresh}>
       {@render content()}
     </PullToRefresh>
   </TabPanel>
-  <TabPanel class="flex-auto " visible={currentTab === '自定义'}>
-    <PullToRefresh class="h-full">
+  <TabPanel class="flex-auto " visible={currentTab === '自定义-震动反馈'}>
+    <PullToRefresh class="h-full" vibrate onRefresh={handleRefresh}>
       {@render content()}
     </PullToRefresh>
   </TabPanel>

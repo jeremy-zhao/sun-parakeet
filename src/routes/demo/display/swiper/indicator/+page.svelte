@@ -59,7 +59,9 @@
       <Swiper style="height: 120px">
         {@render items()}
         {#snippet indicator(total: number, value: number)}
-          <div class="absolute right-2 top-2 rounded bg-gray-600/50 px-2 py-1 text-sm text-white">
+          <div
+            style="position: absolute; top: 8px; right: 8px; padding: 0.25rem 0.5rem; border-radius: 5px; background-color: rgb(75 85 99 / 0.5); font-size: 14px; color: white"
+          >
             {value + 1} / {total}
           </div>
         {/snippet}

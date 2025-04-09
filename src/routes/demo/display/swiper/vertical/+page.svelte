@@ -22,37 +22,37 @@
 {/snippet}
 
 <Page class="bg-gray-100">
-  <List header="指示器颜色">
+  <List header="纵向">
     <div class="bg-white p-4">
-      <Swiper style="height: 120px">
+      <Swiper style="height: 120px" direction="vertical">
         {@render items()}
       </Swiper>
     </div>
   </List>
   <List header="圆角-回弹">
     <div class="bg-white p-4">
-      <Swiper style="height: 120px" bounce --sp-radius="8px">
+      <Swiper style="height: 120px; border-radius: 8px" direction="vertical" bounce>
         {@render items()}
       </Swiper>
     </div>
   </List>
   <List header="自动播放">
     <div class="bg-white p-4">
-      <Swiper style="height: 120px" autoplay>
+      <Swiper style="height: 120px" direction="vertical" autoplay>
         {@render items()}
       </Swiper>
     </div>
   </List>
   <List header="自动播放-循环">
     <div class="bg-white p-4">
-      <Swiper style="height: 120px" autoplay loop>
+      <Swiper style="height: 120px" direction="vertical" autoplay loop>
         {@render items()}
       </Swiper>
     </div>
   </List>
   <List header="手动控制-循环">
     <div class="bg-white p-4">
-      <Swiper bind:value style="height: 120px" loop>
+      <Swiper bind:value style="height: 120px" direction="vertical" loop>
         {@render items()}
       </Swiper>
     </div>

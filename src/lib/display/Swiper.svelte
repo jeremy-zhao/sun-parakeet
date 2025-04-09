@@ -109,10 +109,28 @@
   let _pointerId: number | null
   let _start: number
   let _offset = $state(0)
-  let translate = $derived(`${_offset}px 0px`)
 
-  const min = () => 0 - (total - 1) * _self.clientWidth
+  // 是否为纵向显示
+  const vertical = () => direction === 'vertical'
+
+  // 偏移量
+  let translate = $derived(vertical() ? `0px ${_offset}px` : `${_offset}px 0px`)
+
+  // 计算宽度
+  const width = () =>
+    vertical() ? (_track.children[0]?.clientHeight ?? 0) : (_track.children[0]?.clientWidth ?? 0)
+
+  // 最小位置
+  const min = () => 0 - (total - 1) * width()
+
+  // 最大位置
   const max = () => 0
+
+  // 总数的一半，取下整
+  const half = () => Math.floor(total / 2)
+
+  // 通过 _offset 取当前滑块所在位置
+  const position = () => Math.floor((-_offset + width() / 2) / width())
 
   let _move: { x: number; y: number; t: number }[] = []
 
@@ -136,23 +154,16 @@
 
     if (i < 0) i = 0
 
-    if (direction === 'horizontal') {
-      return (_move[j].x - _move[i].x) / dt
-    } else {
+    if (vertical()) {
       return (_move[j].y - _move[i].y) / dt
+    } else {
+      return (_move[j].x - _move[i].x) / dt
     }
-  }
-
-  // 根据位移计算当前位置
-  function calcPosition() {
-    const current = Math.floor((-_offset + _self.clientWidth / 2) / _self.clientWidth)
-    const offset = current * _self.clientWidth + _offset
-    return [current, offset]
   }
 
   // 重置
   function reset() {
-    _offset = -_current * _self.clientWidth
+    _offset = -_current * width()
     _pointerId = null
     _move = []
   }
@@ -165,7 +176,7 @@
     target.setPointerCapture(e.pointerId)
 
     _pointerId = e.pointerId
-    _start = e.x - _offset
+    _start = (vertical() ? e.y : e.x) - _offset
     _self.classList.remove('sun-parakeet-swiper-animation')
 
     record(e)
@@ -175,7 +186,7 @@
   function handlePointerMove(e: PointerEvent) {
     if (e.pointerId !== _pointerId) return
 
-    const offset = e.x - _start
+    const offset = (vertical() ? e.y : e.x) - _start
 
     // 轮播
     if (loop && total > 2) {
@@ -211,7 +222,7 @@
     _self.classList.add('sun-parakeet-swiper-animation')
 
     // 点击
-    const offset0 = 0 - _self.clientWidth * value
+    const offset0 = 0 - width() * value
     const distance = _offset - offset0
 
     if (Math.abs(distance) < CLICK_THRESHOLD) {
@@ -221,14 +232,15 @@
     }
 
     // 滑动
-    let [next, offset] = calcPosition()
+    let next = position()
+    const offset = next * width() + _offset
     let sub = offset > 0 ? next - 1 : offset < 0 ? next + 1 : next
 
     if (!loop) {
       sub = sub < 0 ? 0 : sub >= total ? total - 1 : sub
     }
 
-    console.log('next', next, 'sub', sub)
+    // console.log('[Swiper]', 'next', next, 'sub', sub)
 
     record(e)
     const velocity = getVelocity()
@@ -258,12 +270,11 @@
     untrack(() => {
       // 循环播放，值被外部改变时，就近取值
       if (loop && total > 2) {
-        const half = Math.floor(total / 2)
         let cur = _current % total
         cur = cur < 0 ? total + cur : cur
 
         let diff = value - cur
-        diff = diff < -half ? total + diff : diff > half ? diff - total : diff
+        diff = diff < -half() ? total + diff : diff > half() ? diff - total : diff
 
         _current += diff
       }
@@ -276,26 +287,34 @@
     })
   })
 
+  // 循环控制
   $effect(() => {
     if (loop && total > 2) {
-      _offset
+      const current = position()
 
-      const half = Math.floor(total / 2)
-
-      const [current, _] = calcPosition()
-      _track.style.left = `${(current - half + ((total + 1) % 2)) * _self.clientWidth}px`
+      if (vertical()) {
+        _track.style.top = `${(current - half() + ((total + 1) % 2)) * width()}px`
+      } else {
+        _track.style.left = `${(current - half() + ((total + 1) % 2)) * width()}px`
+      }
 
       untrack(() => {
-        const half = Math.floor(total / 2)
-
+        // 计算排列顺序
         for (let i = 0, len = _track.children.length; i < len; i++) {
           const child = _track.children[i] as HTMLElement
           const j = (i - current) % total
           const k = j < 0 ? total + j : j
-          const l = k > half ? k - total : k
-          child.style.order = l.toString()
+          const order = k > half() ? k - total : k
+          child.style.order = order.toString()
         }
       })
+    } else {
+      _track.style.removeProperty('left')
+      _track.style.removeProperty('top')
+
+      for (let child of _track.children as Iterable<HTMLElement>) {
+        child.style.removeProperty('order')
+      }
     }
   })
 </script>
@@ -323,7 +342,7 @@
     {#if typeof indicator === 'function'}
       {@render indicator(total, value)}
     {:else}
-      <PageIndicator class="sun-parakeet-swiper__indicator" {total} {value} />
+      <PageIndicator class="sun-parakeet-swiper__indicator" {total} {value} {direction} />
     {/if}
   {/if}
 </div>

@@ -4,10 +4,13 @@
   .sun-parakeet-swiper__track {
     @apply cursor-grab overflow-hidden;
     @apply relative h-full w-full overflow-visible;
+    @apply flex;
     padding: var(--sp-padding, 0);
 
     & > * {
-      @apply relative w-full flex-none;
+      @apply relative flex-none;
+      width: var(--sp-width, 100%) !important;
+      height: var(--sp-height, 100%) !important;
     }
   }
 }
@@ -20,8 +23,8 @@
 
 .sun-parakeet-swiper-horizontal {
   .sun-parakeet-swiper__track {
-    @apply h-full w-full touch-pan-y;
-    @apply flex flex-row flex-nowrap;
+    @apply touch-pan-y;
+    @apply flex-row flex-nowrap;
   }
 
   .sun-parakeet-swiper__indicator {
@@ -31,7 +34,13 @@
 }
 
 .sun-parakeet-swiper-vertical {
+  .sun-parakeet-swiper__track {
+    @apply touch-pan-x;
+    @apply flex-col;
+  }
+
   .sun-parakeet-swiper__indicator {
-    @apply absolute bottom-2 left-1/2;
+    @apply absolute left-[6px] top-1/2;
+    translate: 0 -50%;
   }
 }

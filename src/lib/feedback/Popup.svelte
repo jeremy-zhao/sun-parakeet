@@ -7,14 +7,16 @@
   export type PopupPosition = 'center' | 'top' | 'right' | 'bottom' | 'left'
 
   export interface PopupAttributes extends HTMLAttributes<EventTarget> {
-    /** 是否显示 */
-    visible?: boolean
-    /** 弹出位置。默认为 `bottom` */
-    position?: PopupPosition
+    /** 关闭时销毁子元素 */
+    destroyOnClose?: boolean
     /** 是否展示遮罩。默认为 `true` */
     mask?: boolean
     /** 点击遮罩时是否关闭。默认为 `true` */
     maskClickClose?: boolean
+    /** 弹出位置。默认为 `bottom` */
+    position?: PopupPosition
+    /** 是否显示 */
+    visible?: boolean
     /** 点击遮罩关闭时触发 */
     onClose?: () => void
   }
@@ -24,15 +26,17 @@
   import { browser } from '$app/environment'
   import stack from '../common/historyStack.js'
   import { onMount } from 'svelte'
+  import { render } from 'svelte/server'
 
   let _mask: HTMLDivElement
   let _self: HTMLDivElement
 
   let {
     visible = $bindable(false),
-    position = 'bottom',
+    destroyOnClose = false,
     mask = true,
     maskClickClose = true,
+    position = 'bottom',
     class: clazz,
     onClose,
     children,
@@ -40,25 +44,40 @@
   }: PopupAttributes = $props()
 
   let zIndex = $derived(10000 + 2 * stack.indexOf(_self!))
-
   let positioned = $derived(`sun-parakeet-popup-${position}`)
+  let renderChildren = $state(true)
+  let closeTimeout: NodeJS.Timeout | undefined
 
   // visible
   $effect(() => {
     if (!browser) return
 
-    if (visible && stack.indexOf(_self) < 0) {
-      mask && document.body.append(_mask)
+    if (closeTimeout) {
+      clearTimeout(closeTimeout)
+      closeTimeout = undefined
+    }
 
-      stack.push({
-        key: _self,
-        historyBack(item) {
-          if (item.key !== _self) return
-          visible = false
-        },
-      })
-    } else if (!visible && stack.indexOf(_self) >= 0) {
-      stack.remove(_self)
+    if (visible) {
+      mask && document.body.append(_mask)
+      renderChildren = true
+
+      if (stack.indexOf(_self) < 0) {
+        stack.push({
+          key: _self,
+          historyBack(item) {
+            if (item.key !== _self) return
+            visible = false
+          },
+        })
+      }
+    } else if (!visible) {
+      if (stack.indexOf(_self) >= 0) {
+        stack.remove(_self)
+      }
+
+      if (destroyOnClose) {
+        closeTimeout = setTimeout(() => (renderChildren = false), 150)
+      }
     }
   })
 
@@ -94,5 +113,7 @@
   {...props}
   style:z-index={zIndex + 1}
 >
-  {@render children?.()}
+  {#if renderChildren}
+    {@render children?.()}
+  {/if}
 </div>

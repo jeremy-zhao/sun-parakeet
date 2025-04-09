@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { Page, List, Swiper, Space, Button, showToast } from '$lib'
+  import { Page, List, Swiper, Button, Popup } from '$lib'
 
   // const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac', 'pink']
-  const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac']
+  // const colors = ['#ace0ff', '#bcffbd', '#e4fabd', '#ffcfac']
   // const colors = ['#ace0ff', '#bcffbd', '#e4fabd']
-  // const colors = ['#ace0ff', '#bcffbd']
+  const colors = ['#ace0ff', '#bcffbd']
   // const colors = ['#ace0ff']
 
-  let value = $state(0)
+  let visible = $state(false)
 </script>
 
 {#snippet items()}
@@ -24,42 +24,15 @@
 <Page class="bg-gray-100">
   <List header="指示器颜色">
     <div class="bg-white p-4">
-      <Swiper style="height: 120px">
-        {@render items()}
-      </Swiper>
+      <Button onclick={() => (visible = true)}>显示弹出层</Button>
     </div>
   </List>
-  <List header="圆角-回弹">
-    <div class="bg-white p-4">
-      <Swiper style="height: 120px" bounce --sp-radius="8px">
-        {@render items()}
-      </Swiper>
-    </div>
-  </List>
-  <List header="自动播放">
-    <div class="bg-white p-4">
-      <Swiper style="height: 120px" autoplay>
-        {@render items()}
-      </Swiper>
-    </div>
-  </List>
-  <List header="自动播放-循环">
-    <div class="bg-white p-4">
-      <Swiper style="height: 120px" autoplay loop>
-        {@render items()}
-      </Swiper>
-    </div>
-  </List>
-  <List header="手动控制-循环">
-    <div class="bg-white p-4">
-      <Swiper bind:value style="height: 120px" loop>
-        {@render items()}
-      </Swiper>
-    </div>
-    <Space block class="bg-white p-4">
-      {#each colors, index}
-        <Button onclick={() => (value = index)}>{index + 1}</Button>
-      {/each}
-    </Space>
-  </List>
+  <Popup bind:visible class="h-full" destroyOnClose>
+    <Swiper class="h-full">
+      {@render items()}
+      <div class="flex items-center justify-center bg-white text-white">
+        <Button onclick={() => (visible = false)}>开始使用</Button>
+      </div>
+    </Swiper>
+  </Popup>
 </Page>

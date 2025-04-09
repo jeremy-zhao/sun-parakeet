@@ -31,7 +31,7 @@
   </List>
   <List header="圆角-回弹">
     <div class="bg-white p-4">
-      <Swiper style="height: 120px" bounce --sp-radius="8px">
+      <Swiper style="height: 120px; border-radius: 8px" bounce>
         {@render items()}
       </Swiper>
     </div>

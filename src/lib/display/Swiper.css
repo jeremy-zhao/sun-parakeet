@@ -1,6 +1,5 @@
 .sun-parakeet-swiper {
   @apply relative block select-none overflow-hidden;
-  border-radius: var(--sp-radius, 0);
 
   .sun-parakeet-swiper__track {
     @apply cursor-grab overflow-hidden;
@@ -23,16 +22,6 @@
   .sun-parakeet-swiper__track {
     @apply h-full w-full touch-pan-y;
     @apply flex flex-row flex-nowrap;
-
-    /* & > *:first-child {
-      border-top-left-radius: var(--sp-radius, 0);
-      border-bottom-left-radius: var(--sp-radius, 0);
-    }
-
-    & > *:last-child {
-      border-top-right-radius: var(--sp-radius, 0);
-      border-bottom-right-radius: var(--sp-radius, 0);
-    } */
   }
 
   .sun-parakeet-swiper__indicator {

@@ -43,7 +43,6 @@
   <List header="信息展示">
     {@render listItem('Avatar', '头像', '/demo/display/avatar')}
     {@render listItem('Badge', '徽标', '/demo/display/badge')}
-    {@render listItem('Card', '卡片', '/demo/display/card')}
     {@render listItem('Collapse', '折叠面板', '/demo/display/collapse')}
     {@render listItem('Image', '图片', '/demo/display/image')}
     {@render listItem('List', '列表', '/demo/display/list')}
@@ -67,6 +66,7 @@
     {@render listItem('ActionSheet', '动作面板', '/demo/feedback/action-sheet')}
     {@render listItem('Loading', '加载中', '/demo/feedback/loading')}
     {@render listItem('Popup', '弹出层', '/demo/feedback/popup')}
+    {@render listItem('PullToRefresh', '下拉刷新', '/demo/feedback/pull-to-refresh')}
     {@render listItem('SwipeAction', '滑动操作', '/demo/feedback/swipe-action')}
     {@render listItem('Toast', '轻提示', '/demo/feedback/toast')}
   </List>

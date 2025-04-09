@@ -34,10 +34,12 @@ export type { ActionSheetAttributes } from './feedback/ActionSheet.svelte'
 export { showLoading, hideLoading, type ShowLoadingOption } from './feedback/loading'
 import Popup from './feedback/Popup.svelte'
 export type { PopupAttributes, PopupPosition } from './feedback/Popup.svelte'
+import PullToRefresh from './feedback/PullToRefresh.svelte'
+export type { PullToRefreshAttributes } from './feedback/PullToRefresh.svelte'
 import SwipeAction from './feedback/SwipeAction.svelte'
 export type { SwipeActionAttributes, SwipeActionState } from './feedback/SwipeAction.svelte'
 export { showToast, hideToast, type ShowToastOption } from './feedback/toast'
-export { ActionSheet, Popup, SwipeAction }
+export { ActionSheet, Popup, PullToRefresh, SwipeAction }
 
 // Input
 import CheckList from './input/CheckList.svelte'

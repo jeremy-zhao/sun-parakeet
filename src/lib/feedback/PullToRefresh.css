@@ -1,0 +1,25 @@
+.sun-parakeet-pull-to-refresh {
+  @apply relative block select-none overflow-hidden;
+
+  .sun-parakeet-pull-to-refresh__track {
+    @apply h-full touch-pan-x overflow-visible;
+  }
+
+  .sun-parakeet-pull-to-refresh__header {
+    @apply absolute bottom-full left-0 right-0;
+
+    .sun-parakeet-pull-to-refresh__header-inner {
+      @apply px-4 py-2 text-center text-sm text-gray-400;
+    }
+  }
+
+  .sun-parakeet-pull-to-refresh__content {
+    @apply h-full overflow-y-auto overflow-x-hidden;
+  }
+
+  &.sun-parakeet-pull-to-refresh-animation {
+    .sun-parakeet-pull-to-refresh__track {
+      transition: translate 0.15s ease-out;
+    }
+  }
+}

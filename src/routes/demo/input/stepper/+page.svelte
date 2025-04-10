@@ -8,7 +8,17 @@
 
 <Page class="bg-gray-100">
   <Form layout="horizontal" header="表单-水平布局">
-    <FormItem label="基础用法">
+    <FormItem
+      label="基础用法"
+      rules={[
+        {
+          validator(_, value: number) {
+            if (value < 0) return '您不能输入负值'
+            if (value > 5) return '最大值不能超过5'
+          },
+        },
+      ]}
+    >
       <Stepper />
     </FormItem>
     <FormItem label="步长设置">
@@ -65,7 +75,17 @@
     <FormItem label="基础用法">
       <Stepper />
     </FormItem>
-    <FormItem label="圆角风格">
+    <FormItem
+      label="圆角风格"
+      rules={[
+        {
+          validator(_, value: number) {
+            if (value < 0) return '您不能输入负值'
+            if (value > 5) return '最大值不能超过5'
+          },
+        },
+      ]}
+    >
       <Stepper theme="round" />
     </FormItem>
   </Form>

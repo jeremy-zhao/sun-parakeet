@@ -5,7 +5,7 @@ export interface Rule {
   /** 是否为必填字段 */
   required?: boolean
   /**  */
-  validator?: (rule: Rule, value: unknown) => string
+  validator?: (rule: Rule, value: any) => string | void
 }
 
 function requiredValidation(rule: Rule, value: unknown) {

@@ -59,6 +59,7 @@
     {@render listItem('Input', '输入框', '/demo/input/input')}
     {@render listItem('Picker', '选择器', '/demo/input/picker')}
     {@render listItem('PickerView', '选择器视图', '/demo/input/picker-view')}
+    {@render listItem('Stepper', '步进器', '/demo/input/stepper')}
     {@render listItem('Switch', '开关', '/demo/input/switch')}
     {@render listItem('Textarea', '文本域', '/demo/input/textarea')}
   </List>

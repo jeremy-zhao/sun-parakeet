@@ -36,7 +36,14 @@
 </script>
 
 <script lang="ts">
-  let { label, for: labelFor, rules, children, ...props }: FormItemAttributes = $props()
+  let {
+    label,
+    for: labelFor,
+    rules,
+    children,
+    class: clazz,
+    ...props
+  }: FormItemAttributes = $props()
 
   let content: HTMLDivElement
 
@@ -102,7 +109,7 @@
   }
 </script>
 
-<div class="sun-parakeet-form-item" {...props}>
+<div class="sun-parakeet-form-item {clazz}" {...props}>
   {#if required}
     <b class="sun-parakeet-form-item__required">*</b>
   {/if}

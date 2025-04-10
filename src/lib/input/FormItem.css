@@ -63,7 +63,7 @@
 
   .sun-parakeet-form-item__label {
     @apply mr-3;
-    width: var(--sp-label-width, 100px);
+    width: var(--sp-label-width, 102px);
     font-size: 17px;
   }
 }

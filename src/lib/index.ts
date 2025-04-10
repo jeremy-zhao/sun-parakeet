@@ -61,12 +61,14 @@ import Picker from './input/Picker.svelte'
 export type { PickerAttributes } from './input/Picker.svelte'
 import PickerView from './input/PickerView.svelte'
 export type { PickerViewAttributes } from './input/PickerView.svelte'
+import Stepper from './input/Stepper.svelte'
+export type { StepperAttributes } from './input/Stepper.svelte'
 import Switch from './input/Switch.svelte'
 export type { SwitchAttributes } from './input/Switch.svelte'
 import Textarea from './input/Textarea.svelte'
 export type { TextareaAttributes } from './input/Textarea.svelte'
 export { CheckList, CheckListItem, Checkbox, CheckboxGroup }
-export { Form, FormItem, Input, Picker, PickerView, Switch, Textarea }
+export { Form, FormItem, Input, Picker, PickerView, Stepper, Switch, Textarea }
 
 // Layout
 import AutoCenter from './layout/AutoCenter.svelte'

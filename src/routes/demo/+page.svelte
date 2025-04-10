@@ -47,10 +47,8 @@
     {@render listItem('Image', '图片', '/demo/display/image')}
     {@render listItem('List', '列表', '/demo/display/list')}
     {@render listItem('PageIndicator', '分页符', '/demo/display/page-indicator')}
+    {@render listItem('Steps', '步骤条', '/demo/display/steps')}
     {@render listItem('Swiper', '轮播', '/demo/display/swiper')}
-    {@render listItem('Swiper(Vertical)', '轮播(纵向)', '/demo/display/swiper/vertical')}
-    {@render listItem('Swiper(Indicator)', '轮播(指示器)', '/demo/display/swiper/indicator')}
-    {@render listItem('Swiper(Special)', '轮播(特殊用法)', '/demo/display/swiper/special')}
   </List>
   <List header="信息录入">
     {@render listItem('CheckList', '可勾选列表', '/demo/input/check-list')}

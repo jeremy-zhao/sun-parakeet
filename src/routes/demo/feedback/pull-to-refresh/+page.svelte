@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { Page, List, PullToRefresh, Tabs, TabPanel, Icon, delay } from '$lib'
+  import { Page, List, PullToRefresh, Tabs, TabPanel, Icon, delay, showToast } from '$lib'
   import type { PullToRefreshState } from '$lib'
 
   let count = $state(0)
@@ -9,6 +9,10 @@
   async function handleRefresh() {
     await delay(1000)
     count++
+
+    if (currentTab !== '基础用法') {
+      showToast({ text: '刷新成功' })
+    }
   }
 </script>
 

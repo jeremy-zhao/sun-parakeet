@@ -1,10 +1,11 @@
 <script lang="ts" module>
-  import type { Snippet } from 'svelte'
   import './PullToRefresh.css'
+  import LoadingIcon from '../icons/loading.svg?raw'
 
-  import { tick } from 'svelte'
+  import { tick, type Snippet } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
-  import { delay, isNonEmpty } from '$lib/common'
+  import { delay, isNonEmpty } from '../common'
+  import Icon from '../common/Icon.svelte'
 
   /** 下拉刷新组件状态 */
   export type PullToRefreshState =
@@ -33,16 +34,19 @@
 
   /** 下拉刷新配置 */
   export interface PullToRefreshAttributes extends HTMLAttributes<EventTarget> {
+    /** 完成状态持续时间。填 0 表示不会进入等待状态 */
+    completeDuration?: number
     /** 禁用状态 */
     disabled?: boolean | null | undefined
     /** 下拉刷新头部 */
-    header?: PullToRefreshHeader | Snippet<[state: PullToRefreshState]>
+    header?: PullToRefreshHeader | Snippet<[state: PullToRefreshState, offset: number]>
     /** 最大下拉高度 */
     maxPullDownDistance?: number
     /** 刷新阈值 */
     refreshThreshold?: number
     /** 震动反馈 */
     vibrate?: boolean
+
     /** 下拉刷新事件 */
     onRefresh?: () => any
   }
@@ -50,6 +54,7 @@
 
 <script lang="ts">
   let {
+    completeDuration = 500,
     disabled = false,
     header = {},
     maxPullDownDistance = 100,
@@ -149,11 +154,13 @@
     }
 
     // 完成
-    _state = 'complete'
-    await tick()
-    _offset = Math.max(_header.clientHeight + 1, 36)
+    if (completeDuration > 0) {
+      _state = 'complete'
+      await tick()
+      _offset = Math.max(_header.clientHeight + 1, 36)
+      await delay(completeDuration)
+    }
 
-    await delay(500)
     reset()
   }
 
@@ -169,6 +176,12 @@
     {:else if state === 'loosing'}
       {header.loosing ?? '释放即可刷新'}
     {:else if state === 'refreshing'}
+      <Icon
+        class="sun-parakeet-pull-to-refresh__header-loading"
+        svg={LoadingIcon}
+        size={20}
+        top={-1}
+      />
       {header.refreshing ?? '加载中...'}
     {:else if state === 'complete'}
       {header.complete ?? '刷新成功'}
@@ -192,7 +205,7 @@
       {#if typeof header === 'object'}
         {@render headerSnippet(_state, header)}
       {:else if typeof header === 'function'}
-        {@render header(_state)}
+        {@render header(_state, _offset)}
       {/if}
     </header>
     <div bind:this={_content} class="sun-parakeet-pull-to-refresh__content">

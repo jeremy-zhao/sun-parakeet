@@ -1,5 +1,6 @@
 <script lang="ts">
-  import { Page, List, PullToRefresh, Tabs, TabPanel, delay } from '$lib'
+  import { Page, List, PullToRefresh, Tabs, TabPanel, Icon, delay } from '$lib'
+  import type { PullToRefreshState } from '$lib'
 
   let count = $state(0)
 
@@ -27,8 +28,28 @@
     </PullToRefresh>
   </TabPanel>
   <TabPanel class="flex-auto " visible={currentTab === '自定义-震动反馈'}>
-    <PullToRefresh class="h-full" vibrate onRefresh={handleRefresh}>
+    <PullToRefresh class="h-full" vibrate completeDuration={0} onRefresh={handleRefresh}>
       {@render content()}
+      {#snippet header(state: PullToRefreshState, offset: number)}
+        <div class="flex items-center justify-center p-2">
+          {#if state === 'refreshing'}
+            <Icon
+              class="animate-spin rounded-full bg-white p-1 text-blue-600"
+              name="refresh"
+              size={32}
+            />
+          {:else}
+            <Icon
+              class="rounded-full bg-white p-1 {state === 'loosing'
+                ? 'text-blue-600'
+                : 'text-gray-400'}"
+              style="rotate: {offset * 5}deg"
+              name="reset-right"
+              size={32}
+            />
+          {/if}
+        </div>
+      {/snippet}
     </PullToRefresh>
   </TabPanel>
 </Page>

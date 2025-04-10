@@ -9,7 +9,11 @@
     @apply absolute bottom-full left-0 right-0;
 
     .sun-parakeet-pull-to-refresh__header-inner {
-      @apply px-4 py-2 text-center text-sm text-gray-400;
+      @apply flex items-center justify-center px-4 py-2 text-sm text-gray-400;
+    }
+
+    .sun-parakeet-pull-to-refresh__header-loading {
+      @apply mr-2 animate-spin;
     }
   }
 

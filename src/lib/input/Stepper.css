@@ -28,21 +28,25 @@
 
   .sun-parakeet-steper__content {
     @apply relative block bg-gray-100 text-gray-600;
-    @apply flex items-center justify-center;
     width: var(--sp-input-width, 32px);
     height: var(--sp-size, 28px);
 
     .sun-parakeet-steper__display {
-      @apply block h-full w-full text-center;
+      @apply absolute bottom-0 left-0 right-0 top-0;
+      @apply overflow-hidden text-center align-middle;
+      @apply flex items-center justify-center;
       font-size: 14px;
       line-height: calc(var(--sp-size, 28px) + 1px);
+      z-index: 0;
     }
 
     .sun-parakeet-steper__input {
-      @apply box-border block flex-auto border-0 bg-gray-100 p-0 text-center align-middle text-gray-600 focus:outline-none;
       @apply absolute bottom-0 left-0 right-0 top-0;
+      @apply box-border block border-0 bg-gray-100 p-0 text-center align-middle text-gray-600 focus:outline-none;
+      padding-top: 1px;
       font-size: 14px;
-      line-height: calc(var(--sp-size, 28px) + 2px);
+      line-height: var(--sp-size, 28px);
+      z-index: 1;
     }
   }
 

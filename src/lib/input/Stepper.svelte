@@ -132,11 +132,13 @@
     <Icon class="sun-parakeet-stepper__icon" svg={MinusIcon} size={24} />
   </button>
   <div class="sun-parakeet-steper__content" style:visibility={hideInput ? 'hidden' : 'visible'}>
-    {#if typeof display === 'function'}
-      {@render display(value)}
-    {:else}
-      <span class="sun-parakeet-steper__display">{value.toFixed(digits)}</span>
-    {/if}
+    <div class="sun-parakeet-steper__display">
+      {#if typeof display === 'function'}
+        {@render display(value)}
+      {:else}
+        {value.toFixed(digits)}
+      {/if}
+    </div>
     {#if !readonly && !disabled && !lockInput}
       <input
         bind:this={_input}

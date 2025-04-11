@@ -1,4 +1,5 @@
 .sun-parakeet-steps {
+  @apply list-none pl-0;
 }
 
 .sun-parakeet-steps-horizontal {

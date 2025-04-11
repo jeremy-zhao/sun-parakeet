@@ -6,5 +6,6 @@
   "javascript.preferences.importModuleSpecifierEnding": "minimal",
   "[svg]": {
     "editor.defaultFormatter": "jock.svg"
-  }
+  },
+  "svg.preview.background": "transparent"
 }

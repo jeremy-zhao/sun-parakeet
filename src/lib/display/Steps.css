@@ -1,2 +1,10 @@
 .sun-parakeet-steps {
 }
+
+.sun-parakeet-steps-horizontal {
+  @apply flex flex-row flex-nowrap items-stretch justify-stretch;
+}
+
+.sun-parakeet-steps-vertical {
+  @apply flex flex-col items-stretch justify-stretch;
+}

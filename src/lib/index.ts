@@ -17,6 +17,8 @@ import Collapse from './display/Collapse.svelte'
 export type { CollapseAttributes } from './display/Collapse.svelte'
 import Image from './display/Image.svelte'
 export type { ImageAttributes } from './display/Image.svelte'
+import InfiniteScroll from './display/InfiniteScroll.svelte'
+export type { InfiniteScrollAttributes } from './display/InfiniteScroll.svelte'
 import List from './display/List.svelte'
 export type { ListAttributes } from './display/List.svelte'
 import ListItem from './display/ListItem.svelte'
@@ -29,7 +31,7 @@ import Step from './display/Step.svelte'
 export type { StepAttributes, StepStatus } from './display/Step.svelte'
 import Swiper from './display/Swiper.svelte'
 export type { SwiperAttributes } from './display/Swiper.svelte'
-export { Avatar, Badge, Collapse, Image, List, ListItem }
+export { Avatar, Badge, Collapse, Image, InfiniteScroll, List, ListItem }
 export { PageIndicator, Steps, Step, Swiper }
 
 // Feedback

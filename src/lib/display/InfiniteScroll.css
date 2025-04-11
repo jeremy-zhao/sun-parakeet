@@ -1,0 +1,7 @@
+.sun-parakeet-infinite-scroll {
+  @apply overflow-y-auto overflow-x-hidden;
+
+  .sun-parakeet-infinite-scroll__footer {
+    @apply flex items-center justify-center p-4 text-sm text-gray-400;
+  }
+}

@@ -45,6 +45,7 @@
     {@render listItem('Badge', '徽标', '/demo/display/badge')}
     {@render listItem('Collapse', '折叠面板', '/demo/display/collapse')}
     {@render listItem('Image', '图片', '/demo/display/image')}
+    {@render listItem('InfiniteScroll', '无限滚动', '/demo/display/infinite-scroll')}
     {@render listItem('List', '列表', '/demo/display/list')}
     {@render listItem('PageIndicator', '分页符', '/demo/display/page-indicator')}
     {@render listItem('Steps', '步骤条', '/demo/display/steps')}

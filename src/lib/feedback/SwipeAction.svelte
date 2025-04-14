@@ -4,7 +4,7 @@
   import { onMount, untrack, type Snippet } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
 
-  export type SwipeActionState =
+  export type SwipeActionStatus =
     /** 归位状态 */
     | 'close'
     /** 左侧操作面板打开 */
@@ -22,7 +22,7 @@
     /** 右侧的操作面板 */
     rightActions?: Snippet
     /** 状态 */
-    state?: SwipeActionState
+    status?: SwipeActionStatus
   }
 
   // 滑动时判定状态变更的最小位移
@@ -35,7 +35,7 @@
     keepOnTouchOutside = false,
     leftActions,
     rightActions,
-    state: _state = $bindable('close'),
+    status: _status = $bindable('close'),
     children,
     class: clazz,
     ...props
@@ -58,7 +58,7 @@
   const max = () => _left?.clientWidth ?? 0
 
   function reset() {
-    _offset = { close: 0, left: max(), right: min() }[_state]
+    _offset = { close: 0, left: max(), right: min() }[_status]
     _pointerId = null
   }
 
@@ -93,30 +93,37 @@
     _self.classList.add('sun-parakeet-swipe-action-animation')
 
     // 点击关闭
-    if ((_state === 'left' && _offset >= max() - 1) || (_state === 'right' && _offset <= min() + 1)) {
+    if (
+      (_status === 'left' && _offset >= max() - 1) ||
+      (_status === 'right' && _offset <= min() + 1)
+    ) {
       // 手动归位
       if (keepOnAction && e.composedPath().find(x => x === _left || x === _right)) return
 
       // 自动归位
-      _state = 'close'
+      _status = 'close'
       return
     }
 
     // 滑动
     const thresholdMin =
-      _state === 'right' ? Math.min(min() + THRESHOLD, (min() * 3) / 4) : Math.max(-THRESHOLD, min() / 4)
+      _status === 'right'
+        ? Math.min(min() + THRESHOLD, (min() * 3) / 4)
+        : Math.max(-THRESHOLD, min() / 4)
 
     const thresholdMax =
-      _state === 'left' ? Math.max(max() - THRESHOLD, (max() * 3) / 4) : Math.min(THRESHOLD, max() / 4)
+      _status === 'left'
+        ? Math.max(max() - THRESHOLD, (max() * 3) / 4)
+        : Math.min(THRESHOLD, max() / 4)
 
     // console.log('滑动', thresholdMin, thresholdMax)
 
-    _state = _offset < thresholdMin ? 'right' : _offset > thresholdMax ? 'left' : 'close'
+    _status = _offset < thresholdMin ? 'right' : _offset > thresholdMax ? 'left' : 'close'
     reset()
   }
 
   $effect(() => {
-    _state
+    _status
     untrack(reset)
   })
 
@@ -126,7 +133,7 @@
     if (keepOnTouchOutside) return
     if (e.composedPath().find(x => x === _self)) return
 
-    _state = 'close'
+    _status = 'close'
   }
 
   $effect(() => {
@@ -160,7 +167,10 @@
 >
   <div class="sun-parakeet-swipe-action__track" style:translate>
     {#if typeof leftActions === 'function'}
-      <div bind:this={_left} class="sun-parakeet-swipe-action__actions sun-parakeet-swipe-action__actions-left">
+      <div
+        bind:this={_left}
+        class="sun-parakeet-swipe-action__actions sun-parakeet-swipe-action__actions-left"
+      >
         {@render leftActions()}
       </div>
     {/if}
@@ -170,7 +180,10 @@
     </div>
 
     {#if typeof rightActions === 'function'}
-      <div bind:this={_right} class="sun-parakeet-swipe-action__actions sun-parakeet-swipe-action__actions-right">
+      <div
+        bind:this={_right}
+        class="sun-parakeet-swipe-action__actions sun-parakeet-swipe-action__actions-right"
+      >
         {@render rightActions()}
       </div>
     {/if}

@@ -27,7 +27,7 @@
     /** 禁用状态 */
     disabled?: boolean | null | undefined
     /** 下拉刷新头部 */
-    header?: Snippet<[state: PullToRefreshStatus, offset: number]>
+    header?: Snippet<[status: PullToRefreshStatus, offset: number]>
     /** 最大下拉高度 */
     maxPullDownDistance?: number
     /** 刷新阈值 */
@@ -101,12 +101,12 @@
     const touch = [...e.touches].find(x => x.identifier === _touchId)
     if (!touch) return
 
-    const lastState = _status
+    const lastStatus = _status
     const offset = (touch.clientY - _start) / 5
     _offset = offset < 0 ? 0 : offset > max() ? max() : offset
     _status = _offset <= 0 ? 'idle' : _offset < threshold() ? 'pulling' : 'loosing'
 
-    if (vibrate && lastState !== 'loosing' && _status === 'loosing') {
+    if (vibrate && lastStatus !== 'loosing' && _status === 'loosing') {
       navigator?.vibrate?.(50)
     }
 

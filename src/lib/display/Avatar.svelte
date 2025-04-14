@@ -33,7 +33,7 @@
     ...props
   }: AvatarAttributes = $props()
 
-  let _state = $state('loading')
+  let _status = $state('loading')
 
   let _size = $derived(!size ? '44px' : typeof size === 'number' ? `${size}px` : size)
 
@@ -50,11 +50,11 @@
   }
 
   function handleLoad() {
-    _state = 'success'
+    _status = 'success'
   }
 
   function handleError() {
-    _state = 'error'
+    _status = 'error'
   }
 
   function useImg(img: HTMLImageElement) {
@@ -73,7 +73,7 @@
   {style}
   onclick={handleClick}
 >
-  {#if _state !== 'success'}
+  {#if _status !== 'success'}
     <div class="sun-parakeet-avatar__tip">
       {#if typeof fallback === 'string'}
         <Icon name={fallback} />
@@ -86,12 +86,12 @@
       {/if}
     </div>
   {/if}
-  {#if _state !== 'error'}
+  {#if _status !== 'error'}
     <img
       use:useImg
       class="sun-parakeet-avatar__img"
       style:object-fit={fit}
-      style:display={_state === 'success' ? 'block' : 'none'}
+      style:display={_status === 'success' ? 'block' : 'none'}
       {...props}
     />
   {/if}

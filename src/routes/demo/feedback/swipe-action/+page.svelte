@@ -1,9 +1,9 @@
 <script lang="ts" module>
-  import { Page, List, ListItem, SwipeAction, Button, Space, type SwipeActionState } from '$lib'
+  import { Page, List, ListItem, SwipeAction, Button, Space, type SwipeActionStatus } from '$lib'
 </script>
 
 <script lang="ts">
-  let swipeActionState = $state<SwipeActionState>('close')
+  let swipeActionStatus = $state<SwipeActionStatus>('close')
 </script>
 
 <Page class="bg-gray-100">
@@ -41,7 +41,7 @@
     </Space>
   </List>
   <List header="手动控制归位逻辑">
-    <SwipeAction bind:state={swipeActionState} keepOnAction keepOnTouchOutside>
+    <SwipeAction bind:status={swipeActionStatus} keepOnAction keepOnTouchOutside>
       <ListItem>ABC</ListItem>
       {#snippet leftActions()}
         <Button class="border-0" shape="rectangular" color="primary">置顶</Button>
@@ -57,17 +57,17 @@
     <Space class="bg-white px-4 py-2" block>
       <Button
         onclick={() => {
-          swipeActionState = 'close'
+          swipeActionStatus = 'close'
         }}>归位</Button
       >
       <Button
         onclick={() => {
-          swipeActionState = 'left'
+          swipeActionStatus = 'left'
         }}>左侧打开</Button
       >
       <Button
         onclick={() => {
-          swipeActionState = 'right'
+          swipeActionStatus = 'right'
         }}>右侧打开</Button
       >
     </Space>

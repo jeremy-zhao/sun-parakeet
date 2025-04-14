@@ -45,7 +45,7 @@ import PullToRefresh from './feedback/PullToRefresh.svelte'
 export type { PullToRefreshAttributes } from './feedback/PullToRefresh.svelte'
 export type { PullToRefreshStatus } from './feedback/PullToRefresh.svelte'
 import SwipeAction from './feedback/SwipeAction.svelte'
-export type { SwipeActionAttributes, SwipeActionState } from './feedback/SwipeAction.svelte'
+export type { SwipeActionAttributes, SwipeActionStatus } from './feedback/SwipeAction.svelte'
 export { showToast, hideToast, type ShowToastOption } from './feedback/toast'
 export { ActionSheet, Popup, PullToRefresh, SwipeAction }
 

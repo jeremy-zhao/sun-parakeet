@@ -2,7 +2,7 @@
   import './InfiniteScroll.css'
   import EllipsisIcon from '../icons/ellipsis.svg?raw'
 
-  import { onMount, tick, type Snippet } from 'svelte'
+  import { onMount, type Snippet } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
   import Icon from '../common/Icon.svelte'
 
@@ -25,7 +25,7 @@
     hasMore?: boolean
     /** 加载更多回调函数(retry: 重试) */
     loadMore?: (retry: boolean) => Promise<void>
-    /** 触发加载事件的滚动触底距离阈值，单位为 px */
+    /** 触发加载事件的滚动触底距离阈值，单位为 px。不包含 footer 的高度 */
     threshold?: number
   }
 </script>
@@ -35,32 +35,45 @@
     footer = footerSnippet,
     hasMore = false,
     loadMore,
-    threshold = 250,
+    threshold = 0,
     children,
     class: clazz,
     ...props
   }: InfiniteScrollAttributes = $props()
 
   let _self: HTMLDivElement
+  let _container: HTMLDivElement
   let _status = $state<InfiniteScrollStatus>('idle')
   let _loading = false
 
-  $inspect(_status)
-
   async function loadRec() {
+    console.log(
+      'hasMore',
+      hasMore,
+      'loading',
+      _loading,
+      'status',
+      _status,
+      'height',
+      _self.clientHeight
+    )
+
     if (!hasMore) return
     if (_loading) return
     if (_status !== 'idle') return
+    if (_self.clientHeight <= 0) return
 
-    if (_self.scrollHeight > _self.clientHeight) {
-      const offset = _self.scrollHeight - _self.clientHeight - _self.scrollTop
-      if (offset > threshold) return
+    if (_container.clientHeight >= _self.clientHeight) {
+      const offset = _container.clientHeight - _self.clientHeight - _self.scrollTop
+      if (offset >= threshold) return
     }
 
     _loading = true
     _status = 'loading'
 
     try {
+      console.log('[InfiniteScroll]', 'loadMore')
+      console.log('offset', _container.clientHeight, '-', _self.clientHeight, '-', _self.scrollTop)
       await loadMore?.(false)
     } catch {
       _status = 'error'
@@ -73,24 +86,54 @@
     return await loadRec()
   }
 
-  onMount(() => {
-    _self.addEventListener('scroll', loadRec)
+  function handleTouchStart(e: TouchEvent) {
+    if (_self.scrollTop > 0 || _loading) {
+      e.stopPropagation()
+    }
+  }
 
-    const observer = new MutationObserver(cb => {
-      cb.find(x => x.type === 'childList')
+  onMount(() => {
+    // 滚动事件
+    _self.addEventListener('scroll', loadRec)
+    _self.addEventListener('touchstart', handleTouchStart)
+
+    // 内容改变
+    const mutation = new MutationObserver(() => {
+      // console.log('MutationObserver')
+      loadRec()
     })
 
-    observer.observe(_self, { childList: true, subtree: true })
+    mutation.observe(_container, { childList: true, subtree: true })
 
-    return () => observer.disconnect()
+    // 滚动高度改变
+    const resize = new ResizeObserver(() => {
+      // console.log('ResizeObserver', _container.clientHeight)
+      loadRec()
+    })
+
+    resize.observe(_container)
+
+    // 可见性改变
+    const intersection = new IntersectionObserver(cb => {
+      const found = cb.find(x => x.target === _container)
+      if (!found || !found.isIntersecting) return
+
+      // console.log('IntersectionObserver', _self.clientHeight)
+      loadRec()
+    })
+
+    intersection.observe(_container)
+
+    return () => {
+      mutation.disconnect()
+      resize.disconnect()
+      intersection.disconnect()
+    }
   })
 
   $effect(() => {
     if (hasMore) {
-      if (!_loading) {
-        _status = 'idle'
-        loadRec()
-      }
+      loadRec()
     } else {
       _status = 'finished'
     }
@@ -99,9 +142,7 @@
 
 {#snippet footerSnippet(status: InfiniteScrollStatus)}
   <footer class="sun-parakeet-infinite-scroll__footer">
-    {#if status === 'idle'}
-      <span>加载更多</span>
-    {:else if status === 'loading'}
+    {#if status === 'idle' || status === 'loading'}
       <span>加载中</span><Icon svg={EllipsisIcon} width="32" height="14" />
     {:else if status === 'finished'}
       <span>没有更多了</span>
@@ -114,6 +155,8 @@
 {/snippet}
 
 <div bind:this={_self} class="sun-parakeet-infinite-scroll {clazz}" {...props}>
-  {@render children?.()}
+  <div bind:this={_container} class="sun-parakeet-infinite-scroll__container">
+    {@render children?.()}
+  </div>
   {@render footer(_status)}
 </div>

@@ -10,6 +10,11 @@
     await delay(3000)
     data = [...data, ...'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
   }
+
+  async function handleRefresh() {
+    await delay(1000)
+    data = [...'ABCDEFGHIJKLMNOPQRSTUVWXYZ']
+  }
 </script>
 
 {#snippet list()}
@@ -33,9 +38,9 @@
     </InfiniteScroll>
   </TabPanel>
   <TabPanel class="flex-auto" visible={currentTab === '下拉刷新'}>
-    <PullToRefresh class="h-full">
-      <InfiniteScroll class="h-full">
-        <List>
+    <PullToRefresh class="h-full" onRefresh={handleRefresh}>
+      <InfiniteScroll class="h-full" {hasMore} {loadMore}>
+        <List class="bg-white">
           {@render list()}
         </List>
       </InfiniteScroll>

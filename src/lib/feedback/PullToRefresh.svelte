@@ -1,6 +1,6 @@
 <script lang="ts" module>
   import './PullToRefresh.css'
-  import LoadingIcon from '../icons/loading.svg?raw'
+  import EllipsisIcon from '../icons/ellipsis.svg?raw'
 
   import { tick, type Snippet } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
@@ -92,6 +92,7 @@
 
   function handleTouchStart(e: TouchEvent) {
     if (_content.scrollTop) return
+    if (_offset > 0) return
     if (isNonEmpty(_touchId)) return
 
     const touch = e.touches[0]
@@ -176,13 +177,8 @@
     {:else if state === 'loosing'}
       {header.loosing ?? '释放即可刷新'}
     {:else if state === 'refreshing'}
-      <Icon
-        class="sun-parakeet-pull-to-refresh__header-loading"
-        svg={LoadingIcon}
-        size={20}
-        top={-1}
-      />
-      {header.refreshing ?? '加载中...'}
+      <span>{header.refreshing ?? '加载中'}</span>
+      <Icon svg={EllipsisIcon} width="32" height="14" />
     {:else if state === 'complete'}
       {header.complete ?? '刷新成功'}
     {/if}

@@ -1,6 +1,6 @@
 .sun-parakeet-button {
   @apply box-border inline-flex cursor-pointer select-none items-center justify-center;
-  @apply border border-solid border-transparent;
+  @apply border-solid border-transparent;
   font-size: 17px;
   line-height: 24px;
   padding: 7px 12px 5px 12px;

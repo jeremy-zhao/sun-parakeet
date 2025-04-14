@@ -1,6 +1,6 @@
 <script lang="ts" module>
   import './PullToRefresh.css'
-  import EllipsisIcon from '../icons/ellipsis.svg?raw'
+  import LoadingIcon from '../icons/loading.svg?raw'
 
   import { tick, type Snippet } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
@@ -8,7 +8,7 @@
   import Icon from '../common/Icon.svelte'
 
   /** 下拉刷新组件状态 */
-  export type PullToRefreshState =
+  export type PullToRefreshStatus =
     /** 空闲状态 */
     | 'idle'
     /** 下拉中 */
@@ -20,18 +20,6 @@
     /** 完成 */
     | 'complete'
 
-  /** 下拉刷新头部显示配置 */
-  export interface PullToRefreshHeader {
-    /** 下拉中显示的文本 */
-    pulling?: string
-    /** 下拉超过阈值，提示释放会触发刷新时显示的文本 */
-    loosing?: string
-    /** 刷新时显示的文本 */
-    refreshing?: string
-    /** 完成时显示的文本。不提供此值时，刷新完毕直接收起 */
-    complete?: string
-  }
-
   /** 下拉刷新配置 */
   export interface PullToRefreshAttributes extends HTMLAttributes<EventTarget> {
     /** 完成状态持续时间。填 0 表示不会进入等待状态 */
@@ -39,7 +27,7 @@
     /** 禁用状态 */
     disabled?: boolean | null | undefined
     /** 下拉刷新头部 */
-    header?: PullToRefreshHeader | Snippet<[state: PullToRefreshState, offset: number]>
+    header?: Snippet<[state: PullToRefreshStatus, offset: number]>
     /** 最大下拉高度 */
     maxPullDownDistance?: number
     /** 刷新阈值 */
@@ -56,7 +44,7 @@
   let {
     completeDuration = 500,
     disabled = false,
-    header = {},
+    header,
     maxPullDownDistance = 100,
     refreshThreshold = 60,
     vibrate = false,
@@ -76,7 +64,7 @@
   let _touchId: number | null
   let _start: number
   let _offset = $state(0)
-  let _state = $state<PullToRefreshState>('idle')
+  let _status = $state<PullToRefreshStatus>('idle')
 
   const max = () => Math.abs(maxPullDownDistance)
   const threshold = () => Math.abs(refreshThreshold)
@@ -91,6 +79,7 @@
   }
 
   function handleTouchStart(e: TouchEvent) {
+    if (disabled) return
     if (_content.scrollTop) return
     if (_offset > 0) return
     if (isNonEmpty(_touchId)) return
@@ -102,7 +91,7 @@
 
     _touchId = e.touches[0].identifier
     _start = touch.clientY - _offset
-    _state = 'pulling'
+    _status = 'pulling'
     _self.classList.remove('sun-parakeet-pull-to-refresh-animation')
   }
 
@@ -112,12 +101,12 @@
     const touch = [...e.touches].find(x => x.identifier === _touchId)
     if (!touch) return
 
-    const lastState = _state
+    const lastState = _status
     const offset = (touch.clientY - _start) / 5
     _offset = offset < 0 ? 0 : offset > max() ? max() : offset
-    _state = _offset <= 0 ? 'idle' : _offset < threshold() ? 'pulling' : 'loosing'
+    _status = _offset <= 0 ? 'idle' : _offset < threshold() ? 'pulling' : 'loosing'
 
-    if (vibrate && lastState !== 'loosing' && _state === 'loosing') {
+    if (vibrate && lastState !== 'loosing' && _status === 'loosing') {
       navigator?.vibrate?.(50)
     }
 
@@ -137,7 +126,7 @@
 
     // 未超过阈值
     if (_offset < threshold()) {
-      _state = 'idle'
+      _status = 'idle'
       reset()
       return
     }
@@ -147,7 +136,7 @@
       const refreshing = onRefresh()
 
       if (refreshing instanceof Promise) {
-        _state = 'refreshing'
+        _status = 'refreshing'
         await tick()
         _offset = Math.max(_header.clientHeight + 1, 36)
         await refreshing
@@ -156,7 +145,7 @@
 
     // 完成
     if (completeDuration > 0) {
-      _state = 'complete'
+      _status = 'complete'
       await tick()
       _offset = Math.max(_header.clientHeight + 1, 36)
       await delay(completeDuration)
@@ -170,17 +159,17 @@
   }
 </script>
 
-{#snippet headerSnippet(state: PullToRefreshState, header: PullToRefreshHeader)}
+{#snippet headerSnippet(status: PullToRefreshStatus)}
   <p class="sun-parakeet-pull-to-refresh__header-inner">
-    {#if state === 'idle' || state === 'pulling'}
-      {header.pulling ?? '下拉刷新'}
-    {:else if state === 'loosing'}
-      {header.loosing ?? '释放即可刷新'}
-    {:else if state === 'refreshing'}
-      <span>{header.refreshing ?? '加载中'}</span>
-      <Icon svg={EllipsisIcon} width="32" height="14" />
-    {:else if state === 'complete'}
-      {header.complete ?? '刷新成功'}
+    {#if status === 'idle' || status === 'pulling'}
+      <span>下拉刷新</span>
+    {:else if status === 'loosing'}
+      <span>释放即可刷新</span>
+    {:else if status === 'refreshing'}
+      <Icon class="sun-parakeet-pull-to-refresh__header-loading" svg={LoadingIcon} size={20} />
+      <span>加载中...</span>
+    {:else if status === 'complete'}
+      <span>刷新成功</span>
     {/if}
   </p>
 {/snippet}
@@ -198,10 +187,10 @@
 >
   <div bind:this={_track} class="sun-parakeet-pull-to-refresh__track" style:translate>
     <header bind:this={_header} class="sun-parakeet-pull-to-refresh__header">
-      {#if typeof header === 'object'}
-        {@render headerSnippet(_state, header)}
-      {:else if typeof header === 'function'}
-        {@render header(_state, _offset)}
+      {#if typeof header === 'function'}
+        {@render header(_status, _offset)}
+      {:else}
+        {@render headerSnippet(_status)}
       {/if}
     </header>
     <div bind:this={_content} class="sun-parakeet-pull-to-refresh__content">

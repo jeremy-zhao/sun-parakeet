@@ -13,7 +13,7 @@
     }
 
     .sun-parakeet-pull-to-refresh__header-loading {
-      @apply ml-2;
+      @apply mr-2 animate-spin;
     }
   }
 

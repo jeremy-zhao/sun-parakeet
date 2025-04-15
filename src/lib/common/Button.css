@@ -1,69 +1,164 @@
-.sun-parakeet-button {
-  @apply box-border inline-flex cursor-pointer select-none items-center justify-center;
-  @apply border-solid border-transparent;
+.sunp-button {
+  @apply relative cursor-pointer select-none border-solid border-transparent;
+  @apply inline-flex items-center justify-center;
   font-size: 17px;
   line-height: 24px;
-  padding: 7px 12px 5px 12px;
+  height: var(--sunp-height, 36px);
+  padding: 0 var(--sunp-padding-x, 12px);
+  border-width: var(--sunp-border, 1px);
 
-  &.sun-parakeet-button__disabled {
-    @apply cursor-not-allowed bg-gray-100 text-gray-400;
+  .sunp-button__loading {
+    @apply absolute left-1/2 top-1/2;
+    translate: -50% -50%;
+    z-index: 1;
+
+    .sunp-button__loading-icon {
+      @apply animate-spin;
+    }
   }
 
-  &.sun-parakeet-button__block {
-    @apply block w-full;
+  .sunp-button__content {
+    @apply flex items-center justify-center;
+    translate: 0 1px;
   }
 
-  &.sun-parakeet-button__normal {
-    @apply bg-white text-gray-600 active:bg-blue-100 active:text-blue-600;
-    @apply border-gray-200 active:border-blue-600;
+  &.sunp-button-block {
+    @apply flex w-full;
   }
 
-  &.sun-parakeet-button__primary {
-    @apply bg-blue-500 text-white active:bg-blue-600;
+  &.sunp-button-loading {
+    @apply pointer-events-none cursor-wait;
+
+    .sunp-button__content {
+      @apply invisible;
+    }
   }
 
-  &.sun-parakeet-button__primary-plain {
-    @apply bg-blue-100 text-blue-600 active:bg-blue-200;
-    @apply border-blue-400 active:border-blue-600;
+  &.sunp-button-disabled {
+    @apply cursor-not-allowed;
+    color: var(--sunp-color-weak);
+    background-color: var(--sunp-color-box);
+    border-color: var(--sunp-color-border);
   }
 
-  &.sun-parakeet-button__success {
-    @apply bg-green-500 text-white active:bg-green-600;
+  &.sunp-button-normal {
+    color: var(--sunp-color-text);
+    background-color: var(--sunp-color-background);
+    border-color: var(--sunp-color-border);
+
+    &:active {
+      color: var(--sunp-color-primary);
+      background-color: hsl(from var(--sunp-color-primary) h s calc((100 - l) * 0.9 + l));
+      border-color: hsl(from var(--sunp-color-primary) h s calc((100 - l) * 0.4 + l));
+    }
   }
 
-  &.sun-parakeet-button__success-plain {
-    @apply bg-green-100 text-green-600 active:bg-green-200;
-    @apply border-green-400 active:border-green-600;
+  &.sunp-button-primary {
+    color: var(--sunp-color-white);
+    background-color: var(--sunp-color-primary);
+
+    &:active {
+      background-color: hsl(from var(--sunp-color-primary) h s calc(l * 0.8));
+    }
   }
 
-  &.sun-parakeet-button__warning {
-    @apply bg-yellow-500 text-white active:bg-yellow-600;
+  &.sunp-button-primary-plain {
+    color: var(--sunp-color-primary);
+    background-color: hsl(from var(--sunp-color-primary) h s calc((100 - l) * 0.8 + l));
+    border-color: hsl(from var(--sunp-color-primary) h s calc((100 - l) * 0.4 + l));
+
+    &:active {
+      background-color: hsl(from var(--sunp-color-primary) h s calc((100 - l) * 0.7 + l));
+      border-color: var(--sunp-color-primary);
+    }
   }
 
-  &.sun-parakeet-button__warning-plain {
-    @apply bg-yellow-100 text-yellow-600 active:bg-yellow-200;
-    @apply border-yellow-400 active:border-yellow-600;
+  &.sunp-button-success {
+    color: var(--sunp-color-white);
+    background-color: var(--sunp-color-success);
+
+    &:active {
+      background-color: hsl(from var(--sunp-color-success) h s calc(l * 0.8));
+    }
   }
 
-  &.sun-parakeet-button__danger {
-    @apply bg-red-500 text-white active:bg-red-600;
+  &.sunp-button-success-plain {
+    color: var(--sunp-color-success);
+    background-color: hsl(from var(--sunp-color-success) h s calc((100 - l) * 0.8 + l));
+    border-color: hsl(from var(--sunp-color-success) h s calc((100 - l) * 0.1 + l));
+
+    &:active {
+      background-color: hsl(from var(--sunp-color-success) h s calc((100 - l) * 0.7 + l));
+      border-color: var(--sunp-color-success);
+    }
   }
 
-  &.sun-parakeet-button__danger-plain {
-    @apply bg-red-100 text-red-600 active:bg-red-200;
-    @apply border-red-400 active:border-red-600;
+  &.sunp-button-warning {
+    color: var(--sunp-color-white);
+    background-color: var(--sunp-color-warning);
+
+    &:active {
+      background-color: hsl(from var(--sunp-color-warning) h s calc(l * 0.8));
+    }
   }
 
-  &.sun-parakeet-button__cancel {
-    @apply bg-gray-300 text-white active:bg-gray-400;
+  &.sunp-button-warning-plain {
+    color: var(--sunp-color-warning);
+    background-color: hsl(from var(--sunp-color-warning) h s calc((100 - l) * 0.8 + l));
+    border-color: hsl(from var(--sunp-color-warning) h s calc((100 - l) * 0.4 + l));
+
+    &:active {
+      background-color: hsl(from var(--sunp-color-warning) h s calc((100 - l) * 0.7 + l));
+      border-color: var(--sunp-color-warning);
+    }
   }
 
-  &.sun-parakeet-button__cancel-plain {
-    @apply bg-gray-100 text-gray-600 active:bg-gray-200;
-    @apply border-gray-400 active:border-gray-600;
+  &.sunp-button-danger {
+    color: var(--sunp-color-white);
+    background-color: var(--sunp-color-danger);
+
+    &:active {
+      background-color: hsl(from var(--sunp-color-danger) h s calc(l * 0.8));
+    }
   }
 
-  &.sun-parakeet-button__text {
-    @apply bg-white text-black active:bg-gray-100;
+  &.sunp-button-danger-plain {
+    color: var(--sunp-color-danger);
+    background-color: hsl(from var(--sunp-color-danger) h s calc((100 - l) * 0.8 + l));
+    border-color: hsl(from var(--sunp-color-danger) h s calc((100 - l) * 0.4 + l));
+
+    &:active {
+      background-color: hsl(from var(--sunp-color-danger) h s calc((100 - l) * 0.7 + l));
+      border-color: var(--sunp-color-danger);
+    }
+  }
+
+  &.sunp-button-cancel {
+    color: var(--sunp-color-white);
+    background-color: var(--sunp-color-text-secondary);
+    background-color: var(--sunp-color-weak);
+
+    &:active {
+      background-color: hsl(from var(--sunp-color-weak) h s calc(l * 0.8));
+    }
+  }
+
+  &.sunp-button-cancel-plain {
+    color: var(--sunp-color-text);
+    background-color: var(--sunp-color-box);
+    border-color: var(--sunp-color-border);
+
+    &:active {
+      background-color: var(--sunp-color-border);
+      border-color: var(--sunp-color-light);
+    }
+  }
+
+  &.sunp-button-text {
+    color: var(--sunp-color-text);
+
+    &:active {
+      background-color: hsl(from var(--sunp-color-border) h s l / 0.5);
+    }
   }
 }

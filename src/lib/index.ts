@@ -1,8 +1,8 @@
-import './index.css'
+import './theme.css'
 
 // Common
 import Button from './common/Button.svelte'
-export type { ButtonAttributes, ButtonTheme } from './common/Button.svelte'
+export type { ButtonAttributes } from './common/Button.svelte'
 import Icon from './common/Icon.svelte'
 export type { IconAttributes, IconOption } from './common/Icon.svelte'
 export { Button, Icon }

@@ -3,7 +3,6 @@
 
   import Button from '../common/Button.svelte'
   import Popup, { type PopupAttributes } from './Popup.svelte'
-  import ActionSheetItem from './ActionSheetItem.svelte'
   import type { Snippet } from 'svelte'
 
   /** 动作面板属性 */
@@ -13,7 +12,7 @@
     /** 标题 */
     header?: string | Snippet
     /** 动作条目 */
-    actions: Array<string | unknown>
+    actions: (string | unknown)[]
     /** 动作条目的模板 */
     actionSnippet?: Snippet<[string | unknown, number]>
     /** 取消按钮文本 */
@@ -59,15 +58,14 @@
 </script>
 
 {#snippet actionItem(action: unknown)}
-  <ActionSheetItem>
+  <Button class="sunp-action-sheet-item" --sunp-border="0">
     {action}
-  </ActionSheetItem>
+  </Button>
 {/snippet}
 
 <Popup
   bind:visible
   class="sunp-action-sheet {clazz}"
-  style={cancel ? 'padding-bottom:0px;' : ''}
   position="bottom"
   onclose={handleMaskClickClose}
   {...props}
@@ -94,7 +92,8 @@
 
   {#if cancel && typeof cancel === 'string'}
     <footer class="sunp-action-sheet__footer">
-      <Button class="sunp-action-sheet__cancel" onclick={handleCancel}>{cancel}</Button>
+      <Button class="sunp-action-sheet__cancel" color="text" onclick={handleCancel}>{cancel}</Button
+      >
     </footer>
   {/if}
 </Popup>

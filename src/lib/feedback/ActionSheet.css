@@ -2,7 +2,7 @@
   .sunp-action-sheet__header {
     @apply box-content flex items-center justify-center border-b;
     font-size: 15px;
-    padding: 18px 12px;
+    padding: 16px 12px;
     color: var(--sunp-color-text-secondary);
     border-color: var(--sunp-color-border);
   }
@@ -21,7 +21,14 @@
     border-color: var(--sunp-color-border);
 
     .sunp-action-sheet__cancel {
-      @apply box-content h-8 rounded-none border-0 pb-safe-or-2;
+      @apply box-content h-8 rounded-none border-0;
+      height: 50px;
     }
   }
+}
+
+.sunp-action-sheet-item {
+  @apply w-full;
+  font-size: 17px;
+  height: 50px;
 }

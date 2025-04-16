@@ -1,36 +1,41 @@
-.sun-parakeet-tab-bar {
-  @apply flex flex-nowrap items-center justify-stretch bg-gray-50 py-2 text-xs text-gray-600 pb-safe-or-2;
+.sunp-tab-bar {
+  @apply flex flex-nowrap items-center justify-stretch py-2 text-xs pb-safe-or-2;
+  color: var(--sunp-color-text);
+  background-color: var(--sunp-color-box);
 
-  &.sun-parakeet-tab-bar-fixed {
-    @apply fixed bottom-0 left-0 right-0 border-t border-gray-200;
+  &.sunp-tab-bar-fixed {
+    @apply fixed bottom-0 left-0 right-0 border-t;
+    border-color: var(--sunp-color-border);
+  }
+}
+
+.sunp-tab-bar-item {
+  @apply flex flex-1 cursor-pointer items-center justify-center bg-inherit text-inherit;
+  @apply border-0 border-none border-transparent;
+
+  &.sunp-tab-bar-item__selected {
+    color: var(--sunp-color-primary);
+    fill: var(--sunp-color-primary);
   }
 
-  .sun-parakeet-tab-bar-item {
-    @apply flex flex-1 cursor-pointer items-center justify-center border-0 border-none border-transparent bg-inherit text-inherit;
+  .sunp-tab-bar-item__inner {
+    @apply flex flex-col items-center justify-center px-1;
 
-    &.sun-parakeet-tab-bar-item__selected {
-      @apply fill-blue-600 text-blue-600;
+    & > :not([hidden]) ~ :not([hidden]) {
+      margin-top: 0.125rem;
     }
 
-    .sun-parakeet-tab-bar-item__inner {
-      @apply flex flex-col items-center justify-center px-1;
-
-      & > :not([hidden]) ~ :not([hidden]) {
-        margin-top: 0.125rem;
-      }
-
-      .sun-parakeet-tab-bar-item__text-only {
-        font-size: 17px;
-        line-height: 25px;
-      }
+    .sunp-tab-bar-item__text-only {
+      font-size: 17px;
+      line-height: 25px;
     }
+  }
 
-    &:disabled {
-      @apply cursor-not-allowed text-gray-400;
+  &:disabled {
+    @apply cursor-not-allowed text-gray-400;
 
-      .sun-parakeet-badge {
-        @apply bg-gray-300;
-      }
+    .sunp-badge {
+      @apply bg-gray-300;
     }
   }
 }

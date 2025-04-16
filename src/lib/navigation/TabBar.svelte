@@ -44,10 +44,10 @@
 <script lang="ts">
   let {
     value = $bindable(),
-    class: clazz,
     fixed,
     tabs = [],
     onChange,
+    class: clazz,
     ...props
   }: TabBarAttributes = $props()
 
@@ -76,33 +76,33 @@
     disabled = false,
   } = option}
   {@const selected = value === val && !disabled}
-  {@const selectedClazz = selected ? classSelected || 'sun-parakeet-tab-bar-item__selected' : ''}
+  {@const selectedClazz = selected ? classSelected || 'sunp-tab-bar-item__selected' : ''}
   {@const selectedStyle = selected ? styleSelected || '' : ''}
   {@const iconVisible = ['string', 'object'].indexOf(typeof icon) >= 0}
   <button
-    class="sun-parakeet-tab-bar-item {clazz} {selectedClazz}"
+    class="sunp-tab-bar-item {clazz} {selectedClazz}"
     style="{style} {selectedStyle}"
     onclick={() => handleClick(val)}
     {disabled}
   >
-    <Badge class="sun-parakeet-tab-bar-item__inner" content={badge}>
+    <Badge class="sunp-tab-bar-item__inner" content={badge}>
       {#if iconVisible && typeof icon === 'string'}
         <Icon name={icon} />
       {:else if iconVisible && typeof icon === 'object'}
         <Icon {...icon} />
       {/if}
       {#if typeof label === 'string'}
-        <span class:sun-parakeet-tab-bar-item__text-only={!iconVisible}>{label}</span>
+        <span class:sunp-tab-bar-item__text-only={!iconVisible}>{label}</span>
       {:else if typeof label === 'function'}
         {@render label(option)}
       {:else if !label && !iconVisible}
-        <span class:sun-parakeet-tab-bar-item__text-only={true}>{val}</span>
+        <span class:sunp-tab-bar-item__text-only={true}>{val}</span>
       {/if}
     </Badge>
   </button>
 {/snippet}
 
-<nav class="sun-parakeet-tab-bar {clazz}" class:sun-parakeet-tab-bar-fixed={fixed} {...props}>
+<nav class="sunp-tab-bar {clazz}" class:sunp-tab-bar-fixed={fixed} {...props}>
   {#each tabs as tab}
     {#if typeof tab === 'string'}
       {@render item({ value: tab })}

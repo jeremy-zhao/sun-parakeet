@@ -7,11 +7,11 @@
 </script>
 
 <script lang="ts">
-  let { class: clazz, children, ...props }: AutoCenterAttributes = $props()
+  let { children, class: clazz, ...props }: AutoCenterAttributes = $props()
 </script>
 
-<div class="sun-parakeet-auto-center {clazz}" {...props}>
-  <div>
+<div class="sunp-auto-center {clazz}" {...props}>
+  <div class="sunp-auto-center__content">
     {@render children?.()}
   </div>
 </div>

@@ -41,6 +41,11 @@
 </script>
 
 <script lang="ts">
+  let _self: HTMLDivElement
+  let _track: HTMLDivElement
+  let _header: HTMLHeadElement
+  let _content: HTMLDivElement
+
   let {
     completeDuration = 500,
     disabled = false,
@@ -53,11 +58,6 @@
     children,
     ...props
   }: PullToRefreshAttributes = $props()
-
-  let _self: HTMLDivElement
-  let _track: HTMLDivElement
-  let _header: HTMLHeadElement
-  let _content: HTMLDivElement
 
   // 触摸控制 =================================
 
@@ -92,7 +92,7 @@
     _touchId = e.touches[0].identifier
     _start = touch.clientY - _offset
     _status = 'pulling'
-    _self.classList.remove('sun-parakeet-pull-to-refresh-animation')
+    _self.classList.remove('sunp-pull-to-refresh-animation')
   }
 
   function handleTouchMove(e: TouchEvent) {
@@ -122,7 +122,7 @@
     // console.log('[PullToRefresh]', 'handlePointerUp')
 
     _touchId = null
-    _self.classList.add('sun-parakeet-pull-to-refresh-animation')
+    _self.classList.add('sunp-pull-to-refresh-animation')
 
     // 未超过阈值
     if (_offset < threshold()) {
@@ -153,20 +153,16 @@
 
     reset()
   }
-
-  function handleTouchCancel() {
-    console.log('cancel')
-  }
 </script>
 
 {#snippet headerSnippet(status: PullToRefreshStatus)}
-  <p class="sun-parakeet-pull-to-refresh__header-inner">
+  <p class="sunp-pull-to-refresh__header-inner">
     {#if status === 'idle' || status === 'pulling'}
       <span>下拉刷新</span>
     {:else if status === 'loosing'}
       <span>释放即可刷新</span>
     {:else if status === 'refreshing'}
-      <Icon class="sun-parakeet-pull-to-refresh__header-loading" svg={LoadingIcon} size={20} />
+      <Icon class="sunp-pull-to-refresh__header-loading" svg={LoadingIcon} size={20} />
       <span>加载中...</span>
     {:else if status === 'complete'}
       <span>刷新成功</span>
@@ -176,24 +172,21 @@
 
 <div
   bind:this={_self}
-  class={['sun-parakeet-pull-to-refresh', 'sun-parakeet-pull-to-refresh-animation', clazz]
-    .filter(x => x)
-    .join(' ')}
+  class={['sunp-pull-to-refresh', 'sunp-pull-to-refresh-animation', clazz].filter(x => x).join(' ')}
   {...props}
   ontouchstart={handleTouchStart}
   ontouchmove={handleTouchMove}
   ontouchend={handleTouchEnd}
-  ontouchcancel={handleTouchCancel}
 >
-  <div bind:this={_track} class="sun-parakeet-pull-to-refresh__track" style:translate>
-    <header bind:this={_header} class="sun-parakeet-pull-to-refresh__header">
+  <div bind:this={_track} class="sunp-pull-to-refresh__track" style:translate>
+    <header bind:this={_header} class="sunp-pull-to-refresh__header">
       {#if typeof header === 'function'}
         {@render header(_status, _offset)}
       {:else}
         {@render headerSnippet(_status)}
       {/if}
     </header>
-    <div bind:this={_content} class="sun-parakeet-pull-to-refresh__content">
+    <div bind:this={_content} class="sunp-pull-to-refresh__content">
       {@render children?.()}
     </div>
   </div>

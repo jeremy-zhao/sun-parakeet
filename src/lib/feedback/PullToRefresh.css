@@ -1,28 +1,30 @@
-.sun-parakeet-pull-to-refresh {
+.sunp-pull-to-refresh {
   @apply relative block select-none overflow-hidden;
 
-  .sun-parakeet-pull-to-refresh__track {
+  .sunp-pull-to-refresh__track {
     @apply h-full touch-pan-x overflow-visible;
   }
 
-  .sun-parakeet-pull-to-refresh__header {
-    @apply absolute bottom-full left-0 right-0;
+  .sunp-pull-to-refresh__header {
+    @apply absolute bottom-full left-0 right-0 border-b;
+    border-color: var(--sunp-color-border);
 
-    .sun-parakeet-pull-to-refresh__header-inner {
-      @apply flex items-center justify-center px-4 py-2 text-sm text-gray-400;
+    .sunp-pull-to-refresh__header-inner {
+      @apply flex items-center justify-center px-4 py-2 text-sm;
+      color: var(--sunp-color-weak);
     }
 
-    .sun-parakeet-pull-to-refresh__header-loading {
+    .sunp-pull-to-refresh__header-loading {
       @apply mr-2 animate-spin;
     }
   }
 
-  .sun-parakeet-pull-to-refresh__content {
+  .sunp-pull-to-refresh__content {
     @apply h-full overflow-y-auto overflow-x-hidden;
   }
 
-  &.sun-parakeet-pull-to-refresh-animation {
-    .sun-parakeet-pull-to-refresh__track {
+  &.sunp-pull-to-refresh-animation {
+    .sunp-pull-to-refresh__track {
       transition: translate 0.15s ease-out;
     }
   }

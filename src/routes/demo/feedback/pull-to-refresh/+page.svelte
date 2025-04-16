@@ -16,7 +16,7 @@
 </script>
 
 {#snippet content()}
-  <List>
+  <List class="-mt-1">
     {#each new Array(20)}
       <p class="bg-white p-4">刷新次数: {count}</p>
     {/each}
@@ -24,7 +24,7 @@
 {/snippet}
 
 <Page class="flex flex-col bg-gray-100">
-  <Tabs class="flex-none" bind:value={currentTab} tabs={['基础用法', '自定义+震动']} />
+  <Tabs class="flex-none border-b" bind:value={currentTab} tabs={['基础用法', '自定义+震动']} />
   <TabPanel class="flex-auto" visible={currentTab === '基础用法'}>
     <PullToRefresh class="h-full" onRefresh={handleRefresh}>
       {@render content()}

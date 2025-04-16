@@ -94,34 +94,35 @@
     disabled = false,
   } = option}
   {@const selected = value === val && !disabled}
-  {@const selectedClazz = selected ? classSelected || 'sun-parakeet-tabs-item__selected' : ''}
+  {@const selectedClazz = selected ? classSelected || 'sunp-tabs-item-selected' : ''}
   {@const selectedStyle = selected ? styleSelected || '' : ''}
   {@const iconVisible = ['string', 'object'].indexOf(typeof icon) >= 0}
   <button
     use:onTabLoad={selected}
-    class="sun-parakeet-tabs-item {clazz} {selectedClazz}"
+    class="sunp-tabs-item {clazz} {selectedClazz}"
+    class:sunp-tabs-item-disabled={disabled}
     style="{style} {selectedStyle}"
     onclick={e => handleClick(e, val)}
     {disabled}
   >
-    <Badge class="sun-parakeet-tabs-item__inner" content={badge}>
+    <Badge class="sunp-tabs-item__inner" content={badge}>
       {#if iconVisible && typeof icon === 'string'}
         <Icon name={icon} size={22} />
       {:else if iconVisible && typeof icon === 'object'}
         <Icon {...icon} />
       {/if}
       {#if typeof label === 'string'}
-        <span class="sun-parakeet-tabs-item__inner-text">{label}</span>
+        <span class="sunp-tabs-item__inner-text">{label}</span>
       {:else if typeof label === 'function'}
         {@render label(option)}
       {:else if !label && !iconVisible}
-        <span class="sun-parakeet-tabs-item__inner-text">{val}</span>
+        <span class="sunp-tabs-item__inner-text">{val}</span>
       {/if}
     </Badge>
   </button>
 {/snippet}
 
-<nav bind:this={nav} class="sun-parakeet-tabs {clazz}" {...props}>
+<nav bind:this={nav} class="sunp-tabs {clazz}" {...props}>
   {#each tabs as tab}
     {#if typeof tab === 'string'}
       {@render item({ value: tab })}
@@ -129,9 +130,5 @@
       {@render item(tab)}
     {/if}
   {/each}
-  <div
-    class="sun-parakeet-tabs__baseline"
-    style:left={`${lineL}px`}
-    style:width={`${lineW}px`}
-  ></div>
+  <div class="sunp-tabs__baseline" style:left={`${lineL}px`} style:width={`${lineW}px`}></div>
 </nav>

@@ -66,7 +66,7 @@
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
-  class="sun-parakeet-avatar {clazz}"
+  class="sunp-avatar {clazz}"
   style:width={_size}
   style:height={_size}
   style:border-radius={_radius}
@@ -74,7 +74,7 @@
   onclick={handleClick}
 >
   {#if _status !== 'success'}
-    <div class="sun-parakeet-avatar__tip">
+    <div class="sunp-avatar__tip">
       {#if typeof fallback === 'string'}
         <Icon name={fallback} />
       {:else if typeof fallback === 'object'}
@@ -89,7 +89,7 @@
   {#if _status !== 'error'}
     <img
       use:useImg
-      class="sun-parakeet-avatar__img"
+      class="sunp-avatar__img"
       style:object-fit={fit}
       style:display={_status === 'success' ? 'block' : 'none'}
       {...props}

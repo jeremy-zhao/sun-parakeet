@@ -41,12 +41,10 @@
   let isSvg = $derived(svg && svgRegex.test(svg))
 </script>
 
-{#if isSvg}
-  <svg class="sun-parakeet-icon {clazz}" style:top="{top}px" width={size} height={size} {...props}>
+<svg class="sunp-icon {clazz}" style:top="{top}px" width={size} height={size} {...props}>
+  {#if isSvg}
     {@html svg}
-  </svg>
-{:else}
-  <svg class="sun-parakeet-icon {clazz}" style:top="{top}px" width={size} height={size} {...props}>
+  {:else}
     <use href="{path}#{name}" />
-  </svg>
-{/if}
+  {/if}
+</svg>

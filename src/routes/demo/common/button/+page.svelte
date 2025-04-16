@@ -70,7 +70,7 @@
   <List header="文本混排">
     <p class="bg-white px-4 py-2">
       <span class="mr-2">点击右侧按钮</span>
-      <Button color="primary" {loading} onclick={handleSubmit}>提交</Button>
+      <Button color="warning" {loading} onclick={handleSubmit}>提交</Button>
       <span class="ml-2">会转圈圈</span>
     </p>
   </List>

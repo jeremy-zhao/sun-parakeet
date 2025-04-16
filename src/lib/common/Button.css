@@ -8,17 +8,13 @@
   border-width: var(--sunp-border, 1px);
 
   .sunp-button__loading {
-    @apply absolute left-1/2 top-1/2;
-    translate: -50% -50%;
-    z-index: 1;
-
     .sunp-button__loading-icon {
-      @apply animate-spin;
+      @apply mr-2 animate-spin;
     }
   }
 
   .sunp-button__content {
-    @apply flex items-center justify-center;
+    @apply relative flex items-center justify-center;
     translate: 0 1px;
   }
 
@@ -28,10 +24,7 @@
 
   &.sunp-button-loading {
     @apply pointer-events-none cursor-wait;
-
-    .sunp-button__content {
-      @apply invisible;
-    }
+    filter: brightness(1.2) saturate(70%);
   }
 
   &.sunp-button-disabled {

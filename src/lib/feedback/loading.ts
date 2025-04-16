@@ -28,7 +28,7 @@ export async function showLoading(option: ShowLoadingOption = {}) {
   await showToast({
     key,
     text,
-    icon: { name: 'loading', svg: LoadingIcon, size: 32, class: 'sun-parakeet-loading__icon' },
+    icon: { name: 'loading', svg: LoadingIcon, size: 32, class: 'sunp-loading__icon' },
     duration: 0,
     mask: true,
     keep: true,

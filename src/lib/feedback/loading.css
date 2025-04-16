@@ -1,3 +1,4 @@
-.sun-parakeet-loading__icon {
-  @apply animate-spin text-white;
+.sunp-loading__icon {
+  @apply animate-spin;
+  color: var(--sunp-color-white);
 }

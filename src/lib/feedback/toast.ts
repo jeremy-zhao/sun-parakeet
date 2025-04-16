@@ -57,14 +57,14 @@ export async function showToast(option: ShowToastOption) {
 
   if (mask && !_mask) {
     _mask = document.createElement('div')
-    _mask.className = 'sun-parakeet-mask'
+    _mask.className = 'sunp-mask'
 
     on(_mask, 'click', () => !_option?.keep && hideToast())
   }
 
   if (!_toast) {
     _toast = document.createElement('div')
-    _toast.classList.add('sun-parakeet-toast', 'scaled')
+    _toast.classList.add('sunp-toast')
 
     on(_toast, 'click', () => !_option?.keep && hideToast())
 
@@ -79,7 +79,7 @@ export async function showToast(option: ShowToastOption) {
 
   if (!_pre) {
     _pre = document.createElement('pre')
-    _pre.className = 'sun-parakeet-toast__pre'
+    _pre.className = 'sunp-toast__pre'
   }
 
   const toasting = !!_option
@@ -111,7 +111,7 @@ export async function showToast(option: ShowToastOption) {
   if (isString(icon)) {
     _icon.setAttributeNS(null, 'width', '30')
     _icon.setAttributeNS(null, 'height', '30')
-    _icon.setAttributeNS(null, 'class', 'sun-parakeet-toast__icon')
+    _icon.setAttributeNS(null, 'class', 'sunp-toast__icon')
 
     _icon.replaceChildren()
     const use = document.createElementNS(svgns, 'use')
@@ -122,7 +122,14 @@ export async function showToast(option: ShowToastOption) {
       _toast.prepend(_icon)
     }
   } else if (isIconOption(icon)) {
-    const { name, size = 24, path = '/icons/symbol.svg', svg, class: className = '', style = '' } = icon as IconOption
+    const {
+      name,
+      size = 24,
+      path = '/icons/symbol.svg',
+      svg,
+      class: className = '',
+      style = '',
+    } = icon as IconOption
 
     _icon.setAttributeNS(null, 'width', size.toString())
     _icon.setAttributeNS(null, 'height', size.toString())
@@ -167,7 +174,7 @@ export async function showToast(option: ShowToastOption) {
     _timer = setTimeout(() => hideToast(), duration)
   }
 
-  _toast.classList.add('visible')
+  _toast.classList.add('sunp-toast-visible')
 }
 
 async function _hideToast() {
@@ -184,7 +191,7 @@ async function _hideToast() {
 
   _option = undefined
 
-  _toast.classList.remove('visible')
+  _toast.classList.remove('sunp-toast-visible')
 }
 
 /**

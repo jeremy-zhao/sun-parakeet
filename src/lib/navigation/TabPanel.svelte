@@ -28,8 +28,8 @@
 
 <section
   bind:this={_self}
-  class="sun-parakeet-tab-panel {clazz}"
-  class:hidden={!visible}
+  class="sunp-tab-panel {clazz}"
+  class:sunp-tab-panel-hidden={!visible}
   onscroll={handleScroll}
   {...props}
 >

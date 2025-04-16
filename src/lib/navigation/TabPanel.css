@@ -1,7 +1,7 @@
-.sun-parakeet-tab-panel {
+.sunp-tab-panel {
   @apply overflow-y-auto;
 
-  &.hidden {
+  &.sunp-tab-panel-hidden {
     display: none;
   }
 }

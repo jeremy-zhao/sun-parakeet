@@ -47,16 +47,16 @@
 {#snippet inner()}
   <!-- aside -->
   {#if aside}
-    <div class="sun-parakeet-list-item__aside">
+    <div class="sunp-list-item__aside">
       {@render aside()}
     </div>
   {/if}
 
   <!-- content -->
-  <div class="sun-parakeet-list-item__content">
+  <div class="sunp-list-item__content">
     <!-- header -->
     {#if typeof header === 'string'}
-      <span class="sun-parakeet-list-item__header">{header}</span>
+      <span class="sunp-list-item__header">{header}</span>
     {:else if typeof header === 'function'}
       {@render header()}
     {/if}
@@ -64,7 +64,7 @@
     {@render children?.()}
     <!-- description -->
     {#if typeof description === 'string'}
-      <span class="sun-parakeet-list-item__description">{description}</span>
+      <span class="sunp-list-item__description">{description}</span>
     {:else if typeof description === 'function'}
       {@render description()}
     {/if}
@@ -72,30 +72,30 @@
 
   <!-- extra -->
   {#if typeof extra === 'string'}
-    <span class="sun-parakeet-list-item__extra">{extra}</span>
+    <span class="sunp-list-item__extra">{extra}</span>
   {:else if typeof extra === 'function'}
-    <div class="sun-parakeet-list-item__extra">
+    <div class="sunp-list-item__extra">
       {@render extra()}
     </div>
   {/if}
 
   <!-- icon -->
   {#if typeof iconed === 'string'}
-    <Icon class="sun-parakeet-list-item__icon" name={iconed} />
+    <Icon class="sunp-list-item__icon" name={iconed} />
   {:else if typeof iconed === 'object'}
-    <Icon class="sun-parakeet-list-item__icon" {...iconed} />
+    <Icon class="sunp-list-item__icon" {...iconed} />
   {:else}
-    <i class="sun-parakeet-list-item__icon"></i>
+    <i class="sunp-list-item__icon"></i>
   {/if}
 {/snippet}
 
-<li class="sun-parakeet-list-item {clazz}" {...props}>
+<li class="sunp-list-item {clazz}" {...props}>
   {#if clickable}
-    <Button class="sun-parakeet-list-item__inner" color="text" shape="rectangular" {disabled}>
+    <Button class="sunp-list-item__inner" color="text" block {disabled}>
       {@render inner()}
     </Button>
   {:else}
-    <div class="sun-parakeet-list-item__inner">
+    <div class="sunp-list-item__inner">
       {@render inner()}
     </div>
   {/if}

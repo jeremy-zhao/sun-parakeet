@@ -14,7 +14,7 @@
   }
 
   .sunp-button__content {
-    @apply relative flex items-center justify-center;
+    @apply relative flex flex-auto items-center justify-center;
     translate: 0 1px;
   }
 

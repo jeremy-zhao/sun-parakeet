@@ -42,18 +42,18 @@
   disabled={disabled || loading}
   {...props}
 >
-  {#if _loading}
-    <div class="sunp-button__loading">
-      {#if typeof loadingIcon === 'object'}
-        <Icon {...loadingIcon} />
-      {:else if typeof loadingIcon === 'function'}
-        {@render loadingIcon()}
-      {:else}
-        <Icon class="sunp-button__loading-icon" svg={LoadingIcon} size={22} top={-2} />
-      {/if}
-    </div>
-  {/if}
   <div class="sunp-button__content">
+    {#if _loading}
+      <div class="sunp-button__loading">
+        {#if typeof loadingIcon === 'object'}
+          <Icon {...loadingIcon} />
+        {:else if typeof loadingIcon === 'function'}
+          {@render loadingIcon()}
+        {:else}
+          <Icon class="sunp-button__loading-icon" svg={LoadingIcon} size={22} top={-2} />
+        {/if}
+      </div>
+    {/if}
     {@render children?.()}
   </div>
 </button>

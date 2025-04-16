@@ -15,13 +15,13 @@
   let { header, children, class: clazz, ...props }: ListAttributes = $props()
 </script>
 
-<ul class="sun-parakeet-list {clazz}" {...props}>
+<ul class="sunp-list {clazz}" {...props}>
   {#if typeof header === 'string'}
-    <header class="sun-parakeet-list__header">
+    <header class="sunp-list__header">
       {header}
     </header>
   {:else if typeof header === 'function'}
-    <header class="sun-parakeet-list__header">
+    <header class="sunp-list__header">
       {@render header()}
     </header>
   {/if}

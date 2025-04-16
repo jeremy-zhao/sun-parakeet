@@ -66,35 +66,35 @@
 
 <Popup
   bind:visible
-  class="sun-parakeet-action-sheet {clazz}"
+  class="sunp-action-sheet {clazz}"
   style={cancel ? 'padding-bottom:0px;' : ''}
   position="bottom"
   onclose={handleMaskClickClose}
   {...props}
 >
   {#if typeof header === 'string'}
-    <header class="sun-parakeet-action-sheet__header">
+    <header class="sunp-action-sheet__header">
       {header}
     </header>
   {:else if typeof header === 'function'}
-    <header class="sun-parakeet-action-sheet__header">
+    <header class="sunp-action-sheet__header">
       {@render header()}
     </header>
   {/if}
 
-  <ul class="sun-parakeet-action-sheet__list">
+  <ul class="sunp-action-sheet__list">
     {#each actions as action, index}
       <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
       <!-- svelte-ignore a11y_click_events_have_key_events -->
-      <li class="sun-parakeet-action-sheet__list-item" onclick={() => handleAction(action, index)}>
+      <li class="sunp-action-sheet__list-item" onclick={() => handleAction(action, index)}>
         {@render (actionSnippet ?? actionItem)(action, index)}
       </li>
     {/each}
   </ul>
 
   {#if cancel && typeof cancel === 'string'}
-    <footer class="sun-parakeet-action-sheet__footer">
-      <Button class="sun-parakeet-action-sheet__cancel" onclick={handleCancel}>{cancel}</Button>
+    <footer class="sunp-action-sheet__footer">
+      <Button class="sunp-action-sheet__cancel" onclick={handleCancel}>{cancel}</Button>
     </footer>
   {/if}
 </Popup>

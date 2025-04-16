@@ -2,7 +2,9 @@
   import './mask.css'
   import './Popup.css'
 
+  import { onMount } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
+  import stack from '../common/historyStack.js'
 
   export type PopupPosition = 'center' | 'top' | 'right' | 'bottom' | 'left'
 
@@ -23,11 +25,6 @@
 </script>
 
 <script lang="ts">
-  import { browser } from '$app/environment'
-  import stack from '../common/historyStack.js'
-  import { onMount } from 'svelte'
-  import { render } from 'svelte/server'
-
   let _mask: HTMLDivElement
   let _self: HTMLDivElement
 
@@ -44,14 +41,12 @@
   }: PopupAttributes = $props()
 
   let zIndex = $derived(10000 + 2 * stack.indexOf(_self!))
-  let positioned = $derived(`sun-parakeet-popup-${position}`)
+  let positioned = $derived(`sunp-popup-${position}`)
   let renderChildren = $state(true)
   let closeTimeout: NodeJS.Timeout | undefined
 
   // visible
   $effect(() => {
-    if (!browser) return
-
     if (closeTimeout) {
       clearTimeout(closeTimeout)
       closeTimeout = undefined
@@ -100,7 +95,7 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
   bind:this={_mask}
-  class="sun-parakeet-mask"
+  class="sunp-mask"
   style:visibility={visible ? 'visible' : 'hidden'}
   style:z-index={zIndex}
   onclick={handleClickMask}
@@ -108,8 +103,8 @@
 
 <div
   bind:this={_self}
-  class="sun-parakeet-popup {positioned} {clazz}"
-  class:visible
+  class="sunp-popup {positioned} {clazz}"
+  class:sunp-popup-visible={visible}
   {...props}
   style:z-index={zIndex + 1}
 >

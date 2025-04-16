@@ -1,53 +1,53 @@
-.sun-parakeet-popup {
+.sunp-popup {
   @apply fixed bg-white;
 
-  &.sun-parakeet-popup-center {
+  &.sunp-popup-center {
     @apply left-1/2 top-1/2;
     transition: scale 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     translate: -50% -50%;
     scale: 0;
 
-    &.visible {
+    &.sunp-popup-visible {
       scale: 1;
     }
   }
 
-  &.sun-parakeet-popup-top {
+  &.sunp-popup-top {
     @apply left-0 right-0 top-0 pt-safe;
     transition: translate 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     translate: 0 -100%;
 
-    &.visible {
+    &.sunp-popup-visible {
       translate: 0 0;
     }
   }
 
-  &.sun-parakeet-popup-right {
+  &.sunp-popup-right {
     @apply bottom-0 right-0 top-0 pr-safe;
     transition: translate 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     translate: 100% 0;
 
-    &.visible {
+    &.sunp-popup-visible {
       translate: 0 0;
     }
   }
 
-  &.sun-parakeet-popup-bottom {
+  &.sunp-popup-bottom {
     @apply bottom-0 left-0 right-0 pb-safe;
     transition: translate 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     translate: 0 100%;
 
-    &.visible {
+    &.sunp-popup-visible {
       translate: 0 0;
     }
   }
 
-  &.sun-parakeet-popup-left {
+  &.sunp-popup-left {
     @apply bottom-0 left-0 top-0 pl-safe;
     transition: translate 0.15s cubic-bezier(0.4, 0, 0.2, 1);
     translate: -100% 0;
 
-    &.visible {
+    &.sunp-popup-visible {
       translate: 0 0;
     }
   }

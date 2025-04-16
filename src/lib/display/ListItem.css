@@ -1,5 +1,5 @@
 .sunp-list-item {
-  @apply relative;
+  @apply relative list-none;
   background-color: var(--sunp-color-background);
 
   .sunp-list-item__inner {

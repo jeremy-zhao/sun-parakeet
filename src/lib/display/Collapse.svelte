@@ -2,8 +2,7 @@
   import './Collapse.css'
   import ArrowIcon from '../icons/arrow-down-s-line.svg?raw'
 
-  import ListItem from './ListItem.svelte'
-  import type { IconOption } from '../common/Icon.svelte'
+  import Icon, { type IconOption } from '../common/Icon.svelte'
   import type { Snippet } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
 
@@ -19,15 +18,17 @@
 </script>
 
 <script lang="ts">
-  let { expanded = $bindable(false), header, class: clazz, onChange, children, ...props }: CollapseAttributes = $props()
+  let {
+    expanded = $bindable(false),
+    header,
+    class: clazz,
+    onChange,
+    children,
+    ...props
+  }: CollapseAttributes = $props()
 
   let contentHeight = $state(0)
   let height = $derived(expanded && contentHeight ? `${contentHeight + 2}px` : '1px')
-
-  const icon: IconOption & { svg: string } = {
-    svg: ArrowIcon,
-    class: 'sun-parakeet-collapse__header-icon',
-  }
 
   function onSwitch() {
     expanded = !expanded
@@ -50,16 +51,17 @@
   }
 </script>
 
-<div class="sun-parakeet-collapse {clazz}" class:expanded {...props}>
-  <ListItem class="sun-parakeet-collapse__header" clickable={true} onclick={onSwitch} {icon}>
+<div class="sunp-collapse {clazz}" class:sunp-collapse-expanded={expanded} {...props}>
+  <button class="sunp-collapse__header" onclick={onSwitch}>
     {#if typeof header === 'string'}
-      {header}
+      <span class="sunp-collapse__header-text">{header}</span>
+      <Icon class="sunp-collapse__header-icon" svg={ArrowIcon} size={32} />
     {:else}
       {@render header()}
     {/if}
-  </ListItem>
-  <div class="sun-parakeet-collapse__container" style:height>
-    <div use:onLoadContent class="sun-parakeet-collapse__content">
+  </button>
+  <div class="sunp-collapse__container" style:height>
+    <div use:onLoadContent class="sunp-collapse__content">
       {@render children?.()}
     </div>
   </div>

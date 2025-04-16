@@ -1,14 +1,13 @@
 <script lang="ts" module>
   import './Page.css'
 
-  import type { ClassValue, HTMLAttributes } from 'svelte/elements'
+  import type { HTMLAttributes } from 'svelte/elements'
 
   /** 页面 */
   export interface PageAttributes extends HTMLAttributes<EventTarget> {
-    class?: ClassValue
+    /** 页面飞入飞出的时间 */
+    duration?: number
   }
-
-  const duration = 300
 </script>
 
 <script lang="ts">
@@ -16,7 +15,7 @@
   import { fly } from 'svelte/transition'
   import type { TransitionConfig } from 'svelte/transition'
 
-  const { class: clazz, children, ...props }: PageAttributes = $props()
+  const { duration = 300, children, class: clazz, ...props }: PageAttributes = $props()
 
   function flyIn(node: Element): TransitionConfig {
     const ps = stack.pageSwitch()
@@ -45,6 +44,6 @@
   }
 </script>
 
-<main class="sun-parakeet-page {clazz}" {...props} in:flyIn out:flyOut>
+<main class="sunp-page {clazz}" {...props} in:flyIn out:flyOut>
   {@render children?.()}
 </main>

@@ -19,8 +19,8 @@
     block,
     direction = 'horizontal',
     wrap,
-    class: clazz,
     children,
+    class: clazz,
     ...props
   }: SpaceAttributes = $props()
 

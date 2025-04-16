@@ -1,16 +1,17 @@
-.sun-parakeet-badge-wrapper {
+.sunp-badge-wrapper {
   @apply relative box-border inline-block;
 }
 
-.sun-parakeet-badge {
-  @apply box-border inline-block whitespace-nowrap rounded-full px-1 text-center font-normal text-white;
-  background-color: var(--sp-color, #dc2626);
+.sunp-badge {
+  @apply box-border inline-block whitespace-nowrap rounded-full px-1 text-center font-normal;
+  color: var(--sunp-text-color, var(--sunp-color-white));
+  background-color: var(--sunp-badge-color, var(--sunp-color-danger));
   font-size: 9px;
   line-height: 16px;
   min-width: 16px;
   z-index: 1;
 
-  &.sun-parakeet-badge-dot {
+  &.sunp-badge-dot {
     @apply min-w-0;
     width: 10px;
     height: 10px;
@@ -18,14 +19,14 @@
     line-height: 0;
   }
 
-  &.sun-parakeet-badge-fixed {
+  &.sunp-badge-fixed {
     @apply absolute;
-    top: var(--sp-top, 0);
-    right: var(--sp-right, 0);
+    top: var(--sunp-top, 0);
+    right: var(--sunp-right, 0);
     transform: translate(50%, -50%);
   }
 
-  &.sun-parakeet-badge-border {
-    box-shadow: 0 0 0 1px white;
+  &.sunp-badge-border {
+    box-shadow: 0 0 0 1px var(--sunp-border-color, var(--sunp-color-white));
   }
 }

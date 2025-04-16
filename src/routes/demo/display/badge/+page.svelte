@@ -40,19 +40,27 @@
   </List>
   <List header="自定义颜色和偏移量">
     <div class="bg-white p-4">
-      <Badge content class="mr-4" --sp-color="blue" --sp-right="100%" --sp-top="100%">
+      <Badge content class="mr-4" --sunp-badge-color="blue" --sunp-right="100%" --sunp-top="100%">
         <div class="h-10 w-10 rounded-md bg-gray-300"></div>
       </Badge>
-      <Badge content class="mr-4" --sp-color="green" --sp-right="100%">
+      <Badge content class="mr-4" --sunp-badge-color="green" --sunp-right="100%">
         <div class="h-10 w-10 rounded-md bg-gray-300"></div>
       </Badge>
-      <Badge content class="mr-4" --sp-color="orange">
+      <Badge content class="mr-4" --sunp-badge-color="orange">
         <div class="h-10 w-10 rounded-md bg-gray-300"></div>
       </Badge>
-      <Badge content class="mr-4" --sp-color="purple" --sp-top="100%">
+      <Badge content class="mr-4" --sunp-badge-color="purple" --sunp-top="100%">
         <div class="h-10 w-10 rounded-md bg-gray-300"></div>
       </Badge>
-      <Badge content class="mr-4" --sp-top="50%">
+      <Badge
+        content="1"
+        class="mr-4"
+        border
+        --sunp-badge-color="#ffcccc"
+        --sunp-border-color="#ff0000"
+        --sunp-text-color="#ff0000"
+        --sunp-top="50%"
+      >
         <div class="h-10 w-10 rounded-md bg-gray-300"></div>
       </Badge>
     </div>

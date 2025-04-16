@@ -1,10 +1,84 @@
 <script lang="ts" module>
   import { goto } from '$app/navigation'
-  import { Page, List, ListItem } from '$lib'
+  import { Page, ListItem, Collapse } from '$lib'
 </script>
 
 <script lang="ts">
   import { onMount } from 'svelte'
+
+  let expanded = $state('')
+
+  let data = [
+    {
+      header: '通用组件',
+      items: [
+        ['Button', '按钮', '/demo/common/button'],
+        ['Icon', '图标', '/demo/common/icon'],
+        ['VConsole', '控制台', '/demo/common/vconsole'],
+      ],
+    },
+    {
+      header: '布局',
+      items: [
+        ['AutoCenter', '自动居中', '/demo/layout/auto-center'],
+        ['Divider', '分割线', '/demo/layout/divider'],
+        ['Page', '页面', '/demo/layout/page'],
+        ['Space', '间距', '/demo/layout/space'],
+      ],
+    },
+    {
+      header: '导航',
+      items: [
+        ['SideBar', '侧边栏', '/demo/navigation/side-bar'],
+        ['TabBar', '标签栏', '/demo/navigation/tab-bar'],
+        ['Tabs', '标签页', '/demo/navigation/tabs'],
+        ['TabPanel', '标签面板', '/demo/navigation/tab-panel'],
+      ],
+    },
+    {
+      header: '信息展示',
+      items: [
+        ['Avatar', '头像', '/demo/display/avatar'],
+        ['Badge', '徽标', '/demo/display/badge'],
+        ['Collapse', '折叠面板', '/demo/display/collapse'],
+        ['Image', '图片', '/demo/display/image'],
+        ['InfiniteScroll', '无限滚动', '/demo/display/infinite-scroll'],
+        ['List', '列表', '/demo/display/list'],
+        ['PageIndicator', '分页符', '/demo/display/page-indicator'],
+        ['Steps', '步骤条', '/demo/display/steps'],
+        ['Swiper', '轮播', '/demo/display/swiper'],
+      ],
+    },
+    {
+      header: '信息录入',
+      items: [
+        ['CheckList', '可勾选列表', '/demo/input/check-list'],
+        ['Checkbox', '复选框', '/demo/input/checkbox'],
+        ['Form', '表单', '/demo/input/form'],
+        ['Input', '输入框', '/demo/input/input'],
+        ['Picker', '选择器', '/demo/input/picker'],
+        ['PickerView', '选择器视图', '/demo/input/picker-view'],
+        ['Stepper', '步进器', '/demo/input/stepper'],
+        ['Switch', '开关', '/demo/input/switch'],
+        ['Textarea', '文本域', '/demo/input/textarea'],
+      ],
+    },
+    {
+      header: '反馈',
+      items: [
+        ['ActionSheet', '动作面板', '/demo/feedback/action-sheet'],
+        ['Loading', '加载中', '/demo/feedback/loading'],
+        ['Popup', '弹出层', '/demo/feedback/popup'],
+        ['PullToRefresh', '下拉刷新', '/demo/feedback/pull-to-refresh'],
+        ['SwipeAction', '滑动操作', '/demo/feedback/swipe-action'],
+        ['Toast', '轻提示', '/demo/feedback/toast'],
+      ],
+    },
+  ] satisfies { header: string; items: [string, string, string][] }[]
+
+  function handleChange(value: string) {
+    expanded = expanded !== value ? value : ''
+  }
 
   function onNav(e: Event) {
     const target = e.currentTarget as HTMLElement
@@ -23,51 +97,17 @@
 {/snippet}
 
 <Page class="bg-gray-100">
-  <List header="通用组件">
-    {@render listItem('Button', '按钮', '/demo/common/button')}
-    {@render listItem('Icon', '图标', '/demo/common/icon')}
-    {@render listItem('VConsole', '控制台', '/demo/common/vconsole')}
-  </List>
-  <List header="布局">
-    {@render listItem('AutoCenter', '自动居中', '/demo/layout/auto-center')}
-    {@render listItem('Divider', '分割线', '/demo/layout/divider')}
-    {@render listItem('Page', '页面', '/demo/layout/page')}
-    {@render listItem('Space', '间距', '/demo/layout/space')}
-  </List>
-  <List header="导航">
-    {@render listItem('SideBar', '侧边栏', '/demo/navigation/side-bar')}
-    {@render listItem('TabBar', '标签栏', '/demo/navigation/tab-bar')}
-    {@render listItem('Tabs', '标签页', '/demo/navigation/tabs')}
-    {@render listItem('TabPanel', '标签面板', '/demo/navigation/tab-panel')}
-  </List>
-  <List header="信息展示">
-    {@render listItem('Avatar', '头像', '/demo/display/avatar')}
-    {@render listItem('Badge', '徽标', '/demo/display/badge')}
-    {@render listItem('Collapse', '折叠面板', '/demo/display/collapse')}
-    {@render listItem('Image', '图片', '/demo/display/image')}
-    {@render listItem('InfiniteScroll', '无限滚动', '/demo/display/infinite-scroll')}
-    {@render listItem('List', '列表', '/demo/display/list')}
-    {@render listItem('PageIndicator', '分页符', '/demo/display/page-indicator')}
-    {@render listItem('Steps', '步骤条', '/demo/display/steps')}
-    {@render listItem('Swiper', '轮播', '/demo/display/swiper')}
-  </List>
-  <List header="信息录入">
-    {@render listItem('CheckList', '可勾选列表', '/demo/input/check-list')}
-    {@render listItem('Checkbox', '复选框', '/demo/input/checkbox')}
-    {@render listItem('Form', '表单', '/demo/input/form')}
-    {@render listItem('Input', '输入框', '/demo/input/input')}
-    {@render listItem('Picker', '选择器', '/demo/input/picker')}
-    {@render listItem('PickerView', '选择器视图', '/demo/input/picker-view')}
-    {@render listItem('Stepper', '步进器', '/demo/input/stepper')}
-    {@render listItem('Switch', '开关', '/demo/input/switch')}
-    {@render listItem('Textarea', '文本域', '/demo/input/textarea')}
-  </List>
-  <List header="反馈">
-    {@render listItem('ActionSheet', '动作面板', '/demo/feedback/action-sheet')}
-    {@render listItem('Loading', '加载中', '/demo/feedback/loading')}
-    {@render listItem('Popup', '弹出层', '/demo/feedback/popup')}
-    {@render listItem('PullToRefresh', '下拉刷新', '/demo/feedback/pull-to-refresh')}
-    {@render listItem('SwipeAction', '滑动操作', '/demo/feedback/swipe-action')}
-    {@render listItem('Toast', '轻提示', '/demo/feedback/toast')}
-  </List>
+  {#each data as group}
+    {@const { header, items } = group}
+    <Collapse
+      class="m-4"
+      {header}
+      expanded={expanded === header}
+      onChange={() => handleChange(header)}
+    >
+      {#each items as item}
+        {@render listItem(item[0], item[1], item[2])}
+      {/each}
+    </Collapse>
+  {/each}
 </Page>

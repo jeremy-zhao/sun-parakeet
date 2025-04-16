@@ -13,33 +13,25 @@
 
 <script lang="ts">
   let {
-    direction = 'horizontal',
     contentPosition = 'center',
-    class: clazz,
+    direction = 'horizontal',
     children,
+    class: clazz,
     ...props
   }: DividerAttributes = $props()
-
-  let position = $derived.by(() => {
-    switch (contentPosition) {
-      case 'left':
-        return 'sun-parakeet-divider-left'
-      case 'right':
-        return 'sun-parakeet-divider-right'
-      default:
-        return ''
-    }
-  })
 </script>
 
 {#if direction === 'horizontal'}
-  <div class="sun-parakeet-divider-horizontal {position} {clazz}" {...props}>
+  <div
+    class="sunp-divider sunp-divider-horizontal sunp-divider-{contentPosition} {clazz}"
+    {...props}
+  >
     {#if children}
-      <div class="sun-parakeet-divider-content">
+      <div class="sunp-divider__content">
         {@render children()}
       </div>
     {/if}
   </div>
 {:else if direction === 'vertical'}
-  <span class="sun-parakeet-divider-vertical {clazz}"></span>
+  <span class="sunp-divider sunp-divider-vertical {clazz}"></span>
 {/if}

@@ -1,6 +1,7 @@
-.sun-parakeet-divider-horizontal {
-  @apply flex items-center border-0 border-solid text-sm text-gray-500;
-  border-color: var(--sp-border-color, #e5e7eb);
+.sunp-divider-horizontal {
+  @apply flex items-center border-0 border-solid text-sm;
+  color: var(--sunp-color-text-secondary);
+  border-color: var(--sunp-color-border);
 
   &::before,
   &::after {
@@ -10,23 +11,23 @@
     content: '';
   }
 
-  &.sun-parakeet-divider-left::before {
+  &.sunp-divider-left::before {
     max-width: 10%;
   }
 
-  &.sun-parakeet-divider-right::after {
+  &.sunp-divider-right::after {
     max-width: 10%;
   }
 
-  .sun-parakeet-divider-content {
-    margin: 0 var(--sp-margin, 1rem);
+  .sunp-divider__content {
+    margin: 0 var(--sunp-margin, 1rem);
   }
 }
 
-.sun-parakeet-divider-vertical {
+.sunp-divider-vertical {
   @apply relative inline-block border-0 border-l border-solid;
   height: 0.9em;
-  border-color: var(--sp-border-color, #e5e7eb);
-  margin: 0 var(--sp-margin, 1rem);
+  border-color: var(--sunp-color-border);
+  margin: 0 var(--sunp-margin, 1rem);
   top: 0.1em;
 }

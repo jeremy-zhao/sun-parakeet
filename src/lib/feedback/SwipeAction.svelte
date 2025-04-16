@@ -71,7 +71,7 @@
 
     _pointerId = e.pointerId
     _start = e.x - _offset
-    _self.classList.remove('sun-parakeet-swipe-action-animation')
+    _self.classList.remove('sunp-swipe-action-animation')
   }
 
   function handlePointerMove(e: PointerEvent) {
@@ -90,7 +90,7 @@
     target.releasePointerCapture(e.pointerId)
 
     _pointerId = null
-    _self.classList.add('sun-parakeet-swipe-action-animation')
+    _self.classList.add('sunp-swipe-action-animation')
 
     // 点击关闭
     if (
@@ -159,31 +159,25 @@
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
   bind:this={_self}
-  class="sun-parakeet-swipe-action sun-parakeet-swipe-action-animation"
+  class="sunp-swipe-action sunp-swipe-action-animation"
   onpointerdown={handlePointerDown}
   onpointermove={handlePointerMove}
   onpointerup={handlePointerUp}
   onpointercancel={reset}
 >
-  <div class="sun-parakeet-swipe-action__track" style:translate>
+  <div class="sunp-swipe-action__track" style:translate>
     {#if typeof leftActions === 'function'}
-      <div
-        bind:this={_left}
-        class="sun-parakeet-swipe-action__actions sun-parakeet-swipe-action__actions-left"
-      >
+      <div bind:this={_left} class="sunp-swipe-action__actions sunp-swipe-action__actions-left">
         {@render leftActions()}
       </div>
     {/if}
 
-    <div class="sun-parakeet-swipe-action__content {clazz}" {...props}>
+    <div class="sunp-swipe-action__content {clazz}" {...props}>
       {@render children?.()}
     </div>
 
     {#if typeof rightActions === 'function'}
-      <div
-        bind:this={_right}
-        class="sun-parakeet-swipe-action__actions sun-parakeet-swipe-action__actions-right"
-      >
+      <div bind:this={_right} class="sunp-swipe-action__actions sunp-swipe-action__actions-right">
         {@render rightActions()}
       </div>
     {/if}

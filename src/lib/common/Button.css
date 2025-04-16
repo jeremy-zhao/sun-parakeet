@@ -19,7 +19,7 @@
   }
 
   &.sunp-button-block {
-    @apply flex w-full;
+    @apply flex h-full w-full;
   }
 
   &.sunp-button-loading {

@@ -26,7 +26,7 @@
     }
   }
 
-  &.sunp-side-bar-item__selected {
+  &.sunp-side-bar-item-selected {
     color: var(--sunp-color-primary);
     fill: var(--sunp-color-primary);
     background-color: var(--sunp-color-background);
@@ -69,11 +69,12 @@
     }
   }
 
-  &:disabled {
-    @apply cursor-not-allowed text-gray-400;
+  &.sunp-side-bar-item-disabled {
+    @apply cursor-not-allowed;
+    color: var(--sunp-color-weak);
 
     .sunp-badge {
-      background-color: var(--sunp-color-light);
+      background-color: var(--sunp-color-weak);
     }
   }
 }

@@ -94,12 +94,13 @@
     disabled = false,
   } = option}
   {@const selected = value === val && !disabled}
-  {@const selectedClazz = selected ? classSelected || 'sunp-side-bar-item__selected' : ''}
+  {@const selectedClazz = selected ? classSelected || 'sunp-side-bar-item-selected' : ''}
   {@const selectedStyle = selected ? styleSelected || '' : ''}
   {@const iconVisible = ['string', 'object'].indexOf(typeof icon) >= 0}
   <button
     use:onTabLoad={selected}
     class={['sunp-side-bar-item', clazz, selectedClazz].filter(x => x).join(' ')}
+    class:sunp-side-bar-item-disabled={disabled}
     style={[style, selectedStyle].filter(x => x).join(' ')}
     onclick={e => handleClick(e, val)}
     {disabled}

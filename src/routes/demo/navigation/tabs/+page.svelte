@@ -18,6 +18,7 @@
 <Page class="bg-gray-100">
   <List header="基础用法">
     <Tabs
+      class="bg-gray-50"
       tabs={[
         { value: 'todoList', icon: 'todo-list', label: '待办' },
         { value: 'customer', icon: 'customer', label: '客户' },
@@ -28,6 +29,7 @@
   </List>
   <List header="徽标">
     <Tabs
+      class="bg-gray-50"
       bind:value={selectedTab}
       tabs={[
         { value: 'todoList', icon: 'todo-list', label: '待办', badge: true },
@@ -39,6 +41,7 @@
   </List>
   <List header="仅图标">
     <Tabs
+      class="bg-gray-50"
       bind:value={selectedTab}
       tabs={[
         { value: 'todoList', icon: 'todo-list', badge: true },
@@ -50,6 +53,7 @@
   </List>
   <List header="仅标题">
     <Tabs
+      class="bg-purple-50"
       bind:value={selectedTab}
       tabs={[
         { value: 'todoList', label: '待办', badge: true },
@@ -61,6 +65,7 @@
   </List>
   <List header="禁用">
     <Tabs
+      class="bg-gray-50"
       tabs={[
         { value: 'todoList', icon: 'todo-list', label: '待办', badge: true, disabled: true },
         { value: 'customer', icon: 'customer', label: '客户' },
@@ -71,7 +76,7 @@
   </List>
   <List header="超长滚动">
     <div>
-      <Tabs {tabs} />
+      <Tabs class="bg-gray-50" {tabs} />
     </div>
   </List>
 </Page>

@@ -76,11 +76,12 @@
     disabled = false,
   } = option}
   {@const selected = value === val && !disabled}
-  {@const selectedClazz = selected ? classSelected || 'sunp-tab-bar-item__selected' : ''}
+  {@const selectedClazz = selected ? classSelected || 'sunp-tab-bar-item-selected' : ''}
   {@const selectedStyle = selected ? styleSelected || '' : ''}
   {@const iconVisible = ['string', 'object'].indexOf(typeof icon) >= 0}
   <button
     class="sunp-tab-bar-item {clazz} {selectedClazz}"
+    class:sunp-tab-bar-item-disabled={disabled}
     style="{style} {selectedStyle}"
     onclick={() => handleClick(val)}
     {disabled}

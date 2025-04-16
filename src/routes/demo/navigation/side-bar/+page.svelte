@@ -78,10 +78,11 @@
       {@render panels()}
     </div>
   </List>
-  <List header="仅标题-定宽">
+  <List header="仅标题-定宽-背景">
     <div class="flex items-stretch justify-stretch">
       <SideBar
-        style="width: 140px;"
+        class="bg-purple-100"
+        style="width: 140px"
         tabs={['待办', '客户', '分享', '报表文本长度过长会导致折行']}
       />
       <div class="flex flex-auto items-center justify-center bg-white">左侧 tabs 为字符串数组</div>

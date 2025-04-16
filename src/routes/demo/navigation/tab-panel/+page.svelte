@@ -9,7 +9,7 @@
 
 <Page class="flex flex-col bg-gray-100">
   <TabPanel visible={selectedTabBar === 'todoList'} class="flex flex-1 flex-col bg-white">
-    <Tabs bind:value={selectedTabs} tabs={['进行中', '已完成']} />
+    <Tabs class="border-b bg-gray-50" bind:value={selectedTabs} tabs={['进行中', '已完成']} />
 
     <TabPanel visible={selectedTabs === '进行中'} class="flex-1">
       <AutoCenter class="h-full text-center">
@@ -39,7 +39,7 @@
   </TabPanel>
 
   <TabBar
-    class="border-t border-t-gray-200"
+    class="border-t "
     bind:value={selectedTabBar}
     tabs={[
       { value: 'todoList', icon: 'todo-list', label: '待办' },

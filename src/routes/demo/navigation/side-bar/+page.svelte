@@ -73,7 +73,7 @@
           { value: 'share', icon: 'share' },
           { value: 'report', icon: 'report' },
         ]}
-        --sp-radius="0"
+        --sunp-radius="0"
       />
       {@render panels()}
     </div>

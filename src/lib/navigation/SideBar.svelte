@@ -8,10 +8,10 @@
 
   /** 标签栏 */
   export interface SideBarAttributes extends HTMLAttributes<EventTarget> {
-    /** 当前选中的选项卡键 */
-    value?: unknown
     /** 选项卡组 */
     tabs: Array<string | TabOption>
+    /** 当前选中的选项卡键 */
+    value?: unknown
     /** 选项卡切换事件 */
     onChange?: (key: unknown) => void
   }
@@ -20,9 +20,9 @@
 <script lang="ts">
   let {
     value = $bindable(),
-    class: clazz,
     tabs = [],
     onChange,
+    class: clazz,
     ...props
   }: SideBarAttributes = $props()
 
@@ -94,34 +94,34 @@
     disabled = false,
   } = option}
   {@const selected = value === val && !disabled}
-  {@const selectedClazz = selected ? classSelected || 'sun-parakeet-side-bar-item__selected' : ''}
+  {@const selectedClazz = selected ? classSelected || 'sunp-side-bar-item__selected' : ''}
   {@const selectedStyle = selected ? styleSelected || '' : ''}
   {@const iconVisible = ['string', 'object'].indexOf(typeof icon) >= 0}
   <button
     use:onTabLoad={selected}
-    class={['sun-parakeet-side-bar-item', clazz, selectedClazz].filter(x => x).join(' ')}
+    class={['sunp-side-bar-item', clazz, selectedClazz].filter(x => x).join(' ')}
     style={[style, selectedStyle].filter(x => x).join(' ')}
     onclick={e => handleClick(e, val)}
     {disabled}
   >
-    <Badge class="sun-parakeet-side-bar-item__inner" content={badge}>
+    <Badge class="sunp-side-bar-item__inner" content={badge}>
       {#if iconVisible && typeof icon === 'string'}
-        <Icon class="sun-parakeet-side-bar-item__inner-icon" name={icon} size={22} />
+        <Icon class="sunp-side-bar-item__inner-icon" name={icon} size={22} />
       {:else if iconVisible && typeof icon === 'object'}
-        <Icon class="sun-parakeet-side-bar-item__inner-icon" {...icon} />
+        <Icon class="sunp-side-bar-item__inner-icon" {...icon} />
       {/if}
       {#if typeof label === 'string'}
-        <span class="sun-parakeet-side-bar-item__inner-text">{label}</span>
+        <span class="sunp-side-bar-item__inner-text">{label}</span>
       {:else if typeof label === 'function'}
         {@render label(option)}
       {:else if !label && !iconVisible}
-        <span class="sun-parakeet-side-bar-item__inner-text">{val}</span>
+        <span class="sunp-side-bar-item__inner-text">{val}</span>
       {/if}
     </Badge>
   </button>
 {/snippet}
 
-<nav bind:this={nav} class="sun-parakeet-side-bar {clazz}" {...props}>
+<nav bind:this={nav} class="sunp-side-bar {clazz}" {...props}>
   {#each tabs as tab}
     {#if typeof tab === 'string'}
       {@render item({ value: tab })}

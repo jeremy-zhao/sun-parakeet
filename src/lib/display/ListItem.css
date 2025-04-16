@@ -12,7 +12,7 @@
 
     .sunp-list-item__content {
       @apply flex flex-auto flex-col items-start justify-center;
-      color: var(--sunp-color-text);
+      color: var(--sunp-color-black);
       font-size: 17px;
       line-height: 24px;
 

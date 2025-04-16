@@ -5,7 +5,7 @@
 
   import Icon, { type IconOption } from '../common/Icon.svelte'
   import { type Snippet } from 'svelte'
-  import type { HTMLImgAttributes } from 'svelte/elements'
+  import type { HTMLAttributes, HTMLImgAttributes } from 'svelte/elements'
 
   /** 头像 */
   export interface ImageAttributes extends HTMLImgAttributes {
@@ -13,19 +13,55 @@
     fallback?: string | IconOption | Snippet
     /** 图片的填充模式 */
     fit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
-    /** 组件点击事件 */
-    onClick?: (e: MouseEvent) => void
   }
 </script>
 
 <script lang="ts">
-  let { fallback, fit, class: clazz, style, onClick, ...props }: ImageAttributes = $props()
+  let {
+    fallback,
+    fit,
+    // img
+    class: clazz,
+    alt,
+    crossorigin,
+    decoding,
+    fetchpriority,
+    height,
+    ismap,
+    loading,
+    referrerpolicy,
+    sizes,
+    src,
+    srcset,
+    usemap,
+    width,
+    'bind:naturalWidth': bindNaturalWidth,
+    'bind:naturalHeight': bindNaturalHeight,
+    // div
+    ...props
+  }: ImageAttributes = $props()
+
+  const divProps = props as HTMLAttributes<EventTarget>
+
+  const imgProps = {
+    alt,
+    crossorigin,
+    decoding,
+    fetchpriority,
+    height,
+    ismap,
+    loading,
+    referrerpolicy,
+    sizes,
+    src,
+    srcset,
+    usemap,
+    width,
+    'bind:naturalWidth': bindNaturalWidth,
+    'bind:naturalHeight': bindNaturalHeight,
+  }
 
   let _status = $state('loading')
-
-  function handleClick(e: MouseEvent) {
-    onClick?.(e)
-  }
 
   function handleLoad() {
     _status = 'success'
@@ -43,13 +79,13 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="sun-parakeet-image {clazz}" {style} onclick={handleClick}>
+<div class="sunp-image {clazz}" {...divProps}>
   {#if _status === 'loading'}
-    <div class="sun-parakeet-image__tip">
+    <div class="sunp-image__tip">
       <Icon svg={ImgIcon} />
     </div>
   {:else if _status === 'error'}
-    <div class="sun-parakeet-image__tip">
+    <div class="sunp-image__tip">
       {#if typeof fallback === 'string'}
         <Icon name={fallback} />
       {:else if typeof fallback === 'object'}
@@ -64,10 +100,10 @@
   {#if _status !== 'error'}
     <img
       use:useImg
-      class="sun-parakeet-image__img"
+      class="sunp-image__img"
       style:object-fit={fit}
       style:display={_status === 'success' ? 'block' : 'none'}
-      {...props}
+      {...imgProps}
     />
   {/if}
 </div>

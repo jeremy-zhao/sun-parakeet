@@ -1,13 +1,12 @@
-.sun-parakeet-image {
-  @apply relative block overflow-hidden;
-
-  .sun-parakeet-image__img {
+.sunp-image {
+  .sunp-image__img {
     @apply h-full w-full;
   }
 
-  .sun-parakeet-image__tip {
+  .sunp-image__tip {
     @apply flex h-full items-center justify-center;
-    @apply bg-gray-100 text-gray-400;
+    color: var(--sunp-color-weak);
+    background-color: var(--sunp-color-box);
     min-width: 36px;
     min-height: 36px;
   }

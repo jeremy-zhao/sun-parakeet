@@ -15,21 +15,20 @@
   <List header="多种填充模式">
     <div class="bg-white p-4">
       <Space block wrap>
-        <Image class="sp-img" {src} fit="fill" />
-        <Image class="sp-img" {src} fit="contain" />
-        <Image class="sp-img" {src} fit="cover" />
-        <Image class="sp-img" {src} fit="scale-down" />
-        <Image class="sp-img" {src} fit="none" />
+        <Image class="img" {src} fit="fill" />
+        <Image class="img" {src} fit="contain" />
+        <Image class="img" {src} fit="cover" />
+        <Image class="img" {src} fit="scale-down" />
+        <Image class="img" {src} fit="none" />
       </Space>
     </div>
   </List>
-  <List header="加载失败 与 onClick 事件">
+  <List header="加载失败">
     <div class="bg-white p-4">
       <Image
         src="/404"
         style="width: 100px; height: 100px"
         onerror={() => console.log('图片加载失败')}
-        onClick={() => console.log('Image 组件点击事件')}
       />
     </div>
   </List>
@@ -41,7 +40,7 @@
 </Page>
 
 <style lang="postcss">
-  :global(.sp-img) {
+  :global(.img) {
     border: 1px dashed gray;
     width: 100px;
     height: 100px;

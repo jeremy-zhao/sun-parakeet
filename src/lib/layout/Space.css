@@ -1,7 +1,7 @@
-.sun-parakeet-space {
+.sunp-space {
   @apply inline-flex;
 
-  &.sun-parakeet-space-block {
+  &.sunp-space-block {
     @apply flex;
   }
 
@@ -10,32 +10,32 @@
   }
 }
 
-.sun-parakeet-space-horizontal {
+.sunp-space-horizontal {
   @apply flex-row;
 
   & > * {
-    margin-right: var(--sp-gap-h, var(--sp-gap, 8px));
+    margin-right: var(--sunp-gap-h, var(--sunp-gap, 8px));
   }
 
   & > *:last-child {
     margin-right: 0;
   }
 
-  &.sun-parakeet-space-wrap {
+  &.sunp-space-wrap {
     @apply flex-wrap;
-    margin-bottom: calc(var(--sp-gap-v, var(--sp-gap, 8px)) * -1);
+    margin-bottom: calc(var(--sunp-gap-v, var(--sunp-gap, 8px)) * -1);
 
     & > * {
-      margin-bottom: var(--sp-gap-v, var(--sp-gap, 8px));
+      margin-bottom: var(--sunp-gap-v, var(--sunp-gap, 8px));
     }
   }
 }
 
-.sun-parakeet-space-vertical {
+.sunp-space-vertical {
   @apply flex-col;
 
   & > * {
-    margin-bottom: var(--sp-gap-v, var(--sp-gap, 8px));
+    margin-bottom: var(--sunp-gap-v, var(--sunp-gap, 8px));
   }
 
   & > *:last-child {

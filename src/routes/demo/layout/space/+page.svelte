@@ -52,12 +52,12 @@
   </List>
   <List header="主轴对齐方式">
     <div class="bg-white px-4 py-2">
-      <Space justify="center" block>
-        <Button>1</Button>
-        <Button>
+      <Space class="justify-center" block>
+        <Button --sunp-height="auto" --sunp-padding-y="4px">1</Button>
+        <Button --sunp-height="auto" --sunp-padding-y="4px">
           2<br />2
         </Button>
-        <Button>
+        <Button --sunp-height="auto" --sunp-padding-y="4px">
           3<br />3<br />3
         </Button>
       </Space>
@@ -65,12 +65,12 @@
   </List>
   <List header="交叉轴对齐方式">
     <div class="bg-white px-4 py-2">
-      <Space align="end">
-        <Button>1</Button>
-        <Button>
+      <Space class="items-end">
+        <Button --sunp-height="auto" --sunp-padding-y="4px">1</Button>
+        <Button --sunp-height="auto" --sunp-padding-y="4px">
           2<br />2
         </Button>
-        <Button>
+        <Button --sunp-height="auto" --sunp-padding-y="4px">
           3<br />3<br />3
         </Button>
       </Space>

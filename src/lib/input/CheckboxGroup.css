@@ -1,8 +1,5 @@
-.sun-parakeet-checkbox-group {
-}
-
-.sun-parakeet-form-vertical {
-  .sun-parakeet-checkbox-group {
+.sunp-form-vertical {
+  .sunp-checkbox-group {
     @apply mt-2;
   }
 }

@@ -20,7 +20,11 @@
   /** 复选框组上下文信息 */
   export interface CheckboxGroupContext {
     /** 注册 */
-    register: (value: PropertyKey, input: HTMLInputElement, check: (chedked: boolean) => void) => void
+    register: (
+      value: PropertyKey,
+      input: HTMLInputElement,
+      check: (chedked: boolean) => void
+    ) => void
     /** 注销 */
     unregister: (value: PropertyKey) => void
     /** 数据变更事件 */
@@ -55,7 +59,10 @@
 
   // Checkbox 联动 ============================
 
-  let registered = new Map<PropertyKey, { input: HTMLInputElement; check: (checked: boolean) => void }>()
+  let registered = new Map<
+    PropertyKey,
+    { input: HTMLInputElement; check: (checked: boolean) => void }
+  >()
 
   let context = $state<CheckboxGroupContext>({
     register(value, input, check) {
@@ -120,10 +127,13 @@
   })
 </script>
 
-<Space class="sun-parakeet-checkbox-group" {direction} {wrap} {...props}>
+<Space class="sunp-checkbox-group" {direction} {wrap} {...props}>
   {#if selectAll}
-    <Checkbox checked={allChecked} indeterminate={allIndeterminate} value={SELECT_ALL_VALUE} onChange={handleSelectAll}
-      >{all}</Checkbox
+    <Checkbox
+      checked={allChecked}
+      indeterminate={allIndeterminate}
+      value={SELECT_ALL_VALUE}
+      onChange={handleSelectAll}>{all}</Checkbox
     >
   {/if}
   {@render children?.()}

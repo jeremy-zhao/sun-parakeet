@@ -50,14 +50,14 @@ export { showToast, hideToast, type ShowToastOption } from './feedback/toast'
 export { ActionSheet, Popup, PullToRefresh, SwipeAction }
 
 // Input
-import CheckList from './input/CheckList.svelte'
-export type { CheckListAttributes } from './input/CheckList.svelte'
-import CheckListItem from './input/CheckListItem.svelte'
-export type { CheckListItemAttributes } from './input/CheckListItem.svelte'
 import Checkbox from './input/Checkbox.svelte'
 export type { CheckboxAttributes } from './input/Checkbox.svelte'
 import CheckboxGroup from './input/CheckboxGroup.svelte'
 export type { CheckboxGroupAttributes } from './input/CheckboxGroup.svelte'
+import CheckList from './input/CheckList.svelte'
+export type { CheckListAttributes } from './input/CheckList.svelte'
+import CheckListItem from './input/CheckListItem.svelte'
+export type { CheckListItemAttributes } from './input/CheckListItem.svelte'
 import Form from './input/Form.svelte'
 export type { FormAttributes } from './input/Form.svelte'
 import FormItem from './input/FormItem.svelte'
@@ -74,7 +74,7 @@ import Switch from './input/Switch.svelte'
 export type { SwitchAttributes } from './input/Switch.svelte'
 import Textarea from './input/Textarea.svelte'
 export type { TextareaAttributes } from './input/Textarea.svelte'
-export { CheckList, CheckListItem, Checkbox, CheckboxGroup }
+export { Checkbox, CheckboxGroup, CheckList, CheckListItem }
 export { Form, FormItem, Input, Picker, PickerView, Stepper, Switch, Textarea }
 
 // Layout

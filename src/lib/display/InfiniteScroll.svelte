@@ -133,9 +133,9 @@
 </script>
 
 {#snippet footerSnippet(status: InfiniteScrollStatus)}
-  <div class="sun-parakeet-infinite-scroll__footer-inner">
+  <div class="sunp-infinite-scroll__footer-inner">
     {#if status === 'idle' || status === 'loading'}
-      <Icon class="sun-parakeet-infinite-scroll__footer-loading" svg={LoadingIcon} size={20} />
+      <Icon class="sunp-infinite-scroll__footer-loading" svg={LoadingIcon} size={20} />
       <span>加载中...</span>
       <!-- <Icon svg={EllipsisIcon} width="32" height="14" /> -->
     {:else if status === 'finished'}
@@ -153,11 +153,11 @@
   </div>
 {/snippet}
 
-<div bind:this={_self} class="sun-parakeet-infinite-scroll {clazz}" {...props}>
-  <div bind:this={_container} class="sun-parakeet-infinite-scroll__container">
+<div bind:this={_self} class="sunp-infinite-scroll {clazz}" {...props}>
+  <div bind:this={_container} class="sunp-infinite-scroll__container">
     {@render children?.()}
   </div>
-  <footer class="sun-parakeet-infinite-scroll__footer">
+  <footer class="sunp-infinite-scroll__footer">
     {@render footer(_status, load)}
   </footer>
 </div>

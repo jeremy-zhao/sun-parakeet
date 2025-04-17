@@ -1,16 +1,17 @@
-.sun-parakeet-infinite-scroll {
+.sunp-infinite-scroll {
   @apply overflow-y-auto overflow-x-hidden;
 
-  .sun-parakeet-infinite-scroll__footer {
-    .sun-parakeet-infinite-scroll__footer-inner {
-      @apply flex items-center justify-center p-4 text-sm text-gray-400;
+  .sunp-infinite-scroll__footer {
+    .sunp-infinite-scroll__footer-inner {
+      @apply flex items-center justify-center p-4 text-sm;
+      color: var(--sunp-color-weak);
 
-      .sun-parakeet-infinite-scroll__footer-loading {
+      .sunp-infinite-scroll__footer-loading {
         @apply mr-2 animate-spin;
       }
 
       a {
-        @apply text-blue-600;
+        color: var(--sunp-color-primary);
       }
     }
   }

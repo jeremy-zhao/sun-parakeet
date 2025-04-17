@@ -39,14 +39,14 @@
 
 <Page class="flex flex-col bg-gray-100">
   <Tabs
-    class="flex-none"
+    class="flex-none border-b"
     bind:value={currentTab}
     tabs={['基础用法', '下拉刷新', '加载失败', '自定义']}
     onChange={handleSwitch}
   />
   <TabPanel class="flex-auto" visible={currentTab === '基础用法'}>
     <InfiniteScroll class="h-full" {hasMore} {loadMore}>
-      <List class="bg-white">
+      <List class="-mt-1 bg-white">
         {@render list()}
       </List>
     </InfiniteScroll>
@@ -54,7 +54,7 @@
   <TabPanel class="flex-auto" visible={currentTab === '下拉刷新'}>
     <PullToRefresh class="h-full" onRefresh={handleRefresh}>
       <InfiniteScroll class="h-full" {hasMore} {loadMore}>
-        <List class="bg-white">
+        <List class="-mt-1 bg-white">
           {@render list()}
         </List>
       </InfiniteScroll>
@@ -62,7 +62,7 @@
   </TabPanel>
   <TabPanel class="flex-auto" visible={currentTab === '加载失败'}>
     <InfiniteScroll class="h-full" bind:hasError {hasMore} loadMore={loadMoreError}>
-      <List class="bg-white">
+      <List class="-mt-1 bg-white">
         {@render list()}
       </List>
     </InfiniteScroll>
@@ -90,7 +90,7 @@
         </div>
       {/snippet}
       <InfiniteScroll class="h-full" bind:hasError {hasMore} loadMore={loadMoreError}>
-        <List class="bg-white">
+        <List class="-mt-1 bg-white">
           {@render list()}
         </List>
         {#snippet footer(status, reload)}
@@ -108,11 +108,8 @@
                 >我是有底线的</Divider
               >
             {:else if status == 'error'}
-              <Button
-                class="flex-auto self-stretch"
-                color="danger-plain"
-                shape="rectangular"
-                onclick={reload}>加载失败，点击重试</Button
+              <Button color="danger-plain" block --sunp-border="0" onclick={reload}
+                >加载失败，点击重试</Button
               >
             {/if}
           </div>

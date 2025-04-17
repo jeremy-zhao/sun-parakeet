@@ -168,7 +168,7 @@
 
 {#if formItem}
   {#if !value?.length && placeholder}
-    <span class="sun-parakeet-form-item-button__placeholder">{placeholder}</span>
+    <span class="sunp-form-item-button__placeholder">{placeholder}</span>
   {:else if _displayLoading}
     <span>TODO Loading...</span>
   {:else if typeof display === 'function'}
@@ -180,8 +180,8 @@
   {/if}
 {/if}
 
-<Popup class="sun-parakeet-picker" bind:visible position="bottom" {...props}>
-  <header class="sun-parakeet-picker__header">
+<Popup class="sunp-picker" bind:visible position="bottom" {...props}>
+  <header class="sunp-picker__header">
     <Button color="picker-cancel" onclick={handleCancel}>{cancel}</Button>
     <div class="flex-1 text-center">
       {#if typeof header === 'string'}
@@ -194,7 +194,7 @@
   </header>
   <PickerView bind:value={_values} {columns} {loader} />
   {#if clearable}
-    <footer class="sun-parakeet-picker__footer">
+    <footer class="sunp-picker__footer">
       <Button color="picker-clear" onclick={handleClear}>{clear}</Button>
     </footer>
   {/if}

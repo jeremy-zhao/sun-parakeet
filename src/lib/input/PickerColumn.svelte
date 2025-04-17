@@ -81,7 +81,9 @@
   let scrolling: NodeJS.Timeout | undefined
 
   function calcIndex() {
-    const re = Math.round((container.scrollTop - (padding - height / 2 + itemHeight / 2)) / itemHeight)
+    const re = Math.round(
+      (container.scrollTop - (padding - height / 2 + itemHeight / 2)) / itemHeight
+    )
     // console.log(`(${padding} - ${height} / 2 + ${itemHeight} / 2 + ${container.scrollTop}) / ${itemHeight} = ${re}`)
     return re
   }
@@ -172,11 +174,11 @@
   })
 </script>
 
-<div use:onLoad class="sun-parakeet-picker-column" class:loading>
+<div use:onLoad class="sunp-picker-column" class:loading>
   <!-- <div class="absolute top-0 z-30">{scrolling}</div> -->
   <!-- svelte-ignore a11y_no_noninteractive_element_interactions -->
   <ul
-    class="sun-parakeet-picker-column__container"
+    class="sunp-picker-column__container"
     class:ios
     bind:this={container}
     onscroll={onScroll}
@@ -184,12 +186,14 @@
     ontouchend={onTouchEnd}
   >
     {#if loading}
-      <Icon svg={LoadingIcon} class="sun-parakeet-picker-column__loading-icon" />
+      <Icon svg={LoadingIcon} class="sunp-picker-column__loading-icon" />
     {:else}
       <li style:height={`${padding}px`}></li>
       {#each items as item, index}
-        <li use:onLoadItem={index} class="sun-parakeet-picker-item">
-          <span class="sun-parakeet-picker-item__label" style:max-width={maxw}>{item.label ?? item.value}</span>
+        <li use:onLoadItem={index} class="sunp-picker-item">
+          <span class="sunp-picker-item__label" style:max-width={maxw}
+            >{item.label ?? item.value}</span
+          >
         </li>
       {/each}
       <li style:height={`${padding}px`}></li>

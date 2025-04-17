@@ -25,7 +25,14 @@
 </script>
 
 <script lang="ts">
-  let { class: clazz, columns = 1, value = $bindable([]), loader, onChange, ...props }: PickerViewAttributes = $props()
+  let {
+    class: clazz,
+    columns = 1,
+    value = $bindable([]),
+    loader,
+    onChange,
+    ...props
+  }: PickerViewAttributes = $props()
 
   // 至少有一列
   if (columns < 1) columns = 1
@@ -156,7 +163,7 @@
   })
 </script>
 
-<div class="sun-parakeet-picker-view {clazz}" {...props}>
+<div class="sunp-picker-view {clazz}" {...props}>
   {#each _columns as items, index (index)}
     <PickerColumn
       {items}

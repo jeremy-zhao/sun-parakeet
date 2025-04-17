@@ -1,5 +1,5 @@
-.sun-parakeet-picker-view {
+.sunp-picker-view {
   @apply flex select-none flex-row flex-nowrap items-stretch justify-stretch;
-  height: var(--height, 200px);
+  height: var(--sunp-height, 200px);
   overflow: hidden;
 }

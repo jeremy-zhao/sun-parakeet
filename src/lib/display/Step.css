@@ -1,108 +1,109 @@
-.sun-parakeet-step {
+.sunp-step {
   @apply relative m-0 box-border p-0;
 
-  .sun-parakeet-step__indicator {
+  .sunp-step__indicator {
     @apply relative box-border flex-none;
 
-    .sun-parakeet-step__handle {
+    .sunp-step__handle {
       @apply flex items-center justify-center;
-      width: var(--sp-size, 24px);
-      height: var(--sp-size, 24px);
+      width: var(--sunp-size, 24px);
+      height: var(--sunp-size, 24px);
     }
 
-    .sun-parakeet-step__point {
-      @apply relative m-2 inline-block rounded-full p-1 text-white;
+    .sunp-step__point {
+      @apply relative m-2 inline-block rounded-full p-1;
+      color: var(--sunp-color-white);
       z-index: 1;
       line-height: 0;
     }
   }
 
-  .sun-parakeet-step__content {
+  .sunp-step__content {
     @apply flex-auto text-sm text-gray-400;
   }
 
-  &.sun-parakeet-step-wait {
-    .sun-parakeet-step__indicator {
-      .sun-parakeet-step__point {
-        @apply bg-gray-200;
+  &.sunp-step-wait {
+    .sunp-step__indicator {
+      .sunp-step__point {
+        background-color: var(--sunp-color-border);
       }
 
       &::after {
-        @apply bg-gray-100;
+        background-color: var(--sunp-color-box);
       }
     }
   }
 
-  &.sun-parakeet-step-process {
-    .sun-parakeet-step__indicator {
-      .sun-parakeet-step__point {
-        @apply bg-blue-600;
+  &.sunp-step-process {
+    .sunp-step__indicator {
+      .sunp-step__point {
+        background-color: var(--sunp-color-primary);
       }
 
       &::after {
-        @apply bg-gray-100;
+        background-color: var(--sunp-color-box);
       }
     }
 
-    .sun-parakeet-step__header {
-      @apply text-blue-600;
+    .sunp-step__header {
+      color: var(--sunp-color-primary);
     }
   }
 
-  &.sun-parakeet-step-finish {
-    .sun-parakeet-step__indicator {
-      .sun-parakeet-step__point {
-        @apply bg-blue-600;
+  &.sunp-step-finish {
+    .sunp-step__indicator {
+      .sunp-step__point {
+        background-color: var(--sunp-color-primary);
       }
 
       &::after {
-        @apply bg-blue-600;
+        background-color: var(--sunp-color-primary);
       }
     }
 
-    .sun-parakeet-step__header {
-      @apply text-gray-600;
+    .sunp-step__header {
+      color: var(--sunp-color-text);
     }
   }
 
-  &.sun-parakeet-step-error {
-    .sun-parakeet-step__indicator {
-      .sun-parakeet-step__point {
-        @apply bg-red-600;
+  &.sunp-step-error {
+    .sunp-step__indicator {
+      .sunp-step__point {
+        background-color: var(--sunp-color-danger);
       }
 
       &::after {
-        @apply bg-gray-100;
+        background-color: var(--sunp-color-box);
       }
     }
 
-    .sun-parakeet-step__header {
-      @apply text-red-600;
+    .sunp-step__header {
+      color: var(--sunp-color-danger);
     }
   }
 
-  &.sun-parakeet-step-skip {
-    .sun-parakeet-step__indicator {
-      .sun-parakeet-step__point {
-        @apply bg-gray-200;
+  &.sunp-step-skip {
+    .sunp-step__indicator {
+      .sunp-step__point {
+        background-color: var(--sunp-color-border);
       }
 
       &::after {
-        @apply bg-blue-600;
+        background-color: var(--sunp-color-primary);
       }
     }
 
-    .sun-parakeet-step__header {
-      @apply text-gray-400;
+    .sunp-step__header {
+      color: var(--sunp-color-text);
     }
   }
 }
 
-.sun-parakeet-steps-horizontal {
-  .sun-parakeet-step {
+.sunp-steps-horizontal {
+  .sunp-step {
     @apply flex flex-1 flex-col items-stretch justify-stretch;
 
-    .sun-parakeet-step__indicator {
+    .sunp-step__indicator {
       @apply flex w-full items-center justify-center;
 
       &::after {
@@ -115,50 +116,50 @@
     }
 
     &:last-of-type {
-      .sun-parakeet-step__indicator {
+      .sunp-step__indicator {
         &::after {
           content: none;
         }
       }
     }
 
-    .sun-parakeet-step__content {
+    .sunp-step__content {
       @apply mt-2 flex flex-col items-center justify-stretch;
     }
   }
 }
 
-.sun-parakeet-steps-vertical {
-  .sun-parakeet-step {
+.sunp-steps-vertical {
+  .sunp-step {
     @apply flex flex-row items-stretch justify-stretch;
 
-    .sun-parakeet-step__indicator {
-      width: var(--sp-size, 24px);
+    .sunp-step__indicator {
+      width: var(--sunp-size, 24px);
 
       &::after {
         @apply absolute left-1/2;
         content: '';
         width: 2px;
         height: 100%;
-        top: calc(var(--sp-size, 24px) / 2);
+        top: calc(var(--sunp-size, 24px) / 2);
         translate: -50% 0;
       }
     }
 
     &:last-of-type {
-      .sun-parakeet-step__indicator {
+      .sunp-step__indicator {
         &::after {
           content: none;
         }
       }
     }
 
-    .sun-parakeet-step__content {
+    .sunp-step__content {
       @apply ml-2;
 
-      .sun-parakeet-step__header {
+      .sunp-step__header {
         @apply flex items-center;
-        height: var(--size, 24px);
+        height: var(--sunp-size, 24px);
       }
     }
   }

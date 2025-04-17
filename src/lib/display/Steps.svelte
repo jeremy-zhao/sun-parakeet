@@ -38,7 +38,7 @@
 
   // 为每个步骤设置索引
   function setStepIndex() {
-    const items = _self.querySelectorAll('li.sun-parakeet-step')
+    const items = _self.querySelectorAll('li.sunp-step')
 
     for (let i = 0, len = items.length; i < len; i++) {
       const item = items[i] as HTMLElement
@@ -56,6 +56,6 @@
   })
 </script>
 
-<ul bind:this={_self} class="sun-parakeet-steps sun-parakeet-steps-{direction} {clazz}" {...props}>
+<ul bind:this={_self} class="sunp-steps sunp-steps-{direction} {clazz}" {...props}>
   {@render children?.()}
 </ul>

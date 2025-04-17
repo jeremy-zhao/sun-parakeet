@@ -71,22 +71,22 @@
   })
 </script>
 
-<li bind:this={_self} class="sun-parakeet-step sun-parakeet-step-{_status} {clazz}" {...props}>
-  <div class="sun-parakeet-step__indicator">
-    <div class="sun-parakeet-step__handle">
-      <div class="sun-parakeet-step__point">
+<li bind:this={_self} class="sunp-step sunp-step-{_status} {clazz}" {...props}>
+  <div class="sunp-step__indicator">
+    <div class="sunp-step__handle">
+      <div class="sunp-step__point">
         {#if _icon}
           {@const { size = 16, ...iconProps } = _icon}
-          <Icon class="sun-parakeet-step__icon" {size} {...iconProps} />
+          <Icon class="sunp-step__icon" {size} {...iconProps} />
         {/if}
       </div>
     </div>
   </div>
-  <div class="sun-parakeet-step__content">
+  <div class="sunp-step__content">
     {#if typeof header === 'string'}
-      <header class="sun-parakeet-step__header">{header}</header>
+      <header class="sunp-step__header">{header}</header>
     {:else if typeof header === 'function'}
-      <header class="sun-parakeet-step__header">{@render header()}</header>
+      <header class="sunp-step__header">{@render header()}</header>
     {/if}
     {@render children?.()}
   </div>

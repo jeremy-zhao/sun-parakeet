@@ -4,6 +4,8 @@ export default {
     tailwindcss: {},
     'tailwindcss/nesting': 'postcss-nesting',
     autoprefixer: {},
-    cssnano: {},
+    cssnano: {
+      preset: ['default', { calc: false }],
+    },
   },
 }

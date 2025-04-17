@@ -27,7 +27,7 @@
   let {
     checked = $bindable(false),
     value,
-    icon = { svg: CheckIcon, class: 'sun-parakeet-check-list-item__icon' },
+    icon = { svg: CheckIcon, class: 'sunp-check-list-item__icon' },
     indeterminate, // 屏蔽
     disabled,
     class: clazz,
@@ -70,17 +70,17 @@
 </script>
 
 <div
-  class="sun-parakeet-check-list-item {clazz}"
-  class:sun-parakeet-check-list-item-checked={checked}
-  class:sun-parakeet-check-list-item-disabled={disabled}
+  class="sunp-check-list-item {clazz}"
+  class:sunp-check-list-item-checked={checked}
+  class:sunp-check-list-item-disabled={disabled}
   {style}
 >
-  <label class="sun-parakeet-check-list-item__label">
+  <label class="sunp-check-list-item__label">
     <input
       bind:this={input}
       bind:checked
       bind:indeterminate
-      class="sun-parakeet-check-list-item__element"
+      class="sunp-check-list-item__element"
       type="checkbox"
       {value}
       {disabled}
@@ -88,14 +88,14 @@
       onchange={handleChange}
     />
 
-    <div class="sun-parakeet-check-list-item__content">
+    <div class="sunp-check-list-item__content">
       {@render children?.()}
     </div>
 
     {#if typeof icon === 'string'}
-      <Icon class="sun-parakeet-check-list-item__icon" name={icon} {size} />
+      <Icon class="sunp-check-list-item__icon" name={icon} {size} />
     {:else if typeof icon === 'object'}
-      <Icon class="sun-parakeet-check-list-item__icon" {...icon} {size} />
+      <Icon class="sunp-check-list-item__icon" {...icon} {size} />
     {/if}
   </label>
 </div>

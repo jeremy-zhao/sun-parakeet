@@ -26,7 +26,11 @@
   /** 复选框组上下文信息 */
   export interface CheckListContext {
     /** 注册 */
-    register: (value: PropertyKey, input: HTMLInputElement, check: (chedked: boolean) => void) => void
+    register: (
+      value: PropertyKey,
+      input: HTMLInputElement,
+      check: (chedked: boolean) => void
+    ) => void
     /** 注销 */
     unregister: (value: PropertyKey) => void
     /** 数据变更事件 */
@@ -60,7 +64,10 @@
 
   // CheckListItem 联动 =======================
 
-  let registered = new Map<PropertyKey, { input: HTMLInputElement; check: (checked: boolean) => void }>()
+  let registered = new Map<
+    PropertyKey,
+    { input: HTMLInputElement; check: (checked: boolean) => void }
+  >()
 
   let context = $state<CheckListContext>({
     register(value, input, check) {
@@ -141,10 +148,10 @@
 
 {#snippet headerSnippet()}
   {#if multiple && selectAll}
-    <div class="sun-parakeet-check-list__header">
+    <div class="sunp-check-list__header">
       {@render headerRender()}
       <Checkbox
-        class="sun-parakeet-check-list__select-all"
+        class="sunp-check-list__select-all"
         checked={allChecked}
         indeterminate={allIndeterminate}
         onChange={handleSelectAll}>{all}</Checkbox
@@ -155,6 +162,6 @@
   {/if}
 {/snippet}
 
-<List class="sun-parakeet-check-list" {...props} header={header || selectAll ? headerSnippet : undefined}>
+<List class="sunp-check-list" {...props} header={header || selectAll ? headerSnippet : undefined}>
   {@render children?.()}
 </List>

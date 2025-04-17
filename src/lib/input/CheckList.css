@@ -1,15 +1,16 @@
-.sun-parakeet-check-list {
-  .sun-parakeet-check-list__header {
+.sunp-check-list {
+  .sunp-check-list__header {
     @apply flex items-center justify-between;
   }
 
-  .sun-parakeet-check-list__select-all {
+  .sunp-check-list__select-all {
     @apply flex flex-row-reverse justify-end text-right;
     padding-right: 1px;
 
-    .sun-parakeet-checkbox__content {
-      @apply px-2 text-gray-400;
+    .sunp-checkbox__content {
+      @apply px-2;
       font-size: 14px;
+      color: var(--sunp-color-weak);
     }
   }
 }

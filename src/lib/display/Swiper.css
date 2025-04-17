@@ -1,7 +1,7 @@
-.sun-parakeet-swiper {
+.sunp-swiper {
   @apply relative block select-none overflow-hidden;
 
-  .sun-parakeet-swiper__track {
+  .sunp-swiper__track {
     @apply cursor-grab overflow-hidden;
     @apply relative h-full w-full overflow-visible;
     @apply flex;
@@ -18,31 +18,31 @@
   }
 }
 
-.sun-parakeet-swiper-animation {
-  .sun-parakeet-swiper__track {
+.sunp-swiper-animation {
+  .sunp-swiper__track {
     transition: translate 0.3s ease-out;
   }
 }
 
-.sun-parakeet-swiper-horizontal {
-  .sun-parakeet-swiper__track {
+.sunp-swiper-horizontal {
+  .sunp-swiper__track {
     @apply touch-pan-y;
     @apply flex-row flex-nowrap;
   }
 
-  .sun-parakeet-swiper__indicator {
+  .sunp-swiper__indicator {
     @apply absolute bottom-[6px] left-1/2;
     translate: -50% 0;
   }
 }
 
-.sun-parakeet-swiper-vertical {
-  .sun-parakeet-swiper__track {
+.sunp-swiper-vertical {
+  .sunp-swiper__track {
     @apply touch-pan-x;
     @apply flex-col;
   }
 
-  .sun-parakeet-swiper__indicator {
+  .sunp-swiper__indicator {
     @apply absolute left-[6px] top-1/2;
     translate: 0 -50%;
   }

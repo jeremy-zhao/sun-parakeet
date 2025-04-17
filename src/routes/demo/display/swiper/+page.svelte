@@ -20,11 +20,15 @@
 {/snippet}
 
 <Page class="flex flex-col items-stretch justify-stretch bg-gray-100">
-  <Tabs bind:value={selectedTab} class="flex-none" tabs={['横向', '纵向', '指示器', '特殊用法']} />
+  <Tabs
+    bind:value={selectedTab}
+    class="flex-none border-b bg-gray-50"
+    tabs={['横向', '纵向', '指示器', '特殊用法']}
+  />
 
   <!-- 横向 -->
   <TabPanel class="flex-auto" visible={selectedTab === '横向'}>
-    <List header="基础用法">
+    <List class="-mt-1" header="基础用法">
       <div class="bg-white p-4">
         <Swiper style="height: 120px">
           {@render items(colors.slice(0, 2))}
@@ -68,7 +72,7 @@
 
   <!-- 纵向 -->
   <TabPanel class="flex-auto" visible={selectedTab === '纵向'}>
-    <List header="基础用法">
+    <List class="-mt-1" header="基础用法">
       <div class="bg-white p-4">
         <Swiper style="height: 120px" direction="vertical">
           {@render items(colors.slice(0, 2))}
@@ -111,18 +115,17 @@
   </TabPanel>
 
   <!-- 指示器 -->
-
   <TabPanel class="flex-auto" visible={selectedTab === '指示器'}>
-    <List header="指示器颜色">
+    <List class="-mt-1" header="指示器颜色">
       <Space class="bg-white p-4" direction="vertical" block>
         <Swiper
           style="height: 120px"
-          --sp-color="rgba(0, 0, 0, 0.4)"
-          --sp-active-color="#ffc0cb"
-          --sp-size="10px"
-          --sp-active-size="30px"
-          --sp-radius="15px"
-          --sp-gap="8px"
+          --sunp-color="rgba(0, 0, 0, 0.4)"
+          --sunp-active-color="#ffc0cb"
+          --sunp-size="10px"
+          --sunp-active-size="30px"
+          --sunp-radius="15px"
+          --sunp-gap="8px"
         >
           {@render items(colors)}
         </Swiper>
@@ -135,13 +138,13 @@
           class="bg-gray-100"
           style="height: 120px; border-radius: 6px"
           bounce
-          --sp-radius="8px"
-          --sp-padding="0 0 16px"
+          --sunp-radius="8px"
+          --sunp-padding="0 0 16px"
         >
           {@render items(colors)}
         </Swiper>
         <p class="text-sm text-gray-600">
-          通过 --sp-padding 可以控制滑动轨道区域的 padding，从而实现指示器和滑块“分离”的效果
+          通过 --sunp-padding 可以控制滑动轨道区域的 padding，从而实现指示器和滑块“分离”的效果
         </p>
       </Space>
     </List>
@@ -172,7 +175,7 @@
 
   <!-- 特殊用法 -->
   <TabPanel class="flex-auto" visible={selectedTab === '特殊用法'}>
-    <List header="全屏引导">
+    <List class="-mt-1" header="全屏引导">
       <div class="bg-white p-4">
         <Button onclick={() => (visible = true)}>显示弹出层</Button>
       </div>
@@ -187,10 +190,10 @@
     </Popup>
     <!-- <List header="宽度控制">
       <Space class="bg-white p-4" direction="vertical" block>
-        <Swiper style="height: 120px" --sp-width="75%">
+        <Swiper style="height: 120px" --sunp-width="75%">
           {@render items(colors)}
         </Swiper>
-        <p class="text-sm text-gray-600">通过 --sp-width --sp-height 控制内部元素的宽高</p>
+        <p class="text-sm text-gray-600">通过 --sunp-width --sunp-height 控制内部元素的宽高</p>
       </Space>
     </List> -->
   </TabPanel>

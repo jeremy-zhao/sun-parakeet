@@ -177,7 +177,7 @@
 
     _pointerId = e.pointerId
     _start = (vertical() ? e.y : e.x) - _offset
-    _self.classList.remove('sun-parakeet-swiper-animation')
+    _self.classList.remove('sunp-swiper-animation')
 
     record(e)
     stop()
@@ -219,7 +219,7 @@
     target.releasePointerCapture(e.pointerId)
 
     _pointerId = null
-    _self.classList.add('sun-parakeet-swiper-animation')
+    _self.classList.add('sunp-swiper-animation')
 
     // 点击
     const offset0 = 0 - width() * value
@@ -321,28 +321,21 @@
 
 <div
   bind:this={_self}
-  class={[
-    'sun-parakeet-swiper',
-    `sun-parakeet-swiper-${direction}`,
-    'sun-parakeet-swiper-animation',
-    clazz,
-  ]
-    .filter(x => x)
-    .join(' ')}
+  class="sunp-swiper sunp-swiper-{direction} sunp-swiper-animation {clazz}"
   {...props}
   onpointerdown={handlePointerDown}
   onpointermove={handlePointerMove}
   onpointerup={handlePointerUp}
   onpointercancel={reset}
 >
-  <div bind:this={_track} use:useTrack class="sun-parakeet-swiper__track" style:translate>
+  <div bind:this={_track} use:useTrack class="sunp-swiper__track" style:translate>
     {@render children?.()}
   </div>
   {#if total > 0}
     {#if typeof indicator === 'function'}
       {@render indicator(total, value)}
     {:else}
-      <PageIndicator class="sun-parakeet-swiper__indicator" {total} {value} {direction} />
+      <PageIndicator class="sunp-swiper__indicator" {total} {value} {direction} />
     {/if}
   {/if}
 </div>

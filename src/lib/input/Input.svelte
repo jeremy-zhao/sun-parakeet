@@ -35,7 +35,7 @@
     placeholder = '请输入内容',
     onChange,
     class: clazz,
-    autocomplete,
+    disabled,
     ...props
   }: InputAttributes = $props()
 
@@ -64,10 +64,18 @@
   })
 </script>
 
-<div class="sun-parakeet-input">
-  <input bind:this={input} bind:value class="sun-parakeet-input-element {clazz}" {type} {placeholder} {...props} />
+<div class="sunp-input" class:sunp-input-disabled={disabled}>
+  <input
+    bind:this={input}
+    bind:value
+    class="sunp-input__input {clazz}"
+    {type}
+    {placeholder}
+    {disabled}
+    {...props}
+  />
   {#if clearable && value?.length}
-    <Button class="sun-parakeet-input__button" color="text" onclick={handleClear}>
+    <Button class="sunp-input__clear" color="text" onclick={handleClear} block>
       <Icon size={22} svg={CloseIcon} />
     </Button>
   {/if}

@@ -5,13 +5,13 @@
     @apply cursor-grab overflow-hidden;
     @apply relative h-full w-full overflow-visible;
     @apply flex;
-    padding: var(--sp-padding, 0);
+    padding: var(--sunp-padding, 0);
 
     & > * {
       @apply relative flex-none;
       /* 暂时不支持宽度控制 */
-      /* width: var(--sp-width, 100%) !important; */
-      /* height: var(--sp-height, 100%) !important; */
+      /* width: var(--sunp-width, 100%) !important; */
+      /* height: var(--sunp-height, 100%) !important; */
       width: 100%;
       height: 100%;
     }

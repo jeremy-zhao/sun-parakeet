@@ -1,6 +1,6 @@
 .sunp-checkbox {
   @apply inline-flex cursor-pointer items-center justify-stretch;
-  font-size: var(--font-size, 17px);
+  font-size: var(--sunp-font-size, 17px);
 
   .sunp-checkbox__input {
     @apply hidden;

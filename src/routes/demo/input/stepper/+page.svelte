@@ -47,7 +47,7 @@
     <FormItem label="自定义格式">
       <Stepper min={0}>
         {#snippet display(val: number)}
-          <Space class="text-sm" block --sp-gap="2px">
+          <Space class="text-sm" block --sunp-gap="2px">
             {#if val > 0}
               <span>{val}</span>
               <span>瓶</span>

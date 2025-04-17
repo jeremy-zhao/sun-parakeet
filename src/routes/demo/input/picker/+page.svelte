@@ -2,7 +2,18 @@
   import _province from '@province-city-china/province'
   import _city from '@province-city-china/city'
   import _area from '@province-city-china/area'
-  import { Page, Button, List, Input, Picker, Form, FormItem, Divider, showToast, delay } from '$lib'
+  import {
+    Page,
+    Button,
+    List,
+    Input,
+    Picker,
+    Form,
+    FormItem,
+    Divider,
+    showToast,
+    delay,
+  } from '$lib'
 </script>
 
 <script lang="ts">
@@ -15,7 +26,11 @@
     .sort((a, b) => (a.value < b.value ? -1 : 1))
 
   const area = _area
-    .map(x => ({ value: `${x.province}${x.city}${x.area}`, label: x.name, city: `${x.province}${x.city}` }))
+    .map(x => ({
+      value: `${x.province}${x.city}${x.area}`,
+      label: x.name,
+      city: `${x.province}${x.city}`,
+    }))
     .sort((a, b) => (a.value < b.value ? -1 : 1))
 
   let baseLoaderVisible = $state(false)
@@ -78,7 +93,13 @@
   <List header="基础用法">
     <div class="bg-white p-4">
       <Button onclick={() => (baseLoaderVisible = true)}>选择</Button>
-      <Picker header="请选择" bind:visible={baseLoaderVisible} columns={2} loader={baseLoader} {onChange} />
+      <Picker
+        header="请选择"
+        bind:visible={baseLoaderVisible}
+        columns={2}
+        loader={baseLoader}
+        {onChange}
+      />
     </div>
   </List>
   <Form header="表单-水平布局-联动" layout="horizontal">
@@ -113,16 +134,16 @@
                 <span></span>
                 <span>{text}</span>
                 {#if index < texts.length - 1}
-                  <Divider direction="vertical" --sp-margin="8px" />
+                  <Divider direction="vertical" --sunp-margin="8px" />
                 {/if}
               {/each}
             </p>
           {:else}
             <p class="text-gray-400">
               <span>省</span>
-              <Divider direction="vertical" --sp-margin="8px" />
+              <Divider direction="vertical" --sunp-margin="8px" />
               <span>市</span>
-              <Divider direction="vertical" --sp-margin="8px" />
+              <Divider direction="vertical" --sunp-margin="8px" />
               <span>区</span>
             </p>
           {/if}

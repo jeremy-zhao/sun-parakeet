@@ -23,7 +23,7 @@
   </List>
   <List header="输入内容右对齐">
     <div class="bg-white p-4">
-      <Input --text-align="right" placeholder="请输入验证码" clearable />
+      <Input --sunp-text-align="right" placeholder="请输入验证码" clearable />
     </div>
   </List>
   <List header="只读状态">
@@ -36,12 +36,22 @@
       <Input disabled value="被禁用的输入框" />
     </div>
   </List>
-  <Form header="表单-水平布局" layout="horizontal" --sp-label-width="80px">
+  <Form header="表单-水平布局" layout="horizontal" --sunp-label-width="80px">
     <FormItem label="用户名" for="username" rules={[{ required: true }]}>
-      <Input id="username" bind:value={username} placeholder="请输入用户名" autocomplete="username" />
+      <Input
+        id="username"
+        bind:value={username}
+        placeholder="请输入用户名"
+        autocomplete="username"
+      />
     </FormItem>
     <FormItem label="密码" rules={[{ required: true }]}>
-      <Input id="password" type="password" placeholder="请输入密码" autocomplete="current-password" />
+      <Input
+        id="password"
+        type="password"
+        placeholder="请输入密码"
+        autocomplete="current-password"
+      />
     </FormItem>
   </Form>
   <Form header="表单-垂直布局">

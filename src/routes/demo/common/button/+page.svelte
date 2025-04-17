@@ -14,12 +14,12 @@
   <List header="基础用法">
     <div class="bg-white px-4 py-2">
       <Space wrap>
-        <Button class="rounded-full border">👌OK</Button>
+        <Button class="rounded-full">👌OK</Button>
         <Button class="rounded" color="primary"><Icon class="mr-1" name="check" />确定</Button>
-        <Button color="primary-plain" --sp-border-0>取消</Button>
+        <Button color="primary-plain" --sunp-border="0">取消</Button>
         <Button color="success">成功</Button>
         <Button color="success-plain">成功</Button>
-        <Button color="warning" --sunp-padding="8px 16px">Warning</Button>
+        <Button color="warning">Warning</Button>
         <Button color="warning-plain">警告</Button>
         <Button color="danger">危险</Button>
         <Button color="danger-plain">危险</Button>

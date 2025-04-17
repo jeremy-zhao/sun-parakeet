@@ -41,7 +41,11 @@
   </List>
   <List header="自定义样式">
     <div class="bg-white p-4">
-      <Switch --sp-height="36px" --sp-width="60px" --sp-checked-color="#00b578" />
+      <Switch
+        --sunp-height="36px"
+        --sunp-width="60px"
+        --sunp-checked-color="var(--sunp-color-success)"
+      />
     </div>
   </List>
   <List header="禁用状态">

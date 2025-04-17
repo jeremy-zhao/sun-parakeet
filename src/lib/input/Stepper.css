@@ -1,108 +1,124 @@
-.sun-parakeet-stepper {
+.sunp-stepper {
   @apply flex items-stretch justify-stretch;
 
   & > * {
     @apply m-0;
-    margin-right: var(--sp-gap, 4px);
+    margin-right: var(--sunp-gap, 4px);
   }
 
-  .sun-parakeet-stepper__button {
-    @apply box-border bg-gray-100 p-0 text-blue-600 active:bg-gray-200;
+  .sunp-stepper__button {
+    @apply box-border p-0;
     @apply flex items-center justify-center;
-    width: var(--sp-size, 28px);
-    height: var(--sp-size, 28px);
+    width: var(--sunp-size, 28px);
+    height: var(--sunp-size, 28px);
+    color: var(--sunp-color-primary);
+    background-color: var(--sunp-color-box);
 
-    .sun-parakeet-stepper__icon {
+    &:active {
+      background-color: var(--sunp-color-border);
+    }
+
+    .sunp-stepper__icon {
       @apply border border-solid border-transparent;
       padding: 2px;
     }
 
     &:disabled {
-      @apply bg-gray-50;
+      @apply pointer-events-none;
 
-      .sun-parakeet-stepper__icon {
-        @apply text-gray-200;
+      .sunp-stepper__icon {
+        color: var(--sunp-color-light);
       }
     }
   }
 
-  .sun-parakeet-steper__content {
-    @apply relative block bg-gray-100 text-gray-600;
-    width: var(--sp-input-width, 32px);
-    height: var(--sp-size, 28px);
+  .sunp-steper__content {
+    @apply relative block;
+    width: var(--sunp-input-width, 32px);
+    height: var(--sunp-size, 28px);
+    color: var(--sunp-color-text);
+    background-color: var(--sunp-color-box);
 
-    .sun-parakeet-steper__display {
+    .sunp-steper__display {
       @apply absolute bottom-0 left-0 right-0 top-0;
       @apply overflow-hidden text-center align-middle;
       @apply flex items-center justify-center;
       font-size: 14px;
-      line-height: calc(var(--sp-size, 28px) + 1px);
+      line-height: calc(var(--sunp-size, 28px) + 1px);
       z-index: 0;
     }
 
-    .sun-parakeet-steper__input {
+    .sunp-steper__input {
       @apply absolute bottom-0 left-0 right-0 top-0;
-      @apply box-border block border-0 bg-gray-100 p-0 text-center align-middle text-gray-600 focus:outline-none;
+      @apply box-border block border-0 p-0 text-center align-middle focus:outline-none;
       padding-top: 1px;
       font-size: 14px;
-      line-height: var(--sp-size, 28px);
+      line-height: var(--sunp-size, 28px);
+      color: var(--sunp-color-text);
+      background-color: var(--sunp-color-box);
       z-index: 1;
     }
   }
 
-  &.sun-parakeet-stepper-disabled {
-    .sun-parakeet-steper__content {
-      @apply bg-gray-50 text-gray-300;
+  &.sunp-stepper-disabled {
+    .sunp-steper__content {
+      color: var(--sunp-color-weak);
+      background-color: var(--sunp-color-box);
 
-      .sun-parakeet-steper__input {
-        @apply bg-gray-50 text-gray-300;
+      .sunp-steper__input {
+        color: var(--sunp-color-weak);
+        background-color: var(--sunp-color-box);
       }
     }
   }
 
-  &.sun-parakeet-stepper-round {
-    .sun-parakeet-stepper__button {
+  &.sunp-stepper-round {
+    .sunp-stepper__button {
       @apply bg-transparent;
     }
 
-    .sun-parakeet-stepper__button-minus {
-      .sun-parakeet-stepper__icon {
-        @apply rounded-full border-blue-600 bg-white;
+    .sunp-stepper__button-minus {
+      .sunp-stepper__icon {
+        @apply rounded-full;
+        border-color: var(--sunp-color-primary);
+        background-color: var(--sunp-color-background);
       }
 
       &:active {
-        .sun-parakeet-stepper__icon {
-          @apply bg-blue-100;
+        .sunp-stepper__icon {
+          background-color: hsl(from var(--sunp-color-primary) h s calc((100 - l) * 0.8 + l));
         }
       }
     }
 
-    .sun-parakeet-stepper__button-plus {
-      .sun-parakeet-stepper__icon {
-        @apply rounded-full bg-blue-600 text-white;
+    .sunp-stepper__button-plus {
+      .sunp-stepper__icon {
+        @apply rounded-full;
+        color: var(--sunp-color-white);
+        background-color: var(--sunp-color-primary);
       }
 
       &:active {
-        .sun-parakeet-stepper__icon {
-          @apply bg-blue-700;
+        .sunp-stepper__icon {
+          background-color: hsl(from var(--sunp-color-primary) h s calc(l * 0.8));
         }
       }
     }
 
-    .sun-parakeet-steper__content {
+    .sunp-steper__content {
       @apply bg-inherit;
     }
   }
 }
 
-.sun-parakeet-form-vertical {
-  .sun-parakeet-stepper {
+.sunp-form-vertical {
+  .sunp-stepper {
     margin: 4px auto 0 0;
   }
 }
 
-.sun-parakeet-form-horizontal {
-  .sun-parakeet-stepper {
+.sunp-form-horizontal {
+  .sunp-stepper {
     @apply relative;
     margin: -3px 0 -3px auto;
   }

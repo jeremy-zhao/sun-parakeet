@@ -122,21 +122,21 @@
 </script>
 
 <div
-  class="sun-parakeet-stepper {clazz}"
-  class:sun-parakeet-stepper-round={theme === 'round'}
-  class:sun-parakeet-stepper-disabled={disabled}
+  class="sunp-stepper {clazz}"
+  class:sunp-stepper-round={theme === 'round'}
+  class:sunp-stepper-disabled={disabled}
   role="group"
 >
   <button
-    class="sun-parakeet-stepper__button sun-parakeet-stepper__button-minus"
+    class="sunp-stepper__button sunp-stepper__button-minus"
     style:visibility={hideMinus ? 'hidden' : 'visible'}
     disabled={disabled || readonly || (typeof min === 'number' && value <= min)}
     onclick={handleMinus}
   >
-    <Icon class="sun-parakeet-stepper__icon" svg={MinusIcon} size={24} />
+    <Icon class="sunp-stepper__icon" svg={MinusIcon} size={24} />
   </button>
-  <div class="sun-parakeet-steper__content" style:visibility={hideInput ? 'hidden' : 'visible'}>
-    <div class="sun-parakeet-steper__display">
+  <div class="sunp-steper__content" style:visibility={hideInput ? 'hidden' : 'visible'}>
+    <div class="sunp-steper__display">
       {#if typeof display === 'function'}
         {@render display(value)}
       {:else}
@@ -146,7 +146,7 @@
     {#if !readonly && !disabled && !lockInput}
       <input
         bind:this={_input}
-        class="sun-parakeet-steper__input"
+        class="sunp-steper__input"
         type="text"
         inputmode="decimal"
         role="spinbutton"
@@ -159,11 +159,11 @@
     {/if}
   </div>
   <button
-    class="sun-parakeet-stepper__button sun-parakeet-stepper__button-plus"
+    class="sunp-stepper__button sunp-stepper__button-plus"
     style:visibility={hidePlus ? 'hidden' : 'visible'}
     disabled={disabled || readonly || (typeof max === 'number' && value >= max)}
     onclick={handlePlus}
   >
-    <Icon class="sun-parakeet-stepper__icon" svg={PlusIcon} size={24} />
+    <Icon class="sunp-stepper__icon" svg={PlusIcon} size={24} />
   </button>
 </div>

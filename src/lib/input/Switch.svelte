@@ -40,9 +40,9 @@
 <!-- svelte-ignore a11y_interactive_supports_focus -->
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
-  class="sun-parakeet-switch"
-  class:sun-parakeet-switch-checked={checked}
-  class:sun-parakeet-switch-disabled={disabled}
+  class="sunp-switch"
+  class:sunp-switch-checked={checked}
+  class:sunp-switch-disabled={disabled}
   role="switch"
   aria-label="开关"
   aria-checked={checked}
@@ -50,9 +50,9 @@
   onclick={onClick}
   {...props}
 >
-  <div class="sun-parakeet-switch-checkbox">
-    <div class="sun-parakeet-switch__handle"></div>
-    <div class="sun-parakeet-switch__inner">
+  <div class="sunp-switch-checkbox">
+    <div class="sunp-switch__handle"></div>
+    <div class="sunp-switch__inner">
       {#if checked && typeof checkedText === 'string'}
         {checkedText}
       {:else if checked && typeof checkedText === 'function'}

@@ -25,11 +25,11 @@
   let dots = $derived(new Array(total))
 </script>
 
-<div class="sun-parakeet-page-indicator sun-parakeet-page-indicator-{direction} {clazz}" {...props}>
+<div class="sunp-page-indicator sunp-page-indicator-{direction} {clazz}" {...props}>
   {#each dots, index}
     <div
-      class="sun-parakeet-page-indicator-dot"
-      class:sun-parakeet-page-indicator-dot-active={value === index}
+      class="sunp-page-indicator-dot"
+      class:sunp-page-indicator-dot-active={value === index}
     ></div>
   {/each}
 </div>

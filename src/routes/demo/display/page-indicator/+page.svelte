@@ -10,7 +10,7 @@
   </List>
   <List header="白色">
     <div class="bg-gray-400 p-4">
-      <PageIndicator total={4} --sp-active-color="white" />
+      <PageIndicator total={4} --sunp-color="white" --sunp-active-color="white" />
     </div>
   </List>
   <List header="竖直方向">
@@ -23,12 +23,12 @@
       <PageIndicator
         total={4}
         value={1}
-        --sp-color="rgba(0, 0, 0, 0.4)"
-        --sp-active-color="#ffc0cb"
-        --sp-size="10px"
-        --sp-active-size="30px"
-        --sp-radius="15px"
-        --sp-gap="8px"
+        --sunp-color="rgba(0, 0, 0, 0.4)"
+        --sunp-active-color="#ffc0cb"
+        --sunp-size="10px"
+        --sunp-active-size="30px"
+        --sunp-radius="15px"
+        --sunp-gap="8px"
       />
     </div>
   </List>

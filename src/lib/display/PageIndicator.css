@@ -1,47 +1,47 @@
-.sun-parakeet-page-indicator {
+.sunp-page-indicator {
   @apply flex w-auto;
 
-  .sun-parakeet-page-indicator-dot {
+  .sunp-page-indicator-dot {
     @apply block;
-    width: var(--sp-size, 3px);
-    height: var(--sp-size, 3px);
-    border-radius: var(--sp-radius, 1px);
-    background-color: var(--sp-color, #d1d5db);
+    width: var(--sunp-size, 3px);
+    height: var(--sunp-size, 3px);
+    border-radius: var(--sunp-radius, 1px);
+    background-color: var(--sunp-color, var(--sunp-color-weak));
   }
 
-  .sun-parakeet-page-indicator-dot-active {
-    background-color: var(--sp-active-color, #2563eb);
+  .sunp-page-indicator-dot-active {
+    background-color: var(--sunp-active-color, var(--sunp-color-primary));
   }
 }
 
-.sun-parakeet-page-indicator-horizontal {
+.sunp-page-indicator-horizontal {
   @apply flex-row flex-nowrap;
 
-  .sun-parakeet-page-indicator-dot {
-    margin-right: var(--sp-gap, 3px);
+  .sunp-page-indicator-dot {
+    margin-right: var(--sunp-gap, 3px);
   }
 
-  .sun-parakeet-page-indicator-dot-active {
-    width: var(--sp-active-size, 13px);
+  .sunp-page-indicator-dot-active {
+    width: var(--sunp-active-size, 13px);
   }
 
-  & > :last-child.sun-parakeet-page-indicator-dot {
+  & > :last-child.sunp-page-indicator-dot {
     margin-right: 0;
   }
 }
 
-.sun-parakeet-page-indicator-vertical {
+.sunp-page-indicator-vertical {
   @apply flex-col;
 
-  .sun-parakeet-page-indicator-dot {
-    margin-bottom: var(--sp-gap, 3px);
+  .sunp-page-indicator-dot {
+    margin-bottom: var(--sunp-gap, 3px);
   }
 
-  .sun-parakeet-page-indicator-dot-active {
-    height: var(--sp-active-size, 13px);
+  .sunp-page-indicator-dot-active {
+    height: var(--sunp-active-size, 13px);
   }
 
-  & > :last-child.sun-parakeet-page-indicator-dot {
+  & > :last-child.sunp-page-indicator-dot {
     margin-bottom: 0;
   }
 }

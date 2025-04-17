@@ -1,4 +1,4 @@
-.sun-parakeet-form {
+.sunp-form {
   @apply !block;
 
   & > * {
@@ -6,20 +6,20 @@
 
     &::before,
     &::after {
-      @apply absolute left-0 right-0 border-l-[1em] border-solid;
+      @apply absolute left-0 right-0 h-[1px] border-0 border-l-[1em] border-solid;
       content: '';
-      height: 1px;
-      background-color: var(--sp-border-color, #e5e7eb);
-      border-color: var(--sp-bg-color, white);
-      z-index: 0;
+      background-color: var(--sunp-color-border);
+      border-color: var(--sunp-color-background);
     }
 
     &::before {
       top: -1px;
+      /* background-color: red; */
     }
 
     &::after {
       bottom: -1px;
+      /* background-color: blue; */
     }
   }
 
@@ -29,5 +29,9 @@
 
   & > :last-child::after {
     border-left-width: 0;
+  }
+
+  & > svelte-css-wrapper {
+    @apply !block;
   }
 }

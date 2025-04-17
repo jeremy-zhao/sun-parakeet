@@ -3,9 +3,9 @@
   import ArrowIcon from '../icons/arrow-right-s-line.svg?raw'
 
   import { setContext, type Snippet } from 'svelte'
+  import type { HTMLAttributes } from 'svelte/elements'
   import { validate, type Rule } from './validation'
   import Icon from '../common/Icon.svelte'
-  import type { HTMLAttributes } from 'svelte/elements'
 
   /** 表单条目属性 */
   export interface FormItemAttributes extends HTMLAttributes<EventTarget> {
@@ -76,7 +76,7 @@
     if (!input) return
 
     // TODO 初始化
-    console.log('[FormItem]', 'TODO init', input)
+    // console.log('[FormItem]', 'TODO init', input)
   }
 
   let context = $state<FormItemContext>({
@@ -109,33 +109,33 @@
   }
 </script>
 
-<div class="sun-parakeet-form-item {clazz}" {...props}>
+<div class="sunp-form-item {clazz}" {...props}>
   {#if required}
-    <b class="sun-parakeet-form-item__required">*</b>
+    <b class="sunp-form-item__required">*</b>
   {/if}
 
-  <div bind:this={content} class="sun-parakeet-form-item__content">
+  <div bind:this={content} class="sunp-form-item__content">
     {#if label && typeof label === 'string'}
-      <label class="sun-parakeet-form-item__label" for={labelFor}>
+      <label class="sunp-form-item__label" for={labelFor}>
         {label}
       </label>
     {:else if label && typeof label === 'function'}
-      <label class="sun-parakeet-form-item__label" for={labelFor}>
+      <label class="sunp-form-item__label" for={labelFor}>
         {@render label()}
       </label>
     {/if}
 
-    <div class="sun-parakeet-form-item__input">
+    <div class="sunp-form-item__input">
       {@render children?.()}
       {#if error}
-        <p class="sun-parakeet-form-item__error">{error}</p>
+        <p class="sunp-form-item__error">{error}</p>
       {/if}
     </div>
   </div>
 
   {#if typeof context.onClick === 'function'}
-    <button use:onButton class="sun-parakeet-form-item-button" onclick={context.onClick}>
-      <Icon class="sun-parakeet-form-item-button__arrow" svg={ArrowIcon} size={30} />
+    <button use:onButton class="sunp-form-item-button" onclick={context.onClick}>
+      <Icon class="sunp-form-item-button__arrow" svg={ArrowIcon} size={30} />
     </button>
   {/if}
 </div>

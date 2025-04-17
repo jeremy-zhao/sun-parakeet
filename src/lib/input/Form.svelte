@@ -18,7 +18,7 @@
   let { header, layout = 'vertical', name, children, ...props }: FormAttributes = $props()
 </script>
 
-<form class="sun-parakeet-form sun-parakeet-form-{layout}" {...props}>
+<form class="sunp-form sunp-form-{layout}" {...props}>
   {#if typeof header === 'string'}
     <FormHeader>{header}</FormHeader>
   {:else if typeof header === 'function'}

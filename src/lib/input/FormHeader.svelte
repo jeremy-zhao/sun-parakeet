@@ -5,4 +5,6 @@
   let { children, ...props }: HTMLAttributes<EventTarget> = $props()
 </script>
 
-<header class="sun-parakeet-form-header" {...props}>{@render children?.()}</header>
+<header class="sunp-form-header" {...props}>
+  {@render children?.()}
+</header>

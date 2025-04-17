@@ -39,6 +39,7 @@
     statistic = false,
     maxlength,
     class: clazz,
+    disabled,
     style,
     ...props
   }: TextareaAttributes = $props()
@@ -76,13 +77,15 @@
   })
 </script>
 
-<div class="sun-parakeet-text-area">
+<div class="sunp-text-area" class:sunp-text-area-disabled={disabled}>
   <textarea
     bind:this={textarea}
     bind:value
-    class="sun-parakeet-text-area-element {clazz}"
+    class="sunp-text-area__element {clazz}"
     rows={_rows}
     {maxlength}
+    {style}
+    {disabled}
     {...props}
     oninput={handleInput}
   ></textarea>
@@ -90,14 +93,14 @@
     <textarea
       bind:this={clone}
       {value}
-      class="sun-parakeet-text-area-element sun-parakeet-text-area-element-hidden {clazz}"
+      class="sunp-text-area__element sunp-text-area__element-hidden {clazz}"
       {style}
       aria-hidden="true"
       readonly
     ></textarea>
   {/if}
   {#if statistic === true}
-    <div class="sun-parakeet-text-area__statistic">
+    <div class="sunp-text-area__statistic">
       {count}{#if maxlength}/{maxlength}{/if}
     </div>
   {:else if typeof statistic === 'function'}

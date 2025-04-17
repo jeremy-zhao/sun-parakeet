@@ -2,7 +2,8 @@
 </script>
 
 <script lang="ts">
-  import { Page, List, ListItem, Checkbox, CheckboxGroup, Button, Form, FormItem, Space } from '$lib'
+  import { Page, List, ListItem, Checkbox, CheckboxGroup } from '$lib'
+  import { Button, Form, FormItem, Space } from '$lib'
 
   let checked = $state(false)
 

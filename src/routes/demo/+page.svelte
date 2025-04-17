@@ -52,8 +52,8 @@
     {
       header: '信息录入',
       items: [
-        ['CheckList', '可勾选列表', '/demo/input/check-list'],
         ['Checkbox', '复选框', '/demo/input/checkbox'],
+        ['CheckList', '可勾选列表', '/demo/input/check-list'],
         ['Form', '表单', '/demo/input/form'],
         ['Input', '输入框', '/demo/input/input'],
         ['Picker', '选择器', '/demo/input/picker'],

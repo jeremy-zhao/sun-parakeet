@@ -58,7 +58,11 @@
 
   onMount(() => {
     if (group && !isNonEmpty(value)) {
-      console.warn('[CheckboxGroup]', 'Checkbox 提供的 value 不可以是 undefined, null, NaN 或空字符串，将被忽略', value)
+      console.warn(
+        '[CheckboxGroup]',
+        'Checkbox 提供的 value 不可以是 undefined, null, NaN 或空字符串，将被忽略',
+        value
+      )
       return
     }
 
@@ -71,24 +75,24 @@
 </script>
 
 <label
-  class="sun-parakeet-checkbox {clazz}"
-  class:sun-parakeet-checkbox-checked={checked && !indeterminate}
-  class:sun-parakeet-checkbox-indeterminate={indeterminate}
-  class:sun-parakeet-checkbox-disabled={disabled}
+  class="sunp-checkbox {clazz}"
+  class:sunp-checkbox-checked={checked && !indeterminate}
+  class:sunp-checkbox-indeterminate={indeterminate}
+  class:sunp-checkbox-disabled={disabled}
   {style}
 >
   <input
     bind:this={input}
     bind:checked
     bind:indeterminate
-    class="sun-parakeet-checkbox-element"
+    class="sunp-checkbox__input"
     type="checkbox"
     {value}
     {disabled}
     {...props}
     onchange={handleChange}
   />
-  <div class="sun-parakeet-checkbox__icon" style:width="{size}px" style:height="{size}px">
+  <div class="sunp-checkbox__icon" style:width="{size}px" style:height="{size}px">
     {#if indeterminate}
       {#if typeof iconIndeterminate === 'string'}
         <Icon name={iconIndeterminate} size={sizeIndeterminate} />
@@ -104,6 +108,6 @@
     {/if}
   </div>
   {#if children}
-    <div class="sun-parakeet-checkbox__content">{@render children()}</div>
+    <div class="sunp-checkbox__content">{@render children()}</div>
   {/if}
 </label>

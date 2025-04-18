@@ -5,63 +5,27 @@
 
   import Icon, { type IconOption } from '../common/Icon.svelte'
   import { type Snippet } from 'svelte'
-  import type { HTMLAttributes, HTMLImgAttributes } from 'svelte/elements'
+  import type { HTMLImgAttributes } from 'svelte/elements'
 
-  /** 头像 */
+  /** 图片 */
   export interface ImageAttributes extends HTMLImgAttributes {
     /** 占位图 */
     fallback?: string | IconOption | Snippet
     /** 图片的填充模式 */
     fit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
+    /** 容器点击事件 */
+    onClick?: (e: MouseEvent) => void
   }
 </script>
 
 <script lang="ts">
-  let {
-    fallback,
-    fit,
-    // img
-    class: clazz,
-    alt,
-    crossorigin,
-    decoding,
-    fetchpriority,
-    height,
-    ismap,
-    loading,
-    referrerpolicy,
-    sizes,
-    src,
-    srcset,
-    usemap,
-    width,
-    'bind:naturalWidth': bindNaturalWidth,
-    'bind:naturalHeight': bindNaturalHeight,
-    // div
-    ...props
-  }: ImageAttributes = $props()
-
-  const divProps = props as HTMLAttributes<EventTarget>
-
-  const imgProps = {
-    alt,
-    crossorigin,
-    decoding,
-    fetchpriority,
-    height,
-    ismap,
-    loading,
-    referrerpolicy,
-    sizes,
-    src,
-    srcset,
-    usemap,
-    width,
-    'bind:naturalWidth': bindNaturalWidth,
-    'bind:naturalHeight': bindNaturalHeight,
-  }
+  let { fallback, fit = 'fill', class: clazz, style, onClick, ...props }: ImageAttributes = $props()
 
   let _status = $state('loading')
+
+  function handleClick(e: MouseEvent) {
+    onClick?.(e)
+  }
 
   function handleLoad() {
     _status = 'success'
@@ -79,7 +43,12 @@
 
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="sunp-image {clazz}" {...divProps}>
+<div
+  class="sunp-image {clazz}"
+  class:sunp-image-active={typeof onClick === 'function'}
+  {style}
+  onclick={handleClick}
+>
   {#if _status === 'loading'}
     <div class="sunp-image__tip">
       <Icon svg={ImgIcon} />
@@ -98,12 +67,6 @@
     </div>
   {/if}
   {#if _status !== 'error'}
-    <img
-      use:useImg
-      class="sunp-image__img"
-      style:object-fit={fit}
-      style:display={_status === 'success' ? 'block' : 'none'}
-      {...imgProps}
-    />
+    <img use:useImg class="sunp-image__element" style:object-fit={fit} {...props} />
   {/if}
 </div>

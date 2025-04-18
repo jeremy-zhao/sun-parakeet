@@ -6,7 +6,7 @@
   import { type HTMLButtonAttributes } from 'svelte/elements'
   import Icon, { type IconOption } from '../common/Icon.svelte'
 
-  /** 按钮属性 */
+  /** 按钮 */
   export interface ButtonAttributes extends HTMLButtonAttributes {
     /** 是否渲染为块级元素 */
     block?: boolean

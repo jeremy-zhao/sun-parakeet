@@ -21,9 +21,10 @@
     top?: number
   }
 
+  /** 图标 */
   export type IconAttributes = IconOption & SVGAttributes<SVGElement>
 
-  // SVG 正则判定
+  /** SVG 正则判定 */
   export const svgRegex = /<svg[^>]*>[^]*<\/svg>/
 </script>
 

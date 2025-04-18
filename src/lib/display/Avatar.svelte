@@ -10,39 +10,30 @@
   export interface AvatarAttributes extends HTMLImgAttributes {
     /** 占位图 */
     fallback?: string | IconOption | Snippet
-    /** 图片的填充模式 */
-    fit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
-    /** 按钮形状。默认值：'normal'，可被 ButtonTheme.shape 覆盖。 */
-    shape?: 'normal' | 'rounded' | 'rectangular' | number
+    /** 头像形状。默认值 'circle' */
+    shape?: 'circle' | 'rounded' | 'square' | number
     /** 头像的尺寸 */
     size?: number | string
-    /** 组件点击事件 */
+    /** 容器点击事件 */
     onClick?: (e: MouseEvent) => void
   }
 </script>
 
 <script lang="ts">
-  let {
-    fallback,
-    fit,
-    shape,
-    size,
-    class: clazz,
-    style,
-    onClick,
-    ...props
-  }: AvatarAttributes = $props()
+  let _self: HTMLDivElement
+
+  let { fallback, shape, size, class: clazz, style, onClick, ...props }: AvatarAttributes = $props()
 
   let _status = $state('loading')
 
   let _size = $derived(!size ? '44px' : typeof size === 'number' ? `${size}px` : size)
 
   let _radius = $derived.by(() => {
-    if (shape === 'normal') return '6px'
-    else if (shape === 'rounded') return '9999px'
-    else if (shape === 'rectangular') return '0'
+    if (shape === 'circle') return '50%'
+    else if (shape === 'rounded') return '6px'
+    else if (shape === 'square') return '0'
     else if (typeof shape === 'number' && shape >= 0) return `${shape}px`
-    else return '6px'
+    else return '50%'
   })
 
   function handleClick(e: MouseEvent) {
@@ -66,7 +57,9 @@
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div
+  bind:this={_self}
   class="sunp-avatar {clazz}"
+  class:sunp-avatar-active={typeof onClick === 'function'}
   style:width={_size}
   style:height={_size}
   style:border-radius={_radius}
@@ -90,7 +83,6 @@
     <img
       use:useImg
       class="sunp-avatar__img"
-      style:object-fit={fit}
       style:display={_status === 'success' ? 'block' : 'none'}
       {...props}
     />

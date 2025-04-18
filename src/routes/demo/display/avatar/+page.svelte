@@ -1,5 +1,5 @@
 <script lang="ts" module>
-  import { Page, List, ListItem, Avatar, Space } from '$lib'
+  import { Page, List, ListItem, Avatar, Space, showToast } from '$lib'
 </script>
 
 <script lang="ts">
@@ -9,16 +9,27 @@
     'https://images.unsplash.com/photo-1542624937-8d1e9f53c1b9?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
     'https://images.unsplash.com/photo-1546967191-fdfb13ed6b1e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&fit=crop&h=200&w=200&ixid=eyJhcHBfaWQiOjE3Nzg0fQ',
   ]
+
+  function handleClick() {
+    showToast({ text: '头像被点击' })
+  }
 </script>
 
 <Page class="bg-gray-100">
   <List header="基础用法">
     <div class="bg-white p-4">
       <Space block wrap>
-        <Avatar src={avatars[0]} shape="normal" />
+        <Avatar src={avatars[0]} shape="circle" />
         <Avatar src={avatars[1]} shape="rounded" />
-        <Avatar src={avatars[2]} shape="rectangular" />
+        <Avatar src={avatars[2]} shape="square" />
         <Avatar src={avatars[3]} shape={12} />
+      </Space>
+    </div>
+  </List>
+  <List header="点击事件">
+    <div class="bg-white p-4">
+      <Space block wrap>
+        <Avatar src={avatars[0]} shape="circle" onClick={handleClick} />
       </Space>
     </div>
   </List>

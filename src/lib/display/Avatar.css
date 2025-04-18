@@ -1,8 +1,17 @@
 .sunp-avatar {
   @apply relative block overflow-hidden;
 
+  &.sunp-avatar-active {
+    @apply cursor-pointer;
+
+    &:active {
+      scale: 0.95;
+    }
+  }
+
   .sunp-avatar__img {
     @apply h-full w-full;
+    object-fit: var(--sunp-fit, 'cover');
   }
 
   .sunp-avatar__tip {

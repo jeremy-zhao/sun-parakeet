@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import './Picker.css'
 
-  import { untrack, getContext, setContext, onMount, type Snippet } from 'svelte'
+  import { getContext, setContext, onMount, untrack, type Snippet } from 'svelte'
   import Button from '../common/Button.svelte'
   import Popup, { type PopupAttributes } from '../feedback/Popup.svelte'
   import PickerView, { equals, type PickerViewAttributes } from './PickerView.svelte'
@@ -9,7 +9,7 @@
   import type { FormItemContext } from './FormItem.svelte'
 
   /** 动作面板属性 */
-  export type PickerAttributes = PopupAttributes &
+  export type PickerAttributes = Omit<PopupAttributes, 'position' | 'onClose'> &
     PickerViewAttributes & {
       /** 标题 */
       header?: string | Snippet
@@ -25,10 +25,6 @@
       display?: Snippet<[string[]]>
       /** 取消时触发 */
       onCancel?: () => void
-      // 屏蔽
-      position?: undefined
-      // 屏蔽
-      onclose?: undefined
     }
 </script>
 

@@ -46,8 +46,9 @@ export type { PullToRefreshAttributes } from './feedback/PullToRefresh.svelte'
 export type { PullToRefreshStatus } from './feedback/PullToRefresh.svelte'
 import SwipeAction from './feedback/SwipeAction.svelte'
 export type { SwipeActionAttributes, SwipeActionStatus } from './feedback/SwipeAction.svelte'
-export { showToast, hideToast, type ShowToastOption } from './feedback/toast'
-export { ActionSheet, Popup, PullToRefresh, SwipeAction }
+import Toast from './feedback/Toast.svelte'
+export { showToast, hideToast, modifyToast, type ShowToastOption } from './feedback/Toast.svelte'
+export { ActionSheet, Popup, PullToRefresh, SwipeAction, Toast }
 
 // Input
 import Checkbox from './input/Checkbox.svelte'

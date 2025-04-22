@@ -6,7 +6,7 @@
   import type { Snippet } from 'svelte'
 
   /** 动作面板属性 */
-  export interface ActionSheetAttributes extends PopupAttributes {
+  export interface ActionSheetAttributes extends Omit<PopupAttributes, 'position' | 'onClose'> {
     /** 是否显示 */
     visible: boolean
     /** 标题 */
@@ -21,17 +21,12 @@
     onAction?: (action: any, index: number) => void
     /** 取消时触发 */
     onCancel?: () => void
-    // 屏蔽
-    position?: undefined
-    // 屏蔽
-    onClose?: undefined
   }
 </script>
 
 <script lang="ts">
   let {
     visible = $bindable(),
-    position,
     header,
     actions,
     actionSnippet,

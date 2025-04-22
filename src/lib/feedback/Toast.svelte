@@ -21,10 +21,8 @@
     duration?: number
     /** 是否显示遮罩 */
     mask?: boolean
-    /** 阻止点击关闭。默认 false */
-    keep?: boolean
-    /** 用户点击返回按钮时回调。仅当 keep === true 时触发 */
-    onHistoryBack?: (option: ShowToastOption) => void
+    /** 阻止点击关闭，并尝试阻止返回关闭。默认 false */
+    keepOpen?: boolean
   }
 
   /** 轻提示 */
@@ -89,7 +87,7 @@
 
   // 点击关闭事件
   function onClickClose() {
-    if (!_option || _option.keep) return
+    if (!_option || _option.keepOpen) return
     hideToast(_option.key)
   }
 
@@ -170,12 +168,11 @@
   }
 
   async function handlePopState() {
-    if (!_option?.keep || !_visible) return
+    if (!_option?.keepOpen || !_visible) return
     await delay()
-    if (!_option?.keep || !_visible) return
+    if (!_option?.keepOpen || !_visible) return
 
     show()
-    _option.onHistoryBack?.(_option)
     window.addEventListener('beforeunload', handleUnload)
     window.addEventListener('click', removeUnload)
   }
@@ -196,7 +193,7 @@
   let { children, class: clazz, ...props }: ToastAttributes = $props()
 
   let visible = $state<boolean>(!!page.state.__sun_parakeet_toast_visible__)
-  let cursor = $derived(_option && _option.duration && !_option.keep ? 'pointer' : 'default')
+  let cursor = $derived(_option && _option.duration && !_option.keepOpen ? 'pointer' : 'default')
 
   $effect(() => {
     page.state.__sun_parakeet_toast_visible__

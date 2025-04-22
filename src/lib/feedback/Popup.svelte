@@ -2,113 +2,144 @@
   import './mask.css'
   import './Popup.css'
 
-  import { onMount } from 'svelte'
+  import { pushState } from '$app/navigation'
+  import { page } from '$app/state'
+  import { onMount, untrack } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
-  import stack from '../common/historyStack.js'
+  import { delay } from '../common'
 
+  /** 弹出层位置 */
   export type PopupPosition = 'center' | 'top' | 'right' | 'bottom' | 'left'
 
+  /** 弹出层 */
   export interface PopupAttributes extends HTMLAttributes<EventTarget> {
     /** 关闭时销毁子元素 */
     destroyOnClose?: boolean
-    /** 是否展示遮罩。默认为 `true` */
-    mask?: boolean
-    /** 点击遮罩时是否关闭。默认为 `true` */
-    maskClickClose?: boolean
+    /** 阻止点击遮罩关闭 */
+    keepOpenOnClickMask?: boolean
+    /** 不展示遮罩 */
+    noMask?: boolean
     /** 弹出位置。默认为 `bottom` */
     position?: PopupPosition
     /** 是否显示 */
     visible?: boolean
-    /** 点击遮罩关闭时触发 */
+    /** 关闭时触发 */
     onClose?: () => void
   }
+
+  declare global {
+    namespace App {
+      interface PageState {
+        __sun_parakeet_popup__?: number[]
+      }
+    }
+  }
+
+  // 层
+  let _layer = 0
 </script>
 
 <script lang="ts">
-  let _mask: HTMLDivElement
   let _self: HTMLDivElement
 
   let {
     visible = $bindable(false),
     destroyOnClose = false,
-    mask = true,
-    maskClickClose = true,
+    keepOpenOnClickMask = false,
+    noMask = false,
     position = 'bottom',
-    class: clazz,
     onClose,
     children,
+    class: clazz,
     ...props
   }: PopupAttributes = $props()
 
-  let zIndex = $derived(10000 + 2 * stack.indexOf(_self!))
-  let positioned = $derived(`sunp-popup-${position}`)
+  let index = -1
+  let zIndex = $state(0)
   let renderChildren = $state(true)
   let closeTimeout: NodeJS.Timeout | undefined
 
-  // visible
-  $effect(() => {
-    if (closeTimeout) {
-      clearTimeout(closeTimeout)
-      closeTimeout = undefined
-    }
-
-    if (visible) {
-      mask && document.body.append(_mask)
-      renderChildren = true
-
-      if (stack.indexOf(_self) < 0) {
-        stack.push({
-          key: _self,
-          historyBack(item) {
-            if (item.key !== _self) return
-            visible = false
-          },
-        })
-      }
-    } else if (!visible) {
-      if (stack.indexOf(_self) >= 0) {
-        stack.remove(_self)
-      }
-
-      if (destroyOnClose) {
-        closeTimeout = setTimeout(() => (renderChildren = false), 150)
-      }
-    }
+  let _visible = $derived.by(() => {
+    const opening = page.state.__sun_parakeet_popup__
+    const re = !!(opening && opening.indexOf(index) >= 0)
+    return re
   })
 
-  function handleClickMask() {
-    if (!maskClickClose) return
+  // visible
+  $effect(() => {
+    visible
+
+    untrack(() => {
+      if (_visible === visible) return
+
+      if (closeTimeout) {
+        clearTimeout(closeTimeout)
+        closeTimeout = undefined
+      }
+
+      if (visible) {
+        renderChildren = true
+        index = _layer
+        zIndex = 10000 + _layer++
+
+        const opening = new Set(page.state.__sun_parakeet_popup__)
+        opening.add(index)
+        pushState('#', { __sun_parakeet_popup__: [...opening] })
+      } else {
+        _layer--
+        index = -1
+        history.back()
+
+        if (destroyOnClose) {
+          closeTimeout = setTimeout(() => (renderChildren = false), 150)
+        }
+      }
+    })
+  })
+
+  function handleClickMask(e: MouseEvent) {
+    e.stopPropagation()
+    if (keepOpenOnClickMask) return
     visible = false
-    setTimeout(() => onClose?.(), 20)
+    onClose?.()
+  }
+
+  async function handleHistoryBack() {
+    if (!visible) return
+    await delay()
+    if (_visible) return
+
+    visible = false
+    onClose?.()
   }
 
   onMount(() => {
     document.body.append(_self)
+    window.addEventListener('popstate', handleHistoryBack)
 
     return () => {
       _self.remove()
+      window.removeEventListener('popstate', handleHistoryBack)
     }
   })
 </script>
 
-<!-- svelte-ignore a11y_click_events_have_key_events -->
-<!-- svelte-ignore a11y_no_static_element_interactions -->
-<div
-  bind:this={_mask}
-  class="sunp-mask"
-  style:visibility={visible ? 'visible' : 'hidden'}
-  style:z-index={zIndex}
-  onclick={handleClickMask}
-></div>
+<div bind:this={_self} class="sunp-popup-wrapper" style:z-index={zIndex}>
+  <!-- svelte-ignore a11y_click_events_have_key_events -->
+  <!-- svelte-ignore a11y_no_static_element_interactions -->
+  <div
+    class="sunp-mask"
+    class:sunp-mask-visible={!noMask && _visible}
+    onclick={handleClickMask}
+  ></div>
 
-<div
-  bind:this={_self}
-  class="sunp-popup {positioned} {clazz}"
-  class:sunp-popup-visible={visible}
-  {...props}
-  style:z-index={zIndex + 1}
->
-  {#if renderChildren}
-    {@render children?.()}
-  {/if}
+  <div
+    class="sunp-popup sunp-popup-{position} {clazz}"
+    class:sunp-popup-visible={_visible}
+    {...props}
+  >
+    {#if renderChildren}
+      {@render children?.()}
+    {/if}
+  </div>
 </div>

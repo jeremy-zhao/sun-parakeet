@@ -23,7 +23,7 @@
       duration: 0,
       icon: { name: 'loader', class: 'animate-spin', size: 32 },
       text: `剩余 ${second} 秒`,
-      keep: true,
+      keepOpen: true,
     })
   }
 </script>
@@ -48,7 +48,7 @@
       >
       <Button
         class="border"
-        onclick={() => showToast({ text: '点击/返回 不会关闭', mask: true, keep: true })}
+        onclick={() => showToast({ text: '点击/返回 不会关闭', mask: true, keepOpen: true })}
         >点击/返回 不会关闭</Button
       >
     </div>
@@ -57,7 +57,7 @@
     <div class="bg-white p-4">
       <Button
         class="border"
-        onclick={() => showToast({ text: '不会自动关闭', duration: 0, keep: true })}
+        onclick={() => showToast({ text: '不会自动关闭', duration: 0, keepOpen: true })}
         >打开轻提示</Button
       >
       <Button class="border" onclick={() => hideToast()}>关闭轻提示</Button>

@@ -21,7 +21,7 @@
 
     showToast({
       duration: 0,
-      icon: { name: 'loading', class: 'animate-spin', size: 32 },
+      icon: { name: 'loader', class: 'animate-spin', size: 32 },
       text: `剩余 ${second} 秒`,
       keep: true,
     })

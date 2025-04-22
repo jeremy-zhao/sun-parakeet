@@ -10,7 +10,7 @@
   import Icon, { type IconOption } from '../common/Icon.svelte'
 
   /** 轻提示配置 */
-  export interface ToastOption {
+  export interface ShowToastOption {
     /** 给 Toast 定义一个 key，调用 hideToast 时，如果 key 不一致，则不会关闭 */
     key?: string
     /** 提示文本 */
@@ -21,14 +21,16 @@
     duration?: number
     /** 是否显示遮罩 */
     mask?: boolean
-    /** 阻止点击关闭。默认 true */
+    /** 阻止点击关闭。默认 false */
     keep?: boolean
+    /** 用户点击返回按钮时回调。仅当 keep === true 时触发 */
+    onHistoryBack?: (option: ShowToastOption) => void
   }
 
   /** 轻提示 */
   export interface ToastAttributes extends HTMLAttributes<EventTarget> {
     // 屏蔽
-    children: undefined
+    children?: undefined
   }
 
   declare global {
@@ -58,10 +60,10 @@
       document.body.append(el)
 
       _mask = el.querySelector<HTMLElement>('.sunp-mask')
-      _mask!.addEventListener('click', clickClose)
+      _mask!.addEventListener('click', onClickClose)
 
       _toast = el.querySelector<HTMLElement>('.sunp-toast')
-      _toast!.addEventListener('click', clickClose)
+      _toast!.addEventListener('click', onClickClose)
 
       window.addEventListener('popstate', handlePopState)
     }
@@ -81,19 +83,25 @@
   // 方法 ==================================================
 
   let _visible = false
-  let _option = $state<ToastOption | undefined>()
+  let _option = $state<ShowToastOption | undefined>()
   let _timer: NodeJS.Timeout | undefined
 
-  function clickClose() {
+  // 点击关闭事件
+  function onClickClose() {
     if (!_option || _option.keep) return
     hideToast(_option.key)
+  }
+
+  function show() {
+    // pushState(`${location.href}#`, { __sun_parakeet_toast_visible__: true })
+    pushState('', { __sun_parakeet_toast_visible__: true })
   }
 
   /**
    * 显示轻提示
    * @param option 轻提示配置
    */
-  export async function showToast(option: ToastOption) {
+  export async function showToast(option: ShowToastOption) {
     if (!_singleton) {
       console.error('[Toast]', '未引用 Toast 组件')
       return
@@ -114,7 +122,7 @@
     // 关闭当前 Toast 并打开新 Toast
     await _hideToast()
     _option = { ...option, duration }
-    pushState('#', { __sun_parakeet_toast_visible__: true })
+    show()
 
     if (_timer) {
       clearTimeout(_timer)
@@ -151,7 +159,7 @@
   }
 
   /** 修改当前轻提示的内容 */
-  export function modifyToast(option: Pick<ToastOption, 'key' | 'icon' | 'text'>) {
+  export function modifyToast(option: Pick<ShowToastOption, 'key' | 'icon' | 'text'>) {
     if (!_option) return
 
     if (option.key && _option.key !== option.key) return
@@ -165,14 +173,15 @@
     await delay()
     if (!_option?.keep || !_visible) return
 
-    pushState('#', { __sun_parakeet_toast_visible__: true })
+    show()
+    _option.onHistoryBack?.(_option)
   }
 </script>
 
 <script lang="ts">
   let _self: HTMLDivElement
 
-  let { children, class: clazz, ...props } = $props()
+  let { children, class: clazz, ...props }: ToastAttributes = $props()
 
   let visible = $state<boolean>(!!page.state.__sun_parakeet_toast_visible__)
   let cursor = $derived(_option && _option.duration && !_option.keep ? 'pointer' : 'default')

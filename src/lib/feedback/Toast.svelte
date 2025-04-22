@@ -78,6 +78,7 @@
     _toast = null
     _singleton.remove()
     window.removeEventListener('popstate', handlePopState)
+    window.removeEventListener('beforeunload', handleUnload)
   }
 
   // 方法 ==================================================
@@ -175,6 +176,17 @@
 
     show()
     _option.onHistoryBack?.(_option)
+    window.addEventListener('beforeunload', handleUnload)
+    window.addEventListener('click', removeUnload)
+  }
+
+  function handleUnload(e: BeforeUnloadEvent) {
+    e.preventDefault()
+  }
+
+  function removeUnload() {
+    if (_visible) return
+    window.removeEventListener('beforeunload', handleUnload)
   }
 </script>
 

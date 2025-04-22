@@ -18,7 +18,7 @@
   let { header, layout = 'vertical', name, children, ...props }: FormAttributes = $props()
 </script>
 
-<form class="sunp-form sunp-form-{layout}" {...props}>
+<form class="sunp-form sunp-form-{layout}" {...props} onsubmit={e => e.preventDefault()}>
   {#if typeof header === 'string'}
     <FormHeader>{header}</FormHeader>
   {:else if typeof header === 'function'}

@@ -84,7 +84,7 @@
 
         const opening = new Set(page.state.__sun_parakeet_popup__)
         opening.add(index)
-        pushState('#', { __sun_parakeet_popup__: [...opening] })
+        pushState('', { __sun_parakeet_popup__: [...opening] })
       } else {
         _layer--
         index = -1

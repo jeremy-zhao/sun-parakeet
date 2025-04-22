@@ -1,3 +1,7 @@
+.sunp-popup-wrapper {
+  @apply contents;
+}
+
 .sunp-popup {
   @apply fixed bg-white;
 

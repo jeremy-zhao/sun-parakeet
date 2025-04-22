@@ -55,6 +55,7 @@
       console.warn('[Toast] Toast 组件只能引用一次，当前引用被忽略')
     } else {
       _singleton = el
+      document.body.append(el)
 
       _mask = el.querySelector<HTMLElement>('.sunp-mask')
       _mask!.addEventListener('click', clickClose)

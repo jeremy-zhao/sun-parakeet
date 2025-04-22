@@ -1,7 +1,11 @@
+.sunp-toast-wrapper {
+  @apply contents;
+}
+
 .sunp-toast {
-  @apply fixed left-1/2 top-1/2 z-[20001] flex flex-col items-center rounded p-4;
+  @apply fixed left-1/2 top-1/2 flex select-none flex-col items-center rounded p-4;
   color: var(--sunp-color-white);
-  background-color: hsl(from var(--sunp-color-black) h s l / 80%);
+  background-color: #000000aa;
   transition: scale 0.15s cubic-bezier(0.4, 0, 0.2, 1);
   translate: -50% -50%;
   scale: 0;

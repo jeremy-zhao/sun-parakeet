@@ -1,6 +1,6 @@
 import { browser } from '$app/environment'
 
-// 等待 n 毫秒
+/** 等待 n 毫秒 */
 export function delay(milliseconds: number = 0): Promise<void> {
   return new Promise<void>(res => {
     setTimeout?.(() => res(), milliseconds) ?? res()

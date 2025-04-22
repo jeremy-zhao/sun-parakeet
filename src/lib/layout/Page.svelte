@@ -1,6 +1,7 @@
 <script lang="ts" module>
   import './Page.css'
 
+  import { beforeNavigate, afterNavigate, onNavigate } from '$app/navigation'
   import type { HTMLAttributes } from 'svelte/elements'
 
   /** 页面 */
@@ -8,19 +9,24 @@
     /** 页面飞入飞出的时间 */
     duration?: number
   }
+
+  let direction: 'load' | 'forward' | 'backward' = 'load'
 </script>
 
 <script lang="ts">
-  import stack from '../common/historyStack.js'
   import { fly } from 'svelte/transition'
   import type { TransitionConfig } from 'svelte/transition'
 
   const { duration = 300, children, class: clazz, ...props }: PageAttributes = $props()
 
-  function flyIn(node: Element): TransitionConfig {
-    const ps = stack.pageSwitch()
+  onNavigate(cb => {
+    const delta = cb.delta ?? (cb.type === 'goto' ? 1 : cb.type === 'popstate' ? -1 : 0)
+    direction = delta > 0 ? 'forward' : delta < 0 ? 'backward' : 'load'
+    console.log('onNavigate', delta, direction)
+  })
 
-    switch (ps) {
+  function flyIn(node: Element): TransitionConfig {
+    switch (direction) {
       case 'forward':
         return fly(node, { duration, x: '100%' })
       case 'backward':
@@ -31,9 +37,7 @@
   }
 
   function flyOut(node: Element): TransitionConfig {
-    const ps = stack.pageSwitch()
-
-    switch (ps) {
+    switch (direction) {
       case 'forward':
         return fly(node, { duration, x: '-100%' })
       case 'backward':

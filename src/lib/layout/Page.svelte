@@ -22,7 +22,6 @@
   onNavigate(cb => {
     const delta = cb.delta ?? (cb.type === 'goto' ? 1 : cb.type === 'popstate' ? -1 : 0)
     direction = delta > 0 ? 'forward' : delta < 0 ? 'backward' : 'load'
-    console.log('onNavigate', delta, direction)
   })
 
   function flyIn(node: Element): TransitionConfig {

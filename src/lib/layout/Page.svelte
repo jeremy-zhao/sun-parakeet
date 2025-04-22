@@ -1,7 +1,7 @@
 <script lang="ts" module>
   import './Page.css'
 
-  import { beforeNavigate, afterNavigate, onNavigate } from '$app/navigation'
+  import { onNavigate } from '$app/navigation'
   import type { HTMLAttributes } from 'svelte/elements'
 
   /** 页面 */

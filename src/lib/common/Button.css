@@ -1,11 +1,32 @@
 .sunp-button {
-  @apply relative cursor-pointer select-none border-solid border-transparent;
+  @apply relative box-border cursor-pointer select-none border-solid border-transparent;
   @apply inline-flex items-center justify-center;
   font-size: 17px;
   line-height: 24px;
   height: var(--sunp-height, 36px);
   padding: var(--sunp-padding-y, 0) var(--sunp-padding-x, 12px);
   border-width: var(--sunp-border, 1px);
+
+  &::before {
+    @apply absolute box-content;
+    top: calc(-var(--sunp-border, 1px));
+    left: calc(-var(--sunp-border, 1px));
+    width: calc(100% + var(--sunp-border, 1px));
+    height: calc(100% + var(--sunp-border, 1px));
+    border: var(--sunp-border, 1px) solid transparent;
+    border-radius: inherit;
+  }
+
+  &::after {
+    @apply absolute box-content;
+    top: calc(-var(--sunp-border, 1px));
+    left: calc(-var(--sunp-border, 1px));
+    width: calc(100% + var(--sunp-border, 1px));
+    height: calc(100% + var(--sunp-border, 1px));
+    border: var(--sunp-border, 1px) solid transparent;
+    border-radius: inherit;
+    z-index: 1;
+  }
 
   .sunp-button__loading {
     .sunp-button__loading-icon {
@@ -16,6 +37,7 @@
   .sunp-button__content {
     @apply relative flex flex-auto items-center justify-center;
     translate: 0 1px;
+    z-index: 2;
   }
 
   &.sunp-button-block {
@@ -24,7 +46,12 @@
 
   &.sunp-button-loading {
     @apply pointer-events-none cursor-wait;
-    filter: brightness(1.2) saturate(70%);
+
+    &::before {
+      content: '';
+      background-color: var(--sunp-color-white);
+      opacity: 0.2;
+    }
   }
 
   &.sunp-button-disabled {
@@ -41,8 +68,19 @@
 
     &:active {
       color: var(--sunp-color-primary);
-      background-color: hsl(from var(--sunp-color-primary) h s calc((100 - l) * 0.9 + l));
-      border-color: hsl(from var(--sunp-color-primary) h s calc((100 - l) * 0.4 + l));
+      border-color: transparent;
+
+      &::before {
+        content: '';
+        background-color: var(--sunp-color-primary);
+        opacity: 0.1;
+      }
+
+      &::after {
+        content: '';
+        border-color: var(--sunp-color-primary);
+        opacity: 0.8;
+      }
     }
   }
 
@@ -51,18 +89,38 @@
     background-color: var(--sunp-color-primary);
 
     &:active {
-      background-color: hsl(from var(--sunp-color-primary) h s calc(l * 0.8));
+      &::before {
+        content: '';
+        background-color: var(--sunp-color-black);
+        opacity: 0.1;
+      }
     }
   }
 
   &.sunp-button-primary-plain {
     color: var(--sunp-color-primary);
-    background-color: hsl(from var(--sunp-color-primary) h s calc((100 - l) * 0.8 + l));
-    border-color: hsl(from var(--sunp-color-primary) h s calc((100 - l) * 0.4 + l));
+    background-color: var(--sunp-color-white);
+
+    &::before {
+      content: '';
+      background-color: var(--sunp-color-primary);
+      opacity: 0.1;
+    }
+
+    &::after {
+      content: '';
+      border-color: var(--sunp-color-primary);
+      opacity: 0.7;
+    }
 
     &:active {
-      background-color: hsl(from var(--sunp-color-primary) h s calc((100 - l) * 0.7 + l));
-      border-color: var(--sunp-color-primary);
+      &::before {
+        opacity: 0.2;
+      }
+
+      &::after {
+        opacity: 0.8;
+      }
     }
   }
 
@@ -71,18 +129,38 @@
     background-color: var(--sunp-color-success);
 
     &:active {
-      background-color: hsl(from var(--sunp-color-success) h s calc(l * 0.8));
+      &::before {
+        content: '';
+        background-color: var(--sunp-color-black);
+        opacity: 0.1;
+      }
     }
   }
 
   &.sunp-button-success-plain {
     color: var(--sunp-color-success);
-    background-color: hsl(from var(--sunp-color-success) h s calc((100 - l) * 0.8 + l));
-    border-color: hsl(from var(--sunp-color-success) h s calc((100 - l) * 0.1 + l));
+    background-color: var(--sunp-color-white);
+
+    &::before {
+      content: '';
+      background-color: var(--sunp-color-success);
+      opacity: 0.1;
+    }
+
+    &::after {
+      content: '';
+      border-color: var(--sunp-color-success);
+      opacity: 0.7;
+    }
 
     &:active {
-      background-color: hsl(from var(--sunp-color-success) h s calc((100 - l) * 0.7 + l));
-      border-color: var(--sunp-color-success);
+      &::before {
+        opacity: 0.2;
+      }
+
+      &::after {
+        opacity: 0.8;
+      }
     }
   }
 
@@ -91,18 +169,38 @@
     background-color: var(--sunp-color-warning);
 
     &:active {
-      background-color: hsl(from var(--sunp-color-warning) h s calc(l * 0.8));
+      &::before {
+        content: '';
+        background-color: var(--sunp-color-black);
+        opacity: 0.1;
+      }
     }
   }
 
   &.sunp-button-warning-plain {
     color: var(--sunp-color-warning);
-    background-color: hsl(from var(--sunp-color-warning) h s calc((100 - l) * 0.8 + l));
-    border-color: hsl(from var(--sunp-color-warning) h s calc((100 - l) * 0.4 + l));
+    background-color: var(--sunp-color-white);
+
+    &::before {
+      content: '';
+      background-color: var(--sunp-color-warning);
+      opacity: 0.1;
+    }
+
+    &::after {
+      content: '';
+      border-color: var(--sunp-color-warning);
+      opacity: 0.7;
+    }
 
     &:active {
-      background-color: hsl(from var(--sunp-color-warning) h s calc((100 - l) * 0.7 + l));
-      border-color: var(--sunp-color-warning);
+      &::before {
+        opacity: 0.2;
+      }
+
+      &::after {
+        opacity: 0.8;
+      }
     }
   }
 
@@ -111,39 +209,78 @@
     background-color: var(--sunp-color-danger);
 
     &:active {
-      background-color: hsl(from var(--sunp-color-danger) h s calc(l * 0.8));
+      &::before {
+        content: '';
+        background-color: var(--sunp-color-black);
+        opacity: 0.1;
+      }
     }
   }
 
   &.sunp-button-danger-plain {
     color: var(--sunp-color-danger);
-    background-color: hsl(from var(--sunp-color-danger) h s calc((100 - l) * 0.8 + l));
-    border-color: hsl(from var(--sunp-color-danger) h s calc((100 - l) * 0.4 + l));
+    background-color: var(--sunp-color-white);
+
+    &::before {
+      content: '';
+      background-color: var(--sunp-color-danger);
+      opacity: 0.1;
+    }
+
+    &::after {
+      content: '';
+      border-color: var(--sunp-color-danger);
+      opacity: 0.7;
+    }
 
     &:active {
-      background-color: hsl(from var(--sunp-color-danger) h s calc((100 - l) * 0.7 + l));
-      border-color: var(--sunp-color-danger);
+      &::before {
+        opacity: 0.2;
+      }
+
+      &::after {
+        opacity: 0.8;
+      }
     }
   }
 
   &.sunp-button-cancel {
     color: var(--sunp-color-white);
-    background-color: var(--sunp-color-text-secondary);
     background-color: var(--sunp-color-weak);
 
     &:active {
-      background-color: hsl(from var(--sunp-color-weak) h s calc(l * 0.8));
+      &::before {
+        content: '';
+        background-color: var(--sunp-color-black);
+        opacity: 0.1;
+      }
     }
   }
 
   &.sunp-button-cancel-plain {
-    color: var(--sunp-color-text);
-    background-color: var(--sunp-color-box);
-    border-color: var(--sunp-color-border);
+    color: var(--sunp-color-text-secondary);
+    background-color: var(--sunp-color-white);
+
+    &::before {
+      content: '';
+      background-color: var(--sunp-color-weak);
+      opacity: 0.1;
+    }
+
+    &::after {
+      content: '';
+      border-color: var(--sunp-color-weak);
+      opacity: 0.7;
+    }
 
     &:active {
-      background-color: var(--sunp-color-border);
-      border-color: var(--sunp-color-light);
+      &::before {
+        opacity: 0.2;
+      }
+
+      &::after {
+        opacity: 0.8;
+      }
     }
   }
 
@@ -151,7 +288,11 @@
     color: var(--sunp-color-text);
 
     &:active {
-      background-color: hsl(from var(--sunp-color-border) h s l / 0.5);
+      &::before {
+        content: '';
+        background-color: var(--sunp-color-weak);
+        opacity: 0.1;
+      }
     }
   }
 }

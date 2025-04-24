@@ -8,7 +8,6 @@
     block?: boolean
     /** 间距方向。默认为 'horizontal' */
     direction?: 'vertical' | 'horizontal'
-
     /** 是否自动换行。仅在 'horizontal' 时有效 */
     wrap?: boolean
   }
@@ -28,10 +27,11 @@
 </script>
 
 <div
-  class="sunp-space sunp-space-{direction} {clazz}"
+  class="sunp-space sunp-space-{direction}"
   class:sunp-space-wrap={_wrap}
   class:sunp-space-block={block}
-  {...props}
 >
-  {@render children?.()}
+  <div class="sunp-space__content {clazz}" {...props}>
+    {@render children?.()}
+  </div>
 </div>

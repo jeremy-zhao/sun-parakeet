@@ -1,6 +1,7 @@
 .sunp-button {
   @apply relative box-border cursor-pointer select-none border-solid border-transparent;
   @apply inline-flex items-center justify-center;
+  @apply overflow-hidden whitespace-nowrap;
   font-size: 17px;
   line-height: 24px;
   height: var(--sunp-height, 36px);

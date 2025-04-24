@@ -17,38 +17,30 @@
 
 <Page class="bg-gray-100">
   <List header="基础用法">
-    <div class="bg-white p-4">
-      <Space block wrap>
-        <Avatar src={avatars[0]} shape="circle" />
-        <Avatar src={avatars[1]} shape="rounded" />
-        <Avatar src={avatars[2]} shape="square" />
-        <Avatar src={avatars[3]} shape={12} />
-      </Space>
-    </div>
+    <Space class="bg-white p-4" block>
+      <Avatar src={avatars[0]} shape="circle" />
+      <Avatar src={avatars[1]} shape="rounded" />
+      <Avatar src={avatars[2]} shape="square" />
+      <Avatar src={avatars[3]} shape={12} />
+    </Space>
   </List>
   <List header="点击事件">
-    <div class="bg-white p-4">
-      <Space block wrap>
-        <Avatar src={avatars[0]} shape="circle" onClick={handleClick} />
-      </Space>
-    </div>
+    <Space class="bg-white p-4" block>
+      <Avatar src={avatars[0]} shape="circle" onClick={handleClick} />
+    </Space>
   </List>
   <List header="占位头像">
-    <div class="bg-white p-4">
-      <Space direction="vertical">
-        <Avatar src="" />
-        <p>如果你不传图片，或者图片加载失败，那么会显示一个默认的图像</p>
-      </Space>
-    </div>
+    <Space class="bg-white p-4" direction="vertical" block>
+      <Avatar src="" />
+      <p>如果你不传图片，或者图片加载失败，那么会显示一个默认的图像</p>
+    </Space>
   </List>
   <List header="自定义尺寸">
-    <div class="bg-white p-4">
-      <Space block wrap>
-        <Avatar src={avatars[0]} size={32} />
-        <Avatar src={avatars[0]} size="48px" />
-        <Avatar src={avatars[0]} size="4em" />
-      </Space>
-    </div>
+    <Space class="bg-white p-4" block>
+      <Avatar src={avatars[0]} size={32} />
+      <Avatar src={avatars[0]} size="48px" />
+      <Avatar src={avatars[0]} size="4em" />
+    </Space>
   </List>
   <List header="配合列表使用">
     <ListItem description="Deserunt dolor ea eaque eos">

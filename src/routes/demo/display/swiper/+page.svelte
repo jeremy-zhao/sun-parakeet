@@ -62,7 +62,7 @@
           {@render items(colors)}
         </Swiper>
       </div>
-      <Space block class="bg-white p-4">
+      <Space class="bg-white p-4" block>
         {#each colors, index}
           <Button onclick={() => (value = index)}>{index + 1}</Button>
         {/each}
@@ -106,7 +106,7 @@
           {@render items(colors)}
         </Swiper>
       </div>
-      <Space block class="bg-white p-4">
+      <Space class="bg-white p-4" block>
         {#each colors, index}
           <Button onclick={() => (value = index)}>{index + 1}</Button>
         {/each}

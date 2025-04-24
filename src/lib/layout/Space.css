@@ -1,44 +1,38 @@
 .sunp-space {
-  @apply inline-flex;
+  .sunp-space__content {
+    @apply inline-flex;
 
-  &.sunp-space-block {
-    @apply flex;
+    & > svelte-css-wrapper {
+      @apply !block;
+    }
   }
 
-  & > svelte-css-wrapper {
-    @apply !block;
+  &.sunp-space-block {
+    @apply block;
+
+    .sunp-space__content {
+      @apply flex h-full w-full;
+    }
   }
 }
 
 .sunp-space-horizontal {
-  @apply flex-row;
-
-  & > * {
-    margin-right: var(--sunp-gap-h, var(--sunp-gap, 8px));
-  }
-
-  & > *:last-child {
-    margin-right: 0;
+  .sunp-space__content {
+    @apply flex-row;
+    column-gap: var(--sunp-gap-h, var(--sunp-gap, 8px));
   }
 
   &.sunp-space-wrap {
-    @apply flex-wrap;
-    margin-bottom: calc(var(--sunp-gap-v, var(--sunp-gap, 8px)) * -1);
-
-    & > * {
-      margin-bottom: var(--sunp-gap-v, var(--sunp-gap, 8px));
+    .sunp-space__content {
+      @apply flex-wrap;
+      row-gap: calc(var(--sunp-gap-v, var(--sunp-gap, 8px)));
     }
   }
 }
 
 .sunp-space-vertical {
-  @apply flex-col;
-
-  & > * {
-    margin-bottom: var(--sunp-gap-v, var(--sunp-gap, 8px));
-  }
-
-  & > *:last-child {
-    margin-bottom: 0;
+  .sunp-space__content {
+    @apply flex-col;
+    gap: calc(var(--sunp-gap-v, var(--sunp-gap, 8px)));
   }
 }

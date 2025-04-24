@@ -12,7 +12,7 @@
 
 <Page class="bg-gray-100">
   <List header="基础用法">
-    <Space class="bg-white px-4 py-2" wrap>
+    <Space class="bg-white px-4 py-2" block wrap>
       <Button class="rounded-full">👌OK</Button>
       <Button class="rounded" color="primary"><Icon class="mr-1" name="check" />确定</Button>
       <Button color="primary-plain">取消</Button>
@@ -55,15 +55,13 @@
         }
       }
     </style>
-    <div class="bg-white px-4 py-2">
-      <Space wrap>
-        <Button color="purple">紫色</Button>
-        <Button color="purple-plain">紫色</Button>
-        <Button color="primary-plain" --sunp-border="0px">无框</Button>
-        <Button color="primary-plain" --sunp-padding-x="32px">超宽</Button>
-        <Button color="primary" --sunp-height="50px">超高</Button>
-      </Space>
-    </div>
+    <Space class="bg-white px-4 py-2" block wrap>
+      <Button color="purple">紫色</Button>
+      <Button color="purple-plain">紫色</Button>
+      <Button color="primary-plain" --sunp-border="0px">无框</Button>
+      <Button color="primary-plain" --sunp-padding-x="32px">超宽</Button>
+      <Button color="primary" --sunp-height="50px">超高</Button>
+    </Space>
   </List>
   <List header="文本混排">
     <p class="bg-white px-4 py-2">
@@ -75,27 +73,24 @@
     </p>
   </List>
   <List header="加载中">
-    <div class="bg-white px-4 py-2">
-      <Space wrap>
-        <Button class="rounded-full" {loading} onclick={handleSubmit}>👌OK</Button>
-        <Button class="rounded" color="primary" {loading} onclick={handleSubmit}>确定</Button>
-        <Button color="primary-plain" {loading} onclick={handleSubmit}>取消</Button>
-        <Button color="success" {loading} onclick={handleSubmit}>成功</Button>
-        <Button color="success-plain" {loading} onclick={handleSubmit}>成功</Button>
-        <Button color="warning" {loading} onclick={handleSubmit}>警告</Button>
-        <Button color="warning-plain" {loading} onclick={handleSubmit}>警告</Button>
-        <Button color="danger" {loading} onclick={handleSubmit}>危险</Button>
-        <Button color="danger-plain" {loading} onclick={handleSubmit}>危险</Button>
-        <Button color="cancel" {loading} onclick={handleSubmit}>取消</Button>
-        <Button color="cancel-plain" {loading} onclick={handleSubmit}>取消</Button>
-        <Button color="text" {loading} onclick={handleSubmit}>文本</Button>
-      </Space>
-    </div>
+    <Space class="bg-white px-4 py-2" block wrap>
+      <Button class="rounded-full" {loading} onclick={handleSubmit}>👌OK</Button>
+      <Button class="rounded" color="primary" {loading} onclick={handleSubmit}>确定</Button>
+      <Button color="primary-plain" {loading} onclick={handleSubmit}>取消</Button>
+      <Button color="success" {loading} onclick={handleSubmit}>成功</Button>
+      <Button color="success-plain" {loading} onclick={handleSubmit}>成功</Button>
+      <Button color="warning" {loading} onclick={handleSubmit}>警告</Button>
+      <Button color="warning-plain" {loading} onclick={handleSubmit}>警告</Button>
+      <Button color="danger" {loading} onclick={handleSubmit}>危险</Button>
+      <Button color="danger-plain" {loading} onclick={handleSubmit}>危险</Button>
+      <Button color="cancel" {loading} onclick={handleSubmit}>取消</Button>
+      <Button color="cancel-plain" {loading} onclick={handleSubmit}>取消</Button>
+      <Button color="text" {loading} onclick={handleSubmit}>文本</Button>
+    </Space>
   </List>
   <List header="块级显示">
     <div class="bg-white px-4 py-2" style="height: 60px">
       <Button color="primary" block {loading} onclick={handleSubmit}>提交</Button>
     </div>
   </List>
-  <p>Space 用在 List 中有样式问题</p>
 </Page>

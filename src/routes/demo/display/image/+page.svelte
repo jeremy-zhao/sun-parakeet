@@ -13,15 +13,13 @@
     </div>
   </List>
   <List header="多种填充模式">
-    <div class="bg-white p-4">
-      <Space block wrap>
-        <Image class="img" {src} fit="fill" />
-        <Image class="img" {src} fit="contain" />
-        <Image class="img" {src} fit="cover" />
-        <Image class="img" {src} fit="scale-down" />
-        <Image class="img" {src} fit="none" />
-      </Space>
-    </div>
+    <Space class="bg-white p-4" block wrap>
+      <Image class="img" {src} fit="fill" />
+      <Image class="img" {src} fit="contain" />
+      <Image class="img" {src} fit="cover" />
+      <Image class="img" {src} fit="scale-down" />
+      <Image class="img" {src} fit="none" />
+    </Space>
   </List>
   <List header="加载失败">
     <div class="bg-white p-4">

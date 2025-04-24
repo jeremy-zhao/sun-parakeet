@@ -7,17 +7,15 @@
 
 <Page class="bg-gray-100">
   <List header="水平方向的间距">
-    <div class="bg-white px-4 py-2">
-      <Space>
-        <Button>按钮1</Button>
-        <Button>按钮2</Button>
-        <Button>按钮3</Button>
-      </Space>
-    </div>
+    <Space class="bg-white px-4 py-2" block>
+      <Button>按钮1</Button>
+      <Button>按钮2</Button>
+      <Button>按钮3</Button>
+    </Space>
   </List>
   <List header="换行">
-    <div class="bg-white px-4 py-2">
-      <Space wrap>
+    <div>
+      <Space class="bg-white px-4 py-2" block wrap>
         <Button>按钮1</Button>
         <Button>按钮2</Button>
         <Button>按钮3</Button>
@@ -51,29 +49,25 @@
     </div>
   </List>
   <List header="主轴对齐方式">
-    <div class="bg-white px-4 py-2">
-      <Space class="justify-center" block>
-        <Button --sunp-height="auto" --sunp-padding-y="4px">1</Button>
-        <Button --sunp-height="auto" --sunp-padding-y="4px">
-          2<br />2
-        </Button>
-        <Button --sunp-height="auto" --sunp-padding-y="4px">
-          3<br />3<br />3
-        </Button>
-      </Space>
-    </div>
+    <Space class="justify-center bg-white px-4 py-2" block>
+      <Button --sunp-height="auto" --sunp-padding-y="4px">1</Button>
+      <Button --sunp-height="auto" --sunp-padding-y="4px">
+        2<br />2
+      </Button>
+      <Button --sunp-height="auto" --sunp-padding-y="4px">
+        3<br />3<br />3
+      </Button>
+    </Space>
   </List>
   <List header="交叉轴对齐方式">
-    <div class="bg-white px-4 py-2">
-      <Space class="items-end">
-        <Button --sunp-height="auto" --sunp-padding-y="4px">1</Button>
-        <Button --sunp-height="auto" --sunp-padding-y="4px">
-          2<br />2
-        </Button>
-        <Button --sunp-height="auto" --sunp-padding-y="4px">
-          3<br />3<br />3
-        </Button>
-      </Space>
-    </div>
+    <Space class="items-end bg-white px-4 py-2" block>
+      <Button --sunp-height="auto" --sunp-padding-y="4px">1</Button>
+      <Button --sunp-height="auto" --sunp-padding-y="4px">
+        2<br />2
+      </Button>
+      <Button --sunp-height="auto" --sunp-padding-y="4px">
+        3<br />3<br />3
+      </Button>
+    </Space>
   </List>
 </Page>

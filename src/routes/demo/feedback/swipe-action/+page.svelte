@@ -20,7 +20,7 @@
           <Button class="border-0" color="primary" block>置顶</Button>
         {/snippet}
         {#snippet rightActions()}
-          <Space --sunp-gap="0px">
+          <Space block --sunp-gap="0px">
             <Button color="cancel" block {onclick}>取消关注</Button>
             <Button color="warning" block {onclick}>免打扰</Button>
             <Button color="danger" block {onclick}>删除</Button>
@@ -59,7 +59,7 @@
         </Space>
       {/snippet}
     </SwipeAction>
-    <Space class="bg-white px-4 py-2" block>
+    <Space block class="bg-white px-4 py-2">
       <Button
         onclick={() => {
           swipeActionStatus = 'close'

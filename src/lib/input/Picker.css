@@ -14,18 +14,24 @@
     color: var(--sunp-color-primary);
 
     &:active {
-      background-color: hsl(from var(--sunp-color-primary) h s calc((100 - l) * 0.7 + l));
-      border-color: var(--sunp-color-primary);
+      &::before {
+        content: '';
+        background-color: var(--sunp-color-primary);
+        opacity: 0.1;
+      }
     }
   }
 
   .sunp-button-picker-cancel {
     @apply border-0 bg-transparent px-2 py-1 text-[15px];
-    color: var(--sunp-color-text);
+    color: var(--sunp-color-text-secondary);
 
     &:active {
-      background-color: var(--sunp-color-border);
-      border-color: var(--sunp-color-light);
+      &::before {
+        content: '';
+        background-color: var(--sunp-color-weak);
+        opacity: 0.1;
+      }
     }
   }
 
@@ -34,8 +40,11 @@
     color: var(--sunp-color-warning);
 
     &:active {
-      background-color: hsl(from var(--sunp-color-warning) h s calc((100 - l) * 0.7 + l));
-      border-color: var(--sunp-color-warning);
+      &::before {
+        content: '';
+        background-color: var(--sunp-color-warning);
+        opacity: 0.1;
+      }
     }
   }
 }

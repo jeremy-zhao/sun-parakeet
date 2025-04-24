@@ -7,7 +7,7 @@
   }
 
   .sunp-stepper__button {
-    @apply box-border p-0;
+    @apply relative box-border p-0;
     @apply flex items-center justify-center;
     width: var(--sunp-size, 28px);
     height: var(--sunp-size, 28px);
@@ -74,33 +74,64 @@
 
   &.sunp-stepper-round {
     .sunp-stepper__button {
-      @apply bg-transparent;
+      @apply rounded-full bg-transparent;
     }
 
     .sunp-stepper__button-minus {
-      .sunp-stepper__icon {
-        @apply rounded-full;
-        border-color: var(--sunp-color-primary);
+      &::before {
+        @apply absolute;
+        content: '';
+        inset: 2px;
         background-color: var(--sunp-color-background);
+        border-radius: inherit;
+      }
+
+      &::after {
+        @apply absolute;
+        content: '';
+        inset: 2px;
+        border: 1px solid var(--sunp-color-primary);
+        border-radius: inherit;
+        z-index: 1;
+        opacity: 0.8;
       }
 
       &:active {
-        .sunp-stepper__icon {
-          background-color: hsl(from var(--sunp-color-primary) h s calc((100 - l) * 0.8 + l));
+        &::before {
+          background-color: var(--sunp-color-primary);
+          opacity: 0.2;
+        }
+
+        &::after {
+          opacity: 1;
         }
       }
     }
 
     .sunp-stepper__button-plus {
+      &::before {
+        @apply absolute;
+        content: '';
+        inset: 2px;
+        background-color: var(--sunp-color-primary);
+        border-radius: inherit;
+      }
+
       .sunp-stepper__icon {
         @apply rounded-full;
         color: var(--sunp-color-white);
-        background-color: var(--sunp-color-primary);
+        z-index: 2;
       }
 
       &:active {
-        .sunp-stepper__icon {
-          background-color: hsl(from var(--sunp-color-primary) h s calc(l * 0.8));
+        &::after {
+          @apply absolute;
+          content: '';
+          inset: 2px;
+          background-color: var(--sunp-color-black);
+          border-radius: inherit;
+          opacity: 0.1;
+          z-index: 1;
         }
       }
     }

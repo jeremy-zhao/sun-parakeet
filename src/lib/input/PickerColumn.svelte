@@ -36,7 +36,10 @@
   let width = $state(0)
   let height = $state(0)
   let itemHeight = $state(0)
+  // 有滚动边距
   let padding = $derived(height / 2 + itemHeight)
+  //  无滚动边距
+  // let padding = $derived(height / 2 - itemHeight / 2)
 
   let maxw = $derived(`${width - 16}px`)
 

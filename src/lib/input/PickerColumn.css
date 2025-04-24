@@ -7,11 +7,8 @@
     content: '';
     height: calc((100% - var(--sunp-item-height, 40px)) / 2);
     border-color: var(--sunp-color-border);
-    background-image: linear-gradient(
-      to top,
-      hsl(from var(--sunp-color-background) h s l / 70%),
-      hsl(from var(--sunp-color-background) h s l / 100%)
-    );
+    /* TODO 深色适配 */
+    background-image: linear-gradient(to top, #ffffffb3, #ffffff);
   }
 
   &::after {
@@ -20,11 +17,8 @@
     content: '';
     height: calc((100% - var(--sunp-item-height, 40px)) / 2);
     border-color: var(--sunp-color-border);
-    background-image: linear-gradient(
-      to bottom,
-      hsl(from var(--sunp-color-background) h s l / 70%),
-      hsl(from var(--sunp-color-background) h s l / 100%)
-    );
+    /* TODO 深色适配 */
+    background-image: linear-gradient(to bottom, #ffffffb3, #ffffff);
   }
 
   ul.sunp-picker-column__container {

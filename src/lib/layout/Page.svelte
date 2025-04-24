@@ -17,7 +17,7 @@
   import { fly } from 'svelte/transition'
   import type { TransitionConfig } from 'svelte/transition'
 
-  const { duration = 300, children, class: clazz, ...props }: PageAttributes = $props()
+  const { duration = 150, children, class: clazz, ...props }: PageAttributes = $props()
 
   onNavigate(cb => {
     const delta = cb.delta ?? (cb.type === 'goto' ? 1 : cb.type === 'popstate' ? -1 : 0)

@@ -2,7 +2,6 @@
   .sunp-collapse__header {
     @apply flex w-full items-center pl-4 pr-2;
     background-color: var(--sunp-color-background);
-    background-color:;
     font-size: 17px;
     line-height: 24px;
     min-height: 48px;
@@ -27,7 +26,7 @@
   }
 
   .sunp-collapse__content {
-    @apply pl-4 text-sm opacity-0;
+    @apply pointer-events-none pl-4 text-sm opacity-0;
     transition: opacity 0.15s ease-out;
 
     & > * {
@@ -80,7 +79,7 @@
     }
 
     .sunp-collapse__content {
-      @apply opacity-100;
+      @apply pointer-events-auto opacity-100;
     }
   }
 }

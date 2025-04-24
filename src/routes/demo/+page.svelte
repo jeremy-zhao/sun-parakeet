@@ -4,7 +4,9 @@
 </script>
 
 <script lang="ts">
-  import { onMount } from 'svelte'
+  import { onMount, tick } from 'svelte'
+
+  let page = $state<HTMLElement>()
 
   let expanded = $state('')
 
@@ -87,6 +89,20 @@
     goto(target.dataset.url)
   }
 
+  export const snapshot = {
+    capture() {
+      return {
+        expanded,
+        scrollTop: page?.scrollTop,
+      }
+    },
+    async restore(value: any) {
+      expanded = value.expanded
+      await tick()
+      if (page) page.scrollTop = value.scrollTop
+    },
+  }
+
   onMount(() => {
     history.scrollRestoration = 'manual'
   })
@@ -96,7 +112,7 @@
   <ListItem clickable={true} onclick={onNav} {extra} data-url={url}>{text}</ListItem>
 {/snippet}
 
-<Page class="bg-gray-100">
+<Page class="bg-gray-100" bind:page>
   {#each data as group}
     {@const { header, items } = group}
     <Collapse

@@ -8,6 +8,8 @@
   export interface PageAttributes extends HTMLAttributes<EventTarget> {
     /** 页面飞入飞出的时间 */
     duration?: number
+    /** 页面元素 */
+    readonly page?: HTMLElement
   }
 
   let direction: 'load' | 'forward' | 'backward' = 'load'
@@ -17,7 +19,13 @@
   import { fly } from 'svelte/transition'
   import type { TransitionConfig } from 'svelte/transition'
 
-  const { duration = 150, children, class: clazz, ...props }: PageAttributes = $props()
+  let {
+    page = $bindable<HTMLElement>(),
+    duration = 150,
+    children,
+    class: clazz,
+    ...props
+  }: PageAttributes = $props()
 
   onNavigate(cb => {
     const delta = cb.delta ?? (cb.type === 'goto' ? 1 : cb.type === 'popstate' ? -1 : 0)
@@ -47,6 +55,6 @@
   }
 </script>
 
-<main class="sunp-page {clazz}" {...props} in:flyIn out:flyOut>
+<main bind:this={page} class="sunp-page {clazz}" {...props} in:flyIn out:flyOut>
   {@render children?.()}
 </main>

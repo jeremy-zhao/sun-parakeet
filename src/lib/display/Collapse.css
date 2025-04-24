@@ -16,18 +16,15 @@
   .sunp-collapse__header-icon {
     @apply flex-none;
     color: var(--sunp-color-weak);
-    transition: rotate 0.15s ease-out;
   }
 
   .sunp-collapse__container {
     @apply relative box-border overflow-hidden;
-    transition: height 0.15s ease-out;
     background-color: var(--sunp-color-background);
   }
 
   .sunp-collapse__content {
     @apply pointer-events-none pl-4 text-sm opacity-0;
-    transition: opacity 0.15s ease-out;
 
     & > * {
       @apply !relative my-[1px] !overflow-visible;
@@ -80,6 +77,20 @@
 
     .sunp-collapse__content {
       @apply pointer-events-auto opacity-100;
+    }
+  }
+
+  &.sunp-collapse-animation {
+    .sunp-collapse__header-icon {
+      transition: rotate 0.15s ease-out;
+    }
+
+    .sunp-collapse__container {
+      transition: height 0.15s ease-out;
+    }
+
+    .sunp-collapse__content {
+      transition: opacity 0.15s ease-out;
     }
   }
 }

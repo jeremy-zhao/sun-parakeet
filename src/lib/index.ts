@@ -84,6 +84,7 @@ export type { AutoCenterAttributes } from './layout/AutoCenter.svelte'
 import Divider from './layout/Divider.svelte'
 export type { DividerAttributes } from './layout/Divider.svelte'
 import Page from './layout/Page.svelte'
+export type { PageAttributes } from './layout/Page.svelte'
 import Space from './layout/Space.svelte'
 export type { SpaceAttributes } from './layout/Space.svelte'
 export { AutoCenter, Divider, Page, Space }

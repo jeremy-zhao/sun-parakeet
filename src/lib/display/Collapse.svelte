@@ -2,9 +2,9 @@
   import './Collapse.css'
   import ArrowIcon from '../icons/arrow-down-s-line.svg?raw'
 
-  import Icon, { type IconOption } from '../common/Icon.svelte'
-  import type { Snippet } from 'svelte'
+  import { onMount, type Snippet } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
+  import Icon from '../common/Icon.svelte'
 
   /** 折叠面板 */
   export interface CollapseAttributes extends HTMLAttributes<EventTarget> {
@@ -27,8 +27,10 @@
     ...props
   }: CollapseAttributes = $props()
 
-  let contentHeight = $state(0)
-  let height = $derived(expanded && contentHeight ? `${contentHeight + 2}px` : '1px')
+  let init = $state(false)
+
+  let contentHeight = $state<number>()
+  let height = $derived(!expanded ? '1px' : contentHeight ? `${contentHeight + 2}px` : 'auto')
 
   function onSwitch() {
     expanded = !expanded
@@ -49,9 +51,18 @@
       },
     }
   }
+
+  onMount(() => {
+    init = true
+  })
 </script>
 
-<div class="sunp-collapse {clazz}" class:sunp-collapse-expanded={expanded} {...props}>
+<div
+  class="sunp-collapse {clazz}"
+  class:sunp-collapse-expanded={expanded}
+  class:sunp-collapse-animation={init}
+  {...props}
+>
   <button class="sunp-collapse__header" onclick={onSwitch}>
     {#if typeof header === 'string'}
       <span class="sunp-collapse__header-text">{header}</span>

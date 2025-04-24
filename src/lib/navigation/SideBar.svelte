@@ -99,9 +99,9 @@
   {@const iconVisible = ['string', 'object'].indexOf(typeof icon) >= 0}
   <button
     use:onTabLoad={selected}
-    class={['sunp-side-bar-item', clazz, selectedClazz].filter(x => x).join(' ')}
+    class="sunp-side-bar-item {clazz} {selectedClazz}"
     class:sunp-side-bar-item-disabled={disabled}
-    style={[style, selectedStyle].filter(x => x).join(' ')}
+    style="{style}; {selectedStyle}"
     onclick={e => handleClick(e, val)}
     {disabled}
   >

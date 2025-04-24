@@ -172,7 +172,7 @@
 
 <div
   bind:this={_self}
-  class={['sunp-pull-to-refresh', 'sunp-pull-to-refresh-animation', clazz].filter(x => x).join(' ')}
+  class="sunp-pull-to-refresh sunp-pull-to-refresh-animation {clazz}"
   {...props}
   ontouchstart={handleTouchStart}
   ontouchmove={handleTouchMove}

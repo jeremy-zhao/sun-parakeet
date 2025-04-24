@@ -2,7 +2,6 @@
   import './ListItem.css'
   import ArrowIcon from '../icons/arrow-right-s-line.svg?raw'
 
-  import Button from '../common/Button.svelte'
   import Icon from '../common/Icon.svelte'
   import type { Snippet } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
@@ -91,9 +90,9 @@
 
 <li class="sunp-list-item {clazz}" {...props}>
   {#if clickable}
-    <Button class="sunp-list-item__inner" color="text" block {disabled}>
+    <button class="sunp-list-item__inner" {disabled}>
       {@render inner()}
-    </Button>
+    </button>
   {:else}
     <div class="sunp-list-item__inner">
       {@render inner()}

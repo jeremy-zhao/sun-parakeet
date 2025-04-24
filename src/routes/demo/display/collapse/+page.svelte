@@ -3,7 +3,7 @@
 </script>
 
 <script lang="ts">
-  let tab = $state('配合列表')
+  let tab = $state('基础用法')
   let expanded = $state(-1)
 </script>
 

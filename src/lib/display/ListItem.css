@@ -35,5 +35,14 @@
       @apply ml-2 flex-none text-gray-400;
       color: var(--sunp-color-weak);
     }
+
+    &:active {
+      &::before {
+        @apply absolute inset-0;
+        content: '';
+        background-color: var(--sunp-color-weak);
+        opacity: 0.1;
+      }
+    }
   }
 }

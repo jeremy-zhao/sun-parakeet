@@ -1,8 +1,8 @@
 .sunp-form {
   @apply !block;
 
-  & > *:not(style):not(script):not(meta) {
-    @apply !relative my-[1px] !block !overflow-visible;
+  & > * {
+    @apply !relative my-[1px] !overflow-visible;
 
     &::before,
     &::after {
@@ -20,6 +20,10 @@
     &::after {
       bottom: -1px;
       /* background-color: blue; */
+    }
+
+    & > svelte-css-wrapper {
+      @apply !block;
     }
   }
 

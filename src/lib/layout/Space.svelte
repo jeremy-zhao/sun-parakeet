@@ -27,11 +27,10 @@
 </script>
 
 <div
-  class="sunp-space sunp-space-{direction}"
+  class="sunp-space sunp-space-{direction} {clazz}"
   class:sunp-space-wrap={_wrap}
   class:sunp-space-block={block}
+  {...props}
 >
-  <div class="sunp-space__content {clazz}" {...props}>
-    {@render children?.()}
-  </div>
+  {@render children?.()}
 </div>

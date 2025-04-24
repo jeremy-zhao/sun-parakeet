@@ -1,7 +1,6 @@
 .sunp-button {
   @apply relative box-border cursor-pointer select-none border-solid border-transparent;
   @apply inline-flex items-center justify-center;
-  @apply overflow-hidden whitespace-nowrap;
   font-size: 17px;
   line-height: 24px;
   height: var(--sunp-height, 36px);
@@ -29,16 +28,17 @@
     z-index: 1;
   }
 
+  .sunp-button__content {
+    @apply relative flex flex-auto items-center justify-center;
+    @apply overflow-hidden whitespace-nowrap;
+    translate: 0 1px;
+    z-index: 2;
+  }
+
   .sunp-button__loading {
     .sunp-button__loading-icon {
       @apply mr-2 animate-spin;
     }
-  }
-
-  .sunp-button__content {
-    @apply relative flex flex-auto items-center justify-center;
-    translate: 0 1px;
-    z-index: 2;
   }
 
   &.sunp-button-block {

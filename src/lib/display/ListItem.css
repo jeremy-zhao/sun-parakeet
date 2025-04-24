@@ -36,13 +36,11 @@
       color: var(--sunp-color-weak);
     }
 
-    &:active {
-      &::before {
-        @apply absolute inset-0;
-        content: '';
-        background-color: var(--sunp-color-weak);
-        opacity: 0.1;
-      }
+    &button:active::before {
+      @apply absolute inset-0;
+      content: '';
+      background-color: var(--sunp-color-weak);
+      opacity: 0.1;
     }
   }
 }

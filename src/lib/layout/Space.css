@@ -1,38 +1,26 @@
 .sunp-space {
-  .sunp-space__content {
-    @apply inline-flex;
+  @apply inline-flex;
 
-    & > svelte-css-wrapper {
-      @apply !block;
-    }
+  & > svelte-css-wrapper {
+    @apply !block;
   }
 
   &.sunp-space-block {
-    @apply block;
-
-    .sunp-space__content {
-      @apply flex h-full w-full;
-    }
+    @apply flex h-full w-full;
   }
 }
 
 .sunp-space-horizontal {
-  .sunp-space__content {
-    @apply flex-row;
-    column-gap: var(--sunp-gap-h, var(--sunp-gap, 8px));
-  }
+  @apply flex-row;
+  column-gap: var(--sunp-gap-h, var(--sunp-gap, 8px));
 
   &.sunp-space-wrap {
-    .sunp-space__content {
-      @apply flex-wrap;
-      row-gap: calc(var(--sunp-gap-v, var(--sunp-gap, 8px)));
-    }
+    @apply flex-wrap;
+    row-gap: calc(var(--sunp-gap-v, var(--sunp-gap, 8px)));
   }
 }
 
 .sunp-space-vertical {
-  .sunp-space__content {
-    @apply flex-col;
-    gap: calc(var(--sunp-gap-v, var(--sunp-gap, 8px)));
-  }
+  @apply flex-col;
+  gap: calc(var(--sunp-gap-v, var(--sunp-gap, 8px)));
 }

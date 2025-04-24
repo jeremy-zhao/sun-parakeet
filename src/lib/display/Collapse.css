@@ -29,8 +29,8 @@
     @apply pointer-events-none pl-4 text-sm opacity-0;
     transition: opacity 0.15s ease-out;
 
-    & > *:not(style):not(script):not(meta) {
-      @apply !relative my-[1px] !block !overflow-visible;
+    & > * {
+      @apply !relative my-[1px] !overflow-visible;
 
       &::before {
         @apply absolute left-0 right-0 h-[1px];
@@ -53,6 +53,10 @@
 
     & > :last-child::after {
       content: none;
+    }
+
+    & > svelte-css-wrapper {
+      @apply !block;
     }
 
     & > .sunp-list-item {

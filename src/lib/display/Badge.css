@@ -23,7 +23,7 @@
     @apply absolute;
     top: var(--sunp-top, 0);
     right: var(--sunp-right, 0);
-    transform: translate(50%, -50%);
+    translate: 50% -50%;
   }
 
   &.sunp-badge-border {

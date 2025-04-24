@@ -27,8 +27,6 @@
     ...props
   }: CollapseAttributes = $props()
 
-  let init = $state(false)
-
   let contentHeight = $state<number>()
   let height = $derived(!expanded ? '1px' : contentHeight ? `${contentHeight + 2}px` : 'auto')
 
@@ -37,6 +35,7 @@
     onChange?.(expanded)
   }
 
+  // 内容变化调整高度
   function onLoadContent(node: HTMLDivElement) {
     const resize = new ResizeObserver(entries => {
       if (!entries?.length) return
@@ -51,18 +50,9 @@
       },
     }
   }
-
-  onMount(() => {
-    init = true
-  })
 </script>
 
-<div
-  class="sunp-collapse {clazz}"
-  class:sunp-collapse-expanded={expanded}
-  class:sunp-collapse-animation={init}
-  {...props}
->
+<div class="sunp-collapse {clazz}" class:sunp-collapse-expanded={expanded} {...props}>
   <button class="sunp-collapse__header" onclick={onSwitch}>
     {#if typeof header === 'string'}
       <span class="sunp-collapse__header-text">{header}</span>

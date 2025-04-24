@@ -1,9 +1,10 @@
 <script lang="ts" module>
   import './Tabs.css'
 
+  import type { HTMLAttributes } from 'svelte/elements'
+  import { delay } from '../common'
   import Icon from '../common/Icon.svelte'
   import Badge from '../display/Badge.svelte'
-  import type { HTMLAttributes } from 'svelte/elements'
   import type { TabOption } from './TabBar.svelte'
 
   /** 标签栏 */
@@ -33,13 +34,13 @@
 
   let nav: HTMLElement
 
-  let lineW = $state(0)
-  let lineL = $state(0)
+  let lineW = $state('auto')
+  let lineL = $state('auto')
 
   function setBaseLine(node: HTMLElement) {
     const content = node.children[0] as HTMLElement
-    lineW = content.offsetWidth
-    lineL = content.offsetLeft
+    lineW = `${content.offsetWidth}px`
+    lineL = `${content.offsetLeft}px`
   }
 
   function handleClick(e: Event, key: unknown) {
@@ -75,8 +76,8 @@
     if (node) {
       setBaseLine(node)
     } else {
-      lineW = 0
-      lineL = 0
+      lineW = 'auto'
+      lineL = 'auto'
     }
   })
 </script>
@@ -130,5 +131,5 @@
       {@render item(tab)}
     {/if}
   {/each}
-  <div class="sunp-tabs__baseline" style:left={`${lineL}px`} style:width={`${lineW}px`}></div>
+  <div class="sunp-tabs__baseline" style:left={lineL} style:width={lineW}></div>
 </nav>

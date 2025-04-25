@@ -1,7 +1,9 @@
 {
   "name": "sun-parakeet",
+  "author": "Jeremy Zhao",
   "license": "MIT",
-  "version": "0.0.6",
+  "version": "0.0.1",
+  "description": "Mobile UI components for Svelte 5.",
   "keywords": [
     "svelte ui",
     "mobile ui"
@@ -32,7 +34,7 @@
   "svelte": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "publishConfig": {
-    "registry": "http://10.1.20.30:8081/repository/npm-hosted/"
+    "registry": "https://registry.npmjs.org/"
   },
   "type": "module",
   "exports": {

@@ -3,8 +3,14 @@
   background-color: var(--sunp-color-background);
 
   .sunp-list-item__inner {
-    @apply relative box-border flex h-full w-full flex-nowrap items-center justify-stretch p-2 pl-4 text-left;
+    @apply relative box-border h-full w-full border-0 p-2 pl-4 text-left;
+    @apply flex flex-nowrap items-center justify-stretch;
     min-height: var(--sunp-min-height, 48px);
+    background-color: var(--sunp-color-background);
+
+    &button {
+      @apply cursor-pointer;
+    }
 
     .sunp-list-item__aside {
       @apply mr-2;

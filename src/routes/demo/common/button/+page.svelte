@@ -89,7 +89,7 @@
     </Space>
   </List>
   <List header="块级显示">
-    <div class="bg-white px-4 py-2" style="height: 60px">
+    <div class="box-border bg-white px-4 py-2" style="height: 60px">
       <Button color="primary" block {loading} onclick={handleSubmit}>提交</Button>
     </div>
   </List>

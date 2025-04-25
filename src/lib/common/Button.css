@@ -37,7 +37,7 @@
 
   .sunp-button__loading {
     .sunp-button__loading-icon {
-      @apply mr-2 animate-spin;
+      @apply mr-2 animate-spin align-middle;
     }
   }
 
@@ -286,6 +286,7 @@
   }
 
   &.sunp-button-text {
+    @apply bg-transparent;
     color: var(--sunp-color-text);
 
     &:active {

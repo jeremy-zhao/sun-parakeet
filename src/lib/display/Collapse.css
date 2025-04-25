@@ -6,6 +6,7 @@
     line-height: 24px;
     min-height: 48px;
     z-index: 1;
+    -webkit-tap-highlight-color: transparent;
   }
 
   .sunp-collapse__header-text {

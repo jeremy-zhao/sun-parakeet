@@ -6,6 +6,7 @@
   height: var(--sunp-height, 36px);
   padding: var(--sunp-padding-y, 0) var(--sunp-padding-x, 12px);
   border-width: var(--sunp-border, 1px);
+  -webkit-tap-highlight-color: transparent;
 
   &::before {
     @apply absolute box-content;

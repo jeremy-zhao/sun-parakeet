@@ -10,6 +10,7 @@
 
     &button {
       @apply cursor-pointer;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .sunp-list-item__aside {

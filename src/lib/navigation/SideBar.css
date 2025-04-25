@@ -13,6 +13,7 @@
   @apply relative min-h-10 w-full cursor-pointer overflow-visible bg-inherit px-4 py-3 text-inherit;
   @apply flex items-stretch justify-start;
   @apply border-0 border-none border-transparent;
+  -webkit-tap-highlight-color: transparent;
 
   .sunp-side-bar-item__inner {
     @apply relative flex flex-row flex-nowrap items-center justify-start;

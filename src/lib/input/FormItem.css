@@ -33,6 +33,7 @@
   @apply flex flex-auto items-center justify-stretch border-0 border-transparent p-0 pr-3;
   color: var(--sunp-color-black);
   background-color: var(--sunp-color-background);
+  -webkit-tap-highlight-color: transparent;
 
   &:active {
     background-color: var(--sunp-color-box);

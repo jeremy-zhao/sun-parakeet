@@ -11,6 +11,7 @@
 .sunp-tab-bar-item {
   @apply flex flex-1 cursor-pointer items-center justify-center bg-inherit text-inherit;
   @apply border-0 border-none border-transparent;
+  -webkit-tap-highlight-color: transparent;
 
   &.sunp-tab-bar-item-selected {
     color: var(--sunp-color-primary);

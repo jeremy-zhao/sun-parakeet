@@ -28,6 +28,7 @@
   @apply min-h-10 flex-1 cursor-pointer bg-inherit px-2 text-inherit;
   @apply flex items-center justify-center;
   @apply border-0 border-none border-transparent;
+  -webkit-tap-highlight-color: transparent;
 
   &.sunp-tabs-item-selected {
     color: var(--sunp-color-primary);

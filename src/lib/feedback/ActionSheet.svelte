@@ -53,7 +53,7 @@
 </script>
 
 {#snippet actionItem(action: unknown)}
-  <Button class="sunp-action-sheet-item" --sunp-border="0">
+  <Button class="sunp-action-sheet-item" --sunp-border="0px">
     {action}
   </Button>
 {/snippet}

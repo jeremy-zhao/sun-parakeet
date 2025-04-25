@@ -7,7 +7,7 @@
   }
 
   .sunp-stepper__button {
-    @apply relative box-border p-0;
+    @apply relative box-border border-0 p-0;
     @apply flex items-center justify-center;
     width: var(--sunp-size, 28px);
     height: var(--sunp-size, 28px);

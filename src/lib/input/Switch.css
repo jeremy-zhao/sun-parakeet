@@ -2,6 +2,7 @@
   @apply relative box-border inline-block cursor-pointer select-none overflow-hidden rounded-full;
   vertical-align: middle;
   align-self: center;
+  -webkit-tap-highlight-color: transparent;
 
   .sunp-switch-checkbox {
     @apply box-border overflow-hidden;

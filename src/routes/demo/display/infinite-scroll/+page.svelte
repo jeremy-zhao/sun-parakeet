@@ -108,7 +108,7 @@
                 >我是有底线的</Divider
               >
             {:else if status == 'error'}
-              <Button color="danger-plain" block --sunp-border="0" onclick={reload}
+              <Button color="danger-plain" block --sunp-border="0px" onclick={reload}
                 >加载失败，点击重试</Button
               >
             {/if}

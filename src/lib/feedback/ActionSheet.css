@@ -1,24 +1,24 @@
 .sunp-action-sheet {
   .sunp-action-sheet__header {
-    @apply box-content flex items-center justify-center border-b;
+    @apply box-content flex items-center justify-center;
     font-size: 15px;
     padding: 16px 12px;
     color: var(--sunp-color-text-secondary);
-    border-color: var(--sunp-color-border);
+    border-bottom: 1px solid var(--sunp-color-border);
   }
 
   .sunp-action-sheet__list {
-    @apply flex flex-col items-stretch justify-end;
+    @apply m-0 flex list-none flex-col items-stretch justify-end p-0;
 
     .sunp-action-sheet__list-item {
-      @apply flex flex-col items-stretch justify-stretch border-b last:border-none;
-      border-color: var(--sunp-color-border);
+      @apply flex flex-col items-stretch justify-stretch last:border-none;
+      border-bottom: 1px solid var(--sunp-color-border);
     }
   }
 
   .sunp-action-sheet__footer {
-    @apply flex flex-col items-stretch justify-stretch border-t-8;
-    border-color: var(--sunp-color-border);
+    @apply flex flex-col items-stretch justify-stretch;
+    border-top: 8px solid var(--sunp-color-border);
 
     .sunp-action-sheet__cancel {
       @apply box-content h-8 rounded-none border-0;

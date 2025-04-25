@@ -6,7 +6,7 @@
   }
 
   &.sunp-space-block {
-    @apply flex h-full w-full;
+    @apply box-border flex h-full w-full;
   }
 }
 

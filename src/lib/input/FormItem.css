@@ -16,6 +16,7 @@
   .sunp-form-item__label {
     @apply relative box-border flex-none text-left;
     color: var(--sunp-color-text-secondary);
+    -webkit-tap-highlight-color: transparent;
   }
 
   .sunp-form-item__input {

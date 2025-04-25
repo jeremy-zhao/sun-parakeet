@@ -37,7 +37,7 @@
 
   .sunp-button__loading {
     .sunp-button__loading-icon {
-      @apply mr-2 animate-spin align-middle;
+      @apply mr-2 animate-spin;
     }
   }
 

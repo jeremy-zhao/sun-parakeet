@@ -88,8 +88,7 @@
       registered.delete(value)
     },
     onChange() {
-      const values = registered
-        .entries()
+      const values = [...registered.entries()]
         .filter(([_, v]) => v.input.checked)
         .map(([k, _]) => k)
 

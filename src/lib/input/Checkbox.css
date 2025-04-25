@@ -1,6 +1,7 @@
 .sunp-checkbox {
   @apply inline-flex cursor-pointer items-center justify-stretch;
   font-size: var(--sunp-font-size, 17px);
+  -webkit-tap-highlight-color: transparent;
 
   .sunp-checkbox__input {
     @apply hidden;

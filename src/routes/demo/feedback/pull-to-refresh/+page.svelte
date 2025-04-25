@@ -26,12 +26,12 @@
 <Page class="flex flex-col bg-gray-100">
   <Tabs class="flex-none border-b" bind:value={currentTab} tabs={['基础用法', '自定义+震动']} />
   <TabPanel class="flex-auto" visible={currentTab === '基础用法'}>
-    <PullToRefresh class="h-full" onRefresh={handleRefresh}>
+    <PullToRefresh class="-mt-[1px] h-full" onRefresh={handleRefresh}>
       {@render content()}
     </PullToRefresh>
   </TabPanel>
   <TabPanel class="flex-auto" visible={currentTab === '自定义+震动'}>
-    <PullToRefresh class="h-full" vibrate completeDuration={0} onRefresh={handleRefresh}>
+    <PullToRefresh class="-mt-[1px] h-full" vibrate completeDuration={0} onRefresh={handleRefresh}>
       {@render content()}
       {#snippet header(status, offset)}
         <div class="flex items-center justify-center p-2">

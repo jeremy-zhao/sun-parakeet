@@ -45,30 +45,30 @@
     onChange={handleSwitch}
   />
   <TabPanel class="flex-auto" visible={currentTab === '基础用法'}>
-    <InfiniteScroll class="h-full" {hasMore} {loadMore}>
-      <List class="-mt-1 bg-white">
+    <InfiniteScroll class="-mt-[1px] h-full" {hasMore} {loadMore}>
+      <List class="bg-white">
         {@render list()}
       </List>
     </InfiniteScroll>
   </TabPanel>
   <TabPanel class="flex-auto" visible={currentTab === '下拉刷新'}>
-    <PullToRefresh class="h-full" onRefresh={handleRefresh}>
+    <PullToRefresh class="-mt-[1px] h-full" onRefresh={handleRefresh}>
       <InfiniteScroll class="h-full" {hasMore} {loadMore}>
-        <List class="-mt-1 bg-white">
+        <List class="bg-white">
           {@render list()}
         </List>
       </InfiniteScroll>
     </PullToRefresh>
   </TabPanel>
   <TabPanel class="flex-auto" visible={currentTab === '加载失败'}>
-    <InfiniteScroll class="h-full" bind:hasError {hasMore} loadMore={loadMoreError}>
-      <List class="-mt-1 bg-white">
+    <InfiniteScroll class="-mt-[1px] h-full" bind:hasError {hasMore} loadMore={loadMoreError}>
+      <List class="bg-white">
         {@render list()}
       </List>
     </InfiniteScroll>
   </TabPanel>
   <TabPanel class="flex-auto" visible={currentTab === '自定义'}>
-    <PullToRefresh class="h-full" onRefresh={handleRefresh} completeDuration={0}>
+    <PullToRefresh class="-mt-[1px] h-full " onRefresh={handleRefresh} completeDuration={0}>
       {#snippet header(status, offset)}
         <div class="flex items-center justify-center p-2">
           {#if status === 'refreshing'}
@@ -90,7 +90,7 @@
         </div>
       {/snippet}
       <InfiniteScroll class="h-full" bind:hasError {hasMore} loadMore={loadMoreError}>
-        <List class="-mt-1 bg-white">
+        <List class="bg-white">
           {@render list()}
         </List>
         {#snippet footer(status, reload)}

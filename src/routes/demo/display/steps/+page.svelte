@@ -98,6 +98,7 @@
           status={status[2]}
           header="骑手取货"
           icon={status => (status !== 'wait' ? 'motobike' : undefined)}
+          style="height: 100px"
         >
           <p>2025-04-11 12:50</p>
           <p>style="height: 100px"</p>

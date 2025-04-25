@@ -53,7 +53,7 @@
   </List>
   <List header="仅标题">
     <Tabs
-      class="bg-purple-50"
+      class="bg-purple-100"
       bind:value={selectedTab}
       tabs={[
         { value: 'todoList', label: '待办', badge: true },

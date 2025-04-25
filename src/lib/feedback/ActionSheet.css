@@ -1,3 +1,9 @@
+:where(.sunp-action-sheet) {
+  .sunp-action-sheet__list {
+    @apply m-0 list-none p-0;
+  }
+}
+
 .sunp-action-sheet {
   .sunp-action-sheet__header {
     @apply box-content flex items-center justify-center;
@@ -8,7 +14,7 @@
   }
 
   .sunp-action-sheet__list {
-    @apply m-0 flex list-none flex-col items-stretch justify-end p-0;
+    @apply flex flex-col items-stretch justify-end;
 
     .sunp-action-sheet__list-item {
       @apply flex flex-col items-stretch justify-stretch last:border-none;

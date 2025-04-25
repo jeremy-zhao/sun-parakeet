@@ -1,9 +1,10 @@
 {
   "name": "sun-parakeet",
   "license": "MIT",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "keywords": [
-    "svelte ui"
+    "svelte ui",
+    "mobile ui"
   ],
   "scripts": {
     "start": "vite dev",
@@ -74,6 +75,7 @@
     "prettier-plugin-tailwindcss": "^0.6.11",
     "publint": "^0.3.2",
     "ramda": "^0.30.1",
+    "rollup-plugin-svgpack": "^0.0.1",
     "svelte": "^5.0.0",
     "svelte-check": "^4.0.0",
     "svgo": "^3.3.2",

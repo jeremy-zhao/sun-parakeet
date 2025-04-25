@@ -1,17 +1,23 @@
 import fs from 'fs-extra'
 
-if (fs.existsSync('../sun-parakeet-demo/src/lib')) {
-  fs.rmSync('../sun-parakeet-demo/src/lib', { recursive: true, force: true })
+// if (fs.existsSync('../sun-parakeet-demo/src/lib')) {
+//   fs.rmSync('../sun-parakeet-demo/src/lib', { recursive: true, force: true })
+// }
+
+if (fs.existsSync('../sun-parakeet-demo/src/lib/symbol')) {
+  fs.rmSync('../sun-parakeet-demo/src/lib/symbol', { recursive: true, force: true })
 }
 
 if (fs.existsSync('../sun-parakeet-demo/src/routes/demo')) {
   fs.rmSync('../sun-parakeet-demo/src/routes/demo', { recursive: true, force: true })
 }
 
-if (fs.existsSync('./dist')) {
-  fs.copySync('./dist/', '../sun-parakeet-demo/src/lib/')
-}
+// if (fs.existsSync('./dist')) {
+//   fs.copySync('./dist/', '../sun-parakeet-demo/src/lib/')
+// }
+
+fs.copySync('./src/assets/symbol/', '../sun-parakeet-demo/src/lib/symbol/')
 
 fs.copySync('./src/routes/demo/', '../sun-parakeet-demo/src/routes/demo/')
 
-fs.copySync('./static/icons/symbol.svg', '../sun-parakeet-demo/static/icons/symbol.svg')
+// fs.copySync('./static/icons/symbol.svg', '../sun-parakeet-demo/static/icons/symbol.svg')

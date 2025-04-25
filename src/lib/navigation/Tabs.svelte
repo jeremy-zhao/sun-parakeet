@@ -1,6 +1,7 @@
 <script lang="ts" module>
   import './Tabs.css'
 
+  import { onMount } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
   import { delay } from '../common'
   import Icon from '../common/Icon.svelte'
@@ -64,7 +65,7 @@
     setBaseLine(node)
   }
 
-  $effect(() => {
+  function setBaseLineByValue(val: unknown) {
     const index = tabs.findIndex(
       x =>
         (typeof x === 'string' && x === value) ||
@@ -79,6 +80,22 @@
       lineW = 'auto'
       lineL = 'auto'
     }
+  }
+
+  $effect(() => {
+    setBaseLineByValue(value)
+  })
+
+  onMount(() => {
+    const resize = new ResizeObserver(() => {
+      nav.classList.remove('sunp-tabs-animation')
+      setBaseLineByValue(value)
+      delay().then(() => nav.classList.add('sunp-tabs-animation'))
+    })
+
+    resize.observe(nav)
+
+    return () => resize.disconnect()
   })
 </script>
 
@@ -123,7 +140,7 @@
   </button>
 {/snippet}
 
-<nav bind:this={nav} class="sunp-tabs {clazz}" {...props}>
+<nav bind:this={nav} class="sunp-tabs sunp-tabs-animation {clazz}" {...props}>
   {#each tabs as tab}
     {#if typeof tab === 'string'}
       {@render item({ value: tab })}

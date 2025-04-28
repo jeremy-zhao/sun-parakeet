@@ -87,7 +87,7 @@
 
   function init() {
     if (_init) return false
-    console.log('[Picker]', '初始化', $state.snapshot(value))
+    // console.log('[Picker]', '初始化', $state.snapshot(value))
 
     _init = true
     _latest = [...value]

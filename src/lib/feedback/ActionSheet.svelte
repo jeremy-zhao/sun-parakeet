@@ -14,7 +14,7 @@
     /** 动作条目 */
     actions: (string | unknown)[]
     /** 动作条目的模板 */
-    actionSnippet?: Snippet<[string | unknown, number]>
+    actionSnippet?: Snippet<[any, number]>
     /** 取消按钮文本 */
     cancel?: string
     /** 点击选项时触发 */

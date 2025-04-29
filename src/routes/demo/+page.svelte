@@ -1,12 +1,12 @@
 <script lang="ts" module>
   import { goto } from '$app/navigation'
-  import { Page, ListItem, Collapse } from '$lib'
+  import { onMount, tick } from 'svelte'
+  import { Page, ListItem, Collapse, Button } from '$lib'
 </script>
 
 <script lang="ts">
-  import { onMount, tick } from 'svelte'
-
   let page = $state<HTMLElement>()
+  let vconsole = $state<any>(undefined)
 
   let expanded = $state('')
 
@@ -16,7 +16,6 @@
       items: [
         ['Button', '按钮', '/demo/common/button'],
         ['Icon', '图标', '/demo/common/icon'],
-        ['VConsole', '控制台', '/demo/common/vconsole'],
       ],
     },
     {
@@ -31,6 +30,7 @@
     {
       header: '导航',
       items: [
+        ['IndexBar', '序列', '/demo/navigation/index-bar'],
         ['SideBar', '侧边栏', '/demo/navigation/side-bar'],
         ['TabBar', '标签栏', '/demo/navigation/tab-bar'],
         ['Tabs', '标签页', '/demo/navigation/tabs'],
@@ -89,6 +89,11 @@
     goto(target.dataset.url)
   }
 
+  async function handleVConsole() {
+    const { default: VConsole } = await import('vconsole')
+    vconsole = new VConsole()
+  }
+
   export const snapshot = {
     capture() {
       return {
@@ -126,4 +131,10 @@
       {/each}
     </Collapse>
   {/each}
+
+  {#if !vconsole}
+    <div class="m-4 h-10">
+      <Button block onclick={handleVConsole}>打开控制台</Button>
+    </div>
+  {/if}
 </Page>

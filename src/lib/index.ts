@@ -90,6 +90,8 @@ export type { SpaceAttributes } from './layout/Space.svelte'
 export { AutoCenter, Divider, Page, Space }
 
 // Navigation
+import IndexBar from './navigation/IndexBar.svelte'
+export type { IndexBarAttributes } from './navigation/IndexBar.svelte'
 import SideBar from './navigation/SideBar.svelte'
 export type { SideBarAttributes } from './navigation/SideBar.svelte'
 import TabBar from './navigation/TabBar.svelte'
@@ -98,4 +100,4 @@ import TabPanel from './navigation/TabPanel.svelte'
 export type { TabPanelAttributes } from './navigation/TabPanel.svelte'
 import Tabs from './navigation/Tabs.svelte'
 export type { TabsAttributes } from './navigation/Tabs.svelte'
-export { SideBar, TabBar, TabPanel, Tabs }
+export { IndexBar, SideBar, TabBar, TabPanel, Tabs }

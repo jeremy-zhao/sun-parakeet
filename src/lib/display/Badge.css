@@ -1,0 +1,32 @@
+html div:where(.sunp-badge-wrapper) {
+  @apply relative box-border inline-block;
+}
+
+html b:where(.sunp-badge) {
+  @apply box-border inline-block whitespace-nowrap rounded-full px-1 text-center font-normal;
+  color: var(--sunp-text-color, var(--sunp-color-white));
+  background-color: var(--sunp-badge-color, var(--sunp-color-danger));
+  font-size: 9px;
+  line-height: 16px;
+  min-width: 16px;
+  z-index: 1;
+
+  &.sunp-badge-fixed {
+    @apply absolute;
+    top: var(--sunp-top, 0);
+    right: var(--sunp-right, 0);
+    translate: 50% -50%;
+  }
+}
+
+html b:where(.sunp-badge-dot) {
+  @apply min-w-0;
+  width: 10px;
+  height: 10px;
+  font-size: 0;
+  line-height: 0;
+}
+
+html b:where(.sunp-badge-border) {
+  box-shadow: 0 0 0 1px var(--sunp-border-color, var(--sunp-color-white));
+}

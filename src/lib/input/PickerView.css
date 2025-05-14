@@ -1,0 +1,5 @@
+html div:where(.sunp-picker-view) {
+  @apply flex select-none flex-row flex-nowrap items-stretch justify-stretch;
+  height: 200px;
+  overflow: hidden;
+}

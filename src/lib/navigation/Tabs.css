@@ -1,0 +1,58 @@
+html nav:where(.sunp-tabs) {
+  @apply relative overflow-x-auto overflow-y-hidden scroll-smooth px-2 text-xs;
+  @apply flex flex-nowrap items-center justify-stretch;
+  color: var(--sunp-color-text);
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sunp-tabs__baseline {
+    @apply absolute bottom-0;
+    background-color: var(--sunp-color-primary);
+
+    height: 2px;
+    z-index: 2px;
+  }
+
+  &.sunp-tabs-fixed {
+    @apply fixed left-0 right-0 top-0;
+  }
+
+  &.sunp-tabs-animation {
+    .sunp-tabs__baseline {
+      transition:
+        width 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+  }
+}
+
+.sunp-tabs-item {
+  @apply min-h-10 flex-1 cursor-pointer bg-inherit px-2 text-inherit;
+  @apply flex items-center justify-center;
+  @apply border-0 border-none border-transparent;
+  -webkit-tap-highlight-color: transparent;
+
+  &.sunp-tabs-item-selected {
+    color: var(--sunp-color-primary);
+    fill: var(--sunp-color-primary);
+  }
+
+  &.sunp-tabs-item-disabled {
+    @apply cursor-not-allowed;
+    color: var(--sunp-color-weak);
+
+    .sunp-badge {
+      background-color: var(--sunp-color-weak);
+    }
+  }
+
+  .sunp-tabs-item__inner {
+    @apply flex flex-row flex-nowrap items-center justify-center;
+
+    .sunp-tabs-item__inner-text {
+      @apply mx-1 whitespace-nowrap text-nowrap text-[14px];
+    }
+  }
+}

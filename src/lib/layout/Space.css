@@ -1,0 +1,26 @@
+html div:where(.sunp-space) {
+  @apply inline-flex;
+
+  & > svelte-css-wrapper {
+    @apply !block;
+  }
+}
+
+html div:where(.sunp-space-block) {
+  @apply box-border flex h-full w-full;
+}
+
+html div:where(.sunp-space-horizontal) {
+  @apply flex-row;
+  column-gap: var(--sunp-gap-h, var(--sunp-gap, 8px));
+
+  &.sunp-space-wrap {
+    @apply flex-wrap;
+    row-gap: calc(var(--sunp-gap-v, var(--sunp-gap, 8px)));
+  }
+}
+
+html div:where(.sunp-space-vertical) {
+  @apply flex-col;
+  gap: calc(var(--sunp-gap-v, var(--sunp-gap, 8px)));
+}

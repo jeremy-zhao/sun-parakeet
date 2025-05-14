@@ -1,0 +1,33 @@
+html div:where(.sunp-divider-horizontal) {
+  @apply flex items-center border-0 border-solid text-sm;
+  color: var(--sunp-color-text-secondary);
+  border-color: var(--sunp-color-border);
+
+  &::before,
+  &::after {
+    @apply flex-auto border-0 border-t;
+    border-style: inherit;
+    border-color: inherit;
+    content: '';
+  }
+
+  &.sunp-divider-left::before {
+    max-width: 10%;
+  }
+
+  &.sunp-divider-right::after {
+    max-width: 10%;
+  }
+
+  .sunp-divider__content {
+    margin: 0 var(--sunp-margin-x, 1rem);
+  }
+}
+
+html span:where(.sunp-divider-vertical) {
+  @apply relative inline-block border-0 border-l border-solid;
+  height: 0.9em;
+  border-color: var(--sunp-color-border);
+  margin: 0 var(--sunp-margin-x, 1rem);
+  top: 0.1em;
+}

@@ -1,0 +1,3 @@
+html form:where(.sunp-form-vertical) div:where(.sunp-radio-group) {
+  @apply mt-2;
+}

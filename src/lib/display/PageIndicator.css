@@ -1,0 +1,47 @@
+html ul:where(.sunp-page-indicator) {
+  @apply m-0 flex w-auto list-none p-0;
+
+  .sunp-page-indicator-dot {
+    @apply block;
+    width: var(--sunp-size, 3px);
+    height: var(--sunp-size, 3px);
+    border-radius: var(--sunp-radius, 1px);
+    background-color: var(--sunp-color, var(--sunp-color-weak));
+  }
+
+  .sunp-page-indicator-dot-active {
+    background-color: var(--sunp-active-color, var(--sunp-color-primary));
+  }
+}
+
+html ul:where(.sunp-page-indicator-horizontal) {
+  @apply flex-row flex-nowrap;
+
+  .sunp-page-indicator-dot {
+    margin-right: var(--sunp-gap, 3px);
+  }
+
+  .sunp-page-indicator-dot-active {
+    width: var(--sunp-active-size, 13px);
+  }
+
+  & > :last-child.sunp-page-indicator-dot {
+    margin-right: 0;
+  }
+}
+
+html ul:where(.sunp-page-indicator-vertical) {
+  @apply flex-col;
+
+  .sunp-page-indicator-dot {
+    margin-bottom: var(--sunp-gap, 3px);
+  }
+
+  .sunp-page-indicator-dot-active {
+    height: var(--sunp-active-size, 13px);
+  }
+
+  & > :last-child.sunp-page-indicator-dot {
+    margin-bottom: 0;
+  }
+}

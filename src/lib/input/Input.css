@@ -1,0 +1,32 @@
+html div:where(.sunp-input) {
+  @apply inline-flex items-center justify-stretch overflow-hidden;
+
+  .sunp-input__element {
+    @apply flex-1 appearance-none bg-transparent;
+    @apply m-0 box-border max-h-full min-w-0 max-w-full border-none p-0 outline-none;
+    font-size: var(--sunp-font-size, 17px);
+    line-height: 24px;
+    text-align: var(--sunp-text-align, left);
+  }
+
+  .sunp-button-clear {
+    @apply flex-none bg-transparent p-0;
+    color: var(--sunp-color-weak);
+    width: 24px;
+    height: 24px;
+
+    &:active {
+      color: var(--sunp-color-text-secondary);
+    }
+  }
+
+  &.sunp-input-disabled {
+    .sunp-input__element {
+      color: var(--sunp-color-weak);
+    }
+  }
+}
+
+html div:where(.sunp-input-block) {
+  @apply box-border flex h-full w-full;
+}

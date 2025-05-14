@@ -1,0 +1,54 @@
+html label:where(.sunp-checkbox) {
+  @apply inline-flex cursor-pointer items-center justify-stretch;
+  font-size: var(--sunp-font-size, 17px);
+  -webkit-tap-highlight-color: transparent;
+
+  .sunp-checkbox__input {
+    @apply hidden;
+  }
+
+  .sunp-checkbox__icon {
+    @apply m-0 box-border flex flex-none items-center justify-center rounded-md border border-solid;
+    color: var(--sunp-color-white);
+    border-color: var(--sunp-color-weak);
+    background-color: var(--sunp-color-background);
+  }
+
+  .sunp-checkbox__content {
+    @apply flex-auto select-none whitespace-nowrap p-0 pl-2;
+    translate: 0 1px;
+  }
+
+  &.sunp-checkbox-checked {
+    .sunp-checkbox__icon {
+      @apply border-transparent;
+      background-color: var(--sunp-color-primary);
+    }
+  }
+
+  &.sunp-checkbox-indeterminate {
+    .sunp-checkbox__icon {
+      @apply border-transparent;
+      background-color: var(--sunp-color-primary);
+    }
+  }
+
+  &.sunp-checkbox-disabled {
+    .sunp-checkbox__icon {
+      background-color: var(--sunp-color-box);
+      border-color: var(--sunp-color-border);
+    }
+
+    .sunp-checkbox__content {
+      color: var(--sunp-color-weak);
+    }
+
+    &.sunp-checkbox-checked {
+      .sunp-checkbox__icon {
+        color: var(--sunp-color-weak);
+        border-color: var(--sunp-color-border);
+        background-color: var(--sunp-color-box);
+      }
+    }
+  }
+}

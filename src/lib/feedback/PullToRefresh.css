@@ -1,0 +1,31 @@
+html div:where(.sunp-pull-to-refresh) {
+  @apply relative block select-none overflow-hidden;
+
+  .sunp-pull-to-refresh__track {
+    @apply h-full touch-pan-x overflow-visible;
+  }
+
+  .sunp-pull-to-refresh__header {
+    @apply absolute bottom-full left-0 right-0 border-b;
+    border-color: var(--sunp-color-border);
+
+    .sunp-pull-to-refresh__header-inner {
+      @apply flex items-center justify-center px-4 py-2 text-sm;
+      color: var(--sunp-color-weak);
+    }
+
+    .sunp-pull-to-refresh__header-loading {
+      @apply mr-2 animate-spin;
+    }
+  }
+
+  .sunp-pull-to-refresh__content {
+    @apply h-full overflow-y-auto overflow-x-hidden;
+  }
+
+  &.sunp-pull-to-refresh-animation {
+    .sunp-pull-to-refresh__track {
+      transition: translate 0.15s ease-out;
+    }
+  }
+}

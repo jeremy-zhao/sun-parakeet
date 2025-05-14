@@ -1,0 +1,7 @@
+html section:where(.sunp-tab-panel) {
+  @apply overflow-y-auto;
+
+  &.sunp-tab-panel-hidden {
+    display: none;
+  }
+}

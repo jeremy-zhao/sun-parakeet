@@ -1,0 +1,27 @@
+html div:where(.sunp-text-area) {
+  @apply relative max-h-full w-full max-w-full;
+
+  .sunp-text-area__element {
+    @apply m-0 box-border block max-h-full min-h-6 w-full max-w-full flex-auto resize-none appearance-none border-0 bg-transparent p-0 outline-none;
+    font-size: 17px;
+    line-height: 1.5;
+    text-align: var(--sunp-text-align, left);
+  }
+
+  .sunp-text-area__element-hidden {
+    @apply invisible absolute left-0 top-0;
+    z-index: -1000;
+  }
+
+  .sunp-text-area__statistic {
+    @apply pt-2 text-right;
+    color: var(--sunp-color-weak);
+    font-size: 17px;
+  }
+
+  &.sunp-text-area-disabled {
+    .sunp-text-area__element {
+      color: var(--sunp-color-weak);
+    }
+  }
+}

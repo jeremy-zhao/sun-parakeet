@@ -1,0 +1,17 @@
+:root {
+  --sunp-color-primary: #3b82f6;
+  --sunp-color-success: #22c55e;
+  --sunp-color-warning: #f97316;
+  --sunp-color-danger: #ef4444;
+
+  --sunp-color-black: #111827;
+  --sunp-color-white: #ffffff;
+  --sunp-color-text: #4b5563;
+  --sunp-color-text-secondary: #6b7280;
+  --sunp-color-weak: #9ca3af;
+  --sunp-color-light: #d1d5db;
+  --sunp-color-border: #e5e7eb;
+  --sunp-color-box: #f3f4f6;
+  --sunp-color-box-light: #f9fafb;
+  --sunp-color-background: #ffffff;
+}

@@ -1,0 +1,3 @@
+html form:where(.sunp-form-vertical) div:where(.sunp-checkbox-group) {
+  @apply mt-2;
+}

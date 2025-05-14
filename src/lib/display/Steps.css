@@ -1,0 +1,11 @@
+html ul:where(.sunp-steps) {
+  @apply m-0 list-none p-0;
+}
+
+html ul:where(.sunp-steps-horizontal) {
+  @apply flex flex-row flex-nowrap items-stretch justify-stretch;
+}
+
+html ul:where(.sunp-steps-vertical) {
+  @apply flex flex-col items-stretch justify-stretch;
+}

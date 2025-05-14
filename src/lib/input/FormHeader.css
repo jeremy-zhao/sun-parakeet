@@ -1,0 +1,12 @@
+html header:where(.sunp-form-header) {
+  @apply relative px-4 py-2;
+  color: var(--sunp-color-text-secondary);
+  font-size: 15px;
+  line-height: 1.4;
+  z-index: 2;
+
+  &::before,
+  &::after {
+    border-left-width: 0;
+  }
+}

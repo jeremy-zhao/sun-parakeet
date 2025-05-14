@@ -1,0 +1,81 @@
+html div:where(.sunp-form-item) {
+  @apply relative z-0 flex;
+  background-color: var(--sunp-color-background);
+
+  .sunp-form-item__required {
+    @apply absolute;
+    content: '*';
+    left: 6px;
+    color: var(--sunp-color-danger);
+  }
+
+  .sunp-form-item__content {
+    @apply relative flex-auto p-3 pl-4;
+  }
+
+  .sunp-form-item__label {
+    @apply relative box-border flex-none text-left;
+    color: var(--sunp-color-text-secondary);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .sunp-form-item__input {
+    @apply relative flex flex-auto flex-col text-left;
+    font-size: 17px;
+  }
+
+  .sunp-form-item__error {
+    font-size: 13px;
+    color: var(--sunp-color-danger);
+  }
+}
+
+.sunp-form-item-button {
+  @apply flex flex-auto items-center justify-stretch border-0 border-transparent p-0 pr-3;
+  color: var(--sunp-color-black);
+  background-color: var(--sunp-color-background);
+  -webkit-tap-highlight-color: transparent;
+
+  &:active {
+    background-color: var(--sunp-color-box);
+  }
+
+  .sunp-form-item-button__placeholder {
+    color: var(--sunp-color-weak);
+  }
+
+  .sunp-form-item-button__arrow {
+    @apply flex-none;
+    color: var(--sunp-color-weak);
+  }
+}
+
+.sunp-form-vertical {
+  .sunp-form-item__required {
+    top: 13px;
+  }
+
+  .sunp-form-item__content {
+    @apply flex flex-col;
+  }
+
+  .sunp-form-item__label {
+    font-size: 15px;
+  }
+}
+
+.sunp-form-horizontal {
+  .sunp-form-item__required {
+    top: 15px;
+  }
+
+  .sunp-form-item__content {
+    @apply flex justify-stretch;
+  }
+
+  .sunp-form-item__label {
+    @apply mr-3;
+    width: var(--sunp-label-width, 102px);
+    font-size: 17px;
+  }
+}

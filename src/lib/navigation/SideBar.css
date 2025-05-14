@@ -1,0 +1,81 @@
+html nav:where(.sunp-side-bar) {
+  @apply relative box-border overflow-hidden text-left text-xs;
+  @apply block;
+  color: var(--sunp-color-text-secondary);
+  scroll-behavior: smooth;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.sunp-side-bar-item {
+  @apply relative min-h-10 w-full cursor-pointer overflow-visible bg-inherit px-4 py-3 text-inherit;
+  @apply flex items-stretch justify-start;
+  @apply border-0 border-none border-transparent;
+  -webkit-tap-highlight-color: transparent;
+
+  .sunp-side-bar-item__inner {
+    @apply relative flex flex-row flex-nowrap items-center justify-start;
+
+    .sunp-side-bar-item__inner-icon {
+      @apply flex-none;
+    }
+
+    .sunp-side-bar-item__inner-text {
+      @apply mx-1 flex-auto text-left text-[14px];
+    }
+  }
+
+  &.sunp-side-bar-item-selected {
+    color: var(--sunp-color-primary);
+    fill: var(--sunp-color-primary);
+    background-color: var(--sunp-color-background);
+    z-index: 1;
+
+    &::before {
+      @apply absolute bottom-full right-0;
+      content: '';
+      width: var(--sunp-radius, 8px);
+      height: var(--sunp-radius, 8px);
+      background: radial-gradient(
+        circle at top left,
+        transparent 0%,
+        transparent 70%,
+        var(--sunp-color-background) 72%,
+        var(--sunp-color-background) 100%
+      );
+      /* background-color: red; */
+    }
+
+    &::after {
+      @apply absolute right-0 top-full;
+      content: '';
+      width: var(--sunp-radius, 8px);
+      height: var(--sunp-radius, 8px);
+      background: radial-gradient(
+        circle at bottom left,
+        transparent 0%,
+        transparent 70%,
+        var(--sunp-color-background) 72%,
+        var(--sunp-color-background) 100%
+      );
+      /* background-color: blue; */
+    }
+
+    .sunp-side-bar-item__inner::before {
+      @apply absolute -left-4 bottom-0 top-0 h-full w-[2px];
+      content: '';
+      background-color: var(--sunp-color-primary);
+    }
+  }
+
+  &.sunp-side-bar-item-disabled {
+    @apply cursor-not-allowed;
+    color: var(--sunp-color-weak);
+
+    .sunp-badge {
+      background-color: var(--sunp-color-weak);
+    }
+  }
+}

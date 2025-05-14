@@ -1,0 +1,3 @@
+html div:where(.sunp-auto-center) {
+  @apply flex items-center justify-center;
+}

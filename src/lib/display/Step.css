@@ -1,0 +1,162 @@
+html li:where(.sunp-step) {
+  @apply relative m-0 box-border p-0;
+
+  .sunp-step__indicator {
+    @apply relative box-border flex-none;
+
+    .sunp-step__handle {
+      @apply flex items-center justify-center;
+      width: var(--sunp-size, 24px);
+      height: var(--sunp-size, 24px);
+    }
+
+    .sunp-step__point {
+      @apply relative m-2 inline-block rounded-full p-1;
+      color: var(--sunp-color-white);
+      z-index: 1;
+      line-height: 0;
+    }
+  }
+
+  .sunp-step__content {
+    @apply flex-auto text-sm text-gray-400;
+  }
+}
+
+html li:where(.sunp-step-wait) {
+  .sunp-step__indicator {
+    .sunp-step__point {
+      background-color: var(--sunp-color-border);
+    }
+
+    &::after {
+      background-color: var(--sunp-color-box);
+    }
+  }
+}
+
+html li:where(.sunp-step-process) {
+  .sunp-step__indicator {
+    .sunp-step__point {
+      background-color: var(--sunp-color-primary);
+    }
+
+    &::after {
+      background-color: var(--sunp-color-box);
+    }
+  }
+
+  .sunp-step__header {
+    color: var(--sunp-color-primary);
+  }
+}
+
+html li:where(.sunp-step-finish) {
+  .sunp-step__indicator {
+    .sunp-step__point {
+      background-color: var(--sunp-color-primary);
+    }
+
+    &::after {
+      background-color: var(--sunp-color-primary);
+    }
+  }
+
+  .sunp-step__header {
+    color: var(--sunp-color-text);
+  }
+}
+
+html li:where(.sunp-step-error) {
+  .sunp-step__indicator {
+    .sunp-step__point {
+      background-color: var(--sunp-color-danger);
+    }
+
+    &::after {
+      background-color: var(--sunp-color-box);
+    }
+  }
+
+  .sunp-step__header {
+    color: var(--sunp-color-danger);
+  }
+}
+
+html li:where(.sunp-step-skip) {
+  .sunp-step__indicator {
+    .sunp-step__point {
+      background-color: var(--sunp-color-border);
+    }
+
+    &::after {
+      background-color: var(--sunp-color-primary);
+    }
+  }
+
+  .sunp-step__header {
+    color: var(--sunp-color-text);
+  }
+}
+
+html ul:where(.sunp-steps-horizontal) li:where(.sunp-step) {
+  @apply flex flex-1 flex-col items-stretch justify-stretch;
+
+  .sunp-step__indicator {
+    @apply flex w-full items-center justify-center;
+
+    &::after {
+      @apply absolute left-1/2 top-1/2;
+      content: '';
+      width: 100%;
+      height: 2px;
+      translate: 0 -50%;
+    }
+  }
+
+  &:last-of-type {
+    .sunp-step__indicator {
+      &::after {
+        content: none;
+      }
+    }
+  }
+
+  .sunp-step__content {
+    @apply mt-2 flex flex-col items-center justify-stretch;
+  }
+}
+
+html ul:where(.sunp-steps-vertical) li:where(.sunp-step) {
+  @apply flex flex-row items-stretch justify-stretch;
+
+  .sunp-step__indicator {
+    width: var(--sunp-size, 24px);
+
+    &::after {
+      @apply absolute left-1/2;
+      content: '';
+      width: 2px;
+      height: 100%;
+      top: calc(var(--sunp-size, 24px) / 2);
+      translate: -50% 0;
+    }
+  }
+
+  &:last-of-type {
+    .sunp-step__indicator {
+      &::after {
+        content: none;
+      }
+    }
+  }
+
+  .sunp-step__content {
+    @apply ml-2;
+
+    .sunp-step__header {
+      @apply flex items-center;
+      height: var(--sunp-size, 24px);
+    }
+  }
+}

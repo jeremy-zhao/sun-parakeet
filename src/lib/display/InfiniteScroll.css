@@ -1,0 +1,18 @@
+html div:where(.sunp-infinite-scroll) {
+  @apply overflow-y-auto overflow-x-hidden;
+
+  .sunp-infinite-scroll__footer {
+    .sunp-infinite-scroll__footer-inner {
+      @apply flex items-center justify-center p-4 text-sm;
+      color: var(--sunp-color-weak);
+
+      .sunp-infinite-scroll__footer-loading {
+        @apply mr-2 animate-spin;
+      }
+
+      a {
+        color: var(--sunp-color-primary);
+      }
+    }
+  }
+}

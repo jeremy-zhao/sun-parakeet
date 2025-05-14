@@ -1,0 +1,57 @@
+html label:where(.sunp-radio) {
+  @apply inline-flex cursor-pointer items-center justify-stretch;
+  font-size: var(--sunp-font-size, 17px);
+  -webkit-tap-highlight-color: transparent;
+
+  .sunp-radio__input {
+    @apply hidden;
+  }
+
+  .sunp-radio__icon {
+    @apply m-0 box-border flex flex-none items-center justify-center rounded-full border border-solid;
+    color: var(--sunp-color-white);
+    border-color: var(--sunp-color-weak);
+    background-color: var(--sunp-color-background);
+  }
+
+  .sunp-radio__content {
+    @apply flex-auto select-none whitespace-nowrap p-0 pl-2;
+    translate: 0 1px;
+  }
+
+  &.sunp-radio-checked {
+    .sunp-radio__icon {
+      @apply border-transparent;
+      background-color: var(--sunp-color-primary);
+    }
+
+    .sunp-radio__icon-default {
+      color: var(--sunp-color-primary);
+      stroke: var(--sunp-color-background);
+    }
+  }
+
+  &.sunp-radio-disabled {
+    .sunp-radio__icon {
+      background-color: var(--sunp-color-box);
+      border-color: var(--sunp-color-border);
+    }
+
+    .sunp-radio__content {
+      color: var(--sunp-color-weak);
+    }
+
+    &.sunp-radio-checked {
+      .sunp-radio__icon {
+        color: var(--sunp-color-weak);
+        border-color: var(--sunp-color-border);
+        background-color: var(--sunp-color-box);
+      }
+
+      .sunp-radio__icon-default {
+        color: var(--sunp-color-weak);
+        stroke: var(--sunp-color-box);
+      }
+    }
+  }
+}

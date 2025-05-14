@@ -1,0 +1,83 @@
+html div:where(.sunp-collapse) {
+  .sunp-collapse__header {
+    @apply flex w-full cursor-pointer items-center border-0 pl-4 pr-2;
+    color: var(--sunp-color-text);
+    background-color: var(--sunp-color-background);
+    font-size: 17px;
+    line-height: 24px;
+    min-height: 48px;
+    z-index: 1;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .sunp-collapse__header-text {
+    @apply flex-auto text-left;
+    translate: 0 1px;
+  }
+
+  .sunp-collapse__header-icon {
+    @apply flex-none;
+    color: var(--sunp-color-weak);
+    transition: rotate 0.15s ease-out;
+  }
+
+  .sunp-collapse__container {
+    @apply relative box-border overflow-hidden;
+    background-color: var(--sunp-color-background);
+    transition: height 0.15s ease-out;
+  }
+
+  .sunp-collapse__content {
+    @apply pointer-events-none pl-4 text-sm opacity-0;
+    transition: opacity 0.15s ease-out;
+
+    & > * {
+      @apply !relative my-[1px] !overflow-visible;
+
+      &::before {
+        @apply absolute left-0 right-0 h-[1px];
+        content: '';
+        background-color: var(--sunp-color-border);
+        /* background-color: red; */
+        border-color: var(--sunp-color-background);
+        top: -1px;
+      }
+
+      &::after {
+        @apply absolute left-0 right-0 h-[1px];
+        content: '';
+        background-color: var(--sunp-color-border);
+        /* background-color: blue; */
+        border-color: var(--sunp-color-background);
+        bottom: -1px;
+      }
+    }
+
+    & > :last-child::after {
+      content: none;
+    }
+
+    & > svelte-css-wrapper {
+      @apply !block;
+    }
+
+    & > .sunp-list-item {
+      @apply -ml-4;
+
+      &::before,
+      &::after {
+        @apply border-0 border-l-[1em] border-solid;
+      }
+    }
+  }
+}
+
+html div:where(.sunp-collapse-expanded) {
+  .sunp-collapse__header-icon {
+    rotate: -180deg;
+  }
+
+  .sunp-collapse__content {
+    @apply pointer-events-auto opacity-100;
+  }
+}

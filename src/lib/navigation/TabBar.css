@@ -1,0 +1,42 @@
+html nav:where(.sunp-tab-bar) {
+  @apply flex flex-nowrap items-center justify-stretch py-2 text-xs pb-safe-or-2;
+  color: var(--sunp-color-text);
+
+  &.sunp-tab-bar-fixed {
+    @apply fixed bottom-0 left-0 right-0 border-t;
+    border-color: var(--sunp-color-border);
+  }
+}
+
+.sunp-tab-bar-item {
+  @apply flex flex-1 cursor-pointer items-center justify-center bg-inherit text-inherit;
+  @apply border-0 border-none border-transparent;
+  -webkit-tap-highlight-color: transparent;
+
+  &.sunp-tab-bar-item-selected {
+    color: var(--sunp-color-primary);
+    fill: var(--sunp-color-primary);
+  }
+
+  .sunp-tab-bar-item__inner {
+    @apply flex flex-col items-center justify-center px-1;
+
+    & > :not([hidden]) ~ :not([hidden]) {
+      margin-top: 0.125rem;
+    }
+
+    .sunp-tab-bar-item__text-only {
+      font-size: 17px;
+      line-height: 25px;
+    }
+  }
+
+  &.sunp-tab-bar-item-disabled {
+    @apply cursor-not-allowed;
+    color: var(--sunp-color-weak);
+
+    .sunp-badge {
+      background-color: var(--sunp-color-weak);
+    }
+  }
+}

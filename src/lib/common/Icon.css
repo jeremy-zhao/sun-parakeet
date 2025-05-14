@@ -1,0 +1,3 @@
+html svg:where(.sunp-icon) {
+  @apply relative box-border inline-block align-middle;
+}

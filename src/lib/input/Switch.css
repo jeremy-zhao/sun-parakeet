@@ -1,0 +1,87 @@
+html div:where(.sunp-switch) {
+  @apply relative box-border inline-block cursor-pointer select-none overflow-hidden rounded-full;
+  vertical-align: middle;
+  align-self: center;
+  -webkit-tap-highlight-color: transparent;
+
+  .sunp-switch__checkbox {
+    @apply box-border overflow-hidden;
+    min-width: var(--sunp-width, 51px);
+    height: var(--sunp-height, 31px);
+    line-height: var(--sunp-height, 31px);
+    border-radius: var(--sunp-height, 31px);
+    background-color: var(--sunp-color-border);
+
+    &::before {
+      @apply absolute box-border;
+      content: ' ';
+      background-color: var(--sunp-color-background);
+      left: var(--sunp-border-width, 2px);
+      top: var(--sunp-border-width, 2px);
+      width: calc(100% - var(--sunp-border-width, 2px) * 2);
+      height: calc(var(--sunp-height, 31px) - var(--sunp-border-width, 2px) * 2);
+      border-radius: calc(var(--sunp-height, 31px) - var(--sunp-border-width, 2px) * 2);
+      z-index: 1;
+      transition: scale 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      scale: 1;
+    }
+
+    .sunp-switch__handle {
+      @apply absolute box-border flex items-center justify-center rounded-full;
+      background-color: var(--sunp-color-background);
+      width: calc(var(--sunp-height, 31px) - var(--sunp-border-width, 2px) * 2);
+      height: calc(var(--sunp-height, 31px) - var(--sunp-border-width, 2px) * 2);
+      left: var(--sunp-border-width, 2px);
+      top: var(--sunp-border-width, 2px);
+      z-index: 2;
+      transition: left 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow:
+        0 0 2px 0 rgba(0, 0, 0, 0.2),
+        0 2px 11.5px 0 rgba(0, 0, 0, 0.08),
+        -1px 2px 2px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .sunp-switch__inner {
+      @apply relative flex h-full items-center justify-center;
+      color: var(--sunp-color-weak);
+      fill: var(--sunp-color-weak);
+      margin: 0 8px 0 calc(var(--sunp-height, 31px) - var(--sunp-border-width, 2px) + 5px);
+      transition: margin 0.2s;
+      font-size: 15px;
+      z-index: 1;
+    }
+  }
+
+  &.sunp-switch-checked {
+    .sunp-switch__checkbox {
+      background-color: var(--sunp-checked-color, var(--sunp-color-primary));
+
+      &::before {
+        scale: 0;
+      }
+
+      .sunp-switch__handle {
+        left: calc(100% - var(--sunp-height, 31px) + var(--sunp-border-width, 2px));
+      }
+
+      .sunp-switch__inner {
+        color: var(--sunp-color-white);
+        fill: var(--sunp-color-white);
+        margin: 0 calc(var(--sunp-height, 31px) - var(--sunp-border-width, 2px) + 5px) 0 8px;
+      }
+    }
+  }
+}
+
+html div:where(.sunp-switch-disabled) {
+  @apply cursor-not-allowed opacity-40;
+}
+
+html form:where(.sunp-form-vertical) div:where(.sunp-switch) {
+  margin: 4px auto 0 0;
+}
+
+html form:where(.sunp-form-horizontal) div:where(.sunp-switch) {
+  @apply relative;
+  margin: -3px 0 -3px auto;
+}

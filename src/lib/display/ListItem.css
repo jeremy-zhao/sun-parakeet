@@ -1,0 +1,50 @@
+html li:where(.sunp-list-item) {
+  @apply relative list-none;
+  background-color: var(--sunp-color-background);
+
+  .sunp-list-item__inner {
+    @apply relative box-border h-full w-full border-0 p-2 pl-4 text-left;
+    @apply flex flex-nowrap items-center justify-stretch;
+    min-height: var(--sunp-min-height, 48px);
+    background-color: var(--sunp-color-background);
+
+    .sunp-list-item__aside {
+      @apply mr-2;
+    }
+
+    .sunp-list-item__content {
+      @apply flex flex-auto flex-col items-start justify-center;
+      color: var(--sunp-color-black);
+      font-size: 17px;
+      line-height: 24px;
+
+      .sunp-list-item__header,
+      .sunp-list-item__description {
+        @apply overflow-hidden;
+        color: var(--sunp-color-text-secondary);
+        font-size: 13px;
+        line-height: 19px;
+      }
+    }
+
+    .sunp-list-item__extra {
+      @apply ml-4 flex-none;
+      color: var(--sunp-color-text-secondary);
+      font-size: 15px;
+    }
+
+    .sunp-list-item__icon {
+      @apply ml-2 flex-none text-gray-400;
+      color: var(--sunp-color-weak);
+    }
+
+    &.sunp-button-list-item {
+      &:active::before {
+        @apply inset-0;
+        content: '';
+        background-color: var(--sunp-color-weak);
+        opacity: 0.1;
+      }
+    }
+  }
+}

@@ -1,0 +1,305 @@
+html button:where(.sunp-button) {
+  @apply relative box-border cursor-pointer select-none border-solid border-transparent;
+  @apply inline-flex items-center justify-center;
+  font-size: 17px;
+  line-height: 24px;
+  height: 36px;
+  padding: 0 12px;
+  border-width: var(--sunp-border, 1px);
+  -webkit-tap-highlight-color: transparent;
+
+  &::before {
+    @apply absolute box-content;
+    top: calc(-var(--sunp-border, 1px));
+    left: calc(-var(--sunp-border, 1px));
+    width: calc(100% + var(--sunp-border, 1px));
+    height: calc(100% + var(--sunp-border, 1px));
+    border-width: var(--sunp-border, 1px);
+    border-style: inherit;
+    border-color: transparent;
+    border-radius: inherit;
+  }
+
+  &::after {
+    @apply absolute box-content;
+    top: calc(-var(--sunp-border, 1px));
+    left: calc(-var(--sunp-border, 1px));
+    width: calc(100% + var(--sunp-border, 1px));
+    height: calc(100% + var(--sunp-border, 1px));
+    border-width: var(--sunp-border, 1px);
+    border-style: inherit;
+    border-color: transparent;
+    border-radius: inherit;
+    z-index: 1;
+  }
+
+  .sunp-button__content {
+    @apply flex flex-auto items-center justify-center;
+    @apply relative overflow-hidden;
+    translate: 0 1px;
+    z-index: 2;
+  }
+
+  .sunp-button__loading {
+    .sunp-button__loading-icon {
+      @apply mr-2 animate-spin;
+    }
+  }
+}
+
+html button:where(.sunp-button-block) {
+  @apply flex h-full w-full;
+}
+
+html button:where(.sunp-button-loading) {
+  @apply pointer-events-none cursor-wait;
+
+  &::before {
+    content: '';
+    background-color: var(--sunp-color-white);
+    opacity: 0.2;
+  }
+}
+
+html button:where(.sunp-button-disabled) {
+  @apply cursor-not-allowed;
+  color: var(--sunp-color-weak);
+  background-color: var(--sunp-color-box);
+  border-color: var(--sunp-color-border);
+}
+
+html button:where(.sunp-button-normal) {
+  color: var(--sunp-color-text);
+  background-color: var(--sunp-color-background);
+  border-color: var(--sunp-color-border);
+
+  &:active {
+    color: var(--sunp-color-primary);
+    border-color: transparent;
+
+    &::before {
+      content: '';
+      background-color: var(--sunp-color-primary);
+      opacity: 0.1;
+    }
+
+    &::after {
+      content: '';
+      border-color: var(--sunp-color-primary);
+      opacity: 0.8;
+    }
+  }
+}
+
+html button:where(.sunp-button-primary) {
+  color: var(--sunp-color-white);
+  background-color: var(--sunp-color-primary);
+
+  &:active {
+    &::before {
+      content: '';
+      background-color: var(--sunp-color-black);
+      opacity: 0.1;
+    }
+  }
+}
+
+html button:where(.sunp-button-primary-plain) {
+  color: var(--sunp-color-primary);
+  background-color: var(--sunp-color-white);
+
+  &::before {
+    content: '';
+    background-color: var(--sunp-color-primary);
+    opacity: 0.1;
+  }
+
+  &::after {
+    content: '';
+    border-color: var(--sunp-color-primary);
+    opacity: 0.7;
+  }
+
+  &:active {
+    &::before {
+      opacity: 0.2;
+    }
+
+    &::after {
+      opacity: 0.8;
+    }
+  }
+}
+
+html button:where(.sunp-button-success) {
+  color: var(--sunp-color-white);
+  background-color: var(--sunp-color-success);
+
+  &:active {
+    &::before {
+      content: '';
+      background-color: var(--sunp-color-black);
+      opacity: 0.1;
+    }
+  }
+}
+
+html button:where(.sunp-button-success-plain) {
+  color: var(--sunp-color-success);
+  background-color: var(--sunp-color-white);
+
+  &::before {
+    content: '';
+    background-color: var(--sunp-color-success);
+    opacity: 0.1;
+  }
+
+  &::after {
+    content: '';
+    border-color: var(--sunp-color-success);
+    opacity: 0.7;
+  }
+
+  &:active {
+    &::before {
+      opacity: 0.2;
+    }
+
+    &::after {
+      opacity: 0.8;
+    }
+  }
+}
+
+html button:where(.sunp-button-warning) {
+  color: var(--sunp-color-white);
+  background-color: var(--sunp-color-warning);
+
+  &:active {
+    &::before {
+      content: '';
+      background-color: var(--sunp-color-black);
+      opacity: 0.1;
+    }
+  }
+}
+
+html button:where(.sunp-button-warning-plain) {
+  color: var(--sunp-color-warning);
+  background-color: var(--sunp-color-white);
+
+  &::before {
+    content: '';
+    background-color: var(--sunp-color-warning);
+    opacity: 0.1;
+  }
+
+  &::after {
+    content: '';
+    border-color: var(--sunp-color-warning);
+    opacity: 0.7;
+  }
+
+  &:active {
+    &::before {
+      opacity: 0.2;
+    }
+
+    &::after {
+      opacity: 0.8;
+    }
+  }
+}
+
+html button:where(.sunp-button-danger) {
+  color: var(--sunp-color-white);
+  background-color: var(--sunp-color-danger);
+
+  &:active {
+    &::before {
+      content: '';
+      background-color: var(--sunp-color-black);
+      opacity: 0.1;
+    }
+  }
+}
+
+html button:where(.sunp-button-danger-plain) {
+  color: var(--sunp-color-danger);
+  background-color: var(--sunp-color-white);
+
+  &::before {
+    content: '';
+    background-color: var(--sunp-color-danger);
+    opacity: 0.1;
+  }
+
+  &::after {
+    content: '';
+    border-color: var(--sunp-color-danger);
+    opacity: 0.7;
+  }
+
+  &:active {
+    &::before {
+      opacity: 0.2;
+    }
+
+    &::after {
+      opacity: 0.8;
+    }
+  }
+}
+
+html button:where(.sunp-button-cancel) {
+  color: var(--sunp-color-white);
+  background-color: var(--sunp-color-weak);
+
+  &:active {
+    &::before {
+      content: '';
+      background-color: var(--sunp-color-black);
+      opacity: 0.1;
+    }
+  }
+}
+
+html button:where(.sunp-button-cancel-plain) {
+  color: var(--sunp-color-text-secondary);
+  background-color: var(--sunp-color-white);
+
+  &::before {
+    content: '';
+    background-color: var(--sunp-color-weak);
+    opacity: 0.1;
+  }
+
+  &::after {
+    content: '';
+    border-color: var(--sunp-color-weak);
+    opacity: 0.7;
+  }
+
+  &:active {
+    &::before {
+      opacity: 0.2;
+    }
+
+    &::after {
+      opacity: 0.8;
+    }
+  }
+}
+
+html button:where(.sunp-button-text) {
+  @apply bg-transparent;
+  color: var(--sunp-color-text);
+
+  &:active {
+    &::before {
+      content: '';
+      background-color: var(--sunp-color-weak);
+      opacity: 0.1;
+    }
+  }
+}

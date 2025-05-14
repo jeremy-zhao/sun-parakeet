@@ -1,0 +1,4 @@
+.sunp-loading__icon {
+  @apply animate-spin;
+  color: var(--sunp-color-white);
+}

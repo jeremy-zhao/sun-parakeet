@@ -1,0 +1,155 @@
+html div:where(.sunp-stepper) {
+  @apply flex items-stretch justify-stretch;
+
+  & > * {
+    @apply m-0;
+    margin-right: var(--sunp-gap, 4px);
+  }
+
+  .sunp-stepper__button {
+    @apply relative box-border border-0 p-0;
+    @apply flex items-center justify-center;
+    width: var(--sunp-size, 28px);
+    height: var(--sunp-size, 28px);
+    color: var(--sunp-color-primary);
+    background-color: var(--sunp-color-box);
+    -webkit-tap-highlight-color: transparent;
+
+    &:active {
+      background-color: var(--sunp-color-border);
+    }
+
+    .sunp-stepper__icon {
+      @apply border border-solid border-transparent;
+      padding: 2px;
+    }
+
+    &:disabled {
+      @apply pointer-events-none;
+
+      .sunp-stepper__icon {
+        color: var(--sunp-color-light);
+      }
+    }
+  }
+
+  .sunp-steper__content {
+    @apply relative block overflow-hidden;
+    width: var(--sunp-input-width, 32px);
+    height: var(--sunp-size, 28px);
+    color: var(--sunp-color-text);
+    background-color: var(--sunp-color-box);
+
+    .sunp-steper__display {
+      @apply absolute inset-0;
+      @apply overflow-hidden text-center align-middle;
+      @apply flex items-center justify-center;
+      width: var(--sunp-input-width, 32px);
+      font-size: 14px;
+      line-height: calc(var(--sunp-size, 28px) + 1px);
+      z-index: 0;
+    }
+
+    .sunp-steper__input {
+      @apply absolute inset-0;
+      @apply box-border block border-0 p-0 text-center align-middle focus:outline-none;
+      width: var(--sunp-input-width, 32px);
+      padding-top: 1px;
+      font-size: 14px;
+      line-height: var(--sunp-size, 28px);
+      color: var(--sunp-color-text);
+      background-color: var(--sunp-color-box);
+      z-index: 1;
+    }
+  }
+
+  &.sunp-stepper-disabled {
+    .sunp-steper__content {
+      color: var(--sunp-color-weak);
+      background-color: var(--sunp-color-box);
+
+      .sunp-steper__input {
+        color: var(--sunp-color-weak);
+        background-color: var(--sunp-color-box);
+      }
+    }
+  }
+
+  &.sunp-stepper-round {
+    .sunp-stepper__button {
+      @apply rounded-full bg-transparent;
+    }
+
+    .sunp-stepper__button-minus {
+      &::before {
+        @apply absolute;
+        content: '';
+        inset: 2px;
+        background-color: var(--sunp-color-background);
+        border-radius: inherit;
+      }
+
+      &::after {
+        @apply absolute;
+        content: '';
+        inset: 2px;
+        border: 1px solid var(--sunp-color-primary);
+        border-radius: inherit;
+        z-index: 1;
+        opacity: 0.8;
+      }
+
+      &:active {
+        &::before {
+          background-color: var(--sunp-color-primary);
+          opacity: 0.2;
+        }
+
+        &::after {
+          opacity: 1;
+        }
+      }
+    }
+
+    .sunp-stepper__button-plus {
+      &::before {
+        @apply absolute;
+        content: '';
+        inset: 2px;
+        background-color: var(--sunp-color-primary);
+        border-radius: inherit;
+      }
+
+      .sunp-stepper__icon {
+        @apply rounded-full;
+        color: var(--sunp-color-white);
+        z-index: 2;
+      }
+
+      &:active {
+        &::after {
+          @apply absolute;
+          content: '';
+          inset: 2px;
+          background-color: var(--sunp-color-black);
+          border-radius: inherit;
+          opacity: 0.1;
+          z-index: 1;
+        }
+      }
+    }
+
+    .sunp-steper__content {
+      @apply bg-inherit;
+    }
+  }
+}
+
+html form:where(.sunp-form-vertical) div:where(.sunp-stepper) {
+  margin: 4px auto 0 0;
+}
+
+html form:where(.sunp-form-horizontal) div:where(.sunp-stepper) {
+  @apply relative;
+  margin: -3px 0 -3px auto;
+}

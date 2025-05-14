@@ -1,0 +1,54 @@
+html div:where(.sunp-index-bar) {
+  @apply h-full overflow-y-auto;
+  scrollbar-width: none;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  .sunp-index-bar__side-bar {
+    @apply fixed right-0 top-1/2 block;
+    @apply m-0 list-none p-0;
+    color: var(--sunp-color-weak);
+    translate: 0 -50%;
+    z-index: 1;
+    touch-action: pinch-zoom;
+
+    .sunp-index-bar__side-item {
+      @apply relative m-0 box-border flex cursor-pointer select-none items-center justify-center rounded-full px-2;
+
+      .sunp-index-bar__side-item-handle {
+        @apply box-border flex items-center justify-center;
+        width: 18px;
+        height: 18px;
+        font-size: 12px;
+        padding-top: 0.5px;
+        border-radius: 50%;
+      }
+
+      &.sunp-index-bar__side-item-selected {
+        .sunp-index-bar__side-item-handle {
+          background-color: var(--sunp-color-primary);
+          color: var(--sunp-color-white);
+        }
+      }
+
+      .sunp-index-bar__side-item-indicator {
+        @apply absolute rounded-full text-center;
+        color: var(--sunp-color-white);
+        background-color: var(--sunp-color-weak);
+        font-size: 17px;
+        line-height: 41px;
+        left: -60px;
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+  .sunp-list-item {
+    .sunp-list-item__inner {
+      padding-right: 26px;
+    }
+  }
+}

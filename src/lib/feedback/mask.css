@@ -1,0 +1,10 @@
+.sunp-mask {
+  @apply fixed bottom-0 left-0 right-0 top-0 hidden;
+  background-color: var(--sunp-color-black);
+  opacity: 0.2;
+  -webkit-tap-highlight-color: transparent;
+
+  &.sunp-mask-visible {
+    @apply block;
+  }
+}

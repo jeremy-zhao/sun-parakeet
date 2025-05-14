@@ -1,0 +1,52 @@
+.sunp-picker {
+  background-color: var(--sunp-color-background);
+
+  .sunp-picker__header {
+    @apply flex items-center justify-stretch border-b p-2;
+    border-color: var(--sunp-color-border);
+  }
+
+  .sunp-picker__footer {
+    @apply flex items-center justify-stretch border-t p-2;
+    border-color: var(--sunp-color-border);
+  }
+
+  .sunp-button-picker-ok {
+    @apply border-0 bg-transparent px-2 py-1 text-[15px];
+    color: var(--sunp-color-primary);
+
+    &:active {
+      &::before {
+        content: '';
+        background-color: var(--sunp-color-primary);
+        opacity: 0.1;
+      }
+    }
+  }
+
+  .sunp-button-picker-cancel {
+    @apply border-0 bg-transparent px-2 py-1 text-[15px];
+    color: var(--sunp-color-text-secondary);
+
+    &:active {
+      &::before {
+        content: '';
+        background-color: var(--sunp-color-weak);
+        opacity: 0.1;
+      }
+    }
+  }
+
+  .sunp-button-picker-clear {
+    @apply border-0 bg-transparent px-2 py-1 text-[15px];
+    color: var(--sunp-color-warning);
+
+    &:active {
+      &::before {
+        content: '';
+        background-color: var(--sunp-color-warning);
+        opacity: 0.1;
+      }
+    }
+  }
+}

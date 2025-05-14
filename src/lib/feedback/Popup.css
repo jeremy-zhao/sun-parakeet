@@ -1,0 +1,58 @@
+.sunp-popup-wrapper {
+  @apply contents;
+}
+
+html div:where(.sunp-popup) {
+  @apply fixed;
+}
+
+html div:where(.sunp-popup-center) {
+  @apply left-1/2 top-1/2;
+  transition: scale 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  translate: -50% -50%;
+  scale: 0;
+
+  &.sunp-popup-visible {
+    scale: 1;
+  }
+}
+
+html div:where(.sunp-popup-top) {
+  @apply left-0 right-0 top-0 pt-safe;
+  transition: translate 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  translate: 0 -100%;
+
+  &.sunp-popup-visible {
+    translate: 0 0;
+  }
+}
+
+html div:where(.sunp-popup-right) {
+  @apply bottom-0 right-0 top-0 pr-safe;
+  transition: translate 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  translate: 100% 0;
+
+  &.sunp-popup-visible {
+    translate: 0 0;
+  }
+}
+
+html div:where(.sunp-popup-bottom) {
+  @apply bottom-0 left-0 right-0 pb-safe;
+  transition: translate 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  translate: 0 100%;
+
+  &.sunp-popup-visible {
+    translate: 0 0;
+  }
+}
+
+html div:where(.sunp-popup-left) {
+  @apply bottom-0 left-0 top-0 pl-safe;
+  transition: translate 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+  translate: -100% 0;
+
+  &.sunp-popup-visible {
+    translate: 0 0;
+  }
+}

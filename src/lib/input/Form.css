@@ -1,0 +1,37 @@
+html form:where(.sunp-form) {
+  @apply !block;
+
+  & > * {
+    @apply !relative my-[1px] !overflow-visible;
+
+    &::before,
+    &::after {
+      @apply absolute left-0 right-0 h-[1px] border-0 border-l-[1em] border-solid;
+      content: '';
+      background-color: var(--sunp-color-border);
+      border-color: var(--sunp-color-background);
+    }
+
+    &::before {
+      top: -1px;
+      /* background-color: red; */
+    }
+
+    &::after {
+      bottom: -1px;
+      /* background-color: blue; */
+    }
+
+    & > svelte-css-wrapper {
+      @apply !block;
+    }
+  }
+
+  & > :first-child::before {
+    border-left-width: 0;
+  }
+
+  & > :last-child::after {
+    border-left-width: 0;
+  }
+}

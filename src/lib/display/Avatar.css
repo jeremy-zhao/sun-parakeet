@@ -1,0 +1,24 @@
+html div:where(.sunp-avatar) {
+  @apply relative block overflow-hidden;
+
+  .sunp-avatar__img {
+    @apply h-full w-full;
+    object-fit: var(--sunp-fit, 'cover');
+  }
+
+  .sunp-avatar__tip {
+    @apply flex h-full items-center justify-center;
+    min-width: 36px;
+    min-height: 36px;
+    color: var(--sunp-color-weak);
+    background-color: var(--sunp-color-box);
+  }
+}
+
+html div:where(.sunp-avatar-clickable) {
+  @apply cursor-pointer;
+
+  &:active {
+    scale: 0.95;
+  }
+}

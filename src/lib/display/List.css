@@ -1,0 +1,50 @@
+html ul:where(.sunp-list) {
+  @apply m-0 !block list-none p-0;
+
+  & > * {
+    @apply !relative my-[1px] !overflow-visible;
+
+    &::before,
+    &::after {
+      @apply absolute left-0 right-0 h-[1px] border-0 border-l-[1em] border-solid;
+      content: '';
+      background-color: var(--sunp-color-border);
+      border-color: var(--sunp-color-background);
+    }
+
+    &::before {
+      top: -1px;
+      /* background-color: red; */
+    }
+
+    &::after {
+      bottom: -1px;
+      /* background-color: blue; */
+    }
+  }
+
+  & > :first-child::before {
+    border-left-width: 0;
+  }
+
+  & > :last-child::after {
+    border-left-width: 0;
+  }
+
+  & > svelte-css-wrapper {
+    @apply !block;
+  }
+
+  .sunp-list__header {
+    @apply relative my-[1px] box-border px-4 py-2;
+    color: var(--sunp-color-text-secondary);
+    font-size: 15px;
+    line-height: 22px;
+    z-index: 1;
+
+    &::before,
+    &::after {
+      border-left-width: 0;
+    }
+  }
+}

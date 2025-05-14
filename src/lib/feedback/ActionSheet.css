@@ -1,0 +1,48 @@
+html div:where(.sunp-action-sheet) {
+  background-color: var(--sunp-color-background);
+
+  .sunp-action-sheet__header {
+    @apply box-content flex items-center justify-center;
+    font-size: 15px;
+    padding: 16px 12px;
+    color: var(--sunp-color-text-secondary);
+    border-bottom: 1px solid var(--sunp-color-border);
+  }
+
+  .sunp-action-sheet__list {
+    @apply m-0 list-none p-0;
+    @apply flex flex-col items-stretch justify-end;
+
+    .sunp-action-sheet__list-item {
+      @apply flex flex-col items-stretch justify-stretch last:border-none;
+      border-bottom: 1px solid var(--sunp-color-border);
+    }
+
+    .sunp-button-action-sheet-item {
+      @apply w-full;
+      color: var(--sunp-color-black);
+      font-size: 17px;
+      height: 50px;
+
+      &:active {
+        background-color: var(--sunp-color-box);
+      }
+    }
+  }
+
+  .sunp-action-sheet__footer {
+    @apply flex flex-col items-stretch justify-stretch;
+    border-top: 8px solid var(--sunp-color-border);
+
+    .sunp-button-action-sheet-cancel {
+      @apply w-full;
+      color: var(--sunp-color-text);
+      font-size: 17px;
+      height: 50px;
+
+      &:active {
+        background-color: var(--sunp-color-box);
+      }
+    }
+  }
+}

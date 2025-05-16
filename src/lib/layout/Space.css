@@ -12,15 +12,15 @@ html div:where(.sunp-space-block) {
 
 html div:where(.sunp-space-horizontal) {
   @apply flex-row;
-  column-gap: var(--sunp-gap-h, var(--sunp-gap, 8px));
+  column-gap: 8px;
+}
 
-  &.sunp-space-wrap {
-    @apply flex-wrap;
-    row-gap: calc(var(--sunp-gap-v, var(--sunp-gap, 8px)));
-  }
+html div:where(.sunp-space-wrap) {
+  @apply flex-wrap;
+  row-gap: 8px;
 }
 
 html div:where(.sunp-space-vertical) {
   @apply flex-col;
-  gap: calc(var(--sunp-gap-v, var(--sunp-gap, 8px)));
+  row-gap: 8px;
 }

@@ -4,9 +4,8 @@ html div:where(.sunp-input) {
   .sunp-input__element {
     @apply flex-1 appearance-none bg-transparent;
     @apply m-0 box-border max-h-full min-w-0 max-w-full border-none p-0 outline-none;
-    font-size: var(--sunp-font-size, 17px);
     line-height: 24px;
-    text-align: var(--sunp-text-align, left);
+    text-align: inherit;
   }
 
   .sunp-button-clear {

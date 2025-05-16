@@ -2,12 +2,15 @@ html div:where(.sunp-check-list-item) {
   @apply flex items-stretch justify-stretch;
 
   .sunp-check-list-item__label {
-    @apply relative flex flex-auto cursor-pointer select-none items-center justify-stretch pl-4 text-left;
+    @apply relative flex flex-auto select-none items-center justify-stretch pl-4 text-left;
     background-color: var(--sunp-color-background);
     -webkit-tap-highlight-color: transparent;
 
-    :active {
-      background-color: var(--sunp-color-box);
+    &:active::before {
+      @apply absolute inset-0;
+      content: '';
+      background-color: var(--sunp-color-weak);
+      opacity: 0.1;
     }
   }
 
@@ -33,13 +36,18 @@ html div:where(.sunp-check-list-item) {
       @apply visible;
     }
   }
-}
 
-html div:where(.sunp-check-list-item-disabled) {
-  @apply cursor-not-allowed;
-  color: var(--sunp-color-weak);
+  &.sunp-check-list-item-disabled {
+    .sunp-check-list-item__label {
+      color: var(--sunp-color-weak);
+    }
 
-  .sunp-check-list-item__icon {
-    color: var(--sunp-color-weak);
+    .sunp-check-list-item__element {
+      @apply cursor-not-allowed;
+    }
+
+    .sunp-check-list-item__icon {
+      color: var(--sunp-color-weak);
+    }
   }
 }

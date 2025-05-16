@@ -3,6 +3,9 @@
 
   import { onNavigate } from '$app/navigation'
   import type { HTMLAttributes } from 'svelte/elements'
+  import { fly } from 'svelte/transition'
+  import type { TransitionConfig } from 'svelte/transition'
+  import { isIOS } from '../common'
 
   /** 页面 */
   export interface PageAttributes extends HTMLAttributes<EventTarget> {
@@ -16,9 +19,6 @@
 </script>
 
 <script lang="ts">
-  import { fly } from 'svelte/transition'
-  import type { TransitionConfig } from 'svelte/transition'
-
   let {
     page = $bindable<HTMLElement>(),
     duration = 150,
@@ -37,6 +37,7 @@
       case 'forward':
         return fly(node, { duration, x: '100%' })
       case 'backward':
+        if (isIOS()) return {}
         return fly(node, { duration, x: '-100%' })
       default:
         return fly(node, { duration, x: '0' })
@@ -48,6 +49,7 @@
       case 'forward':
         return fly(node, { duration, x: '-100%' })
       case 'backward':
+        if (isIOS()) return {}
         return fly(node, { duration, x: '100%' })
       default:
         return fly(node, { duration, x: '0' })

@@ -13,6 +13,10 @@ html div:where(.sunp-collapse) {
   .sunp-collapse__header-text {
     @apply flex-auto text-left;
     translate: 0 1px;
+
+    @supports (-webkit-touch-callout: none) {
+      translate: 0 0.5px;
+    }
   }
 
   .sunp-collapse__header-icon {

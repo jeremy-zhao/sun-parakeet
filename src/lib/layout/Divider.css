@@ -18,16 +18,12 @@ html div:where(.sunp-divider-horizontal) {
   &.sunp-divider-right::after {
     max-width: 10%;
   }
-
-  .sunp-divider__content {
-    margin: 0 var(--sunp-margin-x, 1rem);
-  }
 }
 
 html span:where(.sunp-divider-vertical) {
   @apply relative inline-block border-0 border-l border-solid;
   height: 0.9em;
   border-color: var(--sunp-color-border);
-  margin: 0 var(--sunp-margin-x, 1rem);
+  margin: 0 0.5rem;
   top: 0.1em;
 }

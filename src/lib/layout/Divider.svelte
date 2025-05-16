@@ -26,11 +26,7 @@
     class="sunp-divider sunp-divider-horizontal sunp-divider-{contentPosition} {clazz}"
     {...props}
   >
-    {#if children}
-      <div class="sunp-divider__content">
-        {@render children()}
-      </div>
-    {/if}
+    {@render children?.()}
   </div>
 {:else if direction === 'vertical'}
   <span class="sunp-divider sunp-divider-vertical {clazz}"></span>

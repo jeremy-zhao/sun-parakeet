@@ -11,15 +11,13 @@
   export interface ImageAttributes extends HTMLImgAttributes {
     /** 占位图 */
     fallback?: string | IconOption | Snippet
-    /** 图片的填充模式 */
-    fit?: 'contain' | 'cover' | 'fill' | 'none' | 'scale-down'
     /** 容器点击事件 */
     onClick?: (e: MouseEvent) => void
   }
 </script>
 
 <script lang="ts">
-  let { fallback, fit = 'fill', class: clazz, style, onClick, ...props }: ImageAttributes = $props()
+  let { fallback, class: clazz, style, onClick, ...props }: ImageAttributes = $props()
 
   let _status = $state('loading')
 
@@ -65,6 +63,6 @@
     </div>
   {/if}
   {#if _status !== 'error'}
-    <img use:useImg class="sunp-image__element" style:object-fit={fit} {...props} />
+    <img use:useImg class="sunp-image__element" {...props} />
   {/if}
 </div>

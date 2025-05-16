@@ -1,6 +1,5 @@
 <script lang="ts" module>
   import './Radio.css'
-  import RadioIcon from '../icons/radio-line.svg?raw'
 
   import { getContext, onMount } from 'svelte'
   import { isNonEmpty } from '../common'
@@ -91,7 +90,7 @@
       {:else if typeof icon === 'object'}
         <Icon {...icon} {size} />
       {:else}
-        <Icon class="sunp-radio__icon-default" svg={RadioIcon} {size} />
+        <i class="sunp-radio__icon-default"></i>
       {/if}
     {/if}
   </div>

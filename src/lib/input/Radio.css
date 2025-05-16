@@ -1,6 +1,5 @@
 html label:where(.sunp-radio) {
   @apply inline-flex cursor-pointer items-center justify-stretch;
-  font-size: var(--sunp-font-size, 17px);
   -webkit-tap-highlight-color: transparent;
 
   .sunp-radio__input {
@@ -16,7 +15,7 @@ html label:where(.sunp-radio) {
 
   .sunp-radio__content {
     @apply flex-auto select-none whitespace-nowrap p-0 pl-2;
-    translate: 0 1px;
+    translate: 0 0.5px;
   }
 
   &.sunp-radio-checked {
@@ -26,8 +25,8 @@ html label:where(.sunp-radio) {
     }
 
     .sunp-radio__icon-default {
-      color: var(--sunp-color-primary);
-      stroke: var(--sunp-color-background);
+      @apply h-full w-full rounded-full;
+      border: 3px solid var(--sunp-color-white);
     }
   }
 
@@ -49,8 +48,7 @@ html label:where(.sunp-radio) {
       }
 
       .sunp-radio__icon-default {
-        color: var(--sunp-color-weak);
-        stroke: var(--sunp-color-box);
+        background-color: var(--sunp-color-weak);
       }
     }
   }

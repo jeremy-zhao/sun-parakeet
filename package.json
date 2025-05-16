@@ -2,7 +2,7 @@
   "name": "sun-parakeet",
   "author": "Jeremy Zhao",
   "license": "MIT",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Mobile UI components for Svelte 5.",
   "keywords": [
     "svelte ui",

@@ -38,6 +38,10 @@ html button:where(.sunp-button) {
     @apply relative overflow-hidden;
     translate: 0 1px;
     z-index: 2;
+
+    @supports (-webkit-touch-callout: none) {
+      translate: 0 0.5px;
+    }
   }
 
   .sunp-button__loading {

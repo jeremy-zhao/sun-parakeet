@@ -3,6 +3,7 @@ html div:where(.sunp-image) {
 
   .sunp-image__element {
     @apply h-full w-full;
+    object-fit: inherit;
   }
 
   .sunp-image__tip {

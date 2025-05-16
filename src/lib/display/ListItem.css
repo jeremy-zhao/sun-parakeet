@@ -1,11 +1,12 @@
 html li:where(.sunp-list-item) {
   @apply relative list-none;
   background-color: var(--sunp-color-background);
+  min-height: 48px;
 
   .sunp-list-item__inner {
     @apply relative box-border h-full w-full border-0 p-2 pl-4 text-left;
     @apply flex flex-nowrap items-center justify-stretch;
-    min-height: var(--sunp-min-height, 48px);
+    min-height: inherit;
     background-color: var(--sunp-color-background);
 
     .sunp-list-item__aside {

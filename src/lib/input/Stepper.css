@@ -1,10 +1,5 @@
 html div:where(.sunp-stepper) {
-  @apply flex items-stretch justify-stretch;
-
-  & > * {
-    @apply m-0;
-    margin-right: var(--sunp-gap, 4px);
-  }
+  @apply flex items-stretch justify-stretch gap-1;
 
   .sunp-stepper__button {
     @apply relative box-border border-0 p-0;

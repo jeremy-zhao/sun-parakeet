@@ -1,5 +1,5 @@
 html div:where(.sunp-index-bar) {
-  @apply h-full overflow-y-auto;
+  @apply h-full overflow-y-auto overflow-x-hidden;
   scrollbar-width: none;
 
   ::-webkit-scrollbar {

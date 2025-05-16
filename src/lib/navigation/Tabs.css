@@ -1,5 +1,5 @@
 html nav:where(.sunp-tabs) {
-  @apply relative overflow-x-auto overflow-y-hidden scroll-smooth px-2 text-xs;
+  @apply relative overflow-x-auto overflow-y-hidden scroll-smooth px-2 text-sm;
   @apply flex flex-nowrap items-center justify-stretch;
   color: var(--sunp-color-text);
 
@@ -52,7 +52,7 @@ html nav:where(.sunp-tabs) {
     @apply flex flex-row flex-nowrap items-center justify-center;
 
     .sunp-tabs-item__inner-text {
-      @apply mx-1 whitespace-nowrap text-nowrap text-[14px];
+      @apply mx-1 whitespace-nowrap text-nowrap;
     }
   }
 }

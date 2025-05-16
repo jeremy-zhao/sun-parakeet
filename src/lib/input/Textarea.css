@@ -1,12 +1,5 @@
-html div:where(.sunp-text-area) {
+.sunp-text-area {
   @apply relative max-h-full w-full max-w-full;
-
-  .sunp-text-area__element {
-    @apply m-0 box-border block max-h-full min-h-6 w-full max-w-full flex-auto resize-none appearance-none border-0 bg-transparent p-0 outline-none;
-    font-size: 17px;
-    line-height: 1.5;
-    text-align: var(--sunp-text-align, left);
-  }
 
   .sunp-text-area__element-hidden {
     @apply invisible absolute left-0 top-0;
@@ -24,4 +17,10 @@ html div:where(.sunp-text-area) {
       color: var(--sunp-color-weak);
     }
   }
+}
+
+html textarea:where(.sunp-text-area__element) {
+  @apply m-0 box-border block max-h-full min-h-6 w-full max-w-full flex-auto resize-none appearance-none border-0 bg-transparent p-0 outline-none;
+  font-size: 17px;
+  line-height: 1.5;
 }

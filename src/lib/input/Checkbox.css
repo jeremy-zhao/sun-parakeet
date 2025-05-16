@@ -1,6 +1,5 @@
 html label:where(.sunp-checkbox) {
   @apply inline-flex cursor-pointer items-center justify-stretch;
-  font-size: var(--sunp-font-size, 17px);
   -webkit-tap-highlight-color: transparent;
 
   .sunp-checkbox__input {
@@ -17,6 +16,10 @@ html label:where(.sunp-checkbox) {
   .sunp-checkbox__content {
     @apply flex-auto select-none whitespace-nowrap p-0 pl-2;
     translate: 0 1px;
+
+    @supports (-webkit-touch-callout: none) {
+      translate: 0 0;
+    }
   }
 
   &.sunp-checkbox-checked {
@@ -34,6 +37,8 @@ html label:where(.sunp-checkbox) {
   }
 
   &.sunp-checkbox-disabled {
+    @apply cursor-not-allowed;
+
     .sunp-checkbox__icon {
       background-color: var(--sunp-color-box);
       border-color: var(--sunp-color-border);

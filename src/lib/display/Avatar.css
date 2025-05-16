@@ -1,9 +1,10 @@
 html div:where(.sunp-avatar) {
   @apply relative block overflow-hidden;
+  object-fit: cover;
 
   .sunp-avatar__img {
     @apply h-full w-full;
-    object-fit: var(--sunp-fit, 'cover');
+    object-fit: inherit;
   }
 
   .sunp-avatar__tip {

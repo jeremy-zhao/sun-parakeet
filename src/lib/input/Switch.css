@@ -77,11 +77,11 @@ html div:where(.sunp-switch-disabled) {
   @apply cursor-not-allowed opacity-40;
 }
 
-html form:where(.sunp-form-vertical) div:where(.sunp-switch) {
+html div:where(.sunp-form-item-vertical) div:where(.sunp-switch) {
   margin: 4px auto 0 0;
 }
 
-html form:where(.sunp-form-horizontal) div:where(.sunp-switch) {
+html div:where(.sunp-form-item-horizontal) div:where(.sunp-switch) {
   @apply relative;
   margin: -3px 0 -3px auto;
 }

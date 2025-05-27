@@ -1,0 +1,11 @@
+html div:where(.sunp-calendar-picker) {
+  .sunp-calendar-picker__calendar {
+    @apply p-2;
+  }
+}
+
+.sunp-calendar-picker-input {
+  &.sunp-calendar-picker-input-disabled {
+    color: var(--sunp-color-weak);
+  }
+}

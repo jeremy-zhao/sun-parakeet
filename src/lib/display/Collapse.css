@@ -36,7 +36,7 @@ html div:where(.sunp-collapse) {
     transition: opacity 0.15s ease-out;
 
     & > * {
-      @apply !relative my-[1px] !overflow-visible;
+      @apply relative my-[1px] overflow-visible;
 
       &::before {
         @apply absolute left-0 right-0 h-[1px];

@@ -2,7 +2,7 @@ html form:where(.sunp-form) {
   @apply !block;
 
   & > * {
-    @apply !relative my-[1px] !overflow-visible;
+    @apply relative my-[1px] overflow-visible;
 
     &::before,
     &::after {

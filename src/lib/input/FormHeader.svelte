@@ -2,9 +2,9 @@
   import './FormHeader.css'
   import type { HTMLAttributes } from 'svelte/elements'
 
-  let { children, ...props }: HTMLAttributes<EventTarget> = $props()
+  let { children, class: clazz, ...props }: HTMLAttributes<EventTarget> = $props()
 </script>
 
-<header class="sunp-form-header" {...props}>
+<header class="sunp-form-header {clazz}" {...props}>
   {@render children?.()}
 </header>

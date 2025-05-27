@@ -140,11 +140,11 @@ html div:where(.sunp-stepper) {
   }
 }
 
-html form:where(.sunp-form-vertical) div:where(.sunp-stepper) {
+html div:where(.sunp-form-item-vertical) div:where(.sunp-stepper) {
   margin: 4px auto 0 0;
 }
 
-html form:where(.sunp-form-horizontal) div:where(.sunp-stepper) {
+html div:where(.sunp-form-item-horizontal) div:where(.sunp-stepper) {
   @apply relative;
   margin: -3px 0 -3px auto;
 }

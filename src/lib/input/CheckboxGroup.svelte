@@ -87,9 +87,7 @@
         .map(([k, _]) => k)
 
       value = Array.from(values)
-
       _onChange?.(value)
-      formItem?.onChange(value)
     },
   })
 

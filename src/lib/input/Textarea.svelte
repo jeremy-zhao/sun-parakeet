@@ -1,9 +1,8 @@
 <script lang="ts" module>
   import './Textarea.css'
 
-  import { getContext, onMount, type Snippet } from 'svelte'
+  import type { Snippet } from 'svelte'
   import type { HTMLTextareaAttributes } from 'svelte/elements'
-  import type { FormItemContext } from './FormItem.svelte'
 
   /** 文本域属性 */
   export interface TextareaAttributes extends HTMLTextareaAttributes {
@@ -30,8 +29,6 @@
 </script>
 
 <script lang="ts">
-  let formItem = getContext<FormItemContext>('sun_parakeet_form_item')
-
   let {
     value = $bindable(''),
     rows = 2,
@@ -55,7 +52,6 @@
   }
 
   function handleInput() {
-    formItem?.onChange(value)
     if (!clone || !autosize) return
 
     const lines = getLineCount(clone)
@@ -67,14 +63,6 @@
       _rows = lines < minRows ? minRows : maxRows && lines > maxRows ? maxRows : lines
     }
   }
-
-  onMount(() => {
-    formItem?.register(textarea)
-
-    return () => {
-      formItem?.unregister(textarea)
-    }
-  })
 </script>
 
 <div class="sunp-text-area" class:sunp-text-area-disabled={disabled}>

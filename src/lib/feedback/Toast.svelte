@@ -92,7 +92,7 @@
    */
   export async function showToast(option: ShowToastOption) {
     if (!_singleton) {
-      console.error('[Toast]', '未引用 Toast 组件')
+      console.error('[SunParakeet:Toast]', '未引用 Toast 组件')
       return
     }
 
@@ -101,7 +101,7 @@
     if (key && key === _option?.key && key !== '__sun_parakeet_loading__') return
 
     if (!text && !icon) {
-      console.warn('[Toast]', '至少指定 text 和 icon 中的一个')
+      console.warn('[SunParakeet:Toast]', '至少指定 text 和 icon 中的一个')
       return
     }
 

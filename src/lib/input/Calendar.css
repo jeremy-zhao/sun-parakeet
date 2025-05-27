@@ -1,0 +1,112 @@
+html div:where(.sunp-calendar) {
+  @apply w-full;
+  background-color: var(--sunp-color-background);
+  color: var(--sunp-color-text);
+
+  .sunp-calendar__header {
+    @apply flex items-center justify-stretch;
+
+    .sunp-button-calendar-header-action {
+      @apply px-0;
+      color: var(--sunp-color-primary);
+      width: 37px;
+      height: 37px;
+
+      &:active {
+        &::before {
+          content: '';
+          background-color: var(--sunp-color-primary);
+          opacity: 0.1;
+        }
+      }
+
+      &:disabled {
+      }
+    }
+
+    .sunp-button-disabled {
+      @apply cursor-not-allowed bg-transparent px-0;
+      color: var(--sunp-color-weak);
+      width: 37px;
+      height: 37px;
+    }
+
+    .sunp-calendar__header-title {
+      @apply flex-1 text-center;
+      font-size: 17px;
+    }
+  }
+
+  .sunp-calendar__marks {
+    @apply grid grid-cols-7 border-b px-2;
+    height: 45px;
+
+    .sunp-calendar__mark {
+      @apply flex items-center justify-center;
+      font-size: 15px;
+    }
+  }
+
+  .sunp-calendar__cells {
+    @apply grid select-none grid-cols-7 px-2;
+    row-gap: 4px;
+
+    .sunp-calendar__cell {
+      @apply relative flex items-center justify-center;
+      height: 48px;
+    }
+
+    .sunp-calendar__cell-today {
+      color: var(--sunp-color-primary);
+    }
+
+    .sunp-calendar__cell-other-month {
+      color: var(--sunp-color-weak);
+    }
+
+    .sunp-calendar__cell-selected {
+      background-color: var(--sunp-color-primary);
+      color: var(--sunp-color-white);
+
+      &.sunp-calendar__cell-other-month {
+        background-color: transparent;
+        color: var(--sunp-color-primary);
+
+        &::before {
+          @apply absolute inset-0;
+          content: '';
+          background-color: var(--sunp-color-primary);
+          opacity: 0.2;
+        }
+      }
+
+      &.sunp-calendar__cell-selected-begin {
+        @apply overflow-hidden rounded-es-md rounded-ss-md;
+      }
+
+      &.sunp-calendar__cell-selected-end {
+        @apply overflow-hidden rounded-ee-md rounded-se-md;
+      }
+    }
+
+    .sunp-calendar__cell-disabled {
+      @apply relative;
+      color: var(--sunp-color-light);
+
+      &::after {
+        @apply absolute inset-x-0;
+        content: '';
+        top: 50%;
+        translate: 0 -50%;
+        height: 1px;
+        background-color: var(--sunp-color-light);
+      }
+    }
+  }
+}
+
+html div:where(.sunp-calendar-single) {
+  .sunp-calendar__cell {
+    @apply cursor-pointer select-none;
+  }
+}

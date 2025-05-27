@@ -1,18 +1,14 @@
 <script lang="ts" module>
   import './Input.css'
-
   import CloseIcon from '../icons/close-circle-fill.svg?raw'
 
   import Button from '../common/Button.svelte'
   import Icon from '../common/Icon.svelte'
-
-  import { getContext, onMount } from 'svelte'
-
+  import { onMount } from 'svelte'
   import type { HTMLInputAttributes } from 'svelte/elements'
-  import type { FormItemContext } from './FormItem.svelte'
 
   /** 输入框类型 */
-  export type InputTypeAttribute = 'text' | 'password' | 'number'
+  export type InputTypeAttribute = 'email' | 'number' | 'password' | 'tel' | 'text' | 'url'
 
   /** 输入框属性 */
   export interface InputAttributes extends HTMLInputAttributes {
@@ -42,13 +38,10 @@
     ...props
   }: InputAttributes = $props()
 
-  let formItem = getContext<FormItemContext>('sun_parakeet_form_item')
-
   let input: HTMLInputElement
 
   function handleChange() {
     onChange?.(value)
-    formItem?.onChange(value)
   }
 
   function handleClear() {
@@ -58,12 +51,6 @@
 
   onMount(() => {
     input.addEventListener('input', handleChange)
-
-    formItem?.register(input)
-
-    return () => {
-      formItem?.unregister(input)
-    }
   })
 </script>
 
@@ -73,7 +60,7 @@
   class:sunp-input-disabled={disabled}
   {style}
 >
-  <input bind:this={input} bind:value class="sunp-input__element" {type} {disabled} {...props} />
+  <input bind:this={input} bind:value class="sunp-input__element" type="" {disabled} {...props} />
   {#if clearable && value?.length}
     <Button color="clear" onclick={handleClear} block>
       <Icon size={22} svg={CloseIcon} />

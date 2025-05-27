@@ -11,11 +11,11 @@ html div:where(.sunp-index-bar) {
     @apply m-0 list-none p-0;
     color: var(--sunp-color-weak);
     translate: 0 -50%;
-    z-index: 1;
     touch-action: pinch-zoom;
+    z-index: 1000;
 
     .sunp-index-bar__side-item {
-      @apply relative m-0 box-border flex cursor-pointer select-none items-center justify-center rounded-full px-2;
+      @apply relative m-0 box-border flex cursor-pointer select-none items-center justify-center px-2;
 
       .sunp-index-bar__side-item-handle {
         @apply box-border flex items-center justify-center;

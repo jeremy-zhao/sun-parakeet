@@ -1,0 +1,11 @@
+html div:where(.sunp-date-picker) {
+  .sunp-date-picker__view {
+    @apply p-2;
+  }
+}
+
+.sunp-date-picker-input {
+  &.sunp-date-picker-input-disabled {
+    color: var(--sunp-color-weak);
+  }
+}

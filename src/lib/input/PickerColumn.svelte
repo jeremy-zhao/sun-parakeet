@@ -7,9 +7,9 @@
   import { onMount } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
 
-  export interface PickerItem {
+  export interface PickerItem<T = unknown> {
     /** 值 */
-    value: unknown
+    value: T
     /** 显示文本。不填则显示 value */
     label?: string
   }

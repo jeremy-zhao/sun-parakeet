@@ -1,10 +1,9 @@
 <script lang="ts" module>
   import './RadioGroup.css'
 
-  import { getContext, setContext, untrack } from 'svelte'
+  import { setContext, untrack } from 'svelte'
   import { generateUUID } from '../common'
   import Space, { type SpaceAttributes } from '../layout/Space.svelte'
-  import { type FormItemContext } from './FormItem.svelte'
 
   export interface RadioGroupAttributes extends SpaceAttributes {
     /** 选中的选项 */
@@ -47,8 +46,6 @@
     ...props
   }: RadioGroupAttributes = $props()
 
-  let formItem = getContext<FormItemContext>('sun_parakeet_form_item')
-
   let registered = new Map<
     PropertyKey,
     { input: HTMLInputElement; check: (checked: boolean) => void }
@@ -83,7 +80,6 @@
       value = checked[0]
 
       _onChange?.(value)
-      formItem?.onChange(value)
     },
   })
 

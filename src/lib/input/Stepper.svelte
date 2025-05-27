@@ -3,10 +3,9 @@
   import MinusIcon from '../icons/subtract-line.svg?raw'
   import PlusIcon from '../icons/add-line.svg?raw'
 
-  import { getContext, type Snippet } from 'svelte'
+  import type { Snippet } from 'svelte'
   import type { HTMLInputAttributes } from 'svelte/elements'
   import Icon from '../common/Icon.svelte'
-  import type { FormItemContext } from './FormItem.svelte'
 
   export interface StepperAttributes extends HTMLInputAttributes {
     /** 值 */
@@ -58,8 +57,6 @@
 
   let _input = $state<HTMLInputElement>()
 
-  let formItem = getContext<FormItemContext | undefined>('sun_parakeet_form_item')
-
   let _focus = $state(false)
   let opacity = $derived(_focus && !disabled ? 1 : 0)
 
@@ -87,7 +84,6 @@
       const oldValue = value
       value = num
       onChange?.(num, oldValue)
-      formItem?.onChange(num)
     }
   }
 

@@ -1,11 +1,10 @@
 <script lang="ts" module>
   import './CheckList.css'
 
-  import { getContext, setContext, untrack, type Snippet } from 'svelte'
+  import { setContext, untrack, type Snippet } from 'svelte'
   import List from '../display/List.svelte'
   import Checkbox from './Checkbox.svelte'
   import { type HTMLAttributes } from 'svelte/elements'
-  import { type FormItemContext } from './FormItem.svelte'
 
   export interface CheckListAttributes extends HTMLAttributes<EventTarget> {
     /** 选中的选项 */
@@ -55,8 +54,6 @@
   let allChecked = $state(false)
   let allIndeterminate = $state(false)
 
-  let formItem = getContext<FormItemContext>('sun_parakeet_form_item')
-
   let registered = new Map<
     PropertyKey,
     { input: HTMLInputElement; check: (checked: boolean) => void }
@@ -92,7 +89,6 @@
       }
 
       _onChange?.(value)
-      formItem?.onChange(value)
     },
   })
 

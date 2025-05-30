@@ -3,15 +3,13 @@ import LoadingIcon from '../icons/loading.svg?raw'
 
 import { browser } from '$app/environment'
 import { type IconOption } from '../common/Icon.svelte'
-import { showToast, hideToast, modifyToast } from './Toast.svelte'
+import { showToast, hideToast, modifyToast, type ShowToastOption } from './Toast.svelte'
 
 export interface ShowLoadingOption {
   /** 更改图标 */
   icon?: string | IconOption
   /** 提示文本 */
   text?: string
-  /** 用户点击返回按钮时回调 */
-  onHistoryBack?: (option: ShowLoadingOption) => void
 }
 
 const key = '__sun_parakeet_loading__'
@@ -30,9 +28,9 @@ export async function showLoading(option: ShowLoadingOption = {}) {
   if (_counter < 0) _counter = 0
   _counter++
 
-  const { icon, text, onHistoryBack } = option
+  const { icon, text } = option
 
-  const _option = {
+  const _option: ShowToastOption = {
     key,
     text,
     icon:
@@ -43,8 +41,7 @@ export async function showLoading(option: ShowLoadingOption = {}) {
           : { ...defaultIcon, svg: LoadingIcon },
     duration: 0,
     mask: true,
-    keep: true,
-    onHistoryBack: () => onHistoryBack?.(option),
+    keepOpen: true,
   }
 
   if (_counter <= 1) {

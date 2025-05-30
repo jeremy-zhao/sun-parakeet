@@ -1,5 +1,5 @@
 .sunp-popup-wrapper {
-  @apply contents;
+  @apply relative;
 }
 
 html div:where(.sunp-popup) {

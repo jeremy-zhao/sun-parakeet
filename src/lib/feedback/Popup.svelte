@@ -2,11 +2,11 @@
   import './mask.css'
   import './Popup.css'
 
-  import { pushState } from '$app/navigation'
-  import { page } from '$app/state'
   import { onMount, untrack } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
+  import { get } from 'svelte/store'
   import { delay } from '../common'
+  import Layer, { layers, pushLayer, isPopupLayer, type PopupLayer } from './Layer.svelte'
 
   /** 弹出层位置 */
   export type PopupPosition = 'center' | 'top' | 'right' | 'bottom' | 'left'
@@ -34,8 +34,6 @@
       }
     }
   }
-
-  let _layer = 0
 </script>
 
 <script lang="ts">
@@ -53,16 +51,37 @@
     ...props
   }: PopupAttributes = $props()
 
-  let index = -1
   let zIndex = $state(0)
   let renderChildren = $state(visible)
   let closeTimeout: NodeJS.Timeout | undefined
 
-  let _visible = $derived.by(() => {
-    const opening = page.state.__sun_parakeet_popup__
-    const re = !!(opening && opening.indexOf(index) >= 0)
-    return re
-  })
+  let _layer = $state<PopupLayer | undefined>()
+  let _visible = $derived(!!_layer && !_layer.destroyed)
+
+  function showPopup() {
+    renderChildren = true
+
+    const indexes = get(layers)
+      .filter(x => isPopupLayer(x))
+      .map(x => x.index)
+
+    const index = indexes.length ? Math.max(...indexes) + 1 : 0
+    zIndex = 10000 + index
+
+    _layer = { type: 'popup', index }
+    pushLayer(_layer)
+  }
+
+  function hidePopup() {
+    if (!_layer || _layer.destroyed) return
+
+    _layer.destroyed = true
+    history.back()
+
+    if (destroyOnClose) {
+      closeTimeout = setTimeout(() => (renderChildren = false), 150)
+    }
+  }
 
   $effect(() => {
     visible
@@ -76,21 +95,9 @@
       }
 
       if (visible) {
-        renderChildren = true
-        index = _layer
-        zIndex = 10000 + _layer++
-
-        const opening = new Set(page.state.__sun_parakeet_popup__)
-        opening.add(index)
-        pushState('', { __sun_parakeet_popup__: [...opening] })
+        showPopup()
       } else {
-        _layer--
-        index = -1
-        history.back()
-
-        if (destroyOnClose) {
-          closeTimeout = setTimeout(() => (renderChildren = false), 150)
-        }
+        hidePopup()
       }
     })
   })
@@ -98,6 +105,7 @@
   function handleClickMask(e: MouseEvent) {
     e.stopPropagation()
     if (keepOpenOnClickMask) return
+
     visible = false
     onClose?.()
   }
@@ -121,6 +129,8 @@
     }
   })
 </script>
+
+<Layer />
 
 <div bind:this={_self} class="sunp-popup-wrapper" style:z-index={zIndex}>
   <div

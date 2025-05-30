@@ -2,11 +2,10 @@
   import './mask.css'
   import './Toast.css'
 
-  import { page } from '$app/state'
-  import { pushState } from '$app/navigation'
   import { onMount } from 'svelte'
   import type { HTMLAttributes } from 'svelte/elements'
   import { delay } from '../common'
+  import Layer, { layers, pushLayer, type ToastLayer } from './Layer.svelte'
   import Icon, { type IconOption } from '../common/Icon.svelte'
 
   /** 轻提示配置 */
@@ -26,17 +25,7 @@
   }
 
   /** 轻提示 */
-  export interface ToastAttributes extends HTMLAttributes<EventTarget> {
-    children?: undefined
-  }
-
-  declare global {
-    namespace App {
-      interface PageState {
-        __sun_parakeet_toast_visible__?: boolean
-      }
-    }
-  }
+  export type ToastAttributes = Omit<HTMLAttributes<EventTarget>, 'children'>
 
   let _singleton: HTMLElement | null
   let _mask: HTMLElement | null
@@ -57,8 +46,6 @@
 
       _toast = el.querySelector<HTMLElement>('.sunp-toast')
       _toast!.addEventListener('click', onClickClose)
-
-      window.addEventListener('popstate', handlePopState)
     }
   }
 
@@ -69,13 +56,11 @@
     _mask = null
     _toast = null
     _singleton.remove()
-    window.removeEventListener('popstate', handlePopState)
-    window.removeEventListener('beforeunload', handleUnload)
   }
 
-  let _visible = false
   let _option = $state<ShowToastOption | undefined>()
   let _timer: NodeJS.Timeout | undefined
+  let _layer: ToastLayer | undefined
 
   function onClickClose() {
     if (!_option || _option.keepOpen) return
@@ -83,7 +68,8 @@
   }
 
   function show() {
-    pushState('', { __sun_parakeet_toast_visible__: true })
+    _layer = { type: 'toast', keepOpen: !!_option!.keepOpen }
+    pushLayer(_layer)
   }
 
   /**
@@ -105,8 +91,6 @@
       return
     }
 
-    _visible = true
-
     await _hideToast()
     _option = { ...option, duration }
     show()
@@ -122,13 +106,14 @@
   }
 
   async function _hideToast() {
-    if (!page.state.__sun_parakeet_toast_visible__) return
+    if (!_layer || _layer.destroyed) return
 
     if (_timer) {
       clearTimeout(_timer)
       _timer = undefined
     }
 
+    _layer.destroyed = true
     history.back()
     await delay(150)
     _option = undefined
@@ -141,7 +126,6 @@
   export function hideToast(key?: string) {
     if (!_toast || (key && key !== _option?.key)) return
 
-    _visible = false
     _hideToast()
   }
 
@@ -157,46 +141,27 @@
     const { text, icon } = option
     _option = { ..._option, text: text ?? _option.text, icon: icon ?? _option.icon }
   }
-
-  async function handlePopState() {
-    if (!_option?.keepOpen || !_visible) return
-    await delay()
-    if (!_option?.keepOpen || !_visible) return
-
-    show()
-    window.addEventListener('beforeunload', handleUnload)
-    window.addEventListener('click', removeUnload)
-  }
-
-  function handleUnload(e: BeforeUnloadEvent) {
-    e.preventDefault()
-  }
-
-  function removeUnload() {
-    if (_visible) return
-    window.removeEventListener('beforeunload', handleUnload)
-  }
 </script>
 
 <script lang="ts">
   let _self: HTMLDivElement
 
-  let { children, class: clazz, ...props }: ToastAttributes = $props()
+  let { class: clazz, ...props }: ToastAttributes = $props()
 
-  let visible = $state<boolean>(!!page.state.__sun_parakeet_toast_visible__)
+  let visible = $state(false)
   let cursor = $derived(_option && _option.duration && !_option.keepOpen ? 'pointer' : 'default')
 
-  $effect(() => {
-    page.state.__sun_parakeet_toast_visible__
-    setTimeout(() => (visible = !!page.state.__sun_parakeet_toast_visible__ && _visible))
+  layers.subscribe(cb => {
+    visible = !!_layer && !_layer.destroyed
   })
 
   onMount(() => {
     register(_self)
-
     return () => unregister(_self)
   })
 </script>
+
+<Layer />
 
 <div bind:this={_self} class="sunp-toast-wrapper" style:cursor>
   <div class="sunp-mask" class:sunp-mask-visible={visible && _option?.mask}></div>

@@ -1,8 +1,8 @@
 html div:where(.sunp-image) {
-  @apply relative;
+  @apply relative box-border;
 
   .sunp-image__element {
-    @apply h-full w-full;
+    @apply box-border block h-full w-full;
     object-fit: inherit;
   }
 

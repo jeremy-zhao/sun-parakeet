@@ -1,5 +1,5 @@
 html nav:where(.sunp-side-bar) {
-  @apply relative box-border overflow-hidden text-left text-xs;
+  @apply relative box-border overflow-hidden text-left text-sm;
   @apply block;
   color: var(--sunp-color-text-secondary);
   scroll-behavior: smooth;
@@ -14,6 +14,9 @@ html nav:where(.sunp-side-bar) {
   @apply flex items-stretch justify-start;
   @apply border-0 border-none border-transparent;
   -webkit-tap-highlight-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 
   .sunp-side-bar-item__inner {
     @apply relative flex flex-row flex-nowrap items-center justify-start;
@@ -23,7 +26,7 @@ html nav:where(.sunp-side-bar) {
     }
 
     .sunp-side-bar-item__inner-text {
-      @apply mx-1 flex-auto text-left text-[14px];
+      @apply mx-1 flex-auto text-left;
     }
   }
 

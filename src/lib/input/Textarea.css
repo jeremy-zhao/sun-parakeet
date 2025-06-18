@@ -20,7 +20,13 @@
 }
 
 html textarea:where(.sunp-text-area__element) {
-  @apply m-0 box-border block max-h-full min-h-6 w-full max-w-full flex-auto resize-none appearance-none border-0 bg-transparent p-0 outline-none;
+  @apply m-0 box-border block max-h-full min-h-6 w-full max-w-full border-0 p-0;
+  @apply flex-auto resize-none appearance-none bg-transparent outline-none;
+  font-family: inherit;
   font-size: 17px;
-  line-height: 1.5;
+  line-height: 26px;
+
+  &::placeholder {
+    color: var(--sunp-color-weak);
+  }
 }

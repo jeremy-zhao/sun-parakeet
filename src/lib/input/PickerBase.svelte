@@ -47,7 +47,7 @@
 <Popup class="sunp-picker {clazz}" bind:visible {...props}>
   <header class="sunp-picker__header">
     <Button color="picker-cancel" onclick={handleCancel}>取消</Button>
-    <div class="flex-1 text-center">
+    <div class="sunp-picker__header-title">
       {#if typeof header === 'string'}
         {header}
       {:else if typeof header === 'function'}

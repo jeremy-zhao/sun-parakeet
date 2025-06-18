@@ -3,6 +3,7 @@ html div:where(.sunp-collapse) {
     @apply flex w-full cursor-pointer items-center border-0 pl-4 pr-2;
     color: var(--sunp-color-text);
     background-color: var(--sunp-color-background);
+    font-family: inherit;
     font-size: 17px;
     line-height: 24px;
     min-height: 48px;

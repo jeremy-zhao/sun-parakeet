@@ -12,6 +12,9 @@ html nav:where(.sunp-tab-bar) {
   @apply flex flex-1 cursor-pointer items-center justify-center bg-inherit text-inherit;
   @apply border-0 border-none border-transparent;
   -webkit-tap-highlight-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 
   &.sunp-tab-bar-item-selected {
     color: var(--sunp-color-primary);

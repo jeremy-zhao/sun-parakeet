@@ -21,7 +21,10 @@ html div:where(.sunp-action-sheet) {
     .sunp-button-action-sheet-item {
       @apply w-full;
       color: var(--sunp-color-black);
+      background-color: var(--sunp-color-background);
+      font-family: inherit;
       font-size: 17px;
+      line-height: 26px;
       height: 50px;
 
       &:active {
@@ -37,7 +40,10 @@ html div:where(.sunp-action-sheet) {
     .sunp-button-action-sheet-cancel {
       @apply w-full;
       color: var(--sunp-color-text);
+      background-color: var(--sunp-color-background);
+      font-family: inherit;
       font-size: 17px;
+      line-height: 26px;
       height: 50px;
 
       &:active {

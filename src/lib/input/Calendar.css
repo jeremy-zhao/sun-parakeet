@@ -1,5 +1,5 @@
 html div:where(.sunp-calendar) {
-  @apply w-full;
+  @apply box-border w-full;
   background-color: var(--sunp-color-background);
   color: var(--sunp-color-text);
 
@@ -7,7 +7,7 @@ html div:where(.sunp-calendar) {
     @apply flex items-center justify-stretch;
 
     .sunp-button-calendar-header-action {
-      @apply px-0;
+      @apply bg-transparent px-0;
       color: var(--sunp-color-primary);
       width: 37px;
       height: 37px;
@@ -38,8 +38,9 @@ html div:where(.sunp-calendar) {
   }
 
   .sunp-calendar__marks {
-    @apply grid grid-cols-7 border-b px-2;
+    @apply grid grid-cols-7 border-0 border-b border-solid px-2;
     height: 45px;
+    border-color: var(--sunp-color-border);
 
     .sunp-calendar__mark {
       @apply flex items-center justify-center;
@@ -53,7 +54,10 @@ html div:where(.sunp-calendar) {
 
     .sunp-calendar__cell {
       @apply relative flex items-center justify-center;
+      @apply border-0 bg-transparent text-base;
       height: 48px;
+      font-family: inherit;
+      color: var(--sunp-color-text);
     }
 
     .sunp-calendar__cell-today {

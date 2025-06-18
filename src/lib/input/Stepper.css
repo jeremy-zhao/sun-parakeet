@@ -8,6 +8,7 @@ html div:where(.sunp-stepper) {
     height: var(--sunp-size, 28px);
     color: var(--sunp-color-primary);
     background-color: var(--sunp-color-box);
+    font-family: inherit;
     -webkit-tap-highlight-color: transparent;
 
     &:active {

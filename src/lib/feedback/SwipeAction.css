@@ -1,8 +1,8 @@
 .sunp-swipe-action {
-  @apply relative cursor-grab touch-pan-y select-none overflow-hidden;
+  @apply relative box-border cursor-grab touch-pan-y select-none overflow-hidden;
 
   .sunp-swipe-action__track {
-    @apply relative overflow-visible;
+    @apply relative box-border overflow-visible;
   }
 
   &.sunp-swipe-action-animation {
@@ -12,24 +12,26 @@
   }
 
   .sunp-swipe-action__content {
+    @apply box-border;
+
     * {
       -webkit-user-drag: none;
     }
   }
 
   .sunp-swipe-action__actions {
-    @apply absolute flex w-auto items-stretch justify-center whitespace-nowrap;
+    @apply absolute box-border flex w-auto items-stretch justify-center whitespace-nowrap;
   }
 
   .sunp-swipe-action__actions-left {
     right: 100%;
     top: 0;
-    height: 100%;
+    bottom: 0;
   }
 
   .sunp-swipe-action__actions-right {
     left: 100%;
     top: 0;
-    height: 100%;
+    bottom: 0;
   }
 }

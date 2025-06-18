@@ -5,6 +5,10 @@ html div:where(.sunp-picker) {
     @apply flex items-center justify-stretch border-b p-2;
     border-color: var(--sunp-color-border);
     color: var(--sunp-color-text);
+
+    .sunp-picker__header-title {
+      @apply flex-1 text-center;
+    }
   }
 
   .sunp-picker__footer {

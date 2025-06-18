@@ -1,11 +1,21 @@
 html div:where(.sunp-input) {
   @apply inline-flex items-center justify-stretch overflow-hidden;
+  @apply box-border;
+  font-size: 17px;
+  line-height: 26px;
 
   .sunp-input__element {
     @apply flex-1 appearance-none bg-transparent;
     @apply m-0 box-border max-h-full min-w-0 max-w-full border-none p-0 outline-none;
-    line-height: 24px;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
     text-align: inherit;
+    text-size-adjust: 100%;
+
+    &::placeholder {
+      color: var(--sunp-color-weak);
+    }
   }
 
   .sunp-button-clear {

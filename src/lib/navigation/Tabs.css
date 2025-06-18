@@ -33,6 +33,9 @@ html nav:where(.sunp-tabs) {
   @apply flex items-center justify-center;
   @apply border-0 border-none border-transparent;
   -webkit-tap-highlight-color: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
 
   &.sunp-tabs-item-selected {
     color: var(--sunp-color-primary);

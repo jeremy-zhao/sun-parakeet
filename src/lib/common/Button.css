@@ -1,6 +1,7 @@
 html button:where(.sunp-button) {
   @apply relative box-border cursor-pointer select-none border-solid border-transparent;
   @apply inline-flex items-center justify-center;
+  font-family: inherit;
   font-size: 17px;
   line-height: 24px;
   height: 36px;
@@ -10,8 +11,8 @@ html button:where(.sunp-button) {
 
   &::before {
     @apply absolute box-content;
-    top: calc(-var(--sunp-border, 1px));
-    left: calc(-var(--sunp-border, 1px));
+    top: calc(0 - var(--sunp-border, 1px));
+    left: calc(0 - var(--sunp-border, 1px));
     width: calc(100% + var(--sunp-border, 1px));
     height: calc(100% + var(--sunp-border, 1px));
     border-width: var(--sunp-border, 1px);
@@ -22,8 +23,8 @@ html button:where(.sunp-button) {
 
   &::after {
     @apply absolute box-content;
-    top: calc(-var(--sunp-border, 1px));
-    left: calc(-var(--sunp-border, 1px));
+    top: calc(0 - var(--sunp-border, 1px));
+    left: calc(0 - var(--sunp-border, 1px));
     width: calc(100% + var(--sunp-border, 1px));
     height: calc(100% + var(--sunp-border, 1px));
     border-width: var(--sunp-border, 1px);

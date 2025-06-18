@@ -17,11 +17,14 @@ html div:where(.sunp-form-item) {
     @apply relative box-border flex-none text-left;
     color: var(--sunp-color-text-secondary);
     -webkit-tap-highlight-color: transparent;
+    font-size: 17px;
+    line-height: 26px;
   }
 
   .sunp-form-item__input {
     @apply relative flex flex-auto flex-col text-left;
     font-size: 17px;
+    line-height: 26px;
   }
 
   .sunp-form-item__placeholder {
@@ -39,6 +42,9 @@ html div:where(.sunp-form-item) {
   @apply items-center justify-stretch;
   color: var(--sunp-color-black);
   background-color: var(--sunp-color-background);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
   -webkit-tap-highlight-color: transparent;
 
   &:active {
